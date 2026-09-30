@@ -12,7 +12,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'tools'))
-from flow_gpu_probe import launch_options, native_adapter_evidence, PROBE_JS
+from flow_gpu_probe import launch_options, PROBE_JS
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--unified', action='store_true')
 parser.add_argument('--browser-executable', type=Path)
@@ -46,15 +46,13 @@ try:
         browser = getattr(p, args.browser_engine).launch(**options)
         try:
             report['browserVersion'] = browser.version
-            native_evidence = native_adapter_evidence(browser, args.browser_engine)
-            if native_evidence is not None:
-                report['nativeAdapterEvidence'] = native_evidence
             page = browser.new_page()
             page.on('pageerror', lambda e: report['errors'].append(str(e)))
             page.on('console', lambda m: report['consoleErrors'].append(m.text) if m.type == 'error' else None)
             page.goto(f'http://127.0.0.1:{server.server_port}/')
             report['capability'] = page.evaluate(PROBE_JS, {
-                'expectedBackend': metadata['requestedBackend'], 'nativeAdapterEvidence': native_evidence})
+                'expectedBackend': metadata['requestedBackend']})
+            report['backendIdentityVerified'] = report['capability'].get('backendIdentityVerified', False)
             if report['capability']['status'] != 'PASS':
                 raise RuntimeError('Required Flow capability failed: ' + json.dumps(report['capability']))
             report['result'] = page.evaluate(r'''async unified => {
@@ -116,7 +114,7 @@ try:
                 artifact = ROOT / 'dist/candidate' / name
                 if artifact.stat().st_size != expected['bytes'] or hashlib.sha256(artifact.read_bytes()).hexdigest() != expected['sha256']:
                     raise RuntimeError('Matched Flow artifact changed: ' + name)
-            report['gpuMode'] = 'hardware' if args.hardware else 'software-WebGPU'
+            report['gpuMode'] = metadata['gpuMode']
             report['status'] = 'PASS' if not report['errors'] and not report['consoleErrors'] else 'FAIL'
         finally:
             browser.close()

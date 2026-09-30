@@ -188,7 +188,8 @@ def verify(browser: str | None, hardware: bool, software_vulkan: bool = False,
               'sourceHashesBefore': before, 'artifacts': manifest['artifacts'], 'steps': [],
               'sourceRevision': revision,
               'shaderHashesBefore': shaders_before,
-              'gpuMode': 'hardware' if hardware else 'software-WebGPU',
+              'gpuMode': 'hardware' if hardware else 'WebGPU-backend-unreported' if flow_browser_engine == 'firefox' else 'software-WebGPU',
+              'requestedGpuMode': 'hardware' if hardware else 'software-WebGPU',
               'flowBrowserEngine': flow_browser_engine,
               'scope': 'Build and functional browser smoke only. No full feature parity, engine promotion, device matrix or realtime claim.'}
     destination = ROOT / 'reports/release-verification.json'

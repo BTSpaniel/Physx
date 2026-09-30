@@ -36,7 +36,8 @@ def launch_options(browser: Path | None, hardware: bool, software_vulkan: bool,
                    '--use-angle=swiftshader', '--disable-vulkan-surface']}
     metadata = {'browserEngine': browser_engine,
                 'requestedBackend': 'hardware' if hardware else 'swiftshader',
-                'gpuMode': 'hardware' if hardware else 'software-WebGPU'}
+                'gpuMode': 'hardware' if hardware else 'software-WebGPU',
+                'requestedGpuMode': 'hardware' if hardware else 'software-WebGPU'}
     if not software_vulkan:
         return options, metadata
     if not sys.platform.startswith('linux'):
@@ -69,6 +70,7 @@ def launch_options(browser: Path | None, hardware: bool, software_vulkan: bool,
     if browser_engine == 'firefox':
         options.update(args=[], firefox_user_prefs={'dom.webgpu.enabled': True,
             'dom.webgpu.wgpu-backend': 'vulkan', 'gfx.webgpu.ignore-blocklist': True})
+        metadata.update(gpuMode='WebGPU-backend-unreported', backendIdentityVerified=False)
     elif browser is None:
         options['channel'] = 'chromium'
     metadata['browserDistribution'] = ('explicit-executable' if browser else
@@ -79,32 +81,8 @@ def launch_options(browser: Path | None, hardware: bool, software_vulkan: bool,
     return options, metadata
 
 
-def native_adapter_evidence(browser, browser_engine: str) -> dict | None:
-    """Read Firefox's native diagnostics; public adapter identity is redacted."""
-    if browser_engine != 'firefox':
-        return None
-    page = browser.new_page()
-    try:
-        page.goto('about:support')
-        result = page.evaluate(r'''async () => {
-            const {Troubleshoot}=ChromeUtils.importESModule('resource://gre/modules/Troubleshoot.sys.mjs');
-            let timer;
-            try {
-                const snapshot=await Promise.race([Troubleshoot.snapshot(),
-                    new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Firefox native WebGPU diagnostic timed out')),15000);})]);
-                return snapshot.graphics.webgpuDefaultAdapter;
-            }finally{clearTimeout(timer);}
-        }''')
-        descriptor = result.get('navigator.gpu.requestAdapter({})') if isinstance(result, dict) else None
-        if not isinstance(descriptor, dict):
-            raise ValueError('Firefox native WebGPU adapter diagnostic is unavailable')
-        return descriptor
-    finally:
-        page.close()
-
-
 PROBE_JS = r'''async options => {
-    const {expectedBackend,nativeAdapterEvidence}=options;
+    const {expectedBackend}=options;
     const result={status:'RUNNING',requestedBackend:expectedBackend,
         requiredFeatures:['float32-filterable'],requiredLimits:{maxComputeInvocationsPerWorkgroup:1024,maxComputeWorkgroupSizeX:1024},
         errors:[],cleanup:'NOT_CREATED'};
@@ -118,17 +96,10 @@ PROBE_JS = r'''async options => {
         result.supportedFeatures=Array.from(adapter.features).sort();
         result.supportedLimits={};
         for(const key of ['maxComputeInvocationsPerWorkgroup','maxComputeWorkgroupSizeX','maxComputeWorkgroupSizeY','maxComputeWorkgroupSizeZ','maxComputeWorkgroupStorageSize'])result.supportedLimits[key]=adapter.limits[key];
-        let identity=Object.values(result.adapter).join(' ');
-        if(nativeAdapterEvidence){
-            result.nativeAdapterEvidence=nativeAdapterEvidence;
-            const nativeInfo=nativeAdapterEvidence.info;
-            if(nativeInfo?.wgpuBackend!=='Vulkan'||nativeInfo?.wgpuDeviceType!=='Cpu')throw Error('Firefox diagnostic does not describe software Vulkan');
-            if(JSON.stringify(nativeAdapterEvidence.features)!==JSON.stringify(result.supportedFeatures))throw Error('Firefox diagnostic features differ from the compute adapter');
-            for(const [key,value]of Object.entries(result.supportedLimits))if(nativeAdapterEvidence.limits?.[key]!==value)throw Error('Firefox diagnostic limits differ from the compute adapter: '+key);
-            identity+=' '+nativeInfo.wgpuName+' '+nativeInfo.wgpuDriver;
-        }
-        result.observedBackend=/\b(llvmpipe|lavapipe)\b/i.test(identity)?'mesa-lavapipe':'other';
-        if(expectedBackend==='mesa-lavapipe'&&result.observedBackend!=='mesa-lavapipe')throw Error('Selected browser adapter is not Mesa lavapipe: '+JSON.stringify(result.adapter));
+        const identity=Object.values(result.adapter).join(' ').trim();
+        result.backendIdentityVerified=identity.length>0;
+        result.observedBackend=/\b(llvmpipe|lavapipe)\b/i.test(identity)?'mesa-lavapipe':identity?'other':'unknown/redacted';
+        if(expectedBackend==='mesa-lavapipe'&&result.observedBackend==='other')throw Error('Selected browser adapter is not Mesa lavapipe: '+JSON.stringify(result.adapter));
         for(const feature of result.requiredFeatures)if(!adapter.features.has(feature))throw Error('Unsupported Flow feature: '+feature);
         for(const [key,value]of Object.entries(result.requiredLimits))if(adapter.limits[key]<value)throw Error('Unsupported Flow limit '+key+': requires '+value+', adapter supports '+adapter.limits[key]);
         device=await adapter.requestDevice({requiredFeatures:result.requiredFeatures,requiredLimits:result.requiredLimits});
@@ -181,7 +152,7 @@ def main() -> int:
     parser.add_argument('--report', type=Path, default=ROOT / 'reports/flow-host-capability.json')
     args = parser.parse_args()
     report = {'status': 'RUNNING', 'startedUtc': datetime.now(timezone.utc).isoformat(),
-              'scope': 'Actual one-workgroup 1024-lane WebGPU admission; not execution of the Flow graph.',
+              'scope': 'Actual one-workgroup 1024-lane WebGPU admission; not execution of the Flow graph. Requested driver selection is separate from observed, potentially redacted adapter identity.',
               'errors': [], 'consoleErrors': []}
     server = None
     try:
@@ -195,15 +166,13 @@ def main() -> int:
             browser = getattr(playwright, args.browser_engine).launch(**options)
             try:
                 report['browserVersion'] = browser.version
-                native_evidence = native_adapter_evidence(browser, args.browser_engine)
-                if native_evidence is not None:
-                    report['nativeAdapterEvidence'] = native_evidence
                 page = browser.new_page()
                 page.on('pageerror', lambda error: report['errors'].append(str(error)))
                 page.on('console', lambda message: report['consoleErrors'].append(message.text) if message.type == 'error' else None)
                 page.goto(f'http://127.0.0.1:{server.server_port}/upstream.lock.json')
                 report['capability'] = page.evaluate(PROBE_JS, {
-                    'expectedBackend': metadata['requestedBackend'], 'nativeAdapterEvidence': native_evidence})
+                    'expectedBackend': metadata['requestedBackend']})
+                report['backendIdentityVerified'] = report['capability'].get('backendIdentityVerified', False)
                 report['status'] = 'PASS' if report['capability']['status'] == 'PASS' and not report['errors'] and not report['consoleErrors'] else 'FAIL'
             finally:
                 browser.close()

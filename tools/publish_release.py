@@ -109,8 +109,10 @@ def publish(directory: Path, tag: str) -> None:
             "Flow shaders and adapters, full licenses and verification receipts are included.\n\n"
             "Original PhysX PE additions are MIT. Upstream components retain their licenses "
             "and credits. This is an attributed integration, not a clean-room SDK rewrite.\n\n"
-            "Verification covers functional browser/ABI checks and an extracted-archive "
-            "test using software WebGPU in CI. No real-time hardware performance or full "
+            "Verification covers functional browser/ABI checks, actual Flow compute and "
+            "an extracted-archive test in CI. Chromium requests SwiftShader; Firefox Flow "
+            "requests software Vulkan and reports redacted adapter identity as unknown. "
+            "No real-time hardware performance or full "
             "upstream feature parity is claimed.\n\nSource commit: `" + commit + "`.\n")
     if matches:
         release = matches[0]

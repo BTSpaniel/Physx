@@ -87,6 +87,9 @@ class FlowSoftwareBackendAdmission(unittest.TestCase):
                 options, metadata = flow_gpu_probe.launch_options(executable, False, True, self.icd, 'firefox')
             self.assertEqual(metadata['browserEngine'], 'firefox')
             self.assertEqual(metadata['requestedBackend'], 'mesa-lavapipe')
+            self.assertEqual(metadata['gpuMode'], 'WebGPU-backend-unreported')
+            self.assertEqual(metadata['requestedGpuMode'], 'software-WebGPU')
+            self.assertFalse(metadata['backendIdentityVerified'])
             self.assertEqual(options['args'], [])
             self.assertNotIn('channel', options)
             self.assertEqual(options['executable_path'], str(executable) if executable else None)
@@ -100,26 +103,32 @@ class FlowSoftwareBackendAdmission(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'requires --software-vulkan'):
             flow_gpu_probe.launch_options(None, False, False, browser_engine='firefox')
 
-    def test_firefox_native_diagnostic_is_bounded_and_page_is_closed(self):
-        # This explicit diagnostic fixture establishes routing only, not GPU execution.
-        descriptor = {'info': {'wgpuName': 'Diagnostic fixture'}, 'features': [], 'limits': {}}
+    def test_firefox_probe_reaches_ordinary_loopback_and_preserves_failed_capability(self):
+        # A failing capability fixture tests runner routing; it is not GPU evidence.
         page = Mock()
-        page.evaluate.return_value = {'navigator.gpu.requestAdapter({})': descriptor}
-        browser = SimpleNamespace(new_page=Mock(return_value=page))
-        self.assertEqual(flow_gpu_probe.native_adapter_evidence(browser, 'firefox'), descriptor)
-        page.goto.assert_called_once_with('about:support')
-        page.close.assert_called_once()
-        browser.new_page.reset_mock()
-        self.assertIsNone(flow_gpu_probe.native_adapter_evidence(browser, 'chromium'))
-        browser.new_page.assert_not_called()
-
-    def test_unavailable_firefox_native_diagnostic_fails_closed_with_cleanup(self):
-        page = Mock()
-        page.evaluate.return_value = {'navigator.gpu.requestAdapter({})': None}
-        browser = SimpleNamespace(new_page=lambda: page)
-        with self.assertRaisesRegex(ValueError, 'diagnostic is unavailable'):
-            flow_gpu_probe.native_adapter_evidence(browser, 'firefox')
-        page.close.assert_called_once()
+        page.evaluate.return_value = {'status': 'FAIL', 'backendIdentityVerified': False,
+            'observedBackend': 'unknown/redacted', 'error': 'Intentional no-execution fixture'}
+        browser = SimpleNamespace(new_page=Mock(return_value=page), version='Fixture, not Firefox execution', close=Mock())
+        launch = Mock(return_value=browser)
+        manager = Mock()
+        manager.__enter__ = Mock(return_value=SimpleNamespace(firefox=SimpleNamespace(launch=launch)))
+        manager.__exit__ = Mock(return_value=False)
+        module = SimpleNamespace(sync_playwright=lambda: manager)
+        report = self.icd.parent / 'firefox-probe.json'
+        with patch.object(sys, 'argv', ['flow_gpu_probe.py', '--software-vulkan', '--browser-engine', 'firefox', '--lavapipe-icd', str(self.icd), '--report', str(report)]), \
+                patch.object(sys, 'platform', 'linux'), patch.dict(sys.modules, {'playwright.sync_api': module}), \
+                contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(flow_gpu_probe.main(), 1)
+        result = json.loads(report.read_text())
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertEqual(result['gpuMode'], 'WebGPU-backend-unreported')
+        self.assertEqual(result['requestedGpuMode'], 'software-WebGPU')
+        self.assertFalse(result['backendIdentityVerified'])
+        self.assertEqual(result['capability'], page.evaluate.return_value)
+        self.assertEqual(browser.new_page.call_count, 1)
+        self.assertEqual(page.goto.call_count, 1)
+        self.assertRegex(page.goto.call_args.args[0], r'^http://127\.0\.0\.1:\d+/upstream\.lock\.json$')
+        browser.close.assert_called_once()
 
     def test_mode_conflicts_and_unsupported_platform_fail_clearly(self):
         with self.assertRaisesRegex(ValueError, 'mutually exclusive'):

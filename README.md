@@ -39,8 +39,10 @@ Use Linux or WSL with Python 3.12, Git, CMake, Make, a host C++ compiler and an
 official Rustup installation. The bootstrap installs the pinned development
 tools inside the build environment; it does not change the global Rust default.
 Software Flow verification also needs Mesa lavapipe (`mesa-vulkan-drivers` on
-Ubuntu). CI uses Chromium for PhysX and shared-heap checks, and Firefox with
-lavapipe for the Flow graph. The capability probe executes one 1,024-thread
+Ubuntu). CI uses Chromium for PhysX and shared-heap checks, and requests Firefox
+with the selected lavapipe ICD for the Flow graph. Firefox redacts public
+adapter identity; the reports distinguish this driver selection from an
+observed adapter name. The capability probe executes one 1,024-thread
 workgroup before the full build; SwiftShader's smaller workgroup limit cannot
 run this Flow graph.
 
@@ -88,9 +90,11 @@ needed. Emscripten uses its own bundled development tools during compilation.
 
 Each build produces its own hashes and reports. The gates cover Rust units and
 Python FFI, C++/Rust ABI probes, 23 PhysX browser scenarios, Blast fracture,
-shared-heap WebGPU transfers, and the native Flow graph. The CI WebGPU tests use
-a software adapter. They establish execution and numerical checks, not hardware
-frame rates or certification across devices.
+shared-heap WebGPU transfers, and the native Flow graph. Chromium tests request
+SwiftShader; the Flow runner requests software Vulkan and records any redacted
+adapter identity as unknown. Actual compute and solver readbacks establish
+execution and numerical checks, not adapter identity, hardware frame rates or
+certification across devices.
 
 This alpha exposes the implemented integration, not every upstream PhysX,
 Blast or Flow feature. The NanoVDB emitter pipeline is excluded. Flow obstacle
