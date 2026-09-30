@@ -39,16 +39,18 @@ Use Linux or WSL with Python 3.12, Git, CMake, Make, a host C++ compiler and an
 official Rustup installation. The bootstrap installs the pinned development
 tools inside the build environment; it does not change the global Rust default.
 Software Flow verification also needs Mesa lavapipe (`mesa-vulkan-drivers` on
-Ubuntu). The capability probe executes one 1,024-thread workgroup before the
-full build; SwiftShader's smaller workgroup limit cannot run this Flow graph.
+Ubuntu). CI uses Chromium for PhysX and shared-heap checks, and Firefox with
+lavapipe for the Flow graph. The capability probe executes one 1,024-thread
+workgroup before the full build; SwiftShader's smaller workgroup limit cannot
+run this Flow graph.
 
 ```bash
 python tools/bootstrap.py --install
 source work/env.sh
 python -m pip install playwright==1.57.0
-python -m playwright install --with-deps chromium
-python tools/flow_gpu_probe.py --software-vulkan
-python release.py all --software-vulkan
+python -m playwright install --with-deps chromium firefox
+python tools/flow_gpu_probe.py --software-vulkan --browser-engine firefox
+python release.py all --software-vulkan --flow-browser-engine firefox
 ```
 
 You can run `build`, `verify`, and `package` separately. Packaging refuses a

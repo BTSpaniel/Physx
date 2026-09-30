@@ -150,7 +150,8 @@ def build() -> None:
         'preparedSourceReceiptSha256': lab.sha256(ROOT / 'work/source-preparation.json')})
 
 
-def verify(browser: str | None, hardware: bool, software_vulkan: bool = False) -> None:
+def verify(browser: str | None, hardware: bool, software_vulkan: bool = False,
+           flow_browser_engine: str = 'chromium') -> None:
     selection()
     built = json.loads((ROOT / 'reports/release-build.json').read_text())
     before = inventory()
@@ -171,6 +172,7 @@ def verify(browser: str | None, hardware: bool, software_vulkan: bool = False) -
     if hardware:
         gpu += ['--hardware']
     host_backend = ['--software-vulkan'] if software_vulkan else []
+    host_backend += ['--browser-engine', flow_browser_engine]
     jobs = [
         ('Rust units, Python FFI and C ABI layout', ['build.py', 'test'], 'rust-python-tests.json'),
         ('Native C++/Rust ABI', ['build.py', 'abi', '--target', 'native'], 'abi-build.json'),
@@ -187,6 +189,7 @@ def verify(browser: str | None, hardware: bool, software_vulkan: bool = False) -
               'sourceRevision': revision,
               'shaderHashesBefore': shaders_before,
               'gpuMode': 'hardware' if hardware else 'software-WebGPU',
+              'flowBrowserEngine': flow_browser_engine,
               'scope': 'Build and functional browser smoke only. No full feature parity, engine promotion, device matrix or realtime claim.'}
     destination = ROOT / 'reports/release-verification.json'
     try:
@@ -236,12 +239,18 @@ def main() -> int:
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument('--hardware', action='store_true', help='Use the actual browser hardware WebGPU adapter')
     mode.add_argument('--software-vulkan', action='store_true', help='Use Mesa lavapipe for the Flow host 1024-lane software test')
+    parser.add_argument('--flow-browser-engine', choices=['chromium', 'firefox'], default='chromium',
+                        help='Browser engine for the unchanged native Flow graph; other browser phases use Chromium')
     args = parser.parse_args()
+    if args.flow_browser_engine == 'firefox' and not args.software_vulkan:
+        parser.error('--flow-browser-engine firefox requires --software-vulkan')
+    if args.flow_browser_engine != 'chromium' and args.browser:
+        parser.error('--browser selects Chromium for the other phases; use default pinned Firefox for the Flow phase')
     try:
         if args.command in ('build', 'all'):
             build()
         if args.command in ('verify', 'all'):
-            verify(args.browser, args.hardware, args.software_vulkan)
+            verify(args.browser, args.hardware, args.software_vulkan, args.flow_browser_engine)
         if args.command in ('package', 'all'):
             from package_release import package
             package()

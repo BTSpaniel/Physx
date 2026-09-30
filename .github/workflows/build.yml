@@ -27,11 +27,11 @@ jobs:
       - name: Install development-only browser driver
         run: |
           python -m pip install playwright==1.57.0
-          python -m playwright install --with-deps chromium
+          python -m playwright install --with-deps chromium firefox
       - name: Install and select Mesa software Vulkan driver
         run: |
           sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends mesa-vulkan-drivers
+          sudo apt-get install --yes --no-install-recommends mesa-vulkan-drivers vulkan-tools
           python - <<'PY'
           import hashlib, json, os, subprocess
           from pathlib import Path
@@ -55,16 +55,27 @@ jobs:
           with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as environment:
               environment.write('VK_ICD_FILENAMES=' + str(icd) + '\n')
               environment.write('VK_DRIVER_FILES=' + str(icd) + '\n')
+          driver_environment = dict(os.environ, VK_ICD_FILENAMES=str(icd), VK_DRIVER_FILES=str(icd))
+          diagnostics = []
+          for arguments in (['vulkaninfo', '--summary'], ['vulkaninfo']):
+              result = subprocess.run(arguments, env=driver_environment, text=True,
+                                      stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=60)
+              diagnostics.append({'command': arguments, 'exitCode': result.returncode,
+                                  'stdout': result.stdout, 'stderr': result.stderr})
+          (reports / 'software-vulkan-diagnostics.json').write_text(json.dumps({
+              'scope': 'Actual selected-driver diagnostics; not browser or Flow execution proof',
+              'commands': diagnostics,
+          }, indent=2) + '\n', encoding='utf-8')
           PY
       - name: Execute Flow's required 1024-thread WebGPU capability probe
-        run: python tools/flow_gpu_probe.py --software-vulkan --report reports/flow-host-capability.json
+        run: python tools/flow_gpu_probe.py --software-vulkan --browser-engine firefox --report reports/flow-host-capability.json
       - name: Build, simulate and test the extracted runtime archive
         shell: bash
         run: |
           set -eo pipefail
           source work/env.sh
           set -u
-          python release.py all --software-vulkan
+          python release.py all --software-vulkan --flow-browser-engine firefox
       - name: Preserve verified release archive
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

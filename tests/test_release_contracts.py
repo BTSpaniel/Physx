@@ -50,8 +50,11 @@ class FlowSoftwareBackendAdmission(unittest.TestCase):
         self.assertEqual(options['env'].get('LD_LIBRARY_PATH'), before.get('LD_LIBRARY_PATH'))
         self.assertIn('--use-angle=vulkan', options['args'])
         self.assertIn('--use-vulkan=native', options['args'])
+        self.assertIn('--use-webgpu-adapter=default', options['args'])
         self.assertNotIn('--use-angle=swiftshader', options['args'])
         self.assertEqual(metadata['requestedBackend'], 'mesa-lavapipe')
+        self.assertEqual(options['channel'], 'chromium')
+        self.assertEqual(metadata['browserDistribution'], 'chromium-new-headless')
         self.assertEqual(metadata['gpuMode'], 'software-WebGPU')
         self.assertEqual(metadata['icd']['sha256'], lab.sha256(self.icd))
         self.assertEqual(dict(os.environ), before)
@@ -68,6 +71,55 @@ class FlowSoftwareBackendAdmission(unittest.TestCase):
         self.assertEqual(options, {'headless': True, 'executable_path': str(executable), 'args': []})
         self.assertEqual(metadata['requestedBackend'], 'hardware')
         self.assertEqual(metadata['gpuMode'], 'hardware')
+
+    def test_explicit_software_browser_is_not_replaced_with_a_distribution_channel(self):
+        executable = Path('/caller-selected/chromium')
+        with patch.object(sys, 'platform', 'linux'):
+            options, metadata = flow_gpu_probe.launch_options(executable, False, True, self.icd)
+        self.assertEqual(options['executable_path'], str(executable))
+        self.assertNotIn('channel', options)
+        self.assertEqual(metadata['browserDistribution'], 'explicit-executable')
+        self.assertIn('--use-webgpu-adapter=default', options['args'])
+
+    def test_firefox_uses_supported_vulkan_preferences_and_preserves_explicit_executable(self):
+        for executable in (None, Path('/caller-selected/firefox')):
+            with self.subTest(executable=executable), patch.object(sys, 'platform', 'linux'):
+                options, metadata = flow_gpu_probe.launch_options(executable, False, True, self.icd, 'firefox')
+            self.assertEqual(metadata['browserEngine'], 'firefox')
+            self.assertEqual(metadata['requestedBackend'], 'mesa-lavapipe')
+            self.assertEqual(options['args'], [])
+            self.assertNotIn('channel', options)
+            self.assertEqual(options['executable_path'], str(executable) if executable else None)
+            self.assertEqual(options['firefox_user_prefs'], {'dom.webgpu.enabled': True,
+                'dom.webgpu.wgpu-backend': 'vulkan', 'gfx.webgpu.ignore-blocklist': True})
+            self.assertEqual(options['env']['VK_DRIVER_FILES'], str(self.icd.resolve()))
+
+    def test_unknown_engine_and_firefox_without_explicit_software_mode_are_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'Unsupported browser'):
+            flow_gpu_probe.launch_options(None, False, True, self.icd, 'unknown-engine')
+        with self.assertRaisesRegex(ValueError, 'requires --software-vulkan'):
+            flow_gpu_probe.launch_options(None, False, False, browser_engine='firefox')
+
+    def test_firefox_native_diagnostic_is_bounded_and_page_is_closed(self):
+        # This explicit diagnostic fixture establishes routing only, not GPU execution.
+        descriptor = {'info': {'wgpuName': 'Diagnostic fixture'}, 'features': [], 'limits': {}}
+        page = Mock()
+        page.evaluate.return_value = {'navigator.gpu.requestAdapter({})': descriptor}
+        browser = SimpleNamespace(new_page=Mock(return_value=page))
+        self.assertEqual(flow_gpu_probe.native_adapter_evidence(browser, 'firefox'), descriptor)
+        page.goto.assert_called_once_with('about:support')
+        page.close.assert_called_once()
+        browser.new_page.reset_mock()
+        self.assertIsNone(flow_gpu_probe.native_adapter_evidence(browser, 'chromium'))
+        browser.new_page.assert_not_called()
+
+    def test_unavailable_firefox_native_diagnostic_fails_closed_with_cleanup(self):
+        page = Mock()
+        page.evaluate.return_value = {'navigator.gpu.requestAdapter({})': None}
+        browser = SimpleNamespace(new_page=lambda: page)
+        with self.assertRaisesRegex(ValueError, 'diagnostic is unavailable'):
+            flow_gpu_probe.native_adapter_evidence(browser, 'firefox')
+        page.close.assert_called_once()
 
     def test_mode_conflicts_and_unsupported_platform_fail_clearly(self):
         with self.assertRaisesRegex(ValueError, 'mutually exclusive'):

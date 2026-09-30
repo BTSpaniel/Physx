@@ -12,10 +12,11 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'tools'))
-from flow_gpu_probe import launch_options, PROBE_JS
+from flow_gpu_probe import launch_options, native_adapter_evidence, PROBE_JS
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--unified', action='store_true')
 parser.add_argument('--browser-executable', type=Path)
+parser.add_argument('--browser-engine', choices=['chromium', 'firefox'], default='chromium')
 mode = parser.add_mutually_exclusive_group()
 mode.add_argument('--hardware', action='store_true')
 mode.add_argument('--software-vulkan', action='store_true')
@@ -40,16 +41,20 @@ server = ThreadingHTTPServer(('127.0.0.1', 0), partial(Handler, directory=str(RO
 threading.Thread(target=server.serve_forever, daemon=True).start()
 try:
     with sync_playwright() as p:
-        options, metadata = launch_options(args.browser_executable, args.hardware, args.software_vulkan, args.lavapipe_icd)
+        options, metadata = launch_options(args.browser_executable, args.hardware, args.software_vulkan, args.lavapipe_icd, args.browser_engine)
         report.update(metadata)
-        browser = p.chromium.launch(**options)
+        browser = getattr(p, args.browser_engine).launch(**options)
         try:
             report['browserVersion'] = browser.version
+            native_evidence = native_adapter_evidence(browser, args.browser_engine)
+            if native_evidence is not None:
+                report['nativeAdapterEvidence'] = native_evidence
             page = browser.new_page()
             page.on('pageerror', lambda e: report['errors'].append(str(e)))
             page.on('console', lambda m: report['consoleErrors'].append(m.text) if m.type == 'error' else None)
             page.goto(f'http://127.0.0.1:{server.server_port}/')
-            report['capability'] = page.evaluate(PROBE_JS, metadata['requestedBackend'])
+            report['capability'] = page.evaluate(PROBE_JS, {
+                'expectedBackend': metadata['requestedBackend'], 'nativeAdapterEvidence': native_evidence})
             if report['capability']['status'] != 'PASS':
                 raise RuntimeError('Required Flow capability failed: ' + json.dumps(report['capability']))
             report['result'] = page.evaluate(r'''async unified => {
