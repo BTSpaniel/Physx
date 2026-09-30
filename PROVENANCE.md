@@ -16,6 +16,14 @@ match the source inputs recorded for the installed reference runtime. The
 reference loader/WASM hashes identify that older observed build; no binary
 identity or current-test pass is claimed for a fresh portable rebuild.
 
+`rust/src/regression_tests.rs` is an original build-lab MIT test module restored
+verbatim because `rust/src/lib.rs` already includes it under `#[cfg(test)]`.
+Its SHA-256 is
+`554af72bcaf1fec9860007f217d2844e3cf2245666ead9e14ff4f7eec56d5386`.
+The original header and all thirteen regression tests are preserved. This
+transitive test source adds no runtime algorithms or dependencies and does not
+change the sixteen stable runtime input hashes in `source-selection.json`.
+
 `patches/browser-overlay.patch` contains the retained SDK/browser source
 adaptations. Its SHA-256 is
 `fc1675b9b0982997f2e4cb337bde36f093b84edd3995fc0bab3c61538ac4cee0`.
