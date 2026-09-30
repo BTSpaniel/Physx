@@ -76,14 +76,11 @@ jobs:
           source work/env.sh
           set -u
           python release.py all --software-vulkan --flow-browser-engine firefox
-      - name: Preserve verified release archive
+      - name: Preserve verified direct WASM and complete runtime
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: physx-pe-alpha-${{ github.sha }}
-          path: |
-            dist/physx-pe-*.zip
-            dist/physx-pe-*.zip.sha256
-            dist/release-artifacts.json
+          path: dist/release/
           if-no-files-found: error
       - name: Preserve diagnostics
         if: always()
@@ -107,7 +104,8 @@ jobs:
         with:
           name: physx-pe-alpha-${{ github.sha }}
           path: release-payload
-      - name: Publish verified private prerelease
+      - name: Publish verified prerelease with explicit repository visibility
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python tools/publish_release.py release-payload --tag "$GITHUB_REF_NAME"
+          RELEASE_VISIBILITY: ${{ vars.PHYSX_PE_RELEASE_VISIBILITY || 'private' }}
+        run: python tools/publish_release.py release-payload --tag "$GITHUB_REF_NAME" --visibility "$RELEASE_VISIBILITY"

@@ -96,11 +96,14 @@ def package() -> Path:
                 'files': {name: {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
                           for name, data in sorted(payload.items())}}
     payload['runtime-manifest.json'] = (json.dumps(manifest, indent=2) + '\n').encode()
-    archive = ROOT / 'dist' / f'physx-pe-{VERSION}.zip'
-    if not archive.resolve().is_relative_to((ROOT / 'dist').resolve()):
-        raise lab.LabError('Archive target escapes release dist')
+    output = ROOT / 'dist/release'
+    if output.is_symlink() or not output.resolve().is_relative_to((ROOT / 'dist').resolve()):
+        raise lab.LabError('Release output escapes release dist')
+    archive_name = f'physx-pe-{VERSION}-runtime.zip'
     with tempfile.TemporaryDirectory(prefix='.package-', dir=ROOT / 'dist') as temporary:
-        staging = Path(temporary) / archive.name
+        staged_output = Path(temporary) / 'release'
+        staged_output.mkdir()
+        staging = staged_output / archive_name
         with zipfile.ZipFile(staging, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as bundle:
             for name, data in sorted(payload.items()):
                 info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
@@ -118,16 +121,55 @@ def package() -> Path:
         for row in verified['steps']:
             if lab.sha256(ROOT / row['reportFile']) != row['reportSha256']:
                 raise lab.LabError('Completed phase receipt changed during packaging')
-        # Only a completed extracted-archive simulation can replace an old archive.
-        staging.replace(archive)
-    checksum = archive.with_suffix(archive.suffix + '.sha256')
-    checksum.write_text(lab.sha256(archive) + '  ' + archive.name + '\n', encoding='utf-8')
-    lab.write_json(ROOT / 'dist/release-artifacts.json', {
-        'schema': 'physx-pe.release-artifacts/v1', 'version': VERSION,
-        'sourceRevision': revision,
-        'status': 'VERIFIED_ALPHA_ARCHIVE', 'archive': {'name': archive.name,
-        'bytes': archive.stat().st_size, 'sha256': lab.sha256(archive)},
-        'archiveSmokeReportSha256': lab.sha256(ROOT / 'reports/package-smoke.json'),
-        'verificationScope': summary['scope']})
+        write_release_assets(staged_output, staging, VERSION, revision, summary['scope'],
+                             lab.sha256(ROOT / 'reports/package-smoke.json'))
+        install_release_output(staged_output, output)
+    archive = output / archive_name
     print('Verified archive:', archive)
     return archive
+
+
+def install_release_output(staged: Path, output: Path) -> None:
+    """Keep completed releases immutable; an exact rerun is idempotent."""
+    if output.is_symlink():
+        raise lab.LabError('Existing release output is a symlink')
+    if output.exists():
+        if (not output.is_dir() or any(path.is_symlink() for path in output.rglob('*')) or
+                {path.name: path.read_bytes() for path in output.iterdir() if path.is_file()} !=
+                {path.name: path.read_bytes() for path in staged.iterdir()} or
+                any(not path.is_file() for path in output.iterdir())):
+            raise lab.LabError('Existing release output differs; refusing to overwrite it')
+    else:
+        staged.replace(output)
+
+
+def write_release_assets(output: Path, archive: Path, version: str, revision: dict,
+                         scope: str, smoke_report_sha256: str) -> dict:
+    """Expose the exact matched files from the verified complete runtime ZIP."""
+    direct = {}
+    with zipfile.ZipFile(archive) as bundle:
+        manifest_bytes = bundle.read('runtime-manifest.json')
+        manifest = json.loads(manifest_bytes)
+        for name in ('physx-pe.wasm', 'physx-pe.mjs', 'physx-pe.d.ts'):
+            relative = 'dist/candidate/' + name
+            data = bundle.read(relative)
+            expected = manifest['files'][relative]
+            if len(data) != expected['bytes'] or hashlib.sha256(data).hexdigest() != expected['sha256']:
+                raise lab.LabError('Direct runtime asset differs from its package manifest: ' + name)
+            (output / name).write_bytes(data)
+            direct[name] = {**expected, 'archivePath': relative}
+    archive_entry = {'name': archive.name, 'bytes': archive.stat().st_size, 'sha256': lab.sha256(archive)}
+    archive.with_suffix('.zip.sha256').write_text(archive_entry['sha256'] + '  ' + archive.name + '\n', encoding='utf-8', newline='\n')
+    sums = {name: row['sha256'] for name, row in direct.items()}
+    sums[archive.name] = archive_entry['sha256']
+    checksums = output / 'SHA256SUMS'
+    checksums.write_text(''.join(sums[name] + '  ' + name + '\n' for name in sorted(sums)), encoding='utf-8', newline='\n')
+    metadata = {'schema': 'physx-pe.release-artifacts/v2', 'version': version,
+                'sourceRevision': revision, 'status': 'VERIFIED_ALPHA_ARCHIVE',
+                'archive': archive_entry, 'directAssets': direct,
+                'runtimeManifest': {'archivePath': 'runtime-manifest.json', 'bytes': len(manifest_bytes),
+                                    'sha256': hashlib.sha256(manifest_bytes).hexdigest()},
+                'checksums': {'name': checksums.name, 'bytes': checksums.stat().st_size, 'sha256': lab.sha256(checksums)},
+                'archiveSmokeReportSha256': smoke_report_sha256, 'verificationScope': scope}
+    lab.write_json(output / 'release-artifacts.json', metadata)
+    return metadata

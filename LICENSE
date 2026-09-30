@@ -20,11 +20,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-Scope: this license covers project-authored integration, build tools, tests,
-documentation, and original modifications in this package. It does not replace
-the licenses or copyrights of NVIDIA PhysX, NVIDIA Blast, NVIDIA Flow, fabmax
-bindings, generated upstream shaders, or compiler runtime libraries. The
-retained browser patch includes adapted upstream source. Its upstream portions
-keep their original terms. See THIRD_PARTY_NOTICES.md, PROVENANCE.md, and
-LICENSES/ for the complete retained texts and contribution scopes.

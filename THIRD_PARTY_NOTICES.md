@@ -9,6 +9,16 @@ modifications. Upstream code keeps the licenses and copyright notices listed
 below, including notices within individual source files. Generated WGSL is a
 translation of NVIDIA shader source and keeps its source attribution.
 
+## Custom contribution license scope
+
+Scope: this license covers project-authored integration, build tools, tests,
+documentation, and original modifications in this package. It does not replace
+the licenses or copyrights of NVIDIA PhysX, NVIDIA Blast, NVIDIA Flow, fabmax
+bindings, generated upstream shaders, or compiler runtime libraries. The
+retained browser patch includes adapted upstream source. Its upstream portions
+keep their original terms. See THIRD_PARTY_NOTICES.md, PROVENANCE.md, and
+LICENSES/ for the complete retained texts and contribution scopes.
+
 ## NVIDIA PhysX 5.11.0
 
 Source: [NVIDIA-Omniverse/PhysX](https://github.com/NVIDIA-Omniverse/PhysX/tree/da950a3537927784951853c66618036f332ca0ce),

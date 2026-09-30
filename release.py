@@ -21,7 +21,7 @@ import evidence
 from prepare_sources import prepare
 from generate_physx_types import generate_types
 
-VERSION = '5.11.0-alpha.1'
+VERSION = '5.11.0-alpha.2'
 
 
 def inventory(root: Path | None = None) -> dict[str, str]:

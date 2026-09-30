@@ -56,8 +56,39 @@ def main() -> int:
                         raise ValueError('Extracted browser validation failed: ' + json.dumps(result))
                     if report['pageErrors'] or len(result.get('tests', [])) != 23:
                         raise ValueError('Extracted browser checks are incomplete or errored')
+                    page.goto(f'http://127.0.0.1:{server.server_port}/web/quickstart.html')
+                    page.wait_for_function('window.quickstartState?.status === "FAILED" || window.quickstartState?.time >= 0.2')
+                    falling = page.evaluate('window.quickstartState')
+                    if falling.get('runtimeVersion') != '5.11.0' or not 0.25 < falling.get('y', 0) < 3:
+                        raise ValueError('Extracted quick start did not execute native free fall: ' + json.dumps(falling))
+                    page.click('#pause')
+                    page.wait_for_function('["PAUSED", "FAILED"].includes(window.quickstartState?.status)')
+                    paused = page.evaluate('window.quickstartState')
+                    page.wait_for_timeout(200)
+                    if paused['status'] != 'PAUSED' or page.evaluate('window.quickstartState.time') != paused['time']:
+                        raise ValueError('Quick-start pause did not hold the native simulation')
+                    page.click('#pause')
+                    page.wait_for_function('window.quickstartState?.status === "FAILED" || window.quickstartState?.time >= 6', timeout=15000)
+                    resting = page.evaluate('window.quickstartState')
+                    if resting['status'] != 'RUNNING' or not 0.23 < resting.get('y', 0) < 0.32 or abs(resting.get('velocityY', 1)) > 0.1:
+                        raise ValueError('Quick-start sphere did not settle on its native floor: ' + json.dumps(resting))
+                    screenshot = lab.ROOT / 'reports/quickstart.png'
+                    page.screenshot(path=str(screenshot), full_page=True)
+                    page.click('#reset')
+                    page.wait_for_function('(generation) => window.quickstartState?.status === "FAILED" || (window.quickstartState?.generation > generation && window.quickstartState?.time >= 0.05)', arg=resting['generation'])
+                    restarted = page.evaluate('window.quickstartState')
+                    if restarted['status'] != 'RUNNING' or restarted['y'] < 2.5:
+                        raise ValueError('Quick-start reset did not create a fresh scene')
+                    page.click('#stop')
+                    page.wait_for_function('["CLOSED", "FAILED"].includes(window.quickstartState?.status)')
+                    closed = page.evaluate('window.quickstartState')
+                    if closed['status'] != 'CLOSED' or closed.get('ownedWrappers') != 0 or report['pageErrors']:
+                        raise ValueError('Quick-start scene teardown failed: ' + json.dumps(closed))
                     report.update(status='PASS', browser=browser.version,
-                                  inventoryFiles=len(names), tests=result['tests'])
+                                  inventoryFiles=len(names), tests=result['tests'],
+                                  quickstart={'status': 'PASS', 'falling': falling, 'paused': paused,
+                                              'resting': resting, 'restarted': restarted, 'closed': closed,
+                                              'screenshotSha256': lab.sha256(screenshot)})
                 finally:
                     browser.close()
     except Exception as exc:
