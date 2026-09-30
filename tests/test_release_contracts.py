@@ -26,6 +26,92 @@ import bootstrap
 import prepare_sources
 import build
 import physx_lab as lab
+import flow_gpu_probe
+
+
+class FlowSoftwareBackendAdmission(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.icd = Path(self.temporary.name) / 'lvp_icd.json'
+        self.icd.write_text(json.dumps({'file_format_version': '1.0.0', 'ICD': {
+            'library_path': '/usr/lib/libvulkan_lvp.so', 'api_version': '1.3.0'}}))
+
+    def software(self, path=None):
+        with patch.object(sys, 'platform', 'linux'):
+            return flow_gpu_probe.launch_options(None, False, True, path or self.icd)
+
+    def test_explicit_lavapipe_sets_both_loader_variables_without_mutating_parent(self):
+        before = dict(os.environ)
+        options, metadata = self.software()
+        self.assertEqual(options['env']['VK_ICD_FILENAMES'], str(self.icd.resolve()))
+        self.assertEqual(options['env']['VK_DRIVER_FILES'], str(self.icd.resolve()))
+        self.assertEqual(options['env'].get('PLAYWRIGHT_BROWSERS_PATH'), before.get('PLAYWRIGHT_BROWSERS_PATH'))
+        self.assertEqual(options['env'].get('LD_LIBRARY_PATH'), before.get('LD_LIBRARY_PATH'))
+        self.assertIn('--use-angle=vulkan', options['args'])
+        self.assertIn('--use-vulkan=native', options['args'])
+        self.assertNotIn('--use-angle=swiftshader', options['args'])
+        self.assertEqual(metadata['requestedBackend'], 'mesa-lavapipe')
+        self.assertEqual(metadata['gpuMode'], 'software-WebGPU')
+        self.assertEqual(metadata['icd']['sha256'], lab.sha256(self.icd))
+        self.assertEqual(dict(os.environ), before)
+
+    def test_caller_icd_is_selected_without_a_historical_browser_cache_override(self):
+        with patch.dict(os.environ, {'VK_ICD_FILENAMES': str(self.icd)}), patch.object(sys, 'platform', 'linux'):
+            options, metadata = flow_gpu_probe.launch_options(None, False, True)
+        self.assertEqual(metadata['icd']['path'], str(self.icd.resolve()))
+        self.assertIsNone(options['executable_path'])
+
+    def test_hardware_and_explicit_browser_keep_the_existing_launch_path(self):
+        executable = Path('/caller-selected/chromium')
+        options, metadata = flow_gpu_probe.launch_options(executable, True, False)
+        self.assertEqual(options, {'headless': True, 'executable_path': str(executable), 'args': []})
+        self.assertEqual(metadata['requestedBackend'], 'hardware')
+        self.assertEqual(metadata['gpuMode'], 'hardware')
+
+    def test_mode_conflicts_and_unsupported_platform_fail_clearly(self):
+        with self.assertRaisesRegex(ValueError, 'mutually exclusive'):
+            flow_gpu_probe.launch_options(None, True, True)
+        with self.assertRaisesRegex(ValueError, 'requires --software-vulkan'):
+            flow_gpu_probe.launch_options(None, True, False, self.icd)
+        with patch.object(sys, 'platform', 'win32'), self.assertRaisesRegex(ValueError, 'requires Linux'):
+            flow_gpu_probe.launch_options(None, False, True, self.icd)
+
+    def test_missing_nonfile_wrong_library_and_nonobject_icds_are_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'ordinary JSON'):
+            self.software(self.icd.parent / 'missing.json')
+        self.icd.unlink()
+        self.icd.mkdir()
+        with self.assertRaisesRegex(ValueError, 'ordinary JSON'):
+            self.software()
+        self.icd.rmdir()
+        for descriptor in ([], {'ICD': []}, {'ICD': {'library_path': 'libvk_swiftshader.so'}}):
+            self.icd.write_text(json.dumps(descriptor))
+            with self.subTest(descriptor=descriptor), self.assertRaises(ValueError):
+                self.software()
+
+    def test_multiple_loader_descriptors_are_rejected(self):
+        with patch.dict(os.environ, {'VK_ICD_FILENAMES': str(self.icd) + os.pathsep + str(self.icd)}), \
+                patch.object(sys, 'platform', 'linux'), self.assertRaisesRegex(ValueError, 'exactly one'):
+            flow_gpu_probe.launch_options(None, False, True)
+
+    def test_failed_launch_receipt_records_backend_without_claiming_gpu_execution(self):
+        launch = Mock(side_effect=RuntimeError('Intentional configuration-only stop; no GPU execution'))
+        manager = Mock()
+        manager.__enter__ = Mock(return_value=SimpleNamespace(chromium=SimpleNamespace(launch=launch)))
+        manager.__exit__ = Mock(return_value=False)
+        module = SimpleNamespace(sync_playwright=lambda: manager)
+        report = self.icd.parent / 'probe.json'
+        with patch.object(sys, 'argv', ['flow_gpu_probe.py', '--software-vulkan', '--lavapipe-icd', str(self.icd), '--report', str(report)]), \
+                patch.object(sys, 'platform', 'linux'), patch.dict(sys.modules, {'playwright.sync_api': module}), \
+                contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(flow_gpu_probe.main(), 1)
+        result = json.loads(report.read_text())
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertEqual(result['requestedBackend'], 'mesa-lavapipe')
+        self.assertIn('configuration-only stop', result['error'])
+        self.assertNotIn('capability', result)
+        launch.assert_called_once()
 
 
 class PortableBrowserDiscovery(unittest.TestCase):

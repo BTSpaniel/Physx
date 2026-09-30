@@ -150,7 +150,7 @@ def build() -> None:
         'preparedSourceReceiptSha256': lab.sha256(ROOT / 'work/source-preparation.json')})
 
 
-def verify(browser: str | None, hardware: bool) -> None:
+def verify(browser: str | None, hardware: bool, software_vulkan: bool = False) -> None:
     selection()
     built = json.loads((ROOT / 'reports/release-build.json').read_text())
     before = inventory()
@@ -170,6 +170,7 @@ def verify(browser: str | None, hardware: bool) -> None:
     gpu = ['--browser-executable', browser] if browser else []
     if hardware:
         gpu += ['--hardware']
+    host_backend = ['--software-vulkan'] if software_vulkan else []
     jobs = [
         ('Rust units, Python FFI and C ABI layout', ['build.py', 'test'], 'rust-python-tests.json'),
         ('Native C++/Rust ABI', ['build.py', 'abi', '--target', 'native'], 'abi-build.json'),
@@ -178,7 +179,7 @@ def verify(browser: str | None, hardware: bool) -> None:
         ('PhysX rigid-body browser regressions', ['tools/browser_test.py', '--profile', 'candidate', *extra], 'candidate-browser.json'),
         ('Blast split and unified WASM/WebGPU transfer', ['addons/flow/browser_test.py', *gpu], 'unified-browser.json'),
         ('Flow WGSL modules and executed advection/mesh scan', ['addons/flow/wgsl_browser_test.py', *gpu, '--modules-only', '--advection', '--mesh-scan', '--report', 'reports/flow-wgsl-modules.json'], 'flow-wgsl-modules.json'),
-        ('Native Flow graph and WebGPU ownership', ['addons/flow/host_browser_test.py', '--unified', *gpu], 'flow-host-browser.json'),
+        ('Native Flow graph and WebGPU ownership', ['addons/flow/host_browser_test.py', '--unified', *gpu, *host_backend], 'flow-host-browser.json'),
     ]
     report = {'schema': 'physx-pe.release-verification/v1', 'version': VERSION,
               'status': 'RUNNING', 'startedUtc': datetime.now(timezone.utc).isoformat(),
@@ -232,13 +233,15 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['build', 'verify', 'package', 'all'])
     parser.add_argument('--browser', help='Optional Chrome/Chromium executable')
-    parser.add_argument('--hardware', action='store_true', help='Use the actual browser hardware WebGPU adapter')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--hardware', action='store_true', help='Use the actual browser hardware WebGPU adapter')
+    mode.add_argument('--software-vulkan', action='store_true', help='Use Mesa lavapipe for the Flow host 1024-lane software test')
     args = parser.parse_args()
     try:
         if args.command in ('build', 'all'):
             build()
         if args.command in ('verify', 'all'):
-            verify(args.browser, args.hardware)
+            verify(args.browser, args.hardware, args.software_vulkan)
         if args.command in ('package', 'all'):
             from package_release import package
             package()
