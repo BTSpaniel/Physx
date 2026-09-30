@@ -7,6 +7,7 @@ import contextlib
 import hashlib
 import io
 import json
+import os
 import subprocess
 import sys
 import tarfile
@@ -23,6 +24,24 @@ import bootstrap
 import prepare_sources
 import build
 import physx_lab as lab
+
+
+class PackmanPythonAdmission(unittest.TestCase):
+    def test_real_isolated_interpreter_can_decompress_and_overrides_stale_python(self):
+        before = dict(os.environ)
+        with patch.dict(os.environ, {'PM_PYTHON_EXT': 'unusable-stale-interpreter',
+                                     'PYTHONHOME': 'unusable-isolated-python-home'}):
+            with contextlib.redirect_stdout(io.StringIO()), patch.object(build, 'record') as recorded:
+                environment = build.project_generation_env()
+            self.assertEqual(environment['PM_PYTHON_EXT'], sys.executable)
+            self.assertEqual(environment.get('LD_LIBRARY_PATH'), os.environ.get('LD_LIBRARY_PATH'))
+            recorded.assert_called_once()
+            report_name, receipt = recorded.call_args.args
+            self.assertEqual(report_name, 'packman-python-preflight.json')
+            self.assertEqual(receipt['status'], 'EXTERNAL_PYTHON_ZLIB_ZIP_PASSED')
+            self.assertEqual(Path(receipt['executable']).resolve(), Path(sys.executable).resolve())
+            self.assertTrue(receipt['zlibRuntimeVersion'])
+        self.assertEqual(dict(os.environ), before)
 
 
 class CommittedSourceAdmission(unittest.TestCase):

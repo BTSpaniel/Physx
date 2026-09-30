@@ -275,6 +275,27 @@ def unified_linkage(cmake_source: str, repo: Path, profile: str = 'candidate') -
     return patched
 
 
+def project_generation_env() -> dict[str, str]:
+    """Use Packman's supported external Python option, with its exact isolation flags."""
+    environment = dict(os.environ, PM_PYTHON_EXT=sys.executable)
+    # NVIDIA's bundled interpreter failed ZIP decompression in the first CI
+    # run. Use this working runner interpreter without altering loader paths.
+    probe = ('import io,json,sys,zipfile,zlib; '
+             'data=b"PhysX PE dependency compression preflight"; '
+             'assert zlib.decompress(zlib.compress(data))==data; '
+             'buffer=io.BytesIO(); '
+             'bundle=zipfile.ZipFile(buffer,"w",compression=zipfile.ZIP_DEFLATED); '
+             'bundle.writestr("probe",data); bundle.close(); buffer.seek(0); '
+             'bundle=zipfile.ZipFile(buffer); assert bundle.read("probe")==data; bundle.close(); '
+             'print(json.dumps({"status":"EXTERNAL_PYTHON_ZLIB_ZIP_PASSED",'
+             '"pythonVersion":sys.version,"executable":sys.executable,'
+             '"zlibModule":getattr(zlib,"__file__","built-in"),"zlibRuntimeVersion":zlib.ZLIB_RUNTIME_VERSION}))')
+    result = command([sys.executable, '-S', '-s', '-u', '-E', '-c', probe],
+                     env=environment, timeout=60)
+    record('packman-python-preflight.json', json.loads(result.stdout))
+    return environment
+
+
 def build_wasm(profile: str) -> None:
     # Refuse all writes/patches until essential tools and target are available.
     info = doctor()
@@ -345,7 +366,8 @@ def build_wasm(profile: str) -> None:
         if not (out / 'Makefile').is_file() and not (out / 'build.ninja').is_file():
             command(['cmake', '-S', repo / 'physx/compiler/public', '-B', out], timeout=1800)
     else:
-        lab.run(['bash', './generate_projects.sh', 'emscripten'], cwd=repo / 'physx', timeout=1800)
+        lab.run(['bash', './generate_projects.sh', 'emscripten'], cwd=repo / 'physx',
+                env=project_generation_env(), timeout=1800)
     if not (out / 'CMakeCache.txt').is_file():
         raise lab.LabError('Expected release build directory was not generated')
     command(['cmake', '--build', out, '--parallel', str(min(os.cpu_count() or 2, 8))], timeout=7200)
