@@ -6,6 +6,7 @@ from __future__ import annotations
 import contextlib
 import hashlib
 import io
+import importlib.util
 import json
 import os
 import subprocess
@@ -13,8 +14,9 @@ import sys
 import tarfile
 import tempfile
 import unittest
+from types import SimpleNamespace
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -24,6 +26,47 @@ import bootstrap
 import prepare_sources
 import build
 import physx_lab as lab
+
+
+class PortableBrowserDiscovery(unittest.TestCase):
+    def exercise(self, cache: str | None, executable: str | None):
+        specification = importlib.util.spec_from_file_location(
+            'flow_wgsl_runner_admission', ROOT / 'addons/flow/wgsl_browser_test.py')
+        runner = importlib.util.module_from_spec(specification)
+        specification.loader.exec_module(runner)
+        launch = Mock(side_effect=RuntimeError('Intentional configuration-only stop; no GPU execution'))
+        playwright = SimpleNamespace(chromium=SimpleNamespace(launch=launch))
+        manager = Mock()
+        manager.__enter__ = Mock(return_value=playwright)
+        manager.__exit__ = Mock(return_value=False)
+        module = SimpleNamespace(sync_playwright=lambda: manager)
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            (directory / 'fixture.wgsl').write_text('// Discovery fixture; intentionally never executed.\n')
+            report = directory / 'result.json'
+            argv = ['wgsl_browser_test.py', '--shader-dir', str(directory), '--report', str(report), '--modules-only']
+            if executable:
+                argv += ['--browser-executable', executable]
+            with patch.dict(os.environ, {}, clear=False), patch.dict(sys.modules, {'playwright.sync_api': module}), \
+                    patch.object(sys, 'argv', argv), contextlib.redirect_stdout(io.StringIO()):
+                if cache is None:
+                    os.environ.pop('PLAYWRIGHT_BROWSERS_PATH', None)
+                else:
+                    os.environ['PLAYWRIGHT_BROWSERS_PATH'] = cache
+                self.assertEqual(runner.main(), 2)
+                self.assertEqual(os.environ.get('PLAYWRIGHT_BROWSERS_PATH'), cache)
+                result = json.loads(report.read_text())
+                self.assertEqual(result['status'], 'BLOCKED_OR_FAILED')
+                self.assertIn('configuration-only stop', result['error'])
+            launch.assert_called_once()
+            self.assertEqual(launch.call_args.kwargs['executable_path'], executable)
+            self.assertIn('--use-angle=swiftshader', launch.call_args.kwargs['args'])
+
+    def test_default_playwright_cache_is_used_without_an_environment_override(self):
+        self.exercise(None, None)
+
+    def test_caller_cache_and_explicit_executable_are_preserved(self):
+        self.exercise('/caller-selected/browser-cache', str(ROOT / 'work/custom-browser'))
 
 
 class PackmanPythonAdmission(unittest.TestCase):

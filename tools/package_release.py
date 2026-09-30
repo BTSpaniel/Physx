@@ -62,7 +62,7 @@ def package() -> Path:
     for relative in ('addons/flow/flow_host_webgpu.mjs', 'addons/flow/webgpu_bridge.mjs',
                      'bridge/physx-bulk.mjs', 'bridge/physx-bulk-rust.mjs',
                      'tools/serve.py', 'LICENSE', 'README.md', 'AUTHORS.md',
-                     'PROVENANCE.md', 'THIRD_PARTY_NOTICES.md', 'source-selection.json',
+                     'PROVENANCE.md', 'THIRD_PARTY_NOTICES.md', 'source-selection.json', 'upstream.lock.json',
                      'license-provenance.json', 'source-license-map.json', 'upstream-modifications.json',
                      'nanovdb-provenance.json'):
         include(ROOT / relative)

@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import sys
 import threading
 from datetime import datetime, timezone
@@ -35,7 +34,6 @@ def main() -> int:
     payload = [{"name": p.relative_to(directory).as_posix(),
                 "code": p.read_text(encoding="utf-8"),
                 "sha256": hashlib.sha256(p.read_bytes()).hexdigest()} for p in files]
-    os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(ROOT / "work/local-pc/browsers"))
     server = create_server()
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
