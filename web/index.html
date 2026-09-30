@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PhysX PE · Runtime validation</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./style.css"></head>
+<body><main><header><p class="eyebrow">BTSPANIEL / PARTICLE REALMS</p><h1>PhysX PE validation</h1><p class="lead">Run the real browser physics checks against your compiled PhysX PE module. The report identifies the tested binary and its coverage.</p></header>
+<section class="versions" aria-label="Runtime origin"><article><p>BINDING FOUNDATION</p><h2>fabmax WebIDL</h2><span>physx-js-webidl 2.7.3</span></article><article><p>PHYSX PE ALPHA</p><h2>PhysX 5.11.0</h2><span>NVIDIA SDK + custom WASM bridges</span></article></section>
+<section class="notice"><strong>Validate your compiled runtime.</strong><p>Release archives include the binary; source checkouts require a build first. A missing build is reported as blocked. This smoke suite does not certify full engine integration.</p></section>
+<section class="panel"><div class="controls"><label>Build to test<select id="profile"><option value="candidate" selected>PhysX PE · 5.11.0</option><option value="baseline">Optional upstream baseline · 5.6.1</option></select></label><button id="run">Run validation</button><button id="save" disabled>Save report</button></div><p id="status" role="status" aria-live="polite">NOT RUN — select PhysX PE and run validation.</p><ol id="results"></ol><pre id="detail">Build instructions for source checkouts are in README.md.
+
+python tools/bootstrap.py --install
+source work/env.sh
+python release.py all</pre></section>
+<footer>Single-owner Worker · matched artifacts · SHA-256 checks · explicit coverage gaps<br>CUDA, pthreads, vehicles, ragdolls and production integration are not certified by this page.</footer></main><script type="module" src="./app.mjs"></script></body></html>

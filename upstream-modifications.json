@@ -1,0 +1,2300 @@
+{
+  "schema": "physx-pe.upstream-modifications/v1",
+  "scope": "File-level retained browser patch inventory, not generated output hashes or a claim of independent upstream authorship",
+  "patch": "patches/browser-overlay.patch",
+  "patchSha256": "fc1675b9b0982997f2e4cb337bde36f093b84edd3995fc0bab3c61538ac4cee0",
+  "entries": [
+    {
+      "path": "physx/.gitignore",
+      "patchEntrySha256": "366cc8cae2771033ddb2954b6b611bd654a37e1073b7060c3dd0ca90313352b1",
+      "patchEntryBytes": 229,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/buildtools/cmake_generate_projects.py",
+      "patchEntrySha256": "885e1dd241265347d7ed8d21ccc44262c74d4193821e9fb8edcaf13b69b468c4",
+      "patchEntryBytes": 4631,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/buildtools/presets/public/emscripten.xml",
+      "patchEntrySha256": "97a35fa0d563b01ef715394801dbf373fa0cdafe0ecaf03022116ef299484983",
+      "patchEntryBytes": 1219,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/buildtools/presets/public/jni-android-arm64-v8a.xml",
+      "patchEntrySha256": "91167e97d338349fbd51c6a0cf4c95c62422a01f2e893ec42dad8b272bfb9b3b",
+      "patchEntryBytes": 1239,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/buildtools/presets/public/jni-linux.xml",
+      "patchEntrySha256": "952cf19ff5cff0bd9abfa2886ede605f20ff19763a3415d052114e04a9fb264a",
+      "patchEntryBytes": 1199,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/buildtools/presets/public/jni-mac-aarch64.xml",
+      "patchEntrySha256": "4fe64eb84c9c9be8b02383014d77410fbff4a6ad4cd975912df57129f9c27eaf",
+      "patchEntryBytes": 1301,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/buildtools/presets/public/jni-mac64.xml",
+      "patchEntrySha256": "00d5085f92ed6064c8c2d73f68d6a200877c6637378b8751f348631cb567304f",
+      "patchEntryBytes": 1552,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/buildtools/presets/public/jni-vc17win64.xml",
+      "patchEntrySha256": "78393668bc81510d9a08b93e90739c271aac83385f7fc0f9022af70dfa29204c",
+      "patchEntryBytes": 1549,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/dependencies.xml",
+      "patchEntrySha256": "4a424c5a0c2a3a020bf157325a71105753b2dca927aa8db2d3b2a95c4ef65ee2",
+      "patchEntryBytes": 853,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/generate_projects.bat",
+      "patchEntrySha256": "7c6e807c89cba606cc45415f3383d5e7a194f7810d0eda4a1bc2ae427a263896",
+      "patchEntryBytes": 1223,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxAlloca.h",
+      "patchEntrySha256": "cb085fc314626386736a4a08d8454a94efc43cb63b60ff9ba856cfa7f9245497",
+      "patchEntryBytes": 478,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxFPU.h",
+      "patchEntrySha256": "d6409fe7a5513c6fe8f27c2b3d06f59e0f0f5b7240886aae255049efdd28a198",
+      "patchEntryBytes": 504,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxHash.h",
+      "patchEntrySha256": "b366e316f4accc21ed6b2d879ae01a986841925b7c5a046c82cc72238c6c1e58",
+      "patchEntryBytes": 262,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxIntrinsics.h",
+      "patchEntrySha256": "62c0fda1f0113cd7e9fab7ff815a9a9c52cdf8e529adab1a7bac3c54c53e756f",
+      "patchEntryBytes": 519,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxMath.h",
+      "patchEntrySha256": "bd1b1b38a5455a3e2025a45b1a6d5f8586d44a2b93e6d956f02cf709a43ba9a1",
+      "patchEntryBytes": 551,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxMathIntrinsics.h",
+      "patchEntrySha256": "cf4a7374576e8c5c4cff807ca3ad612c2037bc50428ceda9c50c3ee4da557441",
+      "patchEntryBytes": 544,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxPreprocessor.h",
+      "patchEntrySha256": "e29af1bdf671063b283bf1d444aa4ca46073d22504d6f2cf8dcf9f6c0d543eec",
+      "patchEntryBytes": 1748,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxThread.h",
+      "patchEntrySha256": "9b186130af74cc477cf466843338753d5206947ae8b899d5df17508e08a3f126",
+      "patchEntryBytes": 474,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxTime.h",
+      "patchEntrySha256": "32aac3c5774c77be5174aac2eabf2056a72c62f1afc45e6d4b2d6b9343aaf6c1",
+      "patchEntryBytes": 587,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxUtilities.h",
+      "patchEntrySha256": "99b06b6953e0e7f7e5c105d9253fec948126a89d4c36d095f6f8bbdfd68f2d59",
+      "patchEntryBytes": 396,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/PxVecMath.h",
+      "patchEntrySha256": "f849ab97ccc7d265c62108b4e3039ff0bb6cfbeef61faa9884cb1d09533c6655",
+      "patchEntryBytes": 508,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/unix/PxUnixIntrinsics.h",
+      "patchEntrySha256": "a7b6b8a5ea784db8809068cdb958f742a57e1291c0bd7b36622f966b1a73511f",
+      "patchEntryBytes": 1398,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/unix/PxUnixMathIntrinsics.h",
+      "patchEntrySha256": "fd9c7ada91018dc75e6a0919b77430710bcf3c4cc5e75927a6d17a07b80ad589",
+      "patchEntryBytes": 482,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/include/foundation/unix/neon/PxUnixNeonInlineAoS.h",
+      "patchEntrySha256": "95ff02a2bd7e734877a076996f9ffdc4ec543a6817c173d62b43c060780a28bb",
+      "patchEntryBytes": 703,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/PhysXExtensions.cmake",
+      "patchEntrySha256": "ace10221aa8a7ddbea2e69feb3e6940d367ad3cd9d6cef241e66d04a3ee888d9",
+      "patchEntryBytes": 1632,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/CMakeLists.txt",
+      "patchEntrySha256": "0df0a638900708186c474d3110b14d7fcb551b5f49e8d7bd3f33ee1aba3cc260",
+      "patchEntryBytes": 9447,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/LowLevel.cmake",
+      "patchEntrySha256": "272732468a6c379c740d97ccbc47465a84a0199ee027b54c3301a7a908e38e57",
+      "patchEntryBytes": 2976,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/LowLevelAABB.cmake",
+      "patchEntrySha256": "42e259fdf1a133ed69731953e2b431bc841d01c83659b519e53ffd36fdd0d1c7",
+      "patchEntryBytes": 2460,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/LowLevelDynamics.cmake",
+      "patchEntrySha256": "e39cc8747e0512aff5b8b3ab35d639b9bf86f7b205f5cc77ee566a4af59f88d1",
+      "patchEntryBytes": 2641,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/PhysX.cmake",
+      "patchEntrySha256": "649e8c5f2c22a77e13f48804b6b58a63509982fdd8c022749e5ab7bfac4bef47",
+      "patchEntryBytes": 4423,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/PhysXCharacterKinematic.cmake",
+      "patchEntrySha256": "d8fce2968be1472d92e21e25580e345cd256fbf42493c68df069b318f811afc8",
+      "patchEntryBytes": 2566,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/PhysXCommon.cmake",
+      "patchEntrySha256": "ea97fba1f04bde827af4a5c543edac2b3566582560ef1494d11b7332a3b095d9",
+      "patchEntryBytes": 2694,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/PhysXCooking.cmake",
+      "patchEntrySha256": "9c94b11ed13cbe17d976f225af462e0200a690b9c4c8f00a154f27b9d06e1619",
+      "patchEntryBytes": 2856,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/PhysXExtensions.cmake",
+      "patchEntrySha256": "6e5a2df6d42006e27fe7c981d5e0a53978b5fe3c0605e1db921466c601c5ab16",
+      "patchEntryBytes": 2757,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/PhysXFoundation.cmake",
+      "patchEntrySha256": "7bf9cde96c2f48591a1a3e5a911c4e56589cca85237f8b728366f2d7ecdefc6c",
+      "patchEntryBytes": 4524,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/PhysXPvdSDK.cmake",
+      "patchEntrySha256": "c195eed736b28f42b339801ac9e82ddc0c4f0ff583b641be00d9e27f82deb8d7",
+      "patchEntryBytes": 2674,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/PhysXTask.cmake",
+      "patchEntrySha256": "b7366f7ff41a367fa26b051f7aeb11bd5fbbf66c95616cce56edf059b9cfc972",
+      "patchEntryBytes": 2283,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/PhysXVehicle.cmake",
+      "patchEntrySha256": "9f479584a8e74bc65de738f3a47db2457c1c0a751de06c5683e4f0e1321841f9",
+      "patchEntryBytes": 2368,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/PhysXWasmBindings.cmake",
+      "patchEntrySha256": "e41b5c2e46051bfd409d6828aa7320e482bff7c3dd911a787bc1509af232c11c",
+      "patchEntryBytes": 3062,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/SceneQuery.cmake",
+      "patchEntrySha256": "0cf8ac4cfd2558f22cd5f9c42f61d649458cfe7cd9ef96f03b5edb549119062c",
+      "patchEntryBytes": 2439,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/emscripten/SimulationController.cmake",
+      "patchEntrySha256": "afaad5fbd7390fe1b91f512f074ac33ba866967aa157bf84cc93424eaa8d660a",
+      "patchEntryBytes": 2546,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/CMakeLists.txt",
+      "patchEntrySha256": "ac93812a849b60a4b5cdf31c1f49daa5964a86a214fff5ecf79987307ae66386",
+      "patchEntryBytes": 7907,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/LowLevel.cmake",
+      "patchEntrySha256": "69695a508260240de2781599269ccefa9d14555fae0628c30137ae9065113ea6",
+      "patchEntryBytes": 2567,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/LowLevelAABB.cmake",
+      "patchEntrySha256": "3732a00614ee9b1b4c82c895c14c69c0fb9e1011bbc7dc4239918a6b732ad3b4",
+      "patchEntryBytes": 2478,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/LowLevelDynamics.cmake",
+      "patchEntrySha256": "59880a61365082ee66183e0e2ccf2beb26025dd8a60fa2b3bd818506e5e838d6",
+      "patchEntryBytes": 2656,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/PhysX.cmake",
+      "patchEntrySha256": "48ac0de72608055371641f71bd9bceeb2dafcb58d7998ab352f87657dfd00f99",
+      "patchEntryBytes": 3483,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/PhysXCharacterKinematic.cmake",
+      "patchEntrySha256": "b54f9127a1f783344f07e35d75bce8363d64d343282e5560cd78cd817bcf5715",
+      "patchEntryBytes": 2447,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/PhysXCommon.cmake",
+      "patchEntrySha256": "90a58d8e9cc6c2de791952ce88a90367187ecb06c9faa6bc14bc9b857bad46da",
+      "patchEntryBytes": 2706,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/PhysXCooking.cmake",
+      "patchEntrySha256": "172509b3746fe223d59a0b59daa163b839c3f811adf3565608dfe23aaff23f74",
+      "patchEntryBytes": 2865,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/PhysXExtensions.cmake",
+      "patchEntrySha256": "7b9e0595592aebaed58257162c8d6f2338b2271beea04c69ea2f5ec2b9f58f92",
+      "patchEntryBytes": 2573,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/PhysXFoundation.cmake",
+      "patchEntrySha256": "87080bc789de883a92f322eb04a8f2e927492a52f71e9de5faeaa2a7dfdec9d3",
+      "patchEntryBytes": 4268,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/PhysXJniBindings.cmake",
+      "patchEntrySha256": "62c7c58881943cc12d5e8cc82026b3bbeabc93489b6099e7c12045cb43a13f3e",
+      "patchEntryBytes": 3476,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/PhysXPvdSDK.cmake",
+      "patchEntrySha256": "3c8f9368cafcb611c8631762f5aa3fb35918c14807e81a5380ca7f631d4c3db1",
+      "patchEntryBytes": 2348,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/PhysXTask.cmake",
+      "patchEntrySha256": "ff61e8e7aae8522062e05cec43d8d86a2301dcdae2754988257a55493a3a17cb",
+      "patchEntryBytes": 2226,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/PhysXVehicle.cmake",
+      "patchEntrySha256": "8ebebb9130af380c7341cf3ca055c288d45b055645f6671f0c8a500965e71b83",
+      "patchEntryBytes": 2383,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/SceneQuery.cmake",
+      "patchEntrySha256": "c1d9b2d368c45bac65c0b203016481019d20b52ae40188e44f830cfdfebce26a",
+      "patchEntryBytes": 2454,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-android/SimulationController.cmake",
+      "patchEntrySha256": "53a9d2e60b6a67b6322c71f3190f78a4d5f2e50f1f3dd178708a66720828cb6d",
+      "patchEntryBytes": 2561,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/CMakeLists.txt",
+      "patchEntrySha256": "4480fecfb820edf139a14be044153ac1eec18d1e2f3428f3206ebbad1f8faa59",
+      "patchEntryBytes": 12866,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/LowLevel.cmake",
+      "patchEntrySha256": "fb4f078ccb153e2c36add3c19e3b8a605da1a8703a72ad0f5c366ac93423da61",
+      "patchEntryBytes": 2973,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/LowLevelAABB.cmake",
+      "patchEntrySha256": "e8405b90128814784b10705c2c0ec3f4c5cbe3b126cf592fded26089d4378009",
+      "patchEntryBytes": 2541,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/LowLevelDynamics.cmake",
+      "patchEntrySha256": "47aa45eda5b9222c3d0c38ebbf8d8bb35084cb1c6e8b0a8613bdd121e97a2766",
+      "patchEntryBytes": 2638,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/PhysX.cmake",
+      "patchEntrySha256": "d478b89a72dade46ff045119b091a7bc14d39a3ae473cd119b33d07c87bb9b95",
+      "patchEntryBytes": 4420,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/PhysXCharacterKinematic.cmake",
+      "patchEntrySha256": "d8eddcdcd2baca54c3ab45393f784e14aa919899010bf0e48167a8bd360b30b3",
+      "patchEntryBytes": 2563,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/PhysXCommon.cmake",
+      "patchEntrySha256": "87b188a3495d9e25ccad42df2ab3a27be05ddf44cdde75bd2bdfb16403ce0de9",
+      "patchEntryBytes": 2691,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/PhysXCooking.cmake",
+      "patchEntrySha256": "4b292102cbb74a813aafceb7de2ffb3b58a8b1e876b99c73689ff7bc331f23c4",
+      "patchEntryBytes": 2853,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/PhysXExtensions.cmake",
+      "patchEntrySha256": "3f854ea56f309a6c0768ecff5d65618841900c487ec67cd612140afeb9cdc420",
+      "patchEntryBytes": 2754,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/PhysXFoundation.cmake",
+      "patchEntrySha256": "16b4d9fafdf565577d5850ef175b8bd719564cbd60ed78a16be4df9671b998d7",
+      "patchEntryBytes": 4521,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/PhysXJniBindings.cmake",
+      "patchEntrySha256": "72b8a489f9e3af290e9ff39a55ab42df3146dd6a45ce1a276f0f9a5a82cdfb9e",
+      "patchEntryBytes": 3463,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/PhysXPvdSDK.cmake",
+      "patchEntrySha256": "71fea0a8c0bd5cdaec3a55ffc37b8db3fccb6727b7776e64cd55149eff584af2",
+      "patchEntryBytes": 2671,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/PhysXTask.cmake",
+      "patchEntrySha256": "e3a81f16077937a693e81294b08888097211326c88559885e66bc8f74aedf961",
+      "patchEntryBytes": 2280,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/PhysXVehicle.cmake",
+      "patchEntrySha256": "6ca2a7dbe2a430fb780b5af6091b09653699b97843b1b9871cc14f477567aaa9",
+      "patchEntryBytes": 2365,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/SceneQuery.cmake",
+      "patchEntrySha256": "17c8f65004ac5423e048dd6074c562d3264b2e1f5b30bc8042b283a927c153c1",
+      "patchEntryBytes": 2436,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-linux/SimulationController.cmake",
+      "patchEntrySha256": "033c1c6cb00e97d364a71cb4549f7a8e13097a002056c44131400b4478509afb",
+      "patchEntryBytes": 2543,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/CMakeLists.txt",
+      "patchEntrySha256": "48e2f7997a19a81a52b4a66b2c740cb0c5cc2b0a4e0b4511ba5b36d633975a6d",
+      "patchEntryBytes": 7809,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/LowLevel.cmake",
+      "patchEntrySha256": "913ca22a24c0fa27bf88d1732245cff1c39b8f0b49797173afcb327b0e2d484e",
+      "patchEntryBytes": 2520,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/LowLevelAABB.cmake",
+      "patchEntrySha256": "b112947df7c7a1490ec3d8b06118662b73f55053172319eca779de9cd9b1669a",
+      "patchEntryBytes": 2521,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/LowLevelDynamics.cmake",
+      "patchEntrySha256": "f5f180b34d2617f7d1bc60080ee3b4b676620aef22859bc0023be7cc23c6dbee",
+      "patchEntryBytes": 2614,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/PhysX.cmake",
+      "patchEntrySha256": "80706078c58fb0d6e86ab7d096fad29f7207b03c5b78909b0e53b68516f1cd07",
+      "patchEntryBytes": 3436,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/PhysXCharacterKinematic.cmake",
+      "patchEntrySha256": "3621d876be684bbbfca5033eb279bc01d31fdfbd34ce36fc7fca7164a0ca14a1",
+      "patchEntryBytes": 2440,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/PhysXCommon.cmake",
+      "patchEntrySha256": "a736f1c0690f96e75c6f974a9e0754ea8e563bbd2d7a5bf68b4f73ef5bd48a68",
+      "patchEntryBytes": 2670,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/PhysXCooking.cmake",
+      "patchEntrySha256": "fab5c0979efd8df246023d54d549642e1f56773e4f6fd04d742032dd838fb41b",
+      "patchEntryBytes": 2834,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/PhysXExtensions.cmake",
+      "patchEntrySha256": "574cd7e7cd07adab534011dc1515185b146da9c1ff34815490dee3175dab68ef",
+      "patchEntryBytes": 2736,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/PhysXFoundation.cmake",
+      "patchEntrySha256": "c7c3e9fe1c3004ee6fcf6159d4eba1ab1410754603992278ea2de05299f0f8c4",
+      "patchEntryBytes": 4404,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/PhysXJniBindings.cmake",
+      "patchEntrySha256": "32a36f66ca14c63c95f9d40ee513ab9c41f4578160f01fc80963bcb5efef1515",
+      "patchEntryBytes": 3442,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/PhysXPvdSDK.cmake",
+      "patchEntrySha256": "ad7765dfa5a112c9fc9778989f4f23f00738865811cd84c6c10072ff5f8af76b",
+      "patchEntryBytes": 2312,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/PhysXTask.cmake",
+      "patchEntrySha256": "a392fb18194f32cb17aafb5a39cea40b54e2e9635f9962872cfc32634fbefcbf",
+      "patchEntryBytes": 2194,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/PhysXVehicle.cmake",
+      "patchEntrySha256": "f0dc6c1cd3614bd1aef99a769cb6566e8a70edb3694fc2e997efcb378f3a98a3",
+      "patchEntryBytes": 2349,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/SceneQuery.cmake",
+      "patchEntrySha256": "3aa18922a6c7ee524bab477c39a15ae872466775ef055e004d7f5725efb5d13f",
+      "patchEntryBytes": 2418,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-mac/SimulationController.cmake",
+      "patchEntrySha256": "d9d81969d3c56a59bd6206dd55a30a4dede205369d95e42895ead4f7c97c66f6",
+      "patchEntryBytes": 2523,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/CMakeLists.txt",
+      "patchEntrySha256": "4a719b8b7f990568aabe5550df16087541a13dde76e26003eeb229eb7636f4bd",
+      "patchEntryBytes": 12403,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/LowLevel.cmake",
+      "patchEntrySha256": "d47f6dfbf128f124dc6dc8301acfa18816d252b2948b4704a94a733de320b74b",
+      "patchEntryBytes": 4030,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/LowLevelAABB.cmake",
+      "patchEntrySha256": "2cf4e0d7d523d3ecacb7e497e5de0ce3682ca1975bd604c975837a67f9626dd0",
+      "patchEntryBytes": 4113,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/LowLevelDynamics.cmake",
+      "patchEntrySha256": "b943abbc5d22271d9fddaae7cb45aa2ca002fa7e69fb65fda37a785ef197e714",
+      "patchEntryBytes": 4297,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/PhysX.cmake",
+      "patchEntrySha256": "2dadc0e316186213ce4e6c677fa2b339b0729e6222aa0641d32749e0639b67ba",
+      "patchEntryBytes": 7291,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/PhysXCharacterKinematic.cmake",
+      "patchEntrySha256": "d23e1e229e17aef5b5a5c7a574d40d619c5d468d607b580c9b3dc0e4720b5959",
+      "patchEntryBytes": 4476,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/PhysXCommon.cmake",
+      "patchEntrySha256": "238d7dbae84403826d03a466ca32c8de64dbf7a9211acc99907a9637b1a5316b",
+      "patchEntryBytes": 5665,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/PhysXCooking.cmake",
+      "patchEntrySha256": "879ea29d92db80f679b08c138573df6d6e2b3725497d43d2b089c07826595311",
+      "patchEntryBytes": 5560,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/PhysXExtensions.cmake",
+      "patchEntrySha256": "a1608cb3a76016821d688ca78deb2db59692da33709775992d8488e84b563ddc",
+      "patchEntryBytes": 4480,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/PhysXFoundation.cmake",
+      "patchEntrySha256": "ecf0604893fb4a877970d31eeb1dedcf0434fbd148cc984cc4ea0f87d89214b6",
+      "patchEntryBytes": 6131,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/PhysXJniBindings.cmake",
+      "patchEntrySha256": "fc374f7d177d49929cc0e380eb70338d59899f7d7df782f4ae29ee3ed97bcafb",
+      "patchEntryBytes": 6093,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/PhysXPvdSDK.cmake",
+      "patchEntrySha256": "8d577057e2a5a182b4c99062db191de3785d809bdcf75b2e587f55e649cfe4c1",
+      "patchEntryBytes": 4670,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/PhysXTask.cmake",
+      "patchEntrySha256": "e6d9ed666b501f84c6a3b1228be3c1c60afc1b260cc583bb3eeef87fff584756",
+      "patchEntryBytes": 3716,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/PhysXVehicle.cmake",
+      "patchEntrySha256": "6785cbd71c775df771dbb0002122212de9b2f68d79545659fc8ce95fba2344c9",
+      "patchEntryBytes": 4182,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/SceneQuery.cmake",
+      "patchEntrySha256": "5aa85747a4627345e5dc231c9e4221c1430e6756c7427f5d8aa5735d78bd4586",
+      "patchEntryBytes": 3963,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/jni-windows/SimulationController.cmake",
+      "patchEntrySha256": "87ee76b8a8305c38c3906e843a062105000b7e47f6dbd088b38bc9de86e25d48",
+      "patchEntryBytes": 4170,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ],
+      "copyrightLinesInPatch": [
+        "## Copyright (c) 2008-2025 NVIDIA Corporation. All rights reserved."
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/linux/CMakeLists.txt",
+      "patchEntrySha256": "0f74d45d5b58f23a1484a0a775c429325fe7fe7cdb8b475dbaabe0a92dcbd994",
+      "patchEntryBytes": 621,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/compiler/cmake/modules/GetCompilerAndPlatform.cmake",
+      "patchEntrySha256": "25c0b1cbfbb0ee97318bb7a676a052d28abf19103477ef086efc18588f695a20",
+      "patchEntryBytes": 1288,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/foundation/FdTempAllocator.cpp",
+      "patchEntrySha256": "67fdbee0e11de1ceb5baaa0e6869e2cbb190c2d50e3f29ac3294a56bd20988bd",
+      "patchEntryBytes": 573,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/foundation/unix/FdUnixFPU.cpp",
+      "patchEntrySha256": "7a510d010b7b893f7094c289411f11ab8ee5e55028b29593015581580c04c3c5",
+      "patchEntryBytes": 2406,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/foundation/unix/FdUnixMutex.cpp",
+      "patchEntrySha256": "325ba8552388a11d50cecca8b2703bed3227c5b4e9ab488550285daa6bc1617c",
+      "patchEntryBytes": 674,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/foundation/unix/FdUnixPrintString.cpp",
+      "patchEntrySha256": "5b5bad4e3252c1ae0cc3dce7e4ec46d3b445dd31e2904c1fa37187646eb1a308",
+      "patchEntryBytes": 591,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/foundation/unix/FdUnixSocket.cpp",
+      "patchEntrySha256": "772a9859df73ea7c950876a1fbbc0d6fc2f65b84be930805a4f52f58820844be",
+      "patchEntryBytes": 483,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/foundation/unix/FdUnixThread.cpp",
+      "patchEntrySha256": "8053cf1a658032c5d757f23b650241aa3c60740b5eb4f940e2d4de5c4473c436",
+      "patchEntryBytes": 2712,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/geomutils/src/GuAABBTree.cpp",
+      "patchEntrySha256": "a6ba9dc4fe8db1cedaa2ebaf7ae01f805de35177fc772dda64d7f52aff6459d3",
+      "patchEntryBytes": 786,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/geomutils/src/mesh/GuBV4Build.cpp",
+      "patchEntrySha256": "43a5a0a0e5c2f8d234cc56b3158321b422e40df8d2be06d72ed63f5576a0d0c8",
+      "patchEntryBytes": 494,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/lowlevelaabb/src/BpAABBManager.cpp",
+      "patchEntrySha256": "992955f5f6a31034bb6bc40c6cc43752b35fe29626752834874668fcb7e7c4ba",
+      "patchEntryBytes": 547,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/lowlevelaabb/src/BpBroadPhaseABP.cpp",
+      "patchEntrySha256": "ae6e285267e7ca2e61f0c7dbb2b397fee02460044c95e2e8cdb3bab940e39911",
+      "patchEntryBytes": 530,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/lowlevelaabb/src/BpBroadPhaseMBPCommon.h",
+      "patchEntrySha256": "00089761e8952743cbccc30160fe36e24d44256fcb0ca656a884f14318af1d6a",
+      "patchEntryBytes": 530,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/physxextensions/src/serialization/SnSerialUtils.cpp",
+      "patchEntrySha256": "ef3983a515701492d076db85bfcf4953487344a5b4f31104f8fd16b308c2fbf7",
+      "patchEntryBytes": 1419,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/pvd/include/PxProfileAllocatorWrapper.h",
+      "patchEntrySha256": "a5b17e871bcd45518f416324b9fed1225e3544b6038f4334990d59cdd812f241",
+      "patchEntryBytes": 558,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/PxTypeMappings.h",
+      "patchEntrySha256": "ca92e0d99e8857e0d74220d278f03769f28f13c02f87503a173fc203d369182b",
+      "patchEntryBytes": 11409,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/VHACD.h",
+      "patchEntrySha256": "f44b1912e2053182619b767d20c4866dfab4ce131ccb5d6a1400f2dba15d9a1b",
+      "patchEntryBytes": 268197,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/VHACD-BSD-3-Clause.txt"
+      ],
+      "copyrightLinesInPatch": [
+        "/* Copyright (c) 2011 Khaled Mamou (kmamou at gmail dot com)"
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/VhacdBindings.h",
+      "patchEntrySha256": "18aca8f7920e9f09e9a0d5f0726d7463db73cb264c180633cad6252cf284f22f",
+      "patchEntryBytes": 622,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/WebIdlBindings.h",
+      "patchEntrySha256": "8b89dd20fe071eb614b382a5de95bf58703ea93cd5362e32ac92660814d0028c",
+      "patchEntryBytes": 34270,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/vehicle/Base.cpp",
+      "patchEntrySha256": "660e1b5c566ae6c2c8a7d9ea5cb777725178ad0687e759e8682432bd217726b0",
+      "patchEntryBytes": 4118,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Legacy-Vehicle-NOTICE.txt"
+      ],
+      "copyrightLinesInPatch": [
+        "// Copyright (c) 2008-2022 NVIDIA Corporation. All rights reserved.",
+        "// Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.",
+        "// Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  "
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/vehicle/Base.h",
+      "patchEntrySha256": "3f085422bbb30700828cb21080be442491f981b4b313f92c3b85bd0a55b5c3d7",
+      "patchEntryBytes": 15290,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Legacy-Vehicle-NOTICE.txt"
+      ],
+      "copyrightLinesInPatch": [
+        "// Copyright (c) 2008-2022 NVIDIA Corporation. All rights reserved.",
+        "// Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.",
+        "// Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  "
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/vehicle/DirectDrivetrain.cpp",
+      "patchEntrySha256": "877cc4c52a2ea83fe8e275b3e44b74e09918ac95ac8f75c00d63344adbb4b73f",
+      "patchEntryBytes": 6877,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Legacy-Vehicle-NOTICE.txt"
+      ],
+      "copyrightLinesInPatch": [
+        "// Copyright (c) 2008-2022 NVIDIA Corporation. All rights reserved.",
+        "// Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.",
+        "// Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  "
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/vehicle/DirectDrivetrain.h",
+      "patchEntrySha256": "f4bfd6eaeff29d7649d53eef2734057566916db204eefa795e3635a6932b0450",
+      "patchEntryBytes": 6952,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Legacy-Vehicle-NOTICE.txt"
+      ],
+      "copyrightLinesInPatch": [
+        "// Copyright (c) 2008-2022 NVIDIA Corporation. All rights reserved.",
+        "// Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.",
+        "// Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  "
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/vehicle/EngineDrivetrain.cpp",
+      "patchEntrySha256": "d5bcce8645062605ce014a9794ca1599e2a21dd33edbba9bcfc19d30eebf2646",
+      "patchEntryBytes": 8806,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Legacy-Vehicle-NOTICE.txt"
+      ],
+      "copyrightLinesInPatch": [
+        "// Copyright (c) 2008-2022 NVIDIA Corporation. All rights reserved.",
+        "// Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.",
+        "// Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  "
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/vehicle/EngineDrivetrain.h",
+      "patchEntrySha256": "142041d6672574ea4997c477e450f44288232dad73991912f279a68175a20d69",
+      "patchEntryBytes": 15736,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Legacy-Vehicle-NOTICE.txt"
+      ],
+      "copyrightLinesInPatch": [
+        "// Copyright (c) 2008-2022 NVIDIA Corporation. All rights reserved.",
+        "// Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.",
+        "// Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  "
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/vehicle/PhysXIntegration.cpp",
+      "patchEntrySha256": "9a63045300dedb4c80db4c1f1f8527fdebb4572e4d39197b9a74ed6e78edcdb7",
+      "patchEntryBytes": 6566,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Legacy-Vehicle-NOTICE.txt"
+      ],
+      "copyrightLinesInPatch": [
+        "// Copyright (c) 2008-2022 NVIDIA Corporation. All rights reserved.",
+        "// Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.",
+        "// Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  "
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/common/vehicle/PhysXIntegration.h",
+      "patchEntrySha256": "8b2943cf4fc5383429c3e268a48b5be2275659d7e30d9d1533ad2dd83b42b887",
+      "patchEntryBytes": 10598,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Legacy-Vehicle-NOTICE.txt"
+      ],
+      "copyrightLinesInPatch": [
+        "// Copyright (c) 2008-2022 NVIDIA Corporation. All rights reserved.",
+        "// Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.",
+        "// Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  "
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/jni/CudaBindings.h",
+      "patchEntrySha256": "5531fd21d54ea1722c49a7955957627e435d0087f0681a54803758d146f25adc",
+      "patchEntryBytes": 5536,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/jni/PhysXJni.cpp",
+      "patchEntrySha256": "d1719ffc3e8969793490eb88367c4084a22c3e3b6eb6a581fcc2e27350b85a0e",
+      "patchEntryBytes": 576,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/jni/PhysXJniGlue.h",
+      "patchEntrySha256": "d6fc0c6a6fc564482951b39e15004d60c470be6bfb47064a80f72d8adde5e1fe",
+      "patchEntryBytes": 1149878,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "generatorReference": "Retained JNI reference output identifies webidl-util; exact original generator revision is not asserted.",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/WebIDL-Util-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/wasm/PhysXWasm.cpp",
+      "patchEntrySha256": "a13dd2733d2a8b28dd89f668ceaa8b7b3e4369237aaf1a972d5743da51c71e5b",
+      "patchEntryBytes": 650,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/wasm/PhysXWasm.idl",
+      "patchEntrySha256": "dd85737835b7fbbf0cdbfc97aadf5c98068c3ca40104e9fc501b55b7f6c37412",
+      "patchEntryBytes": 179415,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "generatorReference": "Retained JNI reference output identifies webidl-util; exact original generator revision is not asserted.",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/WebIDL-Util-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/source/webidlbindings/src/wasm/onload.js",
+      "patchEntrySha256": "d513b6a0a9f1836bcb777b24f53837fd1eceb0db10135d403032a375883533dd",
+      "patchEntryBytes": 2764,
+      "kind": "added",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "fabmax/PhysX binding port and upstream SDK; adapted for this browser integration",
+      "originRepository": "https://github.com/fabmax/PhysX",
+      "originCommit": "52dab13147435e818bbf10bd4230c0067e024efc",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt",
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md"
+      ]
+    },
+    {
+      "path": "physx/tools/physxmetadatagenerator/generateMetaData.py",
+      "patchEntrySha256": "9a31ae6b024611ea08211552cd1a06585bbbe266285a73265eb2620c55094bc2",
+      "patchEntryBytes": 641,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/tools/physxmetadatagenerator/lib/compare.py",
+      "patchEntrySha256": "c02f511045051549ad2eace27a12f52bf2841691125cddca3a2daa4f0ea0f1fb",
+      "patchEntryBytes": 469,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    {
+      "path": "physx/tools/physxmetadatagenerator/lib/utils.py",
+      "patchEntrySha256": "6d10c326cbd9c8c6f0bf7ee9436b20485cb09acadfa1dcaeec1efc79ead8eedb",
+      "patchEntryBytes": 350,
+      "kind": "modified",
+      "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
+      "origin": "NVIDIA SDK source or build metadata with retained port adaptations",
+      "originRepository": "https://github.com/NVIDIA-Omniverse/PhysX",
+      "originCommit": "da950a3537927784951853c66618036f332ca0ce",
+      "retainedNoticeFiles": [
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    }
+  ],
+  "distributionRequirement": "Keep source headers and prominent modification records. During preparation the builder adds per-file modification banners without deleting upstream notices."
+}

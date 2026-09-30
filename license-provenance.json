@@ -1,0 +1,144 @@
+{
+  "schema": "physx-pe.license-provenance/v1",
+  "scope": "License copies and inherited attribution; no clean-room or completed runtime acceptance claim",
+  "files": {
+    "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt": {
+      "bytes": 1517,
+      "sha256": "eb3e67b17b48c56ef26d8bf6634c0837503fefc28a916f98d4f02272eda50011",
+      "sourceUrl": "https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/da950a3537927784951853c66618036f332ca0ce/LICENSE.md",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/PhysX-SDK-Apache-2.0.txt": {
+      "bytes": 11359,
+      "sha256": "c1b9df1275e769f3dbab000d1e457a2d4b0f28eb5da6c77e48dc37eeba202ed7",
+      "sourceUrl": "https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/da950a3537927784951853c66618036f332ca0ce/physx/LICENSE.md",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/NVIDIA-Blast-BSD-3-Clause.txt": {
+      "bytes": 1562,
+      "sha256": "3f9ab13f4b26908285c8b86ae264d98916afaeeaf5bb0108190305cad7679273",
+      "sourceUrl": "https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/da950a3537927784951853c66618036f332ca0ce/blast/PACKAGE-LICENSES/blast-sdk-LICENSE.md",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/VHACD-BSD-3-Clause.txt": {
+      "bytes": 1468,
+      "sha256": "88ba67796d63e1e7f8fc54293d7bf8277e390e219cfd203d1718676a57285bd9",
+      "sourceUrl": "https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/da950a3537927784951853c66618036f332ca0ce/blast/PACKAGE-LICENSES/vhacd-LICENSE.md",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/Boost-BSL-1.0.txt": {
+      "bytes": 1338,
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+      "sourceUrl": "https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/da950a3537927784951853c66618036f332ca0ce/blast/PACKAGE-LICENSES/boost-LICENSE.md",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/Fabmax-Bindings-MIT.txt": {
+      "bytes": 1067,
+      "sha256": "0879a16adc700c9956ca0b60fbcac1fcb52310219feee827c03d7a0ab9886fbd",
+      "sourceUrl": "https://raw.githubusercontent.com/fabmax/physx-js-webidl/ae92287fcf581c748b22d78dc5f9e3e21376fff3/LICENSE",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/Fabmax-Bindings-NOTICE.md": {
+      "bytes": 1999,
+      "sha256": "2a7d60ff994150a8fc287fcc574322dff19f0a506493f9a36d6d179053f7ce7e",
+      "sourceUrl": "https://raw.githubusercontent.com/fabmax/physx-js-webidl/ae92287fcf581c748b22d78dc5f9e3e21376fff3/NOTICE.md",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/WebIDL-Util-Apache-2.0.txt": {
+      "bytes": 11340,
+      "sha256": "797ac06bea9b04956cce44c3d6b2003eb7f9a2c7bca7baf9a5533fa1206339dc",
+      "sourceUrl": "https://raw.githubusercontent.com/fabmax/webidl-util/516aa7af11c93bed172ec5042fb620c6a9bd49c2/LICENSE",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/Emscripten-LICENSE.txt": {
+      "bytes": 5093,
+      "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86",
+      "sourceUrl": "https://raw.githubusercontent.com/emscripten-core/emscripten/4.0.19/LICENSE",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/Rust-LICENSE-MIT.txt": {
+      "bytes": 1068,
+      "sha256": "b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1",
+      "sourceUrl": "https://raw.githubusercontent.com/rust-lang/rust/1.90.0/LICENSE-MIT",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/Rust-LICENSE-APACHE.txt": {
+      "bytes": 9723,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "sourceUrl": "https://raw.githubusercontent.com/rust-lang/rust/1.90.0/LICENSE-APACHE",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/musl-COPYRIGHT.txt": {
+      "bytes": 6204,
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+      "sourceUrl": "https://raw.githubusercontent.com/emscripten-core/emscripten/4.0.19/system/lib/libc/musl/COPYRIGHT",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/libcxx-LICENSE.TXT": {
+      "bytes": 16703,
+      "sha256": "539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b",
+      "sourceUrl": "https://raw.githubusercontent.com/emscripten-core/emscripten/4.0.19/system/lib/libcxx/LICENSE.TXT",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/libcxxabi-LICENSE.TXT": {
+      "bytes": 16706,
+      "sha256": "e2b35be49f7284a45b7baca8fc7b3ab7440e7902392b2528a457816b5bb2a15c",
+      "sourceUrl": "https://raw.githubusercontent.com/emscripten-core/emscripten/4.0.19/system/lib/libcxxabi/LICENSE.TXT",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/compiler-rt-LICENSE.TXT": {
+      "bytes": 16708,
+      "sha256": "1a8f1058753f1ba890de984e48f0242a3a5c29a6a8f2ed9fd813f36985387e8d",
+      "sourceUrl": "https://raw.githubusercontent.com/emscripten-core/emscripten/4.0.19/system/lib/compiler-rt/LICENSE.TXT",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/NVIDIA-Flow-BSD-3-Clause.txt": {
+      "bytes": 1641,
+      "sha256": "c13307cf76d2cd86dd58fd129a794bb62e94929e6de76fd6828b6aff4ad75bc4",
+      "sourceUrl": "https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/da950a3537927784951853c66618036f332ca0ce/flow/include/nvflow/NvFlow.h",
+      "copyMethod": "verbatim source-license header"
+    },
+    "LICENSES/NVIDIA-Legacy-Vehicle-NOTICE.txt": {
+      "bytes": 1698,
+      "sha256": "6484e40a0ddbfb356b163b2e139f4f088300c4881578a1e3fab85d95c2359268",
+      "sourceUrl": "https://github.com/fabmax/PhysX/blob/52dab13147435e818bbf10bd4230c0067e024efc/physx/source/webidlbindings/src/common/vehicle/Base.cpp",
+      "copyMethod": "verbatim source-license header"
+    },
+    "LICENSES/Bullet-Zlib-NOTICES.txt": {
+      "bytes": 3726,
+      "sha256": "6c6938770b25f7cb8e266dbeea11f766a53100df8c1ec5810d5a2f5c87283d67",
+      "sourceUrl": "https://github.com/NVIDIA-Omniverse/PhysX/tree/da950a3537927784951853c66618036f332ca0ce/blast/source/sdk/extensions/authoring/VHACD/inc",
+      "copyMethod": "verbatim source-license headers with filename separators"
+    },
+    "LICENSES/Particle-Realms-Build-Lab-MIT.txt": {
+      "bytes": 1096,
+      "sha256": "ef7d2f3b50cb20f61c027102ba94fe517846fafdcff05a6293eb133c35b00e64",
+      "sourceUrl": "original Particle Realms build-lab package LICENSE",
+      "copyMethod": "verbatim MIT text and original copyright; historical scope appendix excluded"
+    },
+    "LICENSES/OpenVDB-Apache-2.0.txt": {
+      "bytes": 10173,
+      "sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+      "sourceUrl": "https://raw.githubusercontent.com/AcademySoftwareFoundation/openvdb/269300808a4651daa65836214fc20f78e1c0eb7f/LICENSE",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/OpenVDB-RE-LICENSE_NOTE.txt": {
+      "bytes": 824,
+      "sha256": "ac78fb9ed20b3276fb7892e81adcc9a1d483feb46a554a4529a40c92779f0744",
+      "sourceUrl": "https://raw.githubusercontent.com/AcademySoftwareFoundation/openvdb/269300808a4651daa65836214fc20f78e1c0eb7f/RE-LICENSE_NOTE.txt",
+      "copyMethod": "verbatim"
+    },
+    "LICENSES/PNanoVDB-OpenVDB-NOTICE.txt": {
+      "bytes": 305,
+      "sha256": "1b289c2f5804651e630f83e3fac41b7d671ac0fee9bb3726c141f9702a7ec52f",
+      "sourceUrl": "https://raw.githubusercontent.com/AcademySoftwareFoundation/openvdb/269300808a4651daa65836214fc20f78e1c0eb7f/nanovdb/nanovdb/PNanoVDB.h",
+      "copyMethod": "verbatim copyright, license identifier, and author header; trailing newline added"
+    },
+    "LICENSES/PNanoVDB-source.h": {
+      "bytes": 165354,
+      "sha256": "1c4f61ab3f08cbd73acbb6915bcc348d9903ab65706fa0f5cb1dfafe83fe29d0",
+      "sourceUrl": "https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/da950a3537927784951853c66618036f332ca0ce/flow/include/nvflow/nanovdb/PNanoVDB.h",
+      "copyMethod": "verbatim pinned NVIDIA-supplied source dependency; no added MIT header"
+    }
+  }
+}

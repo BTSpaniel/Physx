@@ -1,0 +1,3 @@
+# Preserve the exact bytes recorded in source-selection.json and provenance.
+# These files are hashed inputs; a checkout must not rewrite their line endings.
+* -text

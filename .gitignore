@@ -1,0 +1,11 @@
+# Build outputs and local development state. Release archives come from CI.
+/work/
+/dist/
+/reports/
+/.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+.env
+.env.*

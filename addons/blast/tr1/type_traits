@@ -1,0 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Blast's legacy Linux NsArray requests the TR1 spelling. libc++ exposes the
+// same trait in C++17 <type_traits>; preserve its semantics, not a replacement.
+#pragma once
+#include <type_traits>
+namespace std { namespace tr1 { using std::is_pod; } }

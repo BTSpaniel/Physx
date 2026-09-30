@@ -1,0 +1,41 @@
+{
+  "schema": "physx-pe.nanovdb-provenance/v1",
+  "scope": "Historical source identity and inherited Apache-2.0 attribution of NVIDIA-supplied PNanoVDB; no runtime acceptance claim",
+  "nvidia": {
+    "repository": "https://github.com/NVIDIA-Omniverse/PhysX",
+    "commit": "da950a3537927784951853c66618036f332ca0ce",
+    "path": "flow/include/nvflow/nanovdb/PNanoVDB.h",
+    "sha256": "1c4f61ab3f08cbd73acbb6915bcc348d9903ab65706fa0f5cb1dfafe83fe29d0",
+    "bytes": 165354,
+    "importCommit": "d91999e20dc0c58e5b191fef4875540691442cad",
+    "importDate": "2025-03-24"
+  },
+  "openvdb": {
+    "repository": "https://github.com/AcademySoftwareFoundation/openvdb",
+    "tag": "v12.0.0",
+    "commit": "269300808a4651daa65836214fc20f78e1c0eb7f",
+    "path": "nanovdb/nanovdb/PNanoVDB.h",
+    "sha256": "eed582ab74878225c05bb5e3f08c92ca5a06cfd6075490f873607086f21fe7b9",
+    "bytes": 165444,
+    "copyright": "Copyright Contributors to the OpenVDB Project",
+    "license": "Apache-2.0",
+    "licenseChangeCommit": "453fa6fe17992d35da392bb7470464fc60f3d3b8",
+    "licenseChangeDate": "2024-10-09"
+  },
+  "comparison": {
+    "method": "Compare bytes starting at the first /*! author header after replacing CRLF with LF. NVIDIA copy lacks the preceding OpenVDB copyright and SPDX lines; no implementation bytes ignored.",
+    "implementationBodiesEqual": true,
+    "normalizedBodySha256": "1c4f61ab3f08cbd73acbb6915bcc348d9903ab65706fa0f5cb1dfafe83fe29d0"
+  },
+  "compiledReferences": [
+    "flow/source/nvflow/Sparse.cpp",
+    "flow/source/nvflow/SparseNanoVdbExport.cpp"
+  ],
+  "preservedFiles": [
+    "LICENSES/OpenVDB-Apache-2.0.txt",
+    "LICENSES/OpenVDB-RE-LICENSE_NOTE.txt",
+    "LICENSES/PNanoVDB-OpenVDB-NOTICE.txt",
+    "LICENSES/PNanoVDB-source.h"
+  ],
+  "distributionNote": "Retain the OpenVDB copyright, Apache-2.0 license, author notice and exact dependency source with source/binary packages. Exclusion of the emitter NanoVDB pipeline does not exclude all PNanoVDB-dependent host code."
+}

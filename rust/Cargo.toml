@@ -1,0 +1,19 @@
+[package]
+name = "pr-pose-core"
+version = "0.4.0"
+edition = "2021"
+rust-version = "1.70"
+license = "MIT"
+description = "Particle Realms fixed-buffer pose batching; not a physics solver"
+
+[lib]
+name = "pr_pose_core"
+crate-type = ["rlib", "staticlib"]
+
+[profile.release]
+panic = "abort"
+opt-level = 3
+lto = false
+codegen-units = 1
+
+# No third-party crates. build.py uses rustc directly for both native and Emscripten.
