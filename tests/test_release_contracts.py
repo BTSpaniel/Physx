@@ -108,10 +108,11 @@ class FlowSoftwareBackendAdmission(unittest.TestCase):
         page = Mock()
         page.evaluate.return_value = {'status': 'FAIL', 'backendIdentityVerified': False,
             'observedBackend': 'unknown/redacted', 'error': 'Intentional no-execution fixture'}
-        browser = SimpleNamespace(new_page=Mock(return_value=page), version='Fixture, not Firefox execution', close=Mock())
-        launch = Mock(return_value=browser)
+        browser = SimpleNamespace(version='Fixture, not Firefox execution')
+        context = SimpleNamespace(new_page=Mock(return_value=page), browser=browser, close=Mock())
+        launch = Mock(return_value=context)
         manager = Mock()
-        manager.__enter__ = Mock(return_value=SimpleNamespace(firefox=SimpleNamespace(launch=launch)))
+        manager.__enter__ = Mock(return_value=SimpleNamespace(firefox=SimpleNamespace(launch_persistent_context=launch)))
         manager.__exit__ = Mock(return_value=False)
         module = SimpleNamespace(sync_playwright=lambda: manager)
         report = self.icd.parent / 'firefox-probe.json'
@@ -125,10 +126,77 @@ class FlowSoftwareBackendAdmission(unittest.TestCase):
         self.assertEqual(result['requestedGpuMode'], 'software-WebGPU')
         self.assertFalse(result['backendIdentityVerified'])
         self.assertEqual(result['capability'], page.evaluate.return_value)
-        self.assertEqual(browser.new_page.call_count, 1)
+        self.assertEqual(context.new_page.call_count, 1)
         self.assertEqual(page.goto.call_count, 1)
         self.assertRegex(page.goto.call_args.args[0], r'^http://127\.0\.0\.1:\d+/upstream\.lock\.json$')
+        context.close.assert_called_once()
+        self.assertTrue(result['startupProfile']['contextClosed'])
+        self.assertTrue(result['startupProfile']['profileRemoved'])
+
+    def test_firefox_profile_prefs_exist_before_launch_and_context_closes_before_removal(self):
+        options, _ = self.firefox_options()
+        report = {}
+        observed = {}
+        browser = SimpleNamespace(version='Fixture, no browser execution')
+        def close():
+            self.assertTrue(observed['profile'].is_dir())
+            observed['closed'] = True
+        context = SimpleNamespace(browser=browser, close=Mock(side_effect=close))
+        def launch(user_data_dir, **received):
+            profile = observed['profile'] = Path(user_data_dir)
+            observed['bytes'] = (profile / 'user.js').read_bytes()
+            self.assertEqual(received, options)
+            self.assertEqual(set(profile.iterdir()), {profile / 'user.js'})
+            for key, value in options['firefox_user_prefs'].items():
+                self.assertIn(f'user_pref({json.dumps(key)}, {json.dumps(value)});\n'.encode(), observed['bytes'])
+            return context
+        firefox = SimpleNamespace(launch_persistent_context=Mock(side_effect=launch))
+        with flow_gpu_probe.launch_test_browser(SimpleNamespace(firefox=firefox), 'firefox', options, report) as actual:
+            self.assertEqual(actual, (browser, context))
+            self.assertFalse(report['startupProfile']['profileRemoved'])
+        self.assertTrue(observed['closed'])
+        self.assertFalse(observed['profile'].exists())
+        self.assertEqual(report['startupProfile']['userJsSha256'], hashlib.sha256(observed['bytes']).hexdigest())
+        self.assertTrue(report['startupProfile']['contextClosed'])
+        self.assertTrue(report['startupProfile']['profileRemoved'])
+
+    def firefox_options(self):
+        with patch.object(sys, 'platform', 'linux'):
+            return flow_gpu_probe.launch_options(None, False, True, self.icd, 'firefox')
+
+    def test_firefox_owned_profile_is_removed_after_launch_or_body_failure(self):
+        options, _ = self.firefox_options()
+        for launch_failure in (True, False):
+            with self.subTest(launch_failure=launch_failure):
+                report = {}
+                observed = {}
+                context = SimpleNamespace(browser=SimpleNamespace(version='Fixture'), close=Mock())
+                def launch(user_data_dir, **_):
+                    observed['profile'] = Path(user_data_dir)
+                    if launch_failure:
+                        raise RuntimeError('Intentional fixture launch failure')
+                    return context
+                firefox = SimpleNamespace(launch_persistent_context=Mock(side_effect=launch))
+                with self.assertRaisesRegex(RuntimeError, 'Intentional fixture'):
+                    with flow_gpu_probe.launch_test_browser(SimpleNamespace(firefox=firefox), 'firefox', options, report):
+                        raise RuntimeError('Intentional fixture body failure')
+                self.assertFalse(observed['profile'].exists())
+                self.assertTrue(report['startupProfile']['profileRemoved'])
+                self.assertEqual(report['startupProfile']['contextClosed'], not launch_failure)
+                self.assertEqual(context.close.call_count, 0 if launch_failure else 1)
+
+    def test_chromium_shared_launcher_preserves_browser_ownership_and_closes_on_failure(self):
+        options, _ = flow_gpu_probe.launch_options(Path('/caller/chromium'), True, False)
+        browser = SimpleNamespace(close=Mock())
+        launch = Mock(return_value=browser)
+        report = {}
+        with self.assertRaisesRegex(RuntimeError, 'Intentional fixture'):
+            with flow_gpu_probe.launch_test_browser(SimpleNamespace(chromium=SimpleNamespace(launch=launch)), 'chromium', options, report) as actual:
+                self.assertEqual(actual, (browser, browser))
+                raise RuntimeError('Intentional fixture body failure')
+        launch.assert_called_once_with(**options)
         browser.close.assert_called_once()
+        self.assertNotIn('startupProfile', report)
 
     def test_mode_conflicts_and_unsupported_platform_fail_clearly(self):
         with self.assertRaisesRegex(ValueError, 'mutually exclusive'):

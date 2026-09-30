@@ -12,7 +12,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'tools'))
-from flow_gpu_probe import launch_options, PROBE_JS
+from flow_gpu_probe import launch_options, launch_test_browser, PROBE_JS
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--unified', action='store_true')
 parser.add_argument('--browser-executable', type=Path)
@@ -43,10 +43,9 @@ try:
     with sync_playwright() as p:
         options, metadata = launch_options(args.browser_executable, args.hardware, args.software_vulkan, args.lavapipe_icd, args.browser_engine)
         report.update(metadata)
-        browser = getattr(p, args.browser_engine).launch(**options)
-        try:
+        with launch_test_browser(p, args.browser_engine, options, report) as (browser, pages):
             report['browserVersion'] = browser.version
-            page = browser.new_page()
+            page = pages.new_page()
             page.on('pageerror', lambda e: report['errors'].append(str(e)))
             page.on('console', lambda m: report['consoleErrors'].append(m.text) if m.type == 'error' else None)
             page.goto(f'http://127.0.0.1:{server.server_port}/')
@@ -116,8 +115,6 @@ try:
                     raise RuntimeError('Matched Flow artifact changed: ' + name)
             report['gpuMode'] = metadata['gpuMode']
             report['status'] = 'PASS' if not report['errors'] and not report['consoleErrors'] else 'FAIL'
-        finally:
-            browser.close()
 except Exception as e:
     report.update(status='FAIL', error=str(e))
 finally:

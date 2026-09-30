@@ -5,10 +5,12 @@
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
 import hashlib
 import json
 import os
 import sys
+import tempfile
 import threading
 from datetime import datetime, timezone
 from pathlib import Path
@@ -79,6 +81,43 @@ def launch_options(browser: Path | None, hardware: bool, software_vulkan: bool,
         'path': str(path), 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
         'libraryPath': library, 'apiVersion': descriptor['ICD'].get('api_version')})
     return options, metadata
+
+
+@contextmanager
+def launch_test_browser(playwright, browser_engine: str, options: dict, report: dict):
+    """Apply Firefox's mirror-once preferences before its graphics startup."""
+    if browser_engine != 'firefox':
+        browser = getattr(playwright, browser_engine).launch(**options)
+        try:
+            yield browser, browser
+        finally:
+            browser.close()
+        return
+    # Playwright 1.57 applies firefox_user_prefs via Browser.enable after startup.
+    # Firefox 144 caches gfx.webgpu.ignore-blocklist before that protocol call.
+    preferences = options['firefox_user_prefs']
+    user_js = ''.join(f'user_pref({json.dumps(key)}, {json.dumps(value)});\n'
+                      for key, value in sorted(preferences.items())).encode('utf-8')
+    evidence = report['startupProfile'] = {
+        'scope': 'Owned temporary Firefox profile; requested preferences precede process launch.',
+        'preferences': dict(preferences), 'userJsSha256': hashlib.sha256(user_js).hexdigest(),
+        'contextClosed': False, 'profileRemoved': False}
+    profile = None
+    try:
+        with tempfile.TemporaryDirectory(prefix='physx-flow-firefox-') as temporary:
+            profile = Path(temporary)
+            (profile / 'user.js').write_bytes(user_js)
+            context = playwright.firefox.launch_persistent_context(str(profile), **options)
+            try:
+                browser = context.browser
+                if browser is None:
+                    raise RuntimeError('Persistent Firefox context has no browser')
+                yield browser, context
+            finally:
+                context.close()
+                evidence['contextClosed'] = True
+    finally:
+        evidence['profileRemoved'] = profile is not None and not profile.exists()
 
 
 PROBE_JS = r'''async options => {
@@ -163,10 +202,9 @@ def main() -> int:
         server = create_server()
         threading.Thread(target=server.serve_forever, daemon=True).start()
         with sync_playwright() as playwright:
-            browser = getattr(playwright, args.browser_engine).launch(**options)
-            try:
+            with launch_test_browser(playwright, args.browser_engine, options, report) as (browser, pages):
                 report['browserVersion'] = browser.version
-                page = browser.new_page()
+                page = pages.new_page()
                 page.on('pageerror', lambda error: report['errors'].append(str(error)))
                 page.on('console', lambda message: report['consoleErrors'].append(message.text) if message.type == 'error' else None)
                 page.goto(f'http://127.0.0.1:{server.server_port}/upstream.lock.json')
@@ -174,8 +212,6 @@ def main() -> int:
                     'expectedBackend': metadata['requestedBackend']})
                 report['backendIdentityVerified'] = report['capability'].get('backendIdentityVerified', False)
                 report['status'] = 'PASS' if report['capability']['status'] == 'PASS' and not report['errors'] and not report['consoleErrors'] else 'FAIL'
-            finally:
-                browser.close()
     except Exception as error:
         report.update(status='FAIL', error=str(error))
     finally:
