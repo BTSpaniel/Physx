@@ -112,8 +112,25 @@ def prepare() -> dict:
                                     or not output.resolve().is_relative_to(target.resolve())):
                 raise lab.LabError('Generated build output path escapes its owned tree')
         output_prefixes = tuple(path.relative_to(target).as_posix() + '/' for path in output_roots)
+        # The observed release build also writes precisely these eight SDK
+        # archives outside its CMake output tree. No other bin paths are owned.
+        library_root = target / 'physx/bin/UNKNOWN/release'
+        for folder in (target / 'physx/bin', target / 'physx/bin/UNKNOWN', library_root):
+            if (folder.exists() or folder.is_symlink()) and (
+                    not folder.is_dir() or folder.is_symlink()
+                    or not folder.resolve().is_relative_to(target.resolve())):
+                raise lab.LabError('Generated SDK library directory escapes its owned tree')
+        library_paths = {'physx/bin/UNKNOWN/release/lib' + name + '_static.a' for name in
+                         ('PhysX', 'PhysXCharacterKinematic', 'PhysXCommon', 'PhysXCooking',
+                          'PhysXExtensions', 'PhysXFoundation', 'PhysXPvdSDK', 'PhysXVehicle')}
+        for relative in library_paths:
+            archive = target / relative
+            if (archive.exists() or archive.is_symlink()) and (
+                    not archive.is_file() or archive.is_symlink()
+                    or not archive.resolve().is_relative_to(library_root.resolve())):
+                raise lab.LabError('Generated SDK library is not an owned regular file: ' + relative)
         unexpected = (changed - owned) | {name for name in untracked - owned
-                                         if not name.startswith(output_prefixes)}
+                                         if name not in library_paths and not name.startswith(output_prefixes)}
         if unexpected:
             raise lab.LabError('Unexpected upstream source changes: ' + ', '.join(sorted(unexpected)))
         return receipt

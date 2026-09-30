@@ -174,6 +174,42 @@ class ShaderInventoryAdmission(unittest.TestCase):
 
 
 class PreparedSourceReadmission(unittest.TestCase):
+    def test_observed_eight_sdk_archives_are_admitted_without_a_general_bin_exception(self):
+        target = ROOT / 'work/candidate/PhysX'
+        if not (target / '.git').is_dir():
+            self.skipTest('Requires the separately prepared pinned upstream checkout')
+        library_root = target / 'physx/bin/UNKNOWN/release'
+        library_root.mkdir(parents=True, exist_ok=True)
+        created = []
+        try:
+            # On CI these are the real SDK build outputs and stay untouched.
+            # A source-only checkout uses explicit file-layout fixtures here.
+            for name in ('libPhysXCharacterKinematic_static.a', 'libPhysXCommon_static.a',
+                         'libPhysXCooking_static.a', 'libPhysXExtensions_static.a',
+                         'libPhysXFoundation_static.a', 'libPhysXPvdSDK_static.a',
+                         'libPhysXVehicle_static.a', 'libPhysX_static.a'):
+                archive = library_root / name
+                if not archive.exists():
+                    archive.write_bytes(b'Archive-layout fixture; no compiled SDK claim.\n')
+                    created.append(archive)
+            with contextlib.redirect_stdout(io.StringIO()):
+                prepare_sources.prepare()
+            for name in ('libUnexpected_static.a', 'unexpected.cpp'):
+                unexpected = library_root / name
+                previous = unexpected.read_bytes() if unexpected.exists() else None
+                try:
+                    unexpected.write_bytes(b'Unowned bin input.\n')
+                    with contextlib.redirect_stdout(io.StringIO()), self.assertRaisesRegex(lab.LabError, 'Unexpected upstream'):
+                        prepare_sources.prepare()
+                finally:
+                    if previous is None:
+                        unexpected.unlink()
+                    else:
+                        unexpected.write_bytes(previous)
+        finally:
+            for archive in created:
+                archive.unlink()
+
     def test_only_exact_generated_output_trees_are_admitted(self):
         target = ROOT / 'work/candidate/PhysX'
         if not (target / '.git').is_dir():
