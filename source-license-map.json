@@ -3955,8 +3955,8 @@
       ]
     },
     "SOURCE_BUILD_KIT.md": {
-      "sha256": "99728ed67e211894eb9829ce4667786598d976ffe1b06a6126cd3c389a11628e",
-      "bytes": 8552,
+      "sha256": "08b021c236a36232945a9707e7bff27804a97fc2ef70eb163e1195db49a27ef9",
+      "bytes": 15491,
       "origin": "First-party isolated source-build admission/test adapter or documentation",
       "licenseScope": "MIT for this custom contribution; no clean-room or linked-SDK relicensing claim",
       "notices": [
@@ -4265,8 +4265,8 @@
       ]
     },
     "README.md": {
-      "sha256": "1e2965038f0c9175c7ed4092712bb06fbcdd4d8e0248eff86e96a45ed4dcb429",
-      "bytes": 14870,
+      "sha256": "e9ee39e3b8b8c24922c06b20a7f98a730931920bba948d0ad8d9735c784c4afe",
+      "bytes": 11334,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
