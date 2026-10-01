@@ -52,6 +52,29 @@ class FlowSourceBuildTests(unittest.TestCase):
         finally:
             path.write_bytes(before)
 
+    def test_cli_flow_admission_imports_from_an_unrelated_directory(self):
+        probe = """import inspect, json, sys
+from pathlib import Path
+sys.path.insert(0, sys.argv[1])
+import physx_lab as lab
+assert str(lab.ROOT) not in sys.path
+import flow_source_evidence as evidence
+from addons.flow.component_evidence import member
+assert evidence.ROOT == lab.ROOT
+assert evidence.component_member is member
+actual = Path(inspect.getfile(member)).resolve()
+assert actual == (lab.ROOT / 'addons/flow/component_evidence.py').resolve()
+print(json.dumps({'root': str(lab.ROOT), 'componentFile': str(actual)}))
+"""
+        with tempfile.TemporaryDirectory(prefix='physx-pe-cli-import-') as directory:
+            result = subprocess.run([sys.executable, '-I', '-B', '-c', probe, str(ROOT / 'tools')],
+                                    cwd=directory, capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        observed = json.loads(result.stdout)
+        self.assertEqual(Path(observed['root']).resolve(), ROOT.resolve())
+        self.assertEqual(Path(observed['componentFile']).resolve(),
+                         (ROOT / 'addons/flow/component_evidence.py').resolve())
+
     def test_upstream_selection_uses_all_265_actual_pinned_files(self):
         hashes = upstream_inputs(self.root)
         self.assertEqual(len(hashes), 265)

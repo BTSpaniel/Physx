@@ -5,12 +5,14 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from pathlib import Path
 
 import physx_lab as lab
-from addons.flow.component_evidence import member as component_member
 
 ROOT = lab.ROOT
+sys.path.insert(0, str(ROOT))
+from addons.flow.component_evidence import member as component_member
 CORPUS_COUNTS = {'manifest.json': 97, 'addons/solid/manifest.json': 21,
                  'addons/scalar/manifest.json': 4, 'addons/momentum/manifest.json': 2}
 CAPABILITIES = dict.fromkeys(('flowHostAbi', 'flowSolidBoundaryAbi', 'flowScalarSourceAbi',

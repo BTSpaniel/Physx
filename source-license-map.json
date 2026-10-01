@@ -3935,8 +3935,8 @@
       ]
     },
     "tools/flow_source_evidence.py": {
-      "sha256": "733856bd7d4dcfa8cff8cc23fa445c86a52d63abf2781efc84a8c0f3385a0c25",
-      "bytes": 8516,
+      "sha256": "16f25b3296c4a9cd3a41188c5d81332b701bd2edc266b0e89574c69efd1c0135",
+      "bytes": 8557,
       "origin": "First-party isolated source-build admission/test adapter or documentation",
       "licenseScope": "MIT for this custom contribution; no clean-room or linked-SDK relicensing claim",
       "notices": [
@@ -3945,8 +3945,8 @@
       ]
     },
     "tests/test_flow_source_build.py": {
-      "sha256": "c3a5826576e549368a836096a06f58d66a3b77a17957bc0b3b0a713f9bc20620",
-      "bytes": 15017,
+      "sha256": "f67177faf33413c6d2979a2b78a3549b46c8fb313fd63b0c2013961dbfc8fde1",
+      "bytes": 16252,
       "origin": "First-party isolated source-build admission/test adapter or documentation",
       "licenseScope": "MIT for this custom contribution; no clean-room or linked-SDK relicensing claim",
       "notices": [
@@ -17633,7 +17633,7 @@
       ]
     },
     "source-selection.json": {
-      "sha256": "028b372017bc8c1db749b6e2791a12ec19a56f281d6e91791da02b2d380b09a7",
+      "sha256": "6adc4158388a880798690bf7e48900f2ac278bc072766f70371bd1458dd94443",
       "bytes": 59766,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
