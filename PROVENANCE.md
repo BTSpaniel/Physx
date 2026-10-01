@@ -10,19 +10,21 @@ validation, ownership, build, and verification code. It is not presented as a
 clean-room reimplementation of the upstream SDKs or binding code.
 
 `upstream.lock.json` pins the upstream repositories, commits, SDK versions,
-Emscripten, Rust, and Slang. `source-selection.json` identifies sixteen selected
-bridge inputs by SHA-256 and lists excluded candidate features. These hashes
-match the source inputs recorded for the installed reference runtime. The
-reference loader/WASM hashes identify that older observed build; no binary
-identity or current-test pass is claimed for a fresh portable rebuild.
+Emscripten, Rust, and Slang. `source-selection.json` identifies the current
+alpha.3 full source selection, its displaced legacy inputs, and the frozen
+component references described in `SOURCE_BUILD_KIT.md`. The historical sixteen
+inputs remain in `reference/alpha2-production/source-selection.json`. The
+installed-reference loader/WASM hashes identify that older observed build;
+no binary identity or current-test pass is claimed for a fresh source rebuild.
 
 `rust/src/regression_tests.rs` is an original build-lab MIT test module restored
 verbatim because `rust/src/lib.rs` already includes it under `#[cfg(test)]`.
 Its SHA-256 is
 `554af72bcaf1fec9860007f217d2844e3cf2245666ead9e14ff4f7eec56d5386`.
 The original header and all thirteen regression tests are preserved. This
-transitive test source adds no runtime algorithms or dependencies and does not
-change the sixteen stable runtime input hashes in `source-selection.json`.
+transitive test source adds no runtime algorithms or dependencies. Its retained
+test-only provenance is separate from the runtime changes selected for the
+current full source kit.
 
 `patches/browser-overlay.patch` contains the retained SDK/browser source
 adaptations. Its SHA-256 is
@@ -59,12 +61,15 @@ their contribution and inherited-license scopes. These files use public source
 IDs and relative package paths; private build-machine paths are excluded.
 
 The physical section solvers, solid Flow pressure-boundary extensions, scalar
-source admissions, and wood thermal coupling are pending candidates and are
-excluded from this source selection. Their presence in a development workspace
-does not establish release support. Likewise, rendered frame rate does not
-establish real-time physics, and historical test results do not certify a new
-artifact. Fresh build and browser receipts must identify the current exact
-loader/WASM/shader pair before it is offered as a verified runtime.
+source admissions, wood thermal coupling, and convex boundary query are included
+in the current alpha.3 source selection. Source selection does not establish
+functional, Engine integration, real-time, or release admission. Historical
+test results do not certify a new artifact, and rendered frame rate does not
+establish real-time physics. Fresh build and verification receipts must bind
+the current committed source revision and exact loader/WASM/shader pair before
+it is offered as a verified runtime. At source preparation, alpha.3 had no
+release admission; later receipts must establish it. Historical alpha.2
+artifacts remain unchanged.
 
 Only this bounded standalone package is licensed here. Particle Realms Engine,
 Editor, WebGPU OS, and other project code outside this package keep their
@@ -75,8 +80,9 @@ The current declaration generator also inventories actual first-party native
 Rust, Blast and Flow exports. It preserves inherited WebIDL interface names
 while expressing the observed prototype methods and 64-bit `bigint` calls.
 Generated `.d.ts` and `.d.mts` entries share the same content; JavaScript addon
-adapters have adjacent generated module declarations. These source changes do
-not change the selected sixteen native inputs or published alpha.2 binaries.
+adapters have adjacent generated module declarations. Declaration generation
+does not itself alter native algorithms. The current source kit selects the
+additional runtime sources explicitly; published alpha.2 binaries are unchanged.
 The accompanying WebGPU ambient declarations are copied verbatim from the
 commit pinned in `upstream.lock.json`, retain their own BSD-3-Clause notice,
 and are identified separately in the source and license maps.

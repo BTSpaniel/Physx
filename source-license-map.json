@@ -4255,8 +4255,8 @@
       ]
     },
     "PROVENANCE.md": {
-      "sha256": "9b1a4554953349f9c45e510de1bb09fcb8dba697412c8c7902057c2deddb599f",
-      "bytes": 5109,
+      "sha256": "e195a191feac489bea498562badab1cfdc2f108abb422a2761e45cd0576e7404",
+      "bytes": 5486,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
