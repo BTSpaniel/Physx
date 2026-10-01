@@ -52,6 +52,9 @@ class FullSourceKit(unittest.TestCase):
         self.assertEqual(len(original), 56)
 
     def test_selected_native_inventory_is_exact_and_source_only(self):
+        # Build admission also pins its owned recipes, beyond native inputs.
+        # A reviewed source guard change must refresh that explicit selection.
+        release.selection()
         inputs = native.selected_source_inputs(ROOT)
         self.assertEqual(len(inputs), 215)
         pin = json.loads((ROOT / 'source-inputs/blast/source-pins.json').read_text())

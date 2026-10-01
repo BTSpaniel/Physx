@@ -17633,7 +17633,7 @@
       ]
     },
     "source-selection.json": {
-      "sha256": "00fb2baddf36b167899872b1d6092a36f52f50eec08b6ea5aea7ab0dc90596c6",
+      "sha256": "dd1b1f968630e4d868ea8cc351e93fc045223c63e752a87e5a045deec8fed39f",
       "bytes": 59766,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
@@ -17673,8 +17673,8 @@
       ]
     },
     "tests/test_full_source_kit.py": {
-      "sha256": "03613b0e5e6164214d46f17e43ae98be21a8960f80b40676ae656385c2098468",
-      "bytes": 12195,
+      "sha256": "6dc5a8a54cfe561576f465542b1ff9cdaffb1853e3e24a3d8dc6280b11fc00b5",
+      "bytes": 12379,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
