@@ -78,8 +78,9 @@ def run(args: list[str | Path], cwd: Path = ROOT, *, timeout: int = 3600,
         raise LabError(f'Command failed ({p.returncode}); full output: reports/commands.log')
     return p
 
-def git(repo: Path, *args: str, check: bool = True) -> str:
-    return run(['git', '-C', repo, *args], check=check).stdout.strip()
+def git(repo: Path, *args: str, check: bool = True,
+        env: dict[str, str] | None = None) -> str:
+    return run(['git', '-C', repo, *args], check=check, env=env).stdout.strip()
 
 def require(programs: list[str]) -> None:
     missing = [p for p in programs if not shutil.which(p)]

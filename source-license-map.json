@@ -15965,8 +15965,8 @@
       ]
     },
     "release.py": {
-      "sha256": "e2fd2133de6ee6fd7c9fc8b0c5214475e05e5d25c6a66db4ea478ad0daef3125",
-      "bytes": 18053,
+      "sha256": "366324d23804f12489156238f18983f294e4898478f59489e3527981cbd53a4c",
+      "bytes": 19118,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
@@ -17633,7 +17633,7 @@
       ]
     },
     "source-selection.json": {
-      "sha256": "dd1b1f968630e4d868ea8cc351e93fc045223c63e752a87e5a045deec8fed39f",
+      "sha256": "0084d374955d147a9988d611209303c7185eb8eafbb05ef0c210be491533a232",
       "bytes": 59766,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
@@ -17723,8 +17723,8 @@
       ]
     },
     "tests/test_release_contracts.py": {
-      "sha256": "e70903860eaf2c5c674dd6c14f42858015bab8da4e7bb4e6daae0106d792f304",
-      "bytes": 30006,
+      "sha256": "d11c78244b51787dae0fb8e5ed799b3e6270a9edba0c88b8163276dcb88b0823",
+      "bytes": 31574,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
@@ -17853,8 +17853,8 @@
       ]
     },
     "tools/physx_lab.py": {
-      "sha256": "0a0853f1d864e192e345a4cc7af4c9aef19d17c4b8e446559f6cc9a1a3b3392d",
-      "bytes": 20809,
+      "sha256": "fb761be57e6e73e341c07f7b2eb9b4f2c47da528b6f86af1b77fb959caebf22f",
+      "bytes": 20861,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [

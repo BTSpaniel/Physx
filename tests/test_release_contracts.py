@@ -349,6 +349,31 @@ class CommittedSourceAdmission(unittest.TestCase):
         finally:
             self.git('worktree', 'remove', '--force', str(worktree))
 
+    def test_windows_gitfile_override_is_scoped_and_normal_gitfiles_need_none(self):
+        fixture = self.root / 'owned-metadata-fixture'
+        fixture.mkdir()
+        metadata = fixture / '.git'
+        before = dict(os.environ)
+        metadata.write_text('gitdir: C:/owned repository/.git/worktrees/linked\n', encoding='utf-8')
+        environment = release.windows_worktree_git_environment(fixture)
+        self.assertEqual(environment, before | {
+            'GIT_DIR': '/mnt/c/owned repository/.git/worktrees/linked',
+            'GIT_WORK_TREE': str(fixture.resolve())})
+        self.assertEqual(dict(os.environ), before)
+        for pointer in ('gitdir: ../repo/.git/worktrees/linked\n',
+                        'gitdir: /absolute/unix/repo/.git/worktrees/linked\n'):
+            metadata.write_text(pointer, encoding='utf-8')
+            self.assertIsNone(release.windows_worktree_git_environment(fixture))
+        self.assertIsNone(release.windows_worktree_git_environment(self.root))
+
+    def test_git_environment_passthrough_does_not_change_unrelated_discovery(self):
+        environment = dict(os.environ, GIT_DIR='owned-fixture', GIT_WORK_TREE='owned-worktree')
+        with patch.object(lab, 'run', return_value=SimpleNamespace(stdout='fixture-result\n')) as ran:
+            self.assertEqual(lab.git(self.root, 'rev-parse', 'HEAD', env=environment), 'fixture-result')
+            self.assertIs(ran.call_args.kwargs['env'], environment)
+            lab.git(self.root, 'rev-parse', 'HEAD')
+            self.assertIsNone(ran.call_args.kwargs['env'])
+
     def test_dirty_source_is_rejected(self):
         self.source.write_bytes(b'changed\n')
         with self.assertRaises(lab.LabError):

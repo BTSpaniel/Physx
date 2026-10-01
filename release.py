@@ -42,16 +42,36 @@ def inventory(root: Path | None = None) -> dict[str, str]:
     return dict(sorted(captured.items()))
 
 
+def windows_worktree_git_environment(root: Path) -> dict[str, str] | None:
+    """Translate an existing Windows gitfile for scoped real Git calls in WSL.
+
+    The repository metadata stays untouched. Git still resolves its actual
+    common directory, and source_revision verifies every committed raw blob.
+    Ordinary Git directories and relative/Unix gitfiles need no override.
+    """
+    metadata = root / '.git'
+    if not metadata.is_file():
+        return None
+    match = re.fullmatch(r'gitdir:\s+([A-Za-z]):[/\\](.+)',
+                         metadata.read_text(encoding='utf-8').strip())
+    if match is None:
+        return None
+    actual = '/mnt/' + match[1].lower() + '/' + match[2].replace('\\', '/')
+    return dict(os.environ, GIT_DIR=actual, GIT_WORK_TREE=str(root.resolve()))
+
+
 def source_revision(source_hashes: dict[str, str], root: Path | None = None) -> dict[str, str]:
     """Bind the actual source bytes to a clean committed Git tree, without filters."""
     root = ROOT if root is None else root
-    commit = lab.git(root, 'rev-parse', 'HEAD')
-    tree = lab.git(root, 'rev-parse', 'HEAD^{tree}')
+    git_environment = (windows_worktree_git_environment(root)
+                       if os.name != 'nt' and 'microsoft' in platform.release().lower() else None)
+    commit = lab.git(root, 'rev-parse', 'HEAD', env=git_environment)
+    tree = lab.git(root, 'rev-parse', 'HEAD^{tree}', env=git_environment)
     if not all(re.fullmatch(r'[0-9a-f]{40}', value) for value in (commit, tree)):
         raise lab.LabError('A committed source revision is required')
-    if lab.git(root, 'status', '--porcelain', '--untracked-files=all'):
+    if lab.git(root, 'status', '--porcelain', '--untracked-files=all', env=git_environment):
         raise lab.LabError('Release source/index must be clean and committed')
-    rows = lab.git(root, 'ls-tree', '-rz', '--full-tree', 'HEAD').split('\0')
+    rows = lab.git(root, 'ls-tree', '-rz', '--full-tree', 'HEAD', env=git_environment).split('\0')
     committed = {}
     for row in filter(None, rows):
         header, name = row.split('\t', 1)
@@ -63,7 +83,7 @@ def source_revision(source_hashes: dict[str, str], root: Path | None = None) -> 
         raise lab.LabError('Full source inventory differs from the committed Git tree')
     result = subprocess.run(['git', '-C', str(root), 'cat-file', '--batch'],
                             input=''.join(value + '\n' for value in committed.values()).encode('ascii'),
-                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True, env=git_environment)
     blobs = io.BytesIO(result.stdout)
     for name, object_id in committed.items():
         header = blobs.readline().decode('ascii').strip().split()
