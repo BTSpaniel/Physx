@@ -120,6 +120,13 @@ def launch_test_browser(playwright, browser_engine: str, options: dict, report: 
         evidence['profileRemoved'] = profile is not None and not profile.exists()
 
 
+CAPABILITY_DOCUMENT = """<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1'%20height='1'%3E%3C/svg%3E">
+<title>Flow WebGPU capability probe</title></head><body></body></html>
+"""
+
+
 PROBE_JS = r'''async options => {
     const {expectedBackend}=options;
     const result={status:'RUNNING',requestedBackend:expectedBackend,
@@ -194,12 +201,15 @@ def main() -> int:
               'scope': 'Actual one-workgroup 1024-lane WebGPU admission; not execution of the Flow graph. Requested driver selection is separate from observed, potentially redacted adapter identity.',
               'errors': [], 'consoleErrors': []}
     server = None
+    document = None
     try:
         options, metadata = launch_options(args.browser_executable, args.hardware,
                                            args.software_vulkan, args.lavapipe_icd, args.browser_engine)
         report.update(metadata)
         from playwright.sync_api import sync_playwright
-        server = create_server()
+        document = tempfile.TemporaryDirectory(prefix='physx-flow-capability-')
+        (Path(document.name) / 'index.html').write_text(CAPABILITY_DOCUMENT, encoding='utf-8')
+        server = create_server(root=Path(document.name))
         threading.Thread(target=server.serve_forever, daemon=True).start()
         with sync_playwright() as playwright:
             with launch_test_browser(playwright, args.browser_engine, options, report) as (browser, pages):
@@ -207,7 +217,7 @@ def main() -> int:
                 page = pages.new_page()
                 page.on('pageerror', lambda error: report['errors'].append(str(error)))
                 page.on('console', lambda message: report['consoleErrors'].append(message.text) if message.type == 'error' else None)
-                page.goto(f'http://127.0.0.1:{server.server_port}/upstream.lock.json')
+                page.goto(f'http://127.0.0.1:{server.server_port}/index.html')
                 report['capability'] = page.evaluate(PROBE_JS, {
                     'expectedBackend': metadata['requestedBackend']})
                 report['backendIdentityVerified'] = report['capability'].get('backendIdentityVerified', False)
@@ -215,9 +225,13 @@ def main() -> int:
     except Exception as error:
         report.update(status='FAIL', error=str(error))
     finally:
-        if server:
-            server.shutdown()
-            server.server_close()
+        try:
+            if server:
+                server.shutdown()
+                server.server_close()
+        finally:
+            if document:
+                document.cleanup()
         report['finishedUtc'] = datetime.now(timezone.utc).isoformat()
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')

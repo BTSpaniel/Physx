@@ -9,6 +9,7 @@ import io
 import importlib.util
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tarfile
@@ -28,6 +29,70 @@ import build
 import physx_lab as lab
 import flow_gpu_probe
 import test_flow_source_build as flow_source_build_tests
+
+
+class FlowHostCliAdmission(unittest.TestCase):
+    def cli(self, *arguments):
+        with tempfile.TemporaryDirectory(prefix='physx-flow-host-cli-') as directory:
+            return subprocess.run([sys.executable, '-I', '-B',
+                str(ROOT / 'addons/flow/host_browser_test.py'), *arguments],
+                cwd=directory, capture_output=True, text=True, timeout=30)
+
+    def test_host_cli_advertises_the_actual_release_browser_options(self):
+        result = self.cli('--help')
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        for option in ('--unified', '--browser-executable', '--browser-engine',
+                       '--hardware', '--software-vulkan', '--lavapipe-icd'):
+            self.assertIn(option, result.stdout)
+
+    def test_host_cli_rejects_conflicting_backends_before_browser_startup(self):
+        result = self.cli('--hardware', '--software-vulkan')
+        self.assertEqual(result.returncode, 2)
+        self.assertIn('not allowed with argument', result.stderr)
+
+    def test_host_cli_rejects_firefox_without_its_explicit_software_backend(self):
+        result = self.cli('--browser-engine', 'firefox')
+        self.assertEqual(result.returncode, 2)
+        self.assertIn('Firefox Flow validation requires --software-vulkan', result.stderr)
+
+    def test_host_cli_rejects_an_icd_without_software_mode(self):
+        result = self.cli('--lavapipe-icd', '/owned-unused-icd.json')
+        self.assertEqual(result.returncode, 2)
+        self.assertIn('--lavapipe-icd requires --software-vulkan', result.stderr)
+
+    def test_host_cli_rejects_unknown_browser_engine_before_startup(self):
+        result = self.cli('--browser-engine', 'unknown-browser')
+        self.assertEqual(result.returncode, 2)
+        self.assertIn('invalid choice', result.stderr)
+
+    def test_actual_release_phase_ten_options_parse_without_browser_execution(self):
+        # Execute only the runner's real argparse/guard AST, before report or
+        # server/browser creation. This is CLI metadata, not a Flow execution.
+        program = """import argparse, ast, json, sys
+from pathlib import Path
+path = Path(sys.argv[1])
+arguments = sys.argv[2:]
+tree = ast.parse(path.read_bytes())
+start = next(index for index, node in enumerate(tree.body)
+             if isinstance(node, ast.Assign) and any(isinstance(target, ast.Name)
+                and target.id == 'parser' for target in node.targets))
+stop = next(index for index, node in enumerate(tree.body)
+            if isinstance(node, ast.Assign) and any(isinstance(target, ast.Name)
+               and target.id == 'report' for target in node.targets))
+sys.argv = [str(path), *arguments]
+namespace = {'argparse': argparse, 'Path': Path, '__doc__': 'Actual Flow CLI metadata'}
+exec(compile(ast.Module(body=tree.body[start:stop], type_ignores=[]), str(path), 'exec'), namespace)
+print(json.dumps(vars(namespace['args'])))
+"""
+        with tempfile.TemporaryDirectory(prefix='physx-flow-host-options-') as directory:
+            result = subprocess.run([sys.executable, '-I', '-B', '-c', program,
+                str(ROOT / 'addons/flow/host_browser_test.py'), '--unified',
+                '--software-vulkan', '--browser-engine', 'firefox'], cwd=directory,
+                capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(json.loads(result.stdout), {'unified': True, 'browser_executable': None,
+            'browser_engine': 'firefox', 'hardware': False, 'software_vulkan': True,
+            'lavapipe_icd': None})
 
 
 class FlowSoftwareBackendAdmission(unittest.TestCase):
@@ -129,7 +194,7 @@ class FlowSoftwareBackendAdmission(unittest.TestCase):
         self.assertEqual(result['capability'], page.evaluate.return_value)
         self.assertEqual(context.new_page.call_count, 1)
         self.assertEqual(page.goto.call_count, 1)
-        self.assertRegex(page.goto.call_args.args[0], r'^http://127\.0\.0\.1:\d+/upstream\.lock\.json$')
+        self.assertRegex(page.goto.call_args.args[0], r'^http://127\.0\.0\.1:\d+/index\.html$')
         context.close.assert_called_once()
         self.assertTrue(result['startupProfile']['contextClosed'])
         self.assertTrue(result['startupProfile']['profileRemoved'])
@@ -477,16 +542,87 @@ class ShaderInventoryAdmission(unittest.TestCase):
 
 
 class PreparedSourceReadmission(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        # The build checkout may belong to WSL. Test its literal guards on an
+        # owned host-native fixture, never rewrite the producer's source tree.
+        original = ROOT / 'work/candidate/PhysX'
+        if not (original / '.git').is_dir():
+            raise RuntimeError('Actual pinned prepared checkout is required for source-readmission tests')
+        receipt_bytes = (ROOT / 'work/source-preparation.json').read_bytes()
+        receipt = json.loads(receipt_bytes)
+        cls.temporary = tempfile.TemporaryDirectory(prefix='physx-prepared-admission-')
+        cls.addClassCleanup(cls.temporary.cleanup)
+        cls.root = Path(cls.temporary.name)
+        for name, expected in release.inventory(ROOT).items():
+            path = cls.root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT / name, path)
+            if lab.sha256(path) != expected:
+                raise RuntimeError('Source fixture input changed while copying: ' + name)
+        cls.target = cls.root / 'work/candidate/PhysX'
+        cls.target.parent.mkdir(parents=True, exist_ok=True)
+        subprocess.run(['git', '-c', 'core.autocrlf=false', '-c', 'core.symlinks=false',
+            'clone', '--shared', '--no-checkout', str(original), str(cls.target)],
+            check=True, capture_output=True, timeout=60)
+        for key, value in (('core.autocrlf', 'false'), ('core.eol', 'lf'), ('core.symlinks', 'false'),
+                           ('filter.lfs.process', ''), ('filter.lfs.smudge', ''), ('filter.lfs.required', 'false')):
+            subprocess.run(['git', '-C', str(cls.target), 'config', key, value],
+                           check=True, capture_output=True, timeout=30)
+        subprocess.run(['git', '-C', str(cls.target), 'checkout', '--detach', lab.LOCK['upstream_commit']],
+                       check=True, capture_output=True, timeout=60)
+        if lab.git(cls.target, 'rev-parse', 'HEAD') != lab.LOCK['upstream_commit']:
+            raise RuntimeError('Fixture Git checkout does not match the actual upstream pin')
+        linkage = 'physx/source/compiler/cmake/emscripten/PhysXWasmBindings.cmake'
+        cls.original_linkage_sha256 = lab.sha256(original / linkage)
+        base = prepare_sources.added_linkage(ROOT / 'patches/browser-overlay.patch', linkage).encode('utf-8')
+        for name, expected in receipt['modifiedSources'].items():
+            content = base if name == linkage else (original / name).read_bytes()
+            if hashlib.sha256(content).hexdigest() != expected:
+                raise RuntimeError('Actual reviewed overlay differs: ' + name)
+            destination = cls.target / name
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(content)
+        stream = cls.target / 'physx/source/webidlbindings/src/common/PrWasmStreams.h'
+        shutil.copyfile(ROOT / 'source-overlays/PrWasmStreams.h', stream)
+        (cls.root / 'work/source-preparation.json').write_bytes(receipt_bytes)
+
+    def prepare(self):
+        # Only data-location globals change; the actual production functions,
+        # upstream pin, literal linkage recipe and every source guard execute.
+        with patch.object(prepare_sources, 'ROOT', self.root), patch.object(build, 'ROOT', self.root):
+            return prepare_sources.prepare()
+
+    def test_fixture_preserves_the_producers_actual_linkage_bytes(self):
+        linkage = 'physx/source/compiler/cmake/emscripten/PhysXWasmBindings.cmake'
+        self.assertEqual(lab.sha256(ROOT / 'work/candidate/PhysX' / linkage),
+                         self.original_linkage_sha256)
+        self.assertNotEqual(self.target.resolve(), (ROOT / 'work/candidate/PhysX').resolve())
+        with contextlib.redirect_stdout(io.StringIO()):
+            receipt = self.prepare()
+        self.assertEqual(receipt['upstreamCommit'], lab.LOCK['upstream_commit'])
+
+    def test_actual_pinned_gitlink_target_changes_are_rejected(self):
+        for name in ('flow/external/glfw/linux/libglfw.so', 'flow/external/glfw/linux/libglfw.so.3'):
+            path = self.target / name
+            expected = subprocess.check_output(['git', '-C', str(self.target), 'show', 'HEAD:' + name])
+            self.assertEqual(path.read_bytes(), expected)
+            try:
+                path.write_bytes(expected + b'.unexpected')
+                with contextlib.redirect_stdout(io.StringIO()), self.assertRaisesRegex(
+                        lab.LabError, 'Unexpected upstream source changes'):
+                    self.prepare()
+            finally:
+                path.write_bytes(expected)
+
     def test_observed_eight_sdk_archives_are_admitted_without_a_general_bin_exception(self):
-        target = ROOT / 'work/candidate/PhysX'
-        if not (target / '.git').is_dir():
-            self.skipTest('Requires the separately prepared pinned upstream checkout')
+        target = self.target
         library_root = target / 'physx/bin/UNKNOWN/release'
         library_root.mkdir(parents=True, exist_ok=True)
         created = []
         try:
-            # On CI these are the real SDK build outputs and stay untouched.
-            # A source-only checkout uses explicit file-layout fixtures here.
+            # These owned archive-layout files test path admission only;
+            # no production archive is changed or claimed as compiled.
             for name in ('libPhysXCharacterKinematic_static.a', 'libPhysXCommon_static.a',
                          'libPhysXCooking_static.a', 'libPhysXExtensions_static.a',
                          'libPhysXFoundation_static.a', 'libPhysXPvdSDK_static.a',
@@ -496,14 +632,14 @@ class PreparedSourceReadmission(unittest.TestCase):
                     archive.write_bytes(b'Archive-layout fixture; no compiled SDK claim.\n')
                     created.append(archive)
             with contextlib.redirect_stdout(io.StringIO()):
-                prepare_sources.prepare()
+                self.prepare()
             for name in ('libUnexpected_static.a', 'unexpected.cpp'):
                 unexpected = library_root / name
                 previous = unexpected.read_bytes() if unexpected.exists() else None
                 try:
                     unexpected.write_bytes(b'Unowned bin input.\n')
                     with contextlib.redirect_stdout(io.StringIO()), self.assertRaisesRegex(lab.LabError, 'Unexpected upstream'):
-                        prepare_sources.prepare()
+                        self.prepare()
                 finally:
                     if previous is None:
                         unexpected.unlink()
@@ -514,9 +650,7 @@ class PreparedSourceReadmission(unittest.TestCase):
                 archive.unlink()
 
     def test_only_exact_generated_output_trees_are_admitted(self):
-        target = ROOT / 'work/candidate/PhysX'
-        if not (target / '.git').is_dir():
-            self.skipTest('Requires the separately prepared pinned upstream checkout')
+        target = self.target
         for name in ('release', 'checked', 'debug', 'profile'):
             output = target / 'physx/compiler' / ('emscripten-' + name) / 'CMakeFiles/admission-fixture.txt'
             previous = output.read_bytes() if output.exists() else None
@@ -524,7 +658,7 @@ class PreparedSourceReadmission(unittest.TestCase):
             try:
                 output.write_bytes(b'Generated-output admission fixture.\n')
                 with contextlib.redirect_stdout(io.StringIO()):
-                    prepare_sources.prepare()
+                    self.prepare()
             finally:
                 if previous is None:
                     output.unlink()
@@ -535,7 +669,7 @@ class PreparedSourceReadmission(unittest.TestCase):
         try:
             unexpected.write_bytes(b'Unowned compiler-root input.\n')
             with contextlib.redirect_stdout(io.StringIO()), self.assertRaisesRegex(lab.LabError, 'Unexpected upstream'):
-                prepare_sources.prepare()
+                self.prepare()
         finally:
             if previous is None:
                 unexpected.unlink()
@@ -543,12 +677,11 @@ class PreparedSourceReadmission(unittest.TestCase):
                 unexpected.write_bytes(previous)
 
     def test_unexpected_sources_and_changed_owned_inputs_are_rejected(self):
-        target = ROOT / 'work/candidate/PhysX'
-        if not (target / '.git').is_dir():
-            self.skipTest('Requires the separately prepared pinned upstream checkout')
+        target = self.target
         linkage = 'physx/source/compiler/cmake/emscripten/PhysXWasmBindings.cmake'
-        base = prepare_sources.added_linkage(ROOT / 'patches/browser-overlay.patch', linkage)
-        generated = build.unified_linkage(base, target).encode('utf-8')
+        base = prepare_sources.added_linkage(self.root / 'patches/browser-overlay.patch', linkage)
+        with patch.object(build, 'ROOT', self.root):
+            generated = build.unified_linkage(base, target).encode('utf-8')
         cases = {
             'blast/VERSION.md': b'changed upstream input\n',
             'physx/source/webidlbindings/src/common/PrWasmStreams.h': b'changed stream\n',
@@ -564,7 +697,7 @@ class PreparedSourceReadmission(unittest.TestCase):
                 try:
                     destination.write_bytes(content)
                     with contextlib.redirect_stdout(io.StringIO()), self.assertRaises(lab.LabError):
-                        prepare_sources.prepare()
+                        self.prepare()
                 finally:
                     if previous is None:
                         destination.unlink()
@@ -575,11 +708,11 @@ class PreparedSourceReadmission(unittest.TestCase):
         try:
             cmake.write_bytes(generated)
             with contextlib.redirect_stdout(io.StringIO()):
-                prepare_sources.prepare()
+                self.prepare()
         finally:
             cmake.write_bytes(previous)
         with contextlib.redirect_stdout(io.StringIO()):
-            prepare_sources.prepare()
+            self.prepare()
 
 
 if __name__ == '__main__':

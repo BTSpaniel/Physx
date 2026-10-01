@@ -598,8 +598,8 @@
       ]
     },
     "addons/flow/host_browser_test.py": {
-      "sha256": "73cc8033278a1869b42c0a785ca720698229928cfe7917bb9c87996337ffc6d8",
-      "bytes": 7003,
+      "sha256": "2ae115f14f32f81df0c699d6fa57d58ceb4db9b9fcecde7590f0f24fc8af7e80",
+      "bytes": 8667,
       "origin": "Exact admitted first-party Flow component source or generated SDK declaration; portable source-build adaptations recorded separately",
       "licenseScope": "MIT for custom source within the root contribution scope; included NVIDIA/third-party declarations retain their separate notices",
       "notices": [
@@ -17633,7 +17633,7 @@
       ]
     },
     "source-selection.json": {
-      "sha256": "6adc4158388a880798690bf7e48900f2ac278bc072766f70371bd1458dd94443",
+      "sha256": "844c9920e22856319548075ad054fbc4c8d2ffe2384665606ba032d5d2dfc82b",
       "bytes": 59766,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
@@ -17723,8 +17723,8 @@
       ]
     },
     "tests/test_release_contracts.py": {
-      "sha256": "a489b5974432ebaeb36d3b4f0bc3581e997c4a7756e4da5e3e7bf4503209ac54",
-      "bytes": 31883,
+      "sha256": "657caf341d292644aef65b54518d6679a7695dafe61ed4b434f0ce4db4d0e149",
+      "bytes": 39690,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
@@ -17803,8 +17803,8 @@
       ]
     },
     "tools/flow_gpu_probe.py": {
-      "sha256": "0325019a99536c17be6a49681514b6b03e4d819ac4cbb8557bb8e67122b7b937",
-      "bytes": 13987,
+      "sha256": "cce51c48bf8879035153bcd9a02e342e96fe177be612c719541990171217d377",
+      "bytes": 14589,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
@@ -18065,6 +18065,16 @@
     "web/worker.mjs": {
       "sha256": "92cd98b14ec4a12ffed7fb21e4d3a63e2bf9aa81e07d10198c36f200250179af",
       "bytes": 383,
+      "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
+      "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
+      "notices": [
+        "LICENSE",
+        "THIRD_PARTY_NOTICES.md"
+      ]
+    },
+    "tests/test_flow_probe_document.py": {
+      "sha256": "bf26c4abbf62bc8e5b5971f7a8bad5aeee0a581dd3615e1f84a0f9ea26cf5063",
+      "bytes": 4383,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
