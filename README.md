@@ -3,6 +3,13 @@
 
 # PhysX PE
 
+This directory is a prospective source-build kit. See [SOURCE_BUILD_KIT.md](SOURCE_BUILD_KIT.md)
+for its selected APIs, source recipes and pending build review. The alpha.2 links
+below describe the historical published release; they do not contain the new
+thermal, physical-section or transactional Flow APIs. The experimental thermal
+solver can exceed real-time budgets. Momentum exchange covers terminal normal
+exchange and leaves heat as an explicit unapplied obligation.
+
 **PhysX, Blast and Flow for the browser, with Rust batching and WebGPU integration.**
 
 PhysX PE combines NVIDIA PhysX 5.11.0, NVIDIA Blast 5.0.6 and NVIDIA Flow in a
@@ -147,7 +154,7 @@ so your application can share a device already owned by its renderer.
 | `addons/blast/` | Blast bridge and source build tools. |
 | `bridge/` · `rust/` | Native transfer interfaces, JavaScript batching adapters and Rust implementation. |
 | `web/` | Browser example, validation page and simulation suite. |
-| `types/` | Reviewed PhysX declarations in the source repository. |
+| `types/` | Generated PhysX/addon declarations and pinned WebGPU types in the source repository. |
 | `reports/` | Verification receipts in the runtime ZIP; generated test output in a source checkout. |
 | `LICENSES/` | Complete upstream license texts and notices. |
 
@@ -170,7 +177,7 @@ source work/env.sh
 python -m pip install playwright==1.57.0
 python -m playwright install --with-deps chromium firefox
 python tools/flow_gpu_probe.py --software-vulkan --browser-engine firefox
-python release.py all --software-vulkan --flow-browser-engine firefox
+python release.py build
 ```
 
 You can run `build`, `verify` or `package` separately. Release commands require a
@@ -179,6 +186,13 @@ verification, checks file hashes, and runs the extracted archive before
 accepting it. Emscripten 4.0.19, Rust 1.90.0, Slang 2025.6.1 and the source
 revisions are pinned in [upstream.lock.json](upstream.lock.json).
 
+For local verification alongside an Engine checkout, provide its shared test
+lock with `python release.py verify --software-vulkan --flow-browser-engine
+firefox --lock-workspace /path/to/particlerealms.engine`. The bounded CPU
+endurance phase uses this lock to serialize heavy tests. The GitHub workflow
+runs `release.py all` with `--ci-isolated`, which requires the actual hosted
+Actions environment; that flag cannot bypass local test isolation.
+
 For a hosted build, use **Actions → Build PhysX PE → Run workflow**.
 Successful runs retain runtime files and reports. Version tags create an alpha
 prerelease only after the build and verification gates pass. Emscripten uses
@@ -186,7 +200,7 @@ its bundled development tools during compilation; consumers need no npm setup.
 
 ## Verification and alpha scope
 
-Each runtime archive carries `runtime-manifest.json`,
+The published alpha.2 archive carries `runtime-manifest.json`,
 `reports/verification.json` and individual phase receipts. These bind the tested
 files to their source revision and record what ran. Release gates cover Rust
 units and Python FFI, C++/Rust ABI checks, 23 PhysX browser scenarios, a real
@@ -199,12 +213,33 @@ unknown observed identity separate from the requested driver. This is functional
 and numerical evidence, not a hardware frame-rate benchmark, full SDK
 certification or a browser/device compatibility matrix.
 
+The current source checkout has 37 functional CPU-WASM checks, including
+behavioral tests for D6 drives, articulation drives,
+controller floor/wall collision, convex and triangle mesh cooking, binary
+serialization with 64-bit object IDs, and deterministic replay on the same
+build. Vehicle2 checks measure tire support, acceleration, braking and steering;
+callback checks measure native contact impulses and trigger entry/exit. It also
+checks TypeScript consumers of the actual Rust, Blast and Flow
+addon APIs, including invalid argument rejection. Adjacent `.d.mts` files
+resolve browser ES module imports; `types/webgpu.d.ts` supplies the pinned GPU
+interfaces. Type validation runs the official TypeScript compiler inside a
+browser, without adding Node or npm to the application build. These new source
+checks do not alter the published alpha.2 files or their historical receipts.
+
+Separate bounded tests exercise 288 scene lifecycles, 4,608 dynamic actors,
+576 bulk contexts and 288 native Blast checks. Two ten-minute physical-time
+replays must agree byte for byte. These CPU tests pass in the installed Chrome
+and Edge browsers on one Windows device. Scene and addon counts return to zero,
+allocation probes reuse their storage, and WASM memory reaches a stable
+64 MiB high-water mark. This verifies that bounded fixture; it does not prove
+an unlimited-duration allocator leak absence or cross-device replay.
+
 This alpha exposes the implemented integration, not every upstream feature.
 The NanoVDB emitter pipeline, experimental physical-section solvers, solid
 pressure-boundary extensions and wood thermal coupling are excluded. Flow
 obstacle coupling is one-way velocity coupling. Full vehicle, character
 controller, articulation and serialization coverage, long-duration leak checks,
-deterministic replay and complete Particle Realms integration are outside this
+cross-build replay and complete Particle Realms integration are outside this
 release's verification claim. See [source selection](source-selection.json)
 and [provenance](PROVENANCE.md) for the precise boundary.
 

@@ -1,0 +1,67 @@
+--- final05/bridge/pr_bulk_rust.cpp
++++ selected06/bridge/pr_bulk_rust.cpp
+@@ -6,6 +6,8 @@
+ #include <cstdint>
+ #include <memory>
+ #include <new>
++#include <cmath>
++#include <emscripten/heap.h>
+ #include <emscripten/emscripten.h>
+ 
+ namespace {
+@@ -54,6 +56,55 @@
+ EMSCRIPTEN_KEEPALIVE std::uint32_t pr_bulk_sdk_version() { return PX_PHYSICS_VERSION; }
+ EMSCRIPTEN_KEEPALIVE std::uint32_t pr_flow_stage_abi() { return 1; }
+ EMSCRIPTEN_KEEPALIVE std::uint32_t pr_flow_simd_enabled() { return prr_simd128_enabled(); }
++EMSCRIPTEN_KEEPALIVE std::uint32_t pr_flow_boundary_convex_abi() { return 1; }
++// Borrow a LIVE PxShape after fetchResults. Output is scaled shape-local data:
++// lower.xyz, upper.xyz, then unit planes n.xyz,d with dot(n,x)<=d. Actor and
++// shape-local poses are intentionally separate. No collision skin is added.
++// A null output with capacity0 queries the plane count; success also returns
++// that count. -1 means invalid input/geometry; -2 means insufficient capacity.
++EMSCRIPTEN_KEEPALIVE int pr_flow_boundary_convex(void* shapePointer, float* output, std::uint32_t capacity)
++{
++    const auto address = reinterpret_cast<std::uintptr_t>(shapePointer);
++    const auto heapSize = emscripten_get_heap_size();
++    if (!shapePointer || address % alignof(physx::PxShape) || address > heapSize || sizeof(physx::PxShape) > heapSize - address) return -1;
++    auto* shape = static_cast<physx::PxShape*>(shapePointer);
++    const auto& baseGeometry = shape->getGeometry();
++    if (baseGeometry.getType() != physx::PxGeometryType::eCONVEXMESH) return -1;
++    const auto& geometry = static_cast<const physx::PxConvexMeshGeometry&>(baseGeometry);
++    if (!geometry.isValid() || !geometry.convexMesh) return -1;
++    const auto count = geometry.convexMesh->getNbPolygons();
++    if (!count || count > 256) return -1;
++    if (!output && capacity == 0) return static_cast<int>(count);
++    const std::uint32_t required = 6 + count * 4;
++    if (capacity < required) return -2;
++    const auto outputAddress = reinterpret_cast<std::uintptr_t>(output);
++    if (!output || outputAddress % alignof(float) || outputAddress > heapSize || required > (heapSize - outputAddress) / sizeof(float)) return -1;
++    float values[6 + 256 * 4];
++    auto bounds = physx::PxBounds3::empty();
++    const auto* vertices = geometry.convexMesh->getVertices();
++    for (physx::PxU32 i = 0; i < geometry.convexMesh->getNbVertices(); ++i)
++    {
++        const auto point = geometry.scale.transform(vertices[i]);
++        if (!point.isFinite()) return -1;
++        bounds.include(point);
++    }
++    if (!bounds.isValid() || bounds.isEmpty()) return -1;
++    values[0] = bounds.minimum.x; values[1] = bounds.minimum.y; values[2] = bounds.minimum.z;
++    values[3] = bounds.maximum.x; values[4] = bounds.maximum.y; values[5] = bounds.maximum.z;
++    const auto normalTransform = geometry.scale.getInverse().toMat33().getTranspose();
++    for (physx::PxU32 i = 0; i < count; ++i)
++    {
++        physx::PxHullPolygon polygon;
++        if (!geometry.convexMesh->getPolygonData(i, polygon)) return -1;
++        const auto normal = normalTransform * physx::PxVec3(polygon.mPlane[0], polygon.mPlane[1], polygon.mPlane[2]);
++        const float length = normal.magnitude(), distance = -polygon.mPlane[3] / length;
++        if (!normal.isFinite() || !std::isfinite(length) || length <= 0 || !std::isfinite(distance)) return -1;
++        values[6 + i * 4] = normal.x / length; values[7 + i * 4] = normal.y / length;
++        values[8 + i * 4] = normal.z / length; values[9 + i * 4] = distance;
++    }
++    for (std::uint32_t i = 0; i < required; ++i) output[i] = values[i];
++    return static_cast<int>(count);
++}
+ EMSCRIPTEN_KEEPALIVE int pr_flow_seed(std::uint32_t* values, std::uint32_t count) {
+     return prr_flow_seed(values, count);
+ }

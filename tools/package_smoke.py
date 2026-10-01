@@ -54,7 +54,9 @@ def main() -> int:
                     result = page.evaluate('window.runValidation("candidate")')
                     if result.get('status') != 'SMOKE_PASSED_NOT_RELEASE_CERTIFIED' or not result.get('physicsExecuted'):
                         raise ValueError('Extracted browser validation failed: ' + json.dumps(result))
-                    if report['pageErrors'] or len(result.get('tests', [])) != 23:
+                    import evidence
+                    if (report['pageErrors'] or len(result.get('tests', [])) != len(evidence.CORE_TESTS)
+                            or {row.get('name') for row in result.get('tests', [])} != set(evidence.CORE_TESTS)):
                         raise ValueError('Extracted browser checks are incomplete or errored')
                     page.goto(f'http://127.0.0.1:{server.server_port}/web/quickstart.html')
                     page.wait_for_function('window.quickstartState?.status === "FAILED" || window.quickstartState?.time >= 0.2')

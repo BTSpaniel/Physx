@@ -1,0 +1,29 @@
+{
+  "backend": "NVIDIA ExtStress scalar CPU/WASM",
+  "sources": {
+    "source/sdk/extensions/stress/NvBlastExtStressSolver.cpp": {
+      "sourceSha256": "2da71df9db94973fa1c1b645062a7bc588fea8cca3251fdb16ea5634c7b40e69",
+      "generatedSha256": "e3ec59e1e2346aacc7fed80a5ce0787f520e7b2d107870e2a1f3bbb56999152e"
+    },
+    "source/shared/stress_solver/stress.cpp": {
+      "sourceSha256": "ff5b35f91788d6395d2884ffff57acf6179b8692114c7ce14fb8bd33c96e498c",
+      "generatedSha256": "54c69ce41892989b8e04750d6f60bb229d2bd9d2c3b8345d991859d492c06cf3"
+    },
+    "source/shared/stress_solver/math/cgnr.h": {
+      "sourceSha256": "779750a94eaa95e8c0c081ba0f2007a63d94786b4c2a3148eac71ac0eed5905c",
+      "generatedSha256": "5aca67ef3ece538a889ea26c6e4ef8a2b381266966e3269cd82c31a9711f5134"
+    }
+  },
+  "transform": "Replace platform includes; add per-instance opt-in physical operator options, declared convergence tolerance and read-only bond wrench hooks. Legacy options remain unchanged.",
+  "physicalExtension": true,
+  "physicalSolverRelativeTolerance": 1e-06,
+  "sectionsAbi": 1,
+  "physicalNumericalRevisions": [
+    1,
+    2,
+    3
+  ],
+  "sectionsV3Abi": 1,
+  "sectionsOperator": "Minimum complementary energy via physical full6x6 interface stiffness; solve-only per-sample damage; exact normalized continuation; fresh original B-transpose residual admission",
+  "residualMeaning": "Normal-equation gradient in mass/length-scaled coordinates; not force or torque units."
+}

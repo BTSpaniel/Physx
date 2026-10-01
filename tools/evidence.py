@@ -18,7 +18,7 @@ from typing import Any
 import physx_lab as lab
 ROOT=Path(__file__).resolve().parents[1]
 ARTIFACTS=('physx-js-webidl.mjs','physx-js-webidl.wasm')
-HARNESS=('web/suite.mjs','web/regressions.mjs','web/worker.mjs','web/app.mjs',
+HARNESS=('web/suite.mjs','web/regressions.mjs','web/advanced-regressions.mjs','web/vehicle-callback-regressions.mjs','types/addon-abi.json','web/worker.mjs','web/app.mjs',
          'bridge/physx-bulk.mjs','bridge/physx-bulk-rust.mjs','tools/browser_test.py','tools/evidence.py')
 BRIDGE=('rust/src/lib.rs','bridge/pr_bulk_rust.cpp','bridge/pr_rust_core.h')
 BLAST_STRESS_LEGACY_BRIDGE=('addons/blast/pr_blast_wasm.cpp','addons/blast/emscripten_nv_compat.h',
@@ -27,7 +27,9 @@ BLAST_STRESS_LEGACY_BRIDGE=('addons/blast/pr_blast_wasm.cpp','addons/blast/emscr
 BLAST_STRESS_BRIDGE=BLAST_STRESS_LEGACY_BRIDGE+('addons/blast/pr_blast_memory.h',)
 BLAST_AUTHORING_BRIDGE=('addons/blast/pr_blast_authoring.cpp','addons/blast/prepare_authoring_sources.py')
 BLAST_BRIDGE=BLAST_STRESS_BRIDGE+BLAST_AUTHORING_BRIDGE
-FLOW_BRIDGE=('addons/flow/pr_flow_host.cpp','addons/flow/generate_host_headers.py','addons/flow/build_host.py','addons/flow/flow_host_webgpu.mjs')
+BLAST_BRIDGE=tuple(json.loads((ROOT/'source-selection.json').read_text(encoding='utf-8'))['blastNativeInputs'])
+THERMAL_BRIDGE=tuple(json.loads((ROOT/'source-selection.json').read_text(encoding='utf-8'))['thermalNativeInputs'])
+FLOW_BRIDGE=tuple(json.loads((ROOT/'source-selection.json').read_text(encoding='utf-8'))['flowNativeInputs'])
 CORE_TESTS=(
     'Matched loader/WASM hashes','Runtime version and required WebIDL API',
     'Foundation, CPU scene and rigid bodies','Free fall: one second without contact',
@@ -39,11 +41,19 @@ CORE_TESTS=(
     'Raycast miss has no blocking hit','Static actor remains fixed',
     'Bulk seven-component parity during motion','Bulk contexts remain independent',
     'Bulk capacity and unregister reuse','Bulk context lifecycle churn',
+    'Addon declarations match compiled exports','D6 constrained translation and drive',
+    'Reduced-coordinate articulation drive','Capsule controller ground and wall collision',
+    'Convex and triangle mesh cooking roundtrip','Binary collection serialization roundtrip',
+    'Same-build deterministic rigid replay',
+    'Vehicle2 tire-supported acceleration','Vehicle2 braking from speed',
+    'Vehicle2 steering changes trajectory','Vehicle2 actor and extension cleanup',
+    'Contact callback native actors and impulses','Trigger callback enter and exit without blocking',
+    'Simulation callback detach and scene cleanup',
     'Actor, scene and SDK teardown','No SDK stderr diagnostics',
 )
 UNPROVEN=(
-    'D6/ragdolls and articulation behavior','vehicles and character controllers',
-    'mesh cooking and serialization stream-width migration','contact/trigger callbacks',
+    'full ragdoll behavior','Vehicle2 engine/tank drivetrains and complete road handling',
+    'constraint-break / wake / sleep callbacks',
     'long-duration memory endurance','browser/device matrix including Android',
     'rollback/replay and full Particle Realms integration',
 )
@@ -86,10 +96,24 @@ def verify_artifacts(manifest: dict, directory: Path, profile: str, root: Path=R
     require(manifest.get('bridge_backend')=='rust','Expected the actual Rust-backed addon')
     require(type(manifest.get('rust_abi')) is int and manifest['rust_abi']==2,'Rust ABI mismatch')
     require(type(manifest.get('js_bulk_abi')) is int and manifest['js_bulk_abi']==1,'Public bulk ABI mismatch')
-    bridge_sources=BRIDGE+BLAST_BRIDGE+FLOW_BRIDGE if profile=='candidate' else BRIDGE
+    bridge_sources=BRIDGE+BLAST_BRIDGE+FLOW_BRIDGE+THERMAL_BRIDGE if profile=='candidate' else BRIDGE
     require(manifest.get('bridge_sources')==source_hashes(root,bridge_sources),
             'Bridge sources changed or source hashes missing; rebuild')
     if profile=='candidate':
+        from native_components import selected_source_inputs, STRICT_FLAGS
+        selected_source_inputs(root)
+        require(manifest.get('final_link_strict_flags')==list(STRICT_FLAGS),'Strict final link flags changed')
+        capabilities={'blast_physical_stress_abi':1,'blast_sections_v3_abi':1,
+                      'blast_sections_v3_preparation_abi':1,'blast_stress_mass_abi':1,
+                      'wood_thermal_mr_abi':2,'wood_thermal_numerics':9,'flow_convex_query_abi':1}
+        for key,value in capabilities.items():
+            require(type(manifest.get(key)) is int and manifest[key]==value,'Selected capability mismatch: '+key)
+        native=manifest.get('selected_native_source_build')
+        require(isinstance(native,dict) and native.get('allTranslationUnitsRecompiled') is True
+                and native.get('archivedObjectsUsed') is False
+                and native.get('sources')==selected_source_inputs(root)
+                and native.get('sourcesAfter')==native.get('sources')
+                and len(native.get('blastCompileCommands',[]))==27,'Fresh selected native source compilation required')
         require(manifest.get('blast_core_version')=='5.0.6','Unified Blast core version mismatch')
         require(manifest.get('flow_webgpu_stage_abi')==1,'Unified Flow staging ABI mismatch')
         require(type(manifest.get('blast_authoring_abi')) is int and manifest['blast_authoring_abi']==1,

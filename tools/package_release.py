@@ -16,8 +16,32 @@ import evidence
 ROOT = lab.ROOT
 
 
+def admit_endurance_phase(verified: dict, build: dict) -> None:
+    """Require this invocation's bounded execution receipt before packaging."""
+    from browser_compat_endurance import ENDURANCE_SOURCES, validate_endurance
+    rows = [row for row in verified.get('steps', [])
+            if row.get('name') == 'Bounded native CPU endurance and identical-input replay']
+    if len(rows) != 1 or rows[0].get('status') != 'PASS' or rows[0].get('testCount') != 3:
+        raise lab.LabError('Packaging requires exactly one completed bounded CPU endurance phase')
+    row = rows[0]
+    phase = ROOT / row['reportFile']
+    if (not phase.is_file() or phase.is_symlink()
+            or not phase.resolve().is_relative_to((ROOT / 'reports/phases').resolve())
+            or lab.sha256(phase) != row.get('reportSha256')):
+        raise lab.LabError('Bounded CPU endurance phase bytes changed or escaped their report directory')
+    raw = evidence.object_json(phase)
+    if raw.get('releasePhase') is not True:
+        raise lab.LabError('Bounded CPU endurance was not executed as a release phase')
+    admission = validate_endurance(raw, build, evidence.source_hashes(ROOT, ENDURANCE_SOURCES),
+        not_before=evidence.instant(verified['startedUtc'], 'release started'))
+    if row.get('checks') != admission or row.get('resultStatus') != raw['status']:
+        raise lab.LabError('Bounded CPU endurance summary differs from its executed receipt')
+
+
 def package() -> Path:
     from release import VERSION, inventory, selection, shader_inventory, source_revision
+    from flow_source_evidence import require_final_selection
+    require_final_selection(ROOT)
     selection()
     source_hashes = inventory()
     revision = source_revision(source_hashes)
@@ -32,6 +56,7 @@ def package() -> Path:
     evidence.verify_artifacts(build, ROOT / 'dist/candidate', 'candidate')
     if verified.get('artifacts') != build['artifacts']:
         raise lab.LabError('Verified runtime artifact identity changed')
+    admit_endurance_phase(verified, build)
     shaders = shader_inventory()
     if verified.get('shaderHashesBefore') != shaders or verified.get('shaderHashesAfter') != shaders:
         raise lab.LabError('Current shaders/sidecars differ from their verified inventory')
@@ -56,10 +81,21 @@ def package() -> Path:
     if declarations.read_bytes() != (ROOT / 'types/physx-pe.d.ts').read_bytes():
         raise lab.LabError('Generated declarations changed from their reviewed IDL reference')
     include(declarations)
+    esm_declarations = ROOT / 'dist/candidate/physx-pe.d.mts'
+    if esm_declarations.read_bytes() != declarations.read_bytes():
+        raise lab.LabError('ES module declarations differ from the matched runtime declarations')
+    include(esm_declarations)
+    from generate_addon_types import generate
+    for relative, expected in generate().items():
+        if (ROOT / relative).read_bytes() != expected:
+            raise lab.LabError('Addon declarations differ from their actual ABI: ' + relative)
+        include(ROOT / relative)
+    include(ROOT / 'types/webgpu.d.ts')
     for path in sorted((ROOT / 'dist/flow-wgsl').rglob('*')):
         if path.is_file():
             include(path)
     for relative in ('addons/flow/flow_host_webgpu.mjs', 'addons/flow/webgpu_bridge.mjs',
+                     'addons/flow/flow_solid_boundary.mjs', 'addons/flow/flow_scalar_sources.mjs',
                      'bridge/physx-bulk.mjs', 'bridge/physx-bulk-rust.mjs',
                      'tools/serve.py', 'LICENSE', 'README.md', 'AUTHORS.md',
                      'PROVENANCE.md', 'THIRD_PARTY_NOTICES.md', 'source-selection.json', 'upstream.lock.json',

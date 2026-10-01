@@ -1,0 +1,30 @@
+{
+  "schema": "physx-pe.flow-declaration-source-pins/v1",
+  "scope": "Exact prospective declaration-scan and public JavaScript adapter inputs; no runtime build or alpha.2 feature claim.",
+  "files": {
+    "addons/flow/pr_flow_host.cpp": {
+      "sha256": "d181a669721575ad5c411baf249fd65e19bafc8e8f04bdb41454f1de5d1e8ba7",
+      "bytes": 45060
+    },
+    "addons/flow/rebase_host.h": {
+      "sha256": "88f291eeb4805a5e1efc5e5241f8bafd71965d9a451c560538b7c134deb967c0",
+      "bytes": 3215
+    },
+    "addons/flow/momentum_exchange_host.h": {
+      "sha256": "74282ec648b9059f4e876d489144cbe8187dbb558427cd1134ee542a42f3106f",
+      "bytes": 5794
+    },
+    "addons/flow/flow_host_webgpu.mjs": {
+      "sha256": "46ae8d8d161b7e6596cd44f13c0f6a71760537cefcebaefe7f9fdb3bd7ce8c1a",
+      "bytes": 74730
+    },
+    "addons/flow/flow_solid_boundary.mjs": {
+      "sha256": "e76313b510d25f83fedaae0339b5569bee17c72ccf712a19894faf2a89fa8d67",
+      "bytes": 11108
+    },
+    "addons/flow/flow_scalar_sources.mjs": {
+      "sha256": "498bda12e7edf97676a111b2c164d3194895a066e0e975111b66a33ed15e5367",
+      "bytes": 2704
+    }
+  }
+}

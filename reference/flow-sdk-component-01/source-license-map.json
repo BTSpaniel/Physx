@@ -1,0 +1,496 @@
+{
+  "schema": "physx-pe.source-license-map/v1",
+  "cleanRoomClaim": false,
+  "scope": "Prospective isolated Flow declaration slice only; generated signatures do not imply a new runtime build or alpha.2 implementation. Root must merge admitted rows into its final coupled source inventory.",
+  "files": {
+    "rust/src/lib.rs": {
+      "sha256": "040c3621288001dbc55d923366402beb88b24e3805c4ae6e6b100ba51a19fb73",
+      "bytes": 15853,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "bridge/pr_bulk_rust.cpp": {
+      "sha256": "334a3552f7054a6b43c1c9c74e475696270466ab10f77017ed7f44ed887064c0",
+      "bytes": 4273,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "bridge/pr_rust_core.h": {
+      "sha256": "34c3b6f7701e8c46fddbed132d00aa92cb5e5fcb88aa68070135e702b240e15e",
+      "bytes": 1463,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/blast/pr_blast_wasm.cpp": {
+      "sha256": "680611d8e7a13bec82f16c3b9e4f99cf98c72a23a305a94cc38cd26ead0ac003",
+      "bytes": 23253,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/blast/emscripten_nv_compat.h": {
+      "sha256": "53dbbab9a1ff899e41958ff81b8d838dd7d6800c9bb926400162c86b1523a787",
+      "bytes": 552,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/blast/prepare_stress_sources.py": {
+      "sha256": "344e0893b0ce31018e9a01bd16ead6838d66b8fe1b66699b8b9c5cd84f8c3d16",
+      "bytes": 2476,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/blast/emscripten_stress_device.h": {
+      "sha256": "0b24bcf9980f1a3830eb828f52689b52868c74c7e7f3b1295902f74ba4ad7628",
+      "bytes": 509,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/blast/emscripten_stress_intrinsics.h": {
+      "sha256": "24261a2f945f46e3adb5ce7104b89a1bdd6ddf6b7a72059b8198bfa89ed12291",
+      "bytes": 1249,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/blast/tr1/type_traits": {
+      "sha256": "dd134f07a312cd38a5ee494b222baf83f5313aef7df9f7f6c2fa6a366c6fb6be",
+      "bytes": 282,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/blast/pr_blast_memory.h": {
+      "sha256": "9d72f0c9cb3961eac345b5e11720bbea083c62dcad1baee80aaffd66b15e956d",
+      "bytes": 420,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/blast/pr_blast_authoring.cpp": {
+      "sha256": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8",
+      "bytes": 18360,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/blast/prepare_authoring_sources.py": {
+      "sha256": "acbd52da8a798fd232422feb36ed85846954e43467f729434a895f8616fbea9d",
+      "bytes": 3176,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/flow/pr_flow_host.cpp": {
+      "sha256": "d181a669721575ad5c411baf249fd65e19bafc8e8f04bdb41454f1de5d1e8ba7",
+      "bytes": 45060,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/flow/generate_host_headers.py": {
+      "sha256": "8325b67d3dbe5abd7b052965fb32d59003c140ff2061dbf3122f47835f3a3b10",
+      "bytes": 3552,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/flow/build_host.py": {
+      "sha256": "1818b108d4e16c5d3da1cd4036d034f464c25c1e49e7787c70d1369414b0586b",
+      "bytes": 2234,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/flow/flow_host_webgpu.mjs": {
+      "sha256": "46ae8d8d161b7e6596cd44f13c0f6a71760537cefcebaefe7f9fdb3bd7ce8c1a",
+      "bytes": 74730,
+      "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
+      "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "types/physx-pe.d.ts": {
+      "sha256": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705",
+      "bytes": 225976,
+      "origin": "Generated and adapted from retained fabmax-derived PhysXWasm.idl declarations plus separately declared actual first-party Rust/Blast/Flow exports; upstream interface names and contracts retained",
+      "inputIdlSha256": "adb07496333d52a0366b8e585fddecd8179093854399a8f45374d6eabeaa03f0",
+      "licenseScope": "Generated binding declarations retain binding-package MIT and inherited SDK/source notices; not claimed as independently authored upstream API",
+      "notices": [
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    "patches/browser-overlay.patch": {
+      "sha256": "fc1675b9b0982997f2e4cb337bde36f093b84edd3995fc0bab3c61538ac4cee0",
+      "bytes": 2062867,
+      "origin": "Retained SDK/browser port adaptations, including copied fabmax-derived bindings",
+      "licenseScope": "Mixed upstream contributions and MIT original custom modifications; see entry-level inventory",
+      "notices": [
+        "LICENSE",
+        "THIRD_PARTY_NOTICES.md",
+        "upstream-modifications.json"
+      ]
+    },
+    "LICENSES/PNanoVDB-source.h": {
+      "sha256": "1c4f61ab3f08cbd73acbb6915bcc348d9903ab65706fa0f5cb1dfafe83fe29d0",
+      "bytes": 165354,
+      "origin": "Exact NVIDIA-supplied PNanoVDB source; historical OpenVDB implementation match documented separately",
+      "licenseScope": "Apache-2.0; not MIT",
+      "notices": [
+        "LICENSES/OpenVDB-Apache-2.0.txt",
+        "LICENSES/OpenVDB-RE-LICENSE_NOTE.txt",
+        "LICENSES/PNanoVDB-OpenVDB-NOTICE.txt",
+        "nanovdb-provenance.json"
+      ]
+    },
+    "types/physx-pe.d.mts": {
+      "sha256": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705",
+      "bytes": 225976,
+      "origin": "Generated and adapted from retained fabmax-derived PhysXWasm.idl declarations plus separately declared actual first-party Rust/Blast/Flow exports; upstream interface names and contracts retained; byte-identical ES module declaration entry for .mjs resolution",
+      "inputIdlSha256": "adb07496333d52a0366b8e585fddecd8179093854399a8f45374d6eabeaa03f0",
+      "licenseScope": "Generated binding declarations retain binding-package MIT and inherited SDK/source notices; not claimed as independently authored upstream API",
+      "notices": [
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    "types/webgpu.d.ts": {
+      "bytes": 117813,
+      "sha256": "bd08a7d5dc63f6b360c471a05f842a9db40acc0ed685171c272842e614de6e19",
+      "origin": "Verbatim gpuweb/types dist/index.d.ts at commit 2b7c1c80f92323b12355033b2f1b65fe406a08da",
+      "sourceUrl": "https://raw.githubusercontent.com/gpuweb/types/2b7c1c80f92323b12355033b2f1b65fe406a08da/dist/index.d.ts",
+      "licenseScope": "BSD-3-Clause; WebGPU Developers copyright retained separately; not MIT",
+      "notices": [
+        "LICENSES/WebGPU-Types-BSD-3-Clause.txt"
+      ]
+    },
+    "addons/flow/flow_host_webgpu.d.mts": {
+      "bytes": 10057,
+      "sha256": "1d22e5feec495039d45188ee479657351fa7dc9184bc82dcf885695b60ef3d88",
+      "origin": "Original declaration of exact hash-bound prospective Flow host/helper contracts; no alpha.2 feature claim",
+      "licenseScope": "MIT for original declarations; referenced upstream WebGPU types retain BSD-3-Clause and linked SDKs keep their existing notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/WebGPU-Types-BSD-3-Clause.txt"
+      ]
+    },
+    "addons/flow/webgpu_bridge.d.mts": {
+      "bytes": 2010,
+      "sha256": "ccdcc6654c4e1e137ae30df3e880551b318f592d6b471b342d9d4e0b302df6b4",
+      "origin": "Original declaration of exact hash-bound prospective Flow host/helper contracts; no alpha.2 feature claim",
+      "licenseScope": "MIT for original declarations; referenced upstream WebGPU types retain BSD-3-Clause and linked SDKs keep their existing notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/WebGPU-Types-BSD-3-Clause.txt"
+      ]
+    },
+    "bridge/physx-bulk-rust.d.mts": {
+      "bytes": 390,
+      "sha256": "e8851d9f42aac72aeb5b622d052afbd9b59112a039ca9064ba56f6f04ad895ff",
+      "origin": "First-party declaration/ABI inventory generated from actual selected native exports and maintained JavaScript adapter contracts",
+      "licenseScope": "MIT for original declarations; referenced upstream WebGPU types retain BSD-3-Clause and linked SDKs keep their existing notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/WebGPU-Types-BSD-3-Clause.txt"
+      ]
+    },
+    "bridge/physx-bulk.d.mts": {
+      "bytes": 913,
+      "sha256": "412b1bdf174e4da0b0cf6a2b5ff08c5b804a1e1d2f0eed8f15db54e77bdf9068",
+      "origin": "First-party declaration/ABI inventory generated from actual selected native exports and maintained JavaScript adapter contracts",
+      "licenseScope": "MIT for original declarations; referenced upstream WebGPU types retain BSD-3-Clause and linked SDKs keep their existing notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/WebGPU-Types-BSD-3-Clause.txt"
+      ]
+    },
+    "types/addon-abi.json": {
+      "bytes": 11608,
+      "sha256": "004b31c6436419a0bb87ff4b220178b79dc3ee206cc53f2f07cbcdbf1d38d7f1",
+      "origin": "First-party declaration/ABI inventory generated from actual selected native exports and maintained JavaScript adapter contracts",
+      "licenseScope": "MIT for original declarations; referenced upstream WebGPU types retain BSD-3-Clause and linked SDKs keep their existing notices",
+      "notices": [
+        "LICENSE",
+        "LICENSES/WebGPU-Types-BSD-3-Clause.txt"
+      ]
+    },
+    "addons/flow/flow_scalar_sources.d.mts": {
+      "bytes": 512,
+      "sha256": "3d7956057d7c3698a6c06ef1807118e596058eaa3e4a80a5dd7e0f8b245c4113",
+      "origin": "Original declaration of exact hash-bound prospective Flow host/helper contracts; no alpha.2 feature claim",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/WebGPU-Types-BSD-3-Clause.txt"
+      ]
+    },
+    "addons/flow/flow_scalar_sources.mjs": {
+      "bytes": 2704,
+      "sha256": "498bda12e7edf97676a111b2c164d3194895a066e0e975111b66a33ed15e5367",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/flow/flow_solid_boundary.d.mts": {
+      "bytes": 705,
+      "sha256": "03d05e800a9e8532860d1d9cf7ce6c3c15bb2cfd821611b0e0006cedd2404157",
+      "origin": "Original declaration of exact hash-bound prospective Flow host/helper contracts; no alpha.2 feature claim",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/WebGPU-Types-BSD-3-Clause.txt"
+      ]
+    },
+    "addons/flow/flow_solid_boundary.mjs": {
+      "bytes": 11108,
+      "sha256": "e76313b510d25f83fedaae0339b5569bee17c72ccf712a19894faf2a89fa8d67",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/flow/momentum_exchange_host.h": {
+      "bytes": 5794,
+      "sha256": "74282ec648b9059f4e876d489144cbe8187dbb558427cd1134ee542a42f3106f",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "addons/flow/rebase_host.h": {
+      "bytes": 3215,
+      "sha256": "88f291eeb4805a5e1efc5e5241f8bafd71965d9a451c560538b7c134deb967c0",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "tests/fixtures/flow-sdk-component-01/alpha2-addon-abi.json": {
+      "bytes": 9198,
+      "sha256": "e252c8242fc5a32d8dfa710957231e7501cba60dae4b5b15b0ec1f1ca8cedbc5",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "tests/fixtures/flow-sdk-component-01/alpha2-physx-pe.d.ts": {
+      "bytes": 224812,
+      "sha256": "41fbef09609570a723ca28cf95bb13c7caf903a7f64e3ffeb99f549b77a6ebc9",
+      "origin": "Historical alpha.2 declaration fixture retained byte-for-byte to verify unchanged upstream IDL contracts",
+      "licenseScope": "Generated binding declarations retain binding-package MIT and inherited SDK/source notices; not claimed as independently authored upstream API",
+      "notices": [
+        "LICENSES/Fabmax-Bindings-MIT.txt",
+        "LICENSES/Fabmax-Bindings-NOTICE.md",
+        "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ],
+      "inputIdlSha256": "adb07496333d52a0366b8e585fddecd8179093854399a8f45374d6eabeaa03f0"
+    },
+    "tests/fixtures/flow-sdk-component-01/api-contract-01.json": {
+      "bytes": 10705,
+      "sha256": "a649f4f03c074df9fbdc1d6cee2d0310b35482f66432cc517b33098d705cb1e4",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "tests/fixtures/flow-sdk-component-01/source-pins.json": {
+      "bytes": 1156,
+      "sha256": "9113407d57fd09ddb6252761a0da39bd715faf0ace9afc0ba65daceb57754306",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "tests/test_addon_types.py": {
+      "bytes": 6181,
+      "sha256": "98f95f69441b17b16502428a19be736f214b79a5c5fd4cd369ccd4b7bc64c864",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "tests/test_flow_component_types.py": {
+      "bytes": 4407,
+      "sha256": "a2c5fceea1e197fdc47d3ee3c50102812eb3056cb1399fe1ca3c1a9c121f0ba9",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "tools/generate_addon_types.py": {
+      "bytes": 6731,
+      "sha256": "e500535e28d030a45771bf8954ff089d38d5eb04aac13bf3cf0dab6641a6275f",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "tools/type_templates/flow_host_webgpu.d.mts": {
+      "bytes": 10057,
+      "sha256": "1d22e5feec495039d45188ee479657351fa7dc9184bc82dcf885695b60ef3d88",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "tools/type_templates/flow_scalar_sources.d.mts": {
+      "bytes": 512,
+      "sha256": "3d7956057d7c3698a6c06ef1807118e596058eaa3e4a80a5dd7e0f8b245c4113",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "tools/type_templates/flow_solid_boundary.d.mts": {
+      "bytes": 705,
+      "sha256": "03d05e800a9e8532860d1d9cf7ce6c3c15bb2cfd821611b0e0006cedd2404157",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    },
+    "tools/typecheck_browser.py": {
+      "bytes": 14823,
+      "sha256": "c9912dfbb2394ab515b9b345edf71a150009464ec1d583526cf2361091178c37",
+      "origin": "Prospective first-party declaration adapter, source-contract fixture or exact MIT component input; inherited source notices retained",
+      "licenseScope": "MIT for custom adapter contribution; linked SDK/source and WebGPU declaration dependencies retain their separate licenses",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    }
+  },
+  "linkedComponents": {
+    "physx": "NVIDIA PhysX 5.11.0; Apache-2.0 plus retained historical source notices",
+    "blast": "NVIDIA Blast 5.0.6; NVIDIA BSD-3-Clause plus identified reference/header terms",
+    "flow": "NVIDIA Flow source/shader BSD-3-Clause and verified PNanoVDB Apache-2.0 dependency",
+    "bindings": "fabmax package MIT plus retained NVIDIA/geometry source notices",
+    "runtimes": "Emscripten, Rust, musl, LLVM components; full texts in LICENSES/",
+    "webgpuTypes": "gpuweb/types 2b7c1c80f92323b12355033b2f1b65fe406a08da; verbatim BSD-3-Clause ambient declarations for typed browser consumers"
+  },
+  "generatedAdapters": "Blast platform/authoring generation modifies upstream source with original notices retained and exact input/output receipts. Flow WGSL is translated upstream NVIDIA shader code; generator MIT does not relicense shader output.",
+  "inheritedRowsNotStaged": {
+    "source-overlays/PrWasmStreams.h": {
+      "sha256": "000503ecc235987e7b03d6169b56994ab9aa49c07d54bf11ee4bb36afa2949d5",
+      "bytes": 6567,
+      "origin": "Custom bounded WASM stream adapter; original Particle Realms contributor copyright retained",
+      "licenseScope": "MIT for custom source; depends on upstream PhysX stream ABI",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt",
+        "LICENSES/PhysX-SDK-Apache-2.0.txt"
+      ]
+    },
+    "rust/src/regression_tests.rs": {
+      "sha256": "554af72bcaf1fec9860007f217d2844e3cf2245666ead9e14ff4f7eec56d5386",
+      "bytes": 10202,
+      "origin": "Original custom Particle Realms build-lab Rust regression tests, restored verbatim as a transitive test-only source; existing MIT header retained",
+      "role": "Test-only module used by rust/src/lib.rs under #[cfg(test)]; not an additional stable runtime input",
+      "licenseScope": "MIT for custom test source; no additional crates or upstream solver implementation introduced",
+      "notices": [
+        "LICENSE",
+        "LICENSES/Particle-Realms-Build-Lab-MIT.txt"
+      ]
+    }
+  },
+  "prospectiveNativeDeclarations": {
+    "currentAlpha2Exports": 56,
+    "prospectiveExports": 71,
+    "additions": 15,
+    "rawSourceFiles": [
+      "bridge/pr_bulk_rust.cpp",
+      "addons/blast/pr_blast_wasm.cpp",
+      "addons/blast/pr_blast_authoring.cpp",
+      "addons/flow/pr_flow_host.cpp",
+      "addons/flow/rebase_host.h",
+      "addons/flow/momentum_exchange_host.h"
+    ],
+    "runtimeImplementedByThisProof": false
+  }
+}

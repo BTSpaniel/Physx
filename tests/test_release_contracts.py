@@ -332,6 +332,23 @@ class CommittedSourceAdmission(unittest.TestCase):
                                          separators=(',', ':')).encode()).hexdigest()
         self.assertEqual(result['inventorySha256'], digest)
 
+    def test_linked_worktree_metadata_is_not_source_and_dirty_bytes_still_fail(self):
+        worktree = self.root.parent / (self.root.name + '-linked')
+        self.git('worktree', 'add', '--detach', str(worktree), 'HEAD')
+        try:
+            self.assertTrue((worktree / '.git').is_file())
+            captured = release.inventory(worktree)
+            self.assertEqual(set(captured), {'source.py'})
+            with contextlib.redirect_stdout(io.StringIO()):
+                revision = release.source_revision(captured, worktree)
+            self.assertEqual(revision['commit'], self.git('rev-parse', 'HEAD'))
+            self.assertEqual(revision['tree'], self.git('rev-parse', 'HEAD^{tree}'))
+            (worktree / 'source.py').write_bytes(b'changed\n')
+            with contextlib.redirect_stdout(io.StringIO()), self.assertRaises(lab.LabError):
+                release.source_revision(release.inventory(worktree), worktree)
+        finally:
+            self.git('worktree', 'remove', '--force', str(worktree))
+
     def test_dirty_source_is_rejected(self):
         self.source.write_bytes(b'changed\n')
         with self.assertRaises(lab.LabError):

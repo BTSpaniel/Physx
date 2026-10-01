@@ -1,0 +1,34 @@
+{
+  "status": "OWNER_LICENSE_TRANSFORMED_NOT_COMPILED",
+  "abi": 2,
+  "numericalVersion": 9,
+  "compiler": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 4.0.19 (08e2de1031913e4ba7963b1c56f35f036a7d4d56)\nCopyright (C) 2025 the Emscripten authors (see AUTHORS.txt)\nThis is free and open source software under the MIT license.\nThere is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "sources": {
+    "addons/thermal/pr_wood_thermal_multirate.cpp": "dcebd0a74cb04a53c16c1544b94d9e875eca32a182f180fb8d72fccf6aa2f857",
+    "addons/thermal/pr_wood_thermal.cpp": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856",
+    "addons/thermal/build_thermal.py": "1ceb2b9620d5a399b0754d7169b3e3656b4bda5a5aad1f8d6c072a3866d04ca3",
+    "addons/thermal/build_thermal_multirate.py": "90f475f8582d312c96ad9ffe3cbf1b5528f8b1b9bf49dd59f70870c10a20df97"
+  },
+  "compileCommand": [
+    "em++",
+    "/mnt/c/Users/btspa/Downloads/particle-realms-physx-local-pc/PhysX-Local-PC/particle-realms-physx-rust-python-511/work/combined-runtime-20261001-06-convex/addons/thermal/pr_wood_thermal_multirate.cpp",
+    "-std=c++17",
+    "-O3",
+    "-fno-fast-math",
+    "-fno-associative-math",
+    "-ffp-contract=off",
+    "-fno-rtti",
+    "-fno-exceptions",
+    "-msimd128",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-DPR_THERMAL_STABLE_DEPLETION=1",
+    "-c",
+    "-o",
+    "/mnt/c/Users/btspa/Downloads/particle-realms-physx-local-pc/PhysX-Local-PC/particle-realms-physx-rust-python-511/work/combined-runtime-20261001-06-convex/dist/wood-thermal-multirate/pr_wood_thermal_multirate.o"
+  ],
+  "originalManifestSha256": "f0464a6a8b11eeaa7e3ea05b9dfa2547566f24961894f2d44e4b77dece31e657",
+  "licenseTransformSha256": "5221d38283d191d12ab83953af1fb3d05ef48c90ea5563aa1dd67bcbeabfe885",
+  "freshCompilationRequired": true
+}

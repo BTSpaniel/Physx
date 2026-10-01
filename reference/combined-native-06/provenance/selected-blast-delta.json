@@ -1,0 +1,162 @@
+{
+  "status": "PASS_SOURCE_DELTA_ONLY",
+  "createdUtc": "2026-10-01T05:17:21.147754+00:00",
+  "handoff": {
+    "path": "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\sections-v3-f64prep-02-handoff.json",
+    "sha256": "5f9dfdb887c66ad54b489a98b7892e0e3fee8a31d413ecac46a744eae5990cdb"
+  },
+  "parentReceipt": {
+    "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\stress-physical-sections-f64prep-20261001\\candidate-parent.json",
+    "sha256": "f713431981396eb31017d619563a41cbabdf68fbae764db8367aecd87c9657b0"
+  },
+  "parentRoot": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\stress-physical-sections-accurate",
+  "sourceRoot": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\stress-physical-sections-f64prep-20261001",
+  "changed": [
+    {
+      "path": "build_stress_candidate.py",
+      "beforeSha256": "04c97f15f38c0a2a036fcf369b7d7445dedc2af4ba8b12c19090d321c97a14ce",
+      "afterSha256": "3b57ecad484f03962eb50641a67c6edc361e8a2d5fdb8c278725b5e049e45c06"
+    },
+    {
+      "path": "section-numerics-v3.json",
+      "beforeSha256": "0a4a9f1e557d6ebe452f53632e3991b19c7cc876dface5f318bf8c943ae3743b",
+      "afterSha256": "71fade79dea6bf2bd47ca23f8bd36def27603584d13d0c8bc6dde261c6669e8a"
+    },
+    {
+      "path": "addons/blast/pr_blast_section_accurate.h",
+      "beforeSha256": "be23ab1a4b85e283654aef332940c1d6aa14f24c600ac58854f3c3889927a65d",
+      "afterSha256": "44224dafd55620ea83d9ad4ba12d8e523c19545c669fefc53f3c97f7797cb335"
+    },
+    {
+      "path": "addons/blast/pr_blast_wasm.cpp",
+      "beforeSha256": "25de9485144ddead670847ea147556d0ce4ab059be6a15eaa207025d1e339b5e",
+      "afterSha256": "70f140b1c72c442e0b6b3a88db41543756b60be5dcb3d87a80318fce7150941e"
+    },
+    {
+      "path": "addons/blast/section_v3_extension.py",
+      "beforeSha256": "95df398d118da711998e7899244010bc8d26b61b191f354ec57a4bbcb4a8ff25",
+      "afterSha256": "a239b0f28b90b6a7914e554ad5d044f9667a3e7d7ef308de2985f630ec2b1b5a"
+    },
+    {
+      "path": "build_unified_candidate.py",
+      "beforeSha256": "3106f850a80a08c7d4f3ba94729c805563ad6c1d3dc99c10ef13b02319a00cce",
+      "afterSha256": "530c14b1abd37e3e11892203e51edad8f73b4d5a91b8d9ad0278a805e226c79d"
+    }
+  ],
+  "unchanged": [
+    {
+      "path": "baseline-build-manifest.json",
+      "beforeSha256": "cf6408fc30d5372258befed90c6ae5855c4e4ef9dcd2b2ea29d61da6f5d839a2",
+      "afterSha256": "cf6408fc30d5372258befed90c6ae5855c4e4ef9dcd2b2ea29d61da6f5d839a2"
+    },
+    {
+      "path": "section-factor-admission.json",
+      "beforeSha256": "058a45892505c904180a8f4e522f66064e4b98010ab8a20708e7f94794a7568d",
+      "afterSha256": "058a45892505c904180a8f4e522f66064e4b98010ab8a20708e7f94794a7568d"
+    },
+    {
+      "path": "addons/blast/emscripten_nv_compat.h",
+      "beforeSha256": "53dbbab9a1ff899e41958ff81b8d838dd7d6800c9bb926400162c86b1523a787",
+      "afterSha256": "53dbbab9a1ff899e41958ff81b8d838dd7d6800c9bb926400162c86b1523a787"
+    },
+    {
+      "path": "addons/blast/emscripten_stress_device.h",
+      "beforeSha256": "0b24bcf9980f1a3830eb828f52689b52868c74c7e7f3b1295902f74ba4ad7628",
+      "afterSha256": "0b24bcf9980f1a3830eb828f52689b52868c74c7e7f3b1295902f74ba4ad7628"
+    },
+    {
+      "path": "addons/blast/emscripten_stress_intrinsics.h",
+      "beforeSha256": "24261a2f945f46e3adb5ce7104b89a1bdd6ddf6b7a72059b8198bfa89ed12291",
+      "afterSha256": "24261a2f945f46e3adb5ce7104b89a1bdd6ddf6b7a72059b8198bfa89ed12291"
+    },
+    {
+      "path": "addons/blast/physical_stress_extension.py",
+      "beforeSha256": "60d159c8d94efee965862804d6a1f72e67c623536c21ea625627ba06b39e0faf",
+      "afterSha256": "60d159c8d94efee965862804d6a1f72e67c623536c21ea625627ba06b39e0faf"
+    },
+    {
+      "path": "addons/blast/prepare_authoring_sources.py",
+      "beforeSha256": "acbd52da8a798fd232422feb36ed85846954e43467f729434a895f8616fbea9d",
+      "afterSha256": "acbd52da8a798fd232422feb36ed85846954e43467f729434a895f8616fbea9d"
+    },
+    {
+      "path": "addons/blast/prepare_stress_sources.py",
+      "beforeSha256": "e11233daf3973ad649b826e9247312f994983896a0a803540eea1f0bf865a3a4",
+      "afterSha256": "e11233daf3973ad649b826e9247312f994983896a0a803540eea1f0bf865a3a4"
+    },
+    {
+      "path": "addons/blast/pr_blast_authoring.cpp",
+      "beforeSha256": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8",
+      "afterSha256": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8"
+    },
+    {
+      "path": "addons/blast/pr_blast_memory.h",
+      "beforeSha256": "9d72f0c9cb3961eac345b5e11720bbea083c62dcad1baee80aaffd66b15e956d",
+      "afterSha256": "9d72f0c9cb3961eac345b5e11720bbea083c62dcad1baee80aaffd66b15e956d"
+    },
+    {
+      "path": "addons/blast/pr_blast_section_matrix.h",
+      "beforeSha256": "fb85464341cc7e655327ffac98d0f388e12d71dd6e3de3775e520aade1864d78",
+      "afterSha256": "fb85464341cc7e655327ffac98d0f388e12d71dd6e3de3775e520aade1864d78"
+    },
+    {
+      "path": "addons/blast/pr_blast_section_solver.h",
+      "beforeSha256": "4d7a5f7c60601fa2f65bc56b05291d80ebae11d90eccc0c586a55ec9b9c73814",
+      "afterSha256": "4d7a5f7c60601fa2f65bc56b05291d80ebae11d90eccc0c586a55ec9b9c73814"
+    },
+    {
+      "path": "addons/blast/section_stress_extension.py",
+      "beforeSha256": "9c34f759c48535f004de14a8f69700712b038a67b5bca98eefd0c00881cc17e1",
+      "afterSha256": "9c34f759c48535f004de14a8f69700712b038a67b5bca98eefd0c00881cc17e1"
+    },
+    {
+      "path": "addons/blast/tr1/type_traits",
+      "beforeSha256": "dd134f07a312cd38a5ee494b222baf83f5313aef7df9f7f6c2fa6a366c6fb6be",
+      "afterSha256": "dd134f07a312cd38a5ee494b222baf83f5313aef7df9f7f6c2fa6a366c6fb6be"
+    }
+  ],
+  "preservedNonBuildInputs": [
+    {
+      "path": "addons/blast/physical_stress_extension.hot-cg-proposal.py",
+      "sha256": "cfd688be8764dec02154131f68e73591f53133675f0095ed44c7f88d5169203b",
+      "scope": "Preserved historical proposal; not a build input"
+    }
+  ],
+  "added": [
+    {
+      "path": "addons/blast/pr_blast_section_qr.h",
+      "sha256": "3512c39a9cdc7c8674992ee8076e71412daa16084ad6d586418d577388c56582"
+    }
+  ],
+  "importedMassAbiSource": {
+    "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\addons\\blast\\pr_blast_wasm.cpp",
+    "sha256": "20b3d057654d3ea89c95f5980c56a7268122695a0257b108cb9b69448dd9f3c1"
+  },
+  "nativeExports": {
+    "pr_blast_stress_sections_v3_abi": 1,
+    "pr_blast_stress_sections_v3_preparation_abi": 1,
+    "pr_blast_stress_mass_abi": 1,
+    "pr_blast_stress_set_masses": "Validated real mass mutation; accepted changes invalidate preparation, continuation, and accepted wrench receipts"
+  },
+  "preparationIdentity": "submitted-f32-data/f64-physical-preparation-v1",
+  "numericalRevision": 3,
+  "sourceArchive": {
+    "path": "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\sections-v3-f64prep-02-source-objects.zip",
+    "sha256": "5758b9fbc77fff1591d7596e67cb09838a6188648971f04a91390100117d6b64",
+    "bytes": 1282017,
+    "members": 234
+  },
+  "standaloneManifest": {
+    "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\stress-physical-sections-f64prep-20261001\\dist\\sections-v3-f64prep-02\\build-manifest.json",
+    "sha256": "cc31ee502ec973d9a6ebd8ff1b4c3963cfbfa62bd93d060cd43feab34b1f8069"
+  },
+  "changes": [
+    "Prepare mass, inertia, lever-arm scale and load operator in binary64 directly from original submitted float32 datums; retain submitted binary64 stiffness.",
+    "Keep legacy revisions1/2 arithmetic and API paths unchanged.",
+    "Use unshifted original-action Householder QR only when the original principal sparse factor rejects; preserve every original operator row and mode.",
+    "Integrate actual existing mass setter with revision3 input invalidation; retain native admission guards.",
+    "Explicitly initialize revision3 graph reduction0 before original-load handoff.",
+    "Add pure preparation ABI1 getter so Engine checkpoints cannot cross old rounded and new physical preparation identities."
+  ],
+  "scope": "Source and object selection evidence only. Isolated proofs are bound by the handoff; final combined-pair live-wall, scene-mass, checkpoint, floor and throughput admission remain required."
+}

@@ -1,0 +1,36 @@
+{
+  "abi": 1,
+  "component": "Terminal paired momentum exchange resident-cell admission and native halo scatter",
+  "shaders": [
+    {
+      "source": "addons/flow/PrMomentumGatherCS.hlsl",
+      "sourceSha256": "8f050de8e7be20e85c10ca899ae6fc24294e5f55f13e55e21b1949bf8e78d416",
+      "wgsl": "addons/momentum/PrMomentumGatherCS.wgsl",
+      "wgslSha256": "6b36d8b3bd0eb6ee8756ecd67a8ded63633c17ab172567943650907ca4beaf86",
+      "reflection": "addons/momentum/PrMomentumGatherCS.reflection.json",
+      "reflectionSha256": "545128cd8b821157de264746fbf507aad4b0afea14efde6e1f0066324fd4499f",
+      "storageAccessNarrowed": []
+    },
+    {
+      "source": "addons/flow/PrMomentumApplyCS.hlsl",
+      "sourceSha256": "c3da7911c98082fabb706a98e696df47910fd8660ac6ccc290e36aca0c4670e2",
+      "wgsl": "addons/momentum/PrMomentumApplyCS.wgsl",
+      "wgslSha256": "c0c0d988d801a7f70afc9d9e213607667151d8300ac03f5ebb606d9c1a4999d9",
+      "reflection": "addons/momentum/PrMomentumApplyCS.reflection.json",
+      "reflectionSha256": "8ad4d4b2512310aeb81ac3897d760059c4b9ec9ede688d0efaf24cacd736da21",
+      "storageAccessNarrowed": [
+        "velocity_1"
+      ]
+    }
+  ],
+  "sourceHashes": {
+    "PrMomentumApplyCS.hlsl": "c3da7911c98082fabb706a98e696df47910fd8660ac6ccc290e36aca0c4670e2",
+    "PrMomentumCommon.hlsli": "d6d8e906ee156346ef27be915dd6685adc206fecb5d0296891f7e5ae3f8d4457",
+    "PrMomentumGatherCS.hlsl": "8f050de8e7be20e85c10ca899ae6fc24294e5f55f13e55e21b1949bf8e78d416",
+    "PrSolidBoundary.hlsli": "847d10772735bbb0e371f0909095fff036533389470a59d68019cfe42cd749fa",
+    "compile_momentum_wgsl.py": "0940b77e5183c09e6c26867314015327bb8a37e42087614c6ce6da97976ffbfc",
+    "compile_scalar_wgsl.py": "fed7db58ff0ce44c86c196126b95d63dbe62e4f8f2b594dad33f0c660ed97fa4",
+    "momentum_exchange_host.h": "74282ec648b9059f4e876d489144cbe8187dbb558427cd1134ee542a42f3106f",
+    "momentum_exchange_types.h": "fb98ecc4757ec996b95b693329bb6027968cb1a653a515a2718c8d2ab472de08"
+  }
+}

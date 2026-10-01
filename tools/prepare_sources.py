@@ -14,6 +14,19 @@ import physx_lab as lab
 ROOT = lab.ROOT
 
 
+def prepare_flow_sources() -> dict:
+    """Admit raw pinned Flow bytes without importing any compiled object."""
+    from flow_source_evidence import upstream_inputs
+    hashes = upstream_inputs(ROOT)
+    receipt = {'schema': 'physx-pe.prepared-flow-source/v1',
+               'upstreamCommit': lab.LOCK['upstream_commit'],
+               'sourceRoot': 'source-inputs/flow', 'sourceHashes': hashes,
+               'pinManifestSha256': lab.sha256(ROOT / 'source-inputs/flow/source-pins.json'),
+               'compiledObjectsAdmitted': False, 'scope': 'Source admission only; not runtime verification.'}
+    lab.write_json(ROOT / 'work/flow-source-preparation.json', receipt)
+    return receipt
+
+
 def modified_text(path: Path, text: str) -> str:
     """Keep every upstream header and prominently identify the port modification."""
     message = 'Modified for the Particle Realms PhysX PE browser port; upstream notices retained.'
@@ -55,6 +68,11 @@ def added_linkage(patch: Path, relative: str) -> str:
 
 
 def prepare() -> dict:
+    from flow_source_evidence import require_final_selection
+    require_final_selection(ROOT)
+    from native_components import selected_source_inputs
+    selected_source_inputs(ROOT)
+    prepare_flow_sources()
     lock = lab.LOCK
     patch = ROOT / 'patches/browser-overlay.patch'
     stream = ROOT / 'source-overlays/PrWasmStreams.h'

@@ -1,0 +1,40 @@
+{
+  "schema": "physx-pe.source-selection/v1",
+  "scope": "Sixteen exact stable installed bridge inputs. Portable build scripts and clean source overlay are a new alpha packaging revision; no bit-identical rebuilt binary claim.",
+  "stableBridgeSources": {
+    "rust/src/lib.rs": "040c3621288001dbc55d923366402beb88b24e3805c4ae6e6b100ba51a19fb73",
+    "bridge/pr_bulk_rust.cpp": "334a3552f7054a6b43c1c9c74e475696270466ab10f77017ed7f44ed887064c0",
+    "bridge/pr_rust_core.h": "34c3b6f7701e8c46fddbed132d00aa92cb5e5fcb88aa68070135e702b240e15e",
+    "addons/blast/pr_blast_wasm.cpp": "680611d8e7a13bec82f16c3b9e4f99cf98c72a23a305a94cc38cd26ead0ac003",
+    "addons/blast/emscripten_nv_compat.h": "53dbbab9a1ff899e41958ff81b8d838dd7d6800c9bb926400162c86b1523a787",
+    "addons/blast/prepare_stress_sources.py": "344e0893b0ce31018e9a01bd16ead6838d66b8fe1b66699b8b9c5cd84f8c3d16",
+    "addons/blast/emscripten_stress_device.h": "0b24bcf9980f1a3830eb828f52689b52868c74c7e7f3b1295902f74ba4ad7628",
+    "addons/blast/emscripten_stress_intrinsics.h": "24261a2f945f46e3adb5ce7104b89a1bdd6ddf6b7a72059b8198bfa89ed12291",
+    "addons/blast/tr1/type_traits": "dd134f07a312cd38a5ee494b222baf83f5313aef7df9f7f6c2fa6a366c6fb6be",
+    "addons/blast/pr_blast_memory.h": "9d72f0c9cb3961eac345b5e11720bbea083c62dcad1baee80aaffd66b15e956d",
+    "addons/blast/pr_blast_authoring.cpp": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8",
+    "addons/blast/prepare_authoring_sources.py": "acbd52da8a798fd232422feb36ed85846954e43467f729434a895f8616fbea9d",
+    "addons/flow/pr_flow_host.cpp": "e4f34673e63b5a3d0a1a96f10318e4c6f80755633abe478b2586efc4f23b7595",
+    "addons/flow/generate_host_headers.py": "8325b67d3dbe5abd7b052965fb32d59003c140ff2061dbf3122f47835f3a3b10",
+    "addons/flow/build_host.py": "1818b108d4e16c5d3da1cd4036d034f464c25c1e49e7787c70d1369414b0586b",
+    "addons/flow/flow_host_webgpu.mjs": "a0e046e29db754886bbe7616994a3205906882d148c008b937e5fdb7c450fa16"
+  },
+  "originalBrowserOverlaySha256": "a1d433af5cf689d194de4c2f31235f29312b847c9e8072212d5c613ea2430e54",
+  "portableBrowserOverlaySha256": "fc1675b9b0982997f2e4cb337bde36f093b84edd3995fc0bab3c61538ac4cee0",
+  "installedReferenceArtifacts": {
+    "physx-pe.wasm": {
+      "bytes": 6948292,
+      "sha256": "3d73e561fa71b996e3c25b10426b9445bad7b6a56eb3cd5a6a3901c791b8e8f4"
+    },
+    "physx-pe.mjs": {
+      "bytes": 4837868,
+      "sha256": "8258172bd1adca31ef74756448d15b2eaa83795d82c9ddce64d5a01a04c2b68f"
+    }
+  },
+  "pendingFeaturesExcluded": [
+    "physical sections numerical revisions1/2/3",
+    "solid Flow pressure-boundary extensions",
+    "scalar source admissions",
+    "wood thermal coupling"
+  ]
+}

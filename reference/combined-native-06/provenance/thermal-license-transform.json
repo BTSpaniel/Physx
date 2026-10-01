@@ -1,0 +1,53 @@
+{
+  "schema": "physx-pe.owner-thermal-license-transform/v1",
+  "sourceManifestSha256": "f0464a6a8b11eeaa7e3ea05b9dfa2547566f24961894f2d44e4b77dece31e657",
+  "onlyLicenseIdentifierChanged": true,
+  "freshCompilationRequired": true,
+  "authorization": "Owner requested MIT distribution of owned custom runtime components; original MRI9 files remain Alpha.",
+  "scope": "Four owner-authored thermal files only. Copyright, algorithm bytes, line endings and upstream notices are unchanged.",
+  "files": {
+    "addons/thermal/pr_wood_thermal_multirate.cpp": {
+      "originalPath": "provenance/thermal-alpha-original/addons/thermal/pr_wood_thermal_multirate.cpp",
+      "originalSha256": "b49feb66f98369c5fe559264d1dc93e763b49f66c2fbff91082603698a209f42",
+      "selectedSha256": "dcebd0a74cb04a53c16c1544b94d9e875eca32a182f180fb8d72fccf6aa2f857",
+      "originalBytes": 49294,
+      "selectedBytes": 49238,
+      "licenseLines": [
+        2,
+        497
+      ]
+    },
+    "addons/thermal/pr_wood_thermal.cpp": {
+      "originalPath": "provenance/thermal-alpha-original/addons/thermal/pr_wood_thermal.cpp",
+      "originalSha256": "28cf0d12061d032262f63a5c8010dcfb75323da6802abbaa404b3a482677db2b",
+      "selectedSha256": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856",
+      "originalBytes": 20560,
+      "selectedBytes": 20532,
+      "licenseLines": [
+        2
+      ]
+    },
+    "addons/thermal/build_thermal.py": {
+      "originalPath": "provenance/thermal-alpha-original/addons/thermal/build_thermal.py",
+      "originalSha256": "095ebb699501b864262e7346f572500d5c7a5de2722c38178a72bbf88a89cf96",
+      "selectedSha256": "1ceb2b9620d5a399b0754d7169b3e3656b4bda5a5aad1f8d6c072a3866d04ca3",
+      "originalBytes": 3664,
+      "selectedBytes": 3636,
+      "licenseLines": [
+        2
+      ]
+    },
+    "addons/thermal/build_thermal_multirate.py": {
+      "originalPath": "provenance/thermal-alpha-original/addons/thermal/build_thermal_multirate.py",
+      "originalSha256": "cb9b1ae113631ab49336f51b3d81d7e15dfde02967dd83e0fc4d550107ef7244",
+      "selectedSha256": "90f475f8582d312c96ad9ffe3cbf1b5528f8b1b9bf49dd59f70870c10a20df97",
+      "originalBytes": 3229,
+      "selectedBytes": 3201,
+      "licenseLines": [
+        2
+      ]
+    }
+  },
+  "originalArtifactsSelected": false,
+  "runtimeAdmission": false
+}

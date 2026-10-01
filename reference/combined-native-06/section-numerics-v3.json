@@ -1,0 +1,66 @@
+{
+  "schema": "particle-realms.section-numerics/v1",
+  "numericalRevision": 3,
+  "api": {
+    "capability": "pr_blast_stress_sections_v3_abi",
+    "capabilityValue": 1,
+    "configure": "pr_blast_stress_configure_sections_v3",
+    "payload": "Unchanged sections ABI1",
+    "relativeTolerance": 1e-06,
+    "revisionGetter": "pr_blast_stress_physical_revision",
+    "progressRevisionSlot": 7,
+    "workGetter": "pr_blast_stress_sections_v3_work"
+  },
+  "scope": "First-party binary64 original-data physical preparation and independent-component minimum-energy solver; unchanged legacy1/2 processors.",
+  "operator": "Same submitted float32 node mass/volume/centres, bond centroids and applied forces; binary64 sphere inertia, geometric mass mean, mean lever length, normalization, B, physical right factor, RHS and final physical scaling. K remains caller binary64; public output casts once tofloat32.",
+  "factorAdmission": "Retain all-finite factor casts and nonzero float32 physical Cholesky diagonal modes after native row permutation; no regularization, epsilon clipping, or physical mode removal.",
+  "rowWhitening": "Existing complete unshifted sparse anchored/principal Gram factor where its positive factor exists. A rejected Gram pivot routes only its original connected component through unshifted original-principal-transpose HouseholderQR, preserving every original row and physical mode.",
+  "minimumEnergy": "Invertible anchored row transformations retain the consistent feasible set. Detached components keep the original inertia-weighted least-squares norm and range(A^T) direction space; no rank threshold, nullspace projection, pivot shift, artificial support or physical mode removal. Topology changes reset the private solution.",
+  "admission": "Fresh original-data binary64 B^T(rhs-Ax) under unchanged actualf32 tolerance1e-6; independent original physical energy/traction/all-row-reference gates and publicf32 conversion envelope remain required.",
+  "iterationBudget": "Each configured iteration sweep permits at most one update per active disconnected component. Max25 sweeps per call, unchanged caller32-pass bound; per-component update count is therefore at most800. Summed updates, reorthogonalization projections and retained numeric payload bytes are separately exposed; they are not hidden in the sweep count.",
+  "compatibility": "The old configure_sections export still selects exact revision2. Revision3 has a separate opt-in export, revision getter/progress identity, and requires separately versioned Engine checkpoints.",
+  "references": [
+    "https://www.netlib.org/templates/templates.pdf",
+    "https://petsc.org/release/manualpages/KSP/KSPCG/"
+  ],
+  "validationStatus": "New isolated source only. Prior v3-06 and QR-only failures are preserved; no native admission until manufactured/captures/reference/mass/current fullwall gates.",
+  "zeroLoad": "An exactly unloaded component resets to its zero minimum-energy solution, including partial unload in a disconnected family. Global original-gradient admission remains fresh and unchanged.",
+  "workAbi": {
+    "words": 12,
+    "type": "double",
+    "slots": [
+      "components",
+      "anchoredComponents",
+      "summedComponentUpdatesLast",
+      "summedComponentUpdatesTotal",
+      "maxComponentUpdatesCurrentLoad",
+      "retainedFactorBlocks",
+      "retainedFactorNumericBytes",
+      "retainedBasisNumericBytes",
+      "orthogonalProjectionsLast",
+      "orthogonalProjectionsTotal",
+      "peakBasisNumericBytes",
+      "numericalRevision"
+    ],
+    "storageScope": "Numeric/vector payloads only. Allocator/container overhead and transient factorization maps are not a total-memory measurement."
+  },
+  "rightPreconditioning": "Free direction P*g, g=A^T*r, P=A^T*C^-2*A, is SPD on range(A^T). Apply the existing exact forward/reverse factors twice, then minimize against the unweighted original A-action and residual with complete two-pass reorthogonalization. This numerical partition adds no physical support, omits no physical row, projects no load/null mode, and introduces no rank threshold or pivot shift.",
+  "preparationIdentity": "submitted-f32-data/f64-physical-preparation-v1",
+  "qrPreconditioner": "J=A_principal^T=Q1 R; apply P=Q diag(R^-T R^-1,I) Q^T. The numerical complement is identity. No numerical support, spectrum cutoff, nullspace projection, pivot shift, damping, or physical mass/K edit.",
+  "massAbi": {
+    "capability": "pr_blast_stress_mass_abi",
+    "value": 1,
+    "setter": "pr_blast_stress_set_masses",
+    "preserves": [
+      "actors",
+      "frame count",
+      "remaining health",
+      "support topology"
+    ],
+    "invalidates": [
+      "wrench receipt",
+      "section results",
+      "next prepared graph/inertia/factor/normalized solution"
+    ]
+  }
+}

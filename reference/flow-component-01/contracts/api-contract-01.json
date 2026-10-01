@@ -1,0 +1,209 @@
+{
+  "schema": "flow-api-handoff-v1",
+  "status": "SOURCE_CONTRACT_ONLY",
+  "scope": "Additive SDK integration contract. This document is not final unified runtime or performance evidence.",
+  "sourceHashes": {
+    "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\addons\\flow\\rebase_host.h": "88f291eeb4805a5e1efc5e5241f8bafd71965d9a451c560538b7c134deb967c0",
+    "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\addons\\flow\\momentum_exchange_types.h": "fb98ecc4757ec996b95b693329bb6027968cb1a653a515a2718c8d2ab472de08",
+    "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\addons\\flow\\momentum_exchange_host.h": "74282ec648b9059f4e876d489144cbe8187dbb558427cd1134ee542a42f3106f",
+    "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\addons\\flow\\flow_host_webgpu.mjs": "46ae8d8d161b7e6596cd44f13c0f6a71760537cefcebaefe7f9fdb3bd7ce8c1a",
+    "C:\\Coding\\game\\engine\\sim\\FlowPhysXCollision.js": "c094b4b999ca85e9c955387432baa3835ee92b869e7487bb731218943a835adf",
+    "C:\\Coding\\game\\engine\\sim\\FlowMomentumExchange.js": "f79e132977a025bc0552cf5aef1f037d2e2d9d4f7c188fe9dbc47d7c2e257ca9",
+    "C:\\Coding\\game\\engine\\world\\FloatingOrigin.js": "c854701f997fa9521c175c5554ccc6e4467214c8a54173d7be8f28799c5ebe31"
+  },
+  "rawExports": [
+    {
+      "name": "_pr_flow_host_rebase_abi",
+      "parameters": [],
+      "returns": "uint32: 1"
+    },
+    {
+      "name": "_pr_flow_host_rebase_period",
+      "parameters": [
+        "handle:uint32",
+        "output:wasm32 pointer, 8-byte aligned, writable 24 bytes"
+      ],
+      "returns": "uint32: 1 success, 0 refusal",
+      "output": "three little-endian f64 metre periods"
+    },
+    {
+      "name": "_pr_flow_host_rebase",
+      "parameters": [
+        "handle:uint32",
+        "x:f64 metres",
+        "y:f64 metres",
+        "z:f64 metres",
+        "commit:uint32 0=validate, 1=commit"
+      ],
+      "returns": "uint32: 1 success, 0 refusal",
+      "semantics": "Subtract local shift. Aligned sparse addresses and atlas identities retained. No clock advancement. Failed admission does not write."
+    },
+    {
+      "name": "_pr_flow_host_momentum_abi",
+      "parameters": [],
+      "returns": "uint32: 1"
+    },
+    {
+      "name": "_pr_flow_host_momentum_prepare",
+      "parameters": [
+        "handle:uint32",
+        "capacity:uint32 in [1,393216]"
+      ],
+      "returns": "nonzero uint32 sequence or 0 refusal",
+      "semantics": "Queues resident contact gather/readback; does not change gas/body velocities."
+    },
+    {
+      "name": "_pr_flow_host_momentum_data",
+      "parameters": [
+        "handle:uint32",
+        "sequence:uint32"
+      ],
+      "returns": "borrowed wasm32 readback pointer or 0",
+      "semantics": "Read only after flushing, waiting on the shared queue and copying completed readbacks. Pointer is not caller-owned; refresh heap views after growth."
+    },
+    {
+      "name": "_pr_flow_host_momentum_commit",
+      "parameters": [
+        "handle:uint32",
+        "sequence:uint32",
+        "updates:wasm32 pointer",
+        "count:uint32 in [0,65536]"
+      ],
+      "returns": "uint32: 1 success, 0 refusal",
+      "semantics": "Requires every admitted unique cell exactly once, unchanged w and finite f32 velocities. Validates all addresses/sequence/topology/frame before scatter. Conservation is the Engine solver responsibility."
+    }
+  ],
+  "hostMethods": [
+    {
+      "name": "rebasePeriod",
+      "parameters": [],
+      "returns": "Vec3 metres"
+    },
+    {
+      "name": "validateRebase",
+      "parameters": [
+        "shift:Vec3"
+      ],
+      "returns": "true or throws"
+    },
+    {
+      "name": "prepareRebase",
+      "parameters": [
+        "shift:Vec3"
+      ],
+      "returns": "Promise<FlowRebaseToken>",
+      "token": "readonly {shift: readonly Vec3, coordinateEpoch:number}"
+    },
+    {
+      "name": "validatePreparedRebase",
+      "parameters": [
+        "token:FlowRebaseToken"
+      ],
+      "returns": "true or throws"
+    },
+    {
+      "name": "commitPreparedRebase",
+      "parameters": [
+        "token:FlowRebaseToken",
+        "synchronize?:(()=>void)|null"
+      ],
+      "returns": "Promise<{status:\"REBASED\",abi:1,shift:Vec3,coordinateEpoch:number,advancedTime:0}>"
+    },
+    {
+      "name": "rebase",
+      "parameters": [
+        "shift:Vec3"
+      ],
+      "returns": "same Promise as commitPreparedRebase"
+    },
+    {
+      "name": "prepareMomentumExchange",
+      "parameters": [
+        "densities:Map<uint16,positive kg/m3>",
+        "options?:{capacity?:number=393216}"
+      ],
+      "returns": "Promise<FlowMomentumToken>",
+      "token": "readonly {gas:readonly GasCell[],contacts:readonly GasContact[]}"
+    },
+    {
+      "name": "validatePreparedMomentum",
+      "parameters": [
+        "token:FlowMomentumToken"
+      ],
+      "returns": "true or throws"
+    },
+    {
+      "name": "commitPreparedMomentum",
+      "parameters": [
+        "token:FlowMomentumToken",
+        "velocities:Vec3[] of exactly representable f32 values",
+        "synchronize?:(()=>void)|null"
+      ],
+      "returns": "Promise<{status:\"EXCHANGED\",abi:1,cells:number,contacts:number,advancedTime:0}>"
+    }
+  ],
+  "types": {
+    "Vec3": "[number,number,number]",
+    "GasCell": "readonly {cell:readonly [uint32,uint32,uint32,uint32],position:readonly Vec3,velocity:readonly Vec3,mass:number kg,layer:uint16,volume:number m3,w:number}",
+    "GasContact": "readonly {gas:number index,shape:uint32,layer:uint16,face:uint32,normal:readonly Vec3}",
+    "tokenBrand": "Tokens are opaque owner-bound WeakMap identities with frozen public views. Structurally equivalent objects are invalid; do not expose public constructors. Stale, reused, foreign, failed or concurrent tokens reject.",
+    "synchronize": "Prevalidated synchronous coordinator only. It must not return a promise or throw. Native commits happen before the first await. A post-commit callback or GPU/device failure latches terminal fault; caller cannot claim rollback after a device fault."
+  },
+  "packet": {
+    "headerBytes": 16,
+    "contactBytes": 80,
+    "updateBytes": 32,
+    "contactFields": [
+      "cell:uint32[4] at0",
+      "world xyz and volume:float32[4] at16",
+      "velocity xyz and w:float32[4] at32",
+      "normal xyz and reserved:float32[4] at48",
+      "shape/layer/face/valid:uint32[4] at64"
+    ],
+    "updateFields": [
+      "cell:uint32[4] at0",
+      "velocity xyz and preserved w:float32[4] at16"
+    ]
+  },
+  "engine": {
+    "constructorOptions": "FlowPhysXCollision(world,solver,{solidBoundaries:true,pairedMomentum?:PairedMomentumOptions|null,log?})",
+    "pairedOptions": {
+      "densities": "required Map<uint16,positive finite kg/m3>",
+      "capacity": 393216,
+      "maximumSweeps": 128,
+      "velocityTolerance": 1e-07,
+      "roundingVelocityTolerance": 1e-05,
+      "momentumRelativeTolerance": 2e-05,
+      "angularRelativeTolerance": 2e-05,
+      "energyRelativeTolerance": 2e-05
+    },
+    "bind": "bind(body,{layer?:0,enabled?:true,paired?:pairedMomentum!==null}); paired requires finite owned dynamic native body and calibrated layer. Static/kinematic bodies remain one-way boundaries.",
+    "methods": [
+      "selectRebaseShift(desired:Vec3):Vec3",
+      "prepareRebase(shift:Vec3,{floatingOrigin?:FloatingOrigin|null}):Promise<CoupledRebaseToken>",
+      "commitPreparedRebase(token:CoupledRebaseToken):Promise<RebaseReceipt>",
+      "rebase(shift,options):Promise<RebaseReceipt>",
+      "exchangeMomentum():Promise<MomentumReceipt|{status:\"NO_PAIRED_BODIES\",advancedTime:0}>",
+      "step(dtSeconds):Promise<CollisionReceipt with optional momentum:MomentumReceipt>"
+    ],
+    "coupledToken": "readonly {shift:readonly Vec3,maximumPoseRoundingMetres:number}; opaque WeakMap identity.",
+    "rebaseReceipt": "Host RebaseReceipt plus bodies:number and maximumPoseRoundingMetres:number.",
+    "momentumReceipt": "Host EXCHANGED fields plus mode:\"terminal-paired-normal-impulses\", scope:\"terminal-normal-exchange-only\", heatDisposition:\"unapplied-explicit-obligation\", heatObligationJ, densitiesKgPerM3, gasCells, bodies, sweeps, maximumClosingVelocity, appliedMaximumClosingVelocity, maximumRoundingVelocity, velocityTolerance, angularOriginMetres, ideal, applied, idealEnergyResidualJ, appliedEnergyResidualJ, budgets, linearError, angularError, energyError, kineticRoundingJ, roundingImpulseNs, roundingAngularImpulseNms.",
+    "workLedger": "ideal/applied each contain gasImpulseNs,bodyImpulseNs,gasAngularImpulseNms,bodyAngularImpulseNms as Vec3 and gasWorkJ,bodyWorkJ as f64.",
+    "preparedOrigin": "FloatingOrigin.prepareRebase/validatePreparedRebase/commitPreparedRebase are synchronous, single-use; flat and safe-number HierarchicalPosition advance together. Existing performRebase unchanged."
+  },
+  "requiredIntegration": [
+    "Same real ensurePhysXModule() instance for PhysX world and Flow; assert world.module === solver.module in unified proof.",
+    "One borrowed GPUDevice/queue; same completed physical clock, one Flow step per physical dt. Keep clock paused from prepare through synchronous native commit.",
+    "Await queue and readbacks before issuing tokens; revalidate body/geometry/config/cache/origin ownership before committing.",
+    "Include 124 kernels and exact reflection/header/source closure: original97,solid21,scalar4,momentum2.",
+    "Link only the hash-bound partial Flow object. Final loader/WASM manifest and served aliases must bind that exact component."
+  ],
+  "limitations": [
+    "Terminal normal inelastic exchange is not a coupled pressure/advection/chemistry momentum proof.",
+    "heatObligationJ is not yet deposited into a thermal field. Normalized Flow temperature/smoke are not SI energy/density.",
+    "Exactness applies to atlas bytes and sparse integer identities. Float pose/source values retain finite representability; rebase receipt measures maximum rigid pose rounding.",
+    "BigInt regional streaming and arbitrary nonaligned shifts are not admitted.",
+    "No full GPU PhysX, realtime or multiple-device claim."
+  ]
+}

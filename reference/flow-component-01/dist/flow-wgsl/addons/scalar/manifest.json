@@ -1,0 +1,55 @@
+{
+  "abi": 1,
+  "component": "Finite additive scalar sources with GPU admission receipts",
+  "shaders": [
+    {
+      "source": "addons/flow/PrScalarAdmitCS.hlsl",
+      "sourceSha256": "4d54c103453b69aea2aba3b4921dafa18c78ca21e548fb92fdb2903fc8e1ce58",
+      "wgsl": "addons/scalar/PrScalarAdmitCS.wgsl",
+      "wgslSha256": "509acf743de39149483825df952636a3648fc26b23e75cf778b6836edf03a76d",
+      "reflection": "addons/scalar/PrScalarAdmitCS.reflection.json",
+      "reflectionSha256": "9973799b1887080570d3e7dacf5e48f69e009432c18be207dfdc2d2218542ab0",
+      "storageAccessNarrowed": []
+    },
+    {
+      "source": "addons/flow/PrScalarCountCS.hlsl",
+      "sourceSha256": "1270005be66f10a9ce6f6e742210cd1a214f43ee2353f229d37eecea000c1e51",
+      "wgsl": "addons/scalar/PrScalarCountCS.wgsl",
+      "wgslSha256": "87c7fb4ffb735a70ba61e7069fd92040229363c62fead2a842241500cdc55407",
+      "reflection": "addons/scalar/PrScalarCountCS.reflection.json",
+      "reflectionSha256": "51f22c4fce872642164353bd0393b54f736a4019dac8578df849ab546b8b564c",
+      "storageAccessNarrowed": []
+    },
+    {
+      "source": "addons/flow/PrScalarApplyCS.hlsl",
+      "sourceSha256": "b88c83da14e219c37e0b40757bffd51b1605020b75ce4c378f419c07d3505c2d",
+      "wgsl": "addons/scalar/PrScalarApplyCS.wgsl",
+      "wgslSha256": "e6f3870f93a6ca50cccba9cdbf8f64cb44b371f59deb633ccf3c540f387feb82",
+      "reflection": "addons/scalar/PrScalarApplyCS.reflection.json",
+      "reflectionSha256": "19843332a89ef8124252e72546831d5c797c0efbf316975d082e1a426e112a01",
+      "storageAccessNarrowed": [
+        "scalarDensityOut_0"
+      ]
+    },
+    {
+      "source": "addons/flow/PrScalarReceiptCS.hlsl",
+      "sourceSha256": "32c83bae09e9b10a9a2d72409ff9be54e24f857bb2f2f51df5a66668ce091656",
+      "wgsl": "addons/scalar/PrScalarReceiptCS.wgsl",
+      "wgslSha256": "90c2a3aa382b2f56b004e9ad280cf65006829888c1078171590eaf5894d70d2f",
+      "reflection": "addons/scalar/PrScalarReceiptCS.reflection.json",
+      "reflectionSha256": "5f4ce102e5fcc895dad666e5afc8d7d196e3800b23ebcb2ce1fc64fd836ac845",
+      "storageAccessNarrowed": []
+    }
+  ],
+  "sourceHashes": {
+    "PrScalarAdmitCS.hlsl": "4d54c103453b69aea2aba3b4921dafa18c78ca21e548fb92fdb2903fc8e1ce58",
+    "PrScalarApplyCS.hlsl": "b88c83da14e219c37e0b40757bffd51b1605020b75ce4c378f419c07d3505c2d",
+    "PrScalarCommon.hlsli": "dfa5a1eae6eef68da9b1acc1ffd4cd2def4577c7f22e41c195d206b2d19f5fdd",
+    "PrScalarCountCS.hlsl": "1270005be66f10a9ce6f6e742210cd1a214f43ee2353f229d37eecea000c1e51",
+    "PrScalarReceiptCS.hlsl": "32c83bae09e9b10a9a2d72409ff9be54e24f857bb2f2f51df5a66668ce091656",
+    "PrSolidBoundary.hlsli": "847d10772735bbb0e371f0909095fff036533389470a59d68019cfe42cd749fa",
+    "compile_scalar_wgsl.py": "fed7db58ff0ce44c86c196126b95d63dbe62e4f8f2b594dad33f0c660ed97fa4",
+    "scalar_sources_impl.h": "5821a1c7480606b361d516acc1d6f2de8f67997679259b0220d38ebe3e735874",
+    "scalar_sources_types.h": "e0d448efb4e2997c084eda03173d5cabed19a4aeaed8770333ca1217e853d3ea"
+  }
+}

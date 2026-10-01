@@ -1,0 +1,21 @@
+{
+  "schema": "particle-realms.section-factor-admission/v1",
+  "numericalRevision": 2,
+  "admissionRevision": 2,
+  "previousBuildManifest": {
+    "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\stress-physical-sections-initialized\\dist\\sections-03\\build-manifest.json",
+    "sha256": "6b356a3756a8d6adc70b29c2a98ccab1e0ef86a4ae176bb87058f0bf8e8736a1"
+  },
+  "previousSolverHeaderSha256": "6c39ebb7a5d354f843b88f3a8b167aacf4bfa9f392cbbe8afe96af188f636dfe",
+  "solverHeaderSha256": "4d7a5f7c60601fa2f65bc56b05291d80ebae11d90eccc0c586a55ec9b9c73814",
+  "change": "Reject nonfinite narrowed coefficients and any zero signed/permuted Cholesky diagonal; permit ordinary f32 rounding of off-diagonal coefficients to zero.",
+  "rankArgument": "Native factor row i corresponds to physical lower-factor row (i+3)%6. Reversing the permutation and angular signs yields a lower triangular factor. Every diagonal coefficient is required nonzero, so its determinant is nonzero and the represented K=S*S^T is positive definite in exact arithmetic. No diagonal regularization or off-diagonal epsilon cutoff is introduced.",
+  "compatibility": "Every formerly admitted coefficient and recurrence remains byte-identical. Only formerly terminal-rejected input states are newly admitted. Sections numerical revision2 remains valid; legacy and original physical revision1 are unchanged.",
+  "unmodifiedNumericalControls": {
+    "physicalTolerance": 1e-06,
+    "iterations": "caller supplied, unchanged",
+    "originalGradientFreshAdmission": true,
+    "factorStorage": "f32 with f64 accumulation, unchanged"
+  },
+  "nativeValidation": "Pending independent strict manufactured and full-graph receipts; this provenance record is not an acceptance verdict."
+}

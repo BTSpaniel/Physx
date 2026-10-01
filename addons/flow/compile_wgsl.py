@@ -14,7 +14,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_FLOW_ROOT = ROOT / "work/candidate/PhysX/flow"
+DEFAULT_FLOW_ROOT = ROOT / "source-inputs/flow"
 DEFAULT_SLANGC = ROOT / "work/flow-tools/slang-2025.6.1/bin/slangc"
 DEFAULT_OUTPUT = ROOT / "dist/flow-wgsl"
 DEFAULT_REPORT = ROOT / "reports/flow-wgsl-compile.json"
@@ -101,6 +101,12 @@ def uniform_mesh_scan(code: str) -> str:
 
 
 def git_commit(flow_root: Path) -> str:
+    pin = flow_root / 'source-pins.json'
+    if pin.is_file():
+        value = json.loads(pin.read_text(encoding='utf-8')).get('upstreamCommit')
+        if not isinstance(value, str) or not re.fullmatch(r'[0-9a-f]{40}', value):
+            raise RuntimeError('Pinned Flow upstream commit is invalid')
+        return value
     result = run(["git", "-C", str(flow_root), "rev-parse", "HEAD"])
     return result.stdout.strip() if result.returncode == 0 else "unknown"
 
@@ -167,6 +173,8 @@ def compile_corpus(flow_root: Path, slangc: Path, output: Path) -> dict:
             command.extend(["-o", str(shader_output)])
             result = run(command)
             row = {
+                "command": command,
+                "compilerOutput": result.stdout,
                 "source": relative.as_posix(),
                 "sourceSha256": input_hashes[relative.as_posix()],
                 "referencedByRuntime": source.name in references,

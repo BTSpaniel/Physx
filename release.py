@@ -8,9 +8,11 @@ import hashlib
 import io
 import json
 import os
+import platform
 import re
 import subprocess
 import sys
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -26,13 +28,16 @@ VERSION = '5.11.0-alpha.2'
 
 def inventory(root: Path | None = None) -> dict[str, str]:
     root = ROOT if root is None else root
-    ignored = {'.git', 'work', 'dist', 'reports', '__pycache__', '.venv'}
+    ignored = {'.git', '__pycache__', '.venv'}
     captured = {}
     for directory, folders, files in os.walk(root):
-        folders[:] = sorted(name for name in folders if name not in ignored)
+        # Frozen provenance under reference/{dist,work} is source-controlled
+        # evidence, while only this kit's own top-level outputs are generated.
+        outputs = {'work', 'dist', 'reports'} if Path(directory) == root else set()
+        folders[:] = sorted(name for name in folders if name not in ignored | outputs)
         for name in sorted(files):
             path = Path(directory) / name
-            if path.suffix != '.pyc':
+            if name not in ignored and path.suffix != '.pyc':
                 captured[path.relative_to(root).as_posix()] = lab.sha256(path)
     return dict(sorted(captured.items()))
 
@@ -82,56 +87,33 @@ def selection() -> dict:
 
 
 def shader_inventory() -> dict[str, dict]:
-    root = ROOT / 'dist/flow-wgsl'
-    manifest = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
-    if manifest.get('status') != 'FLOW_WGSL_CORPUS_COMPILED' or manifest.get('shaderCount') != 97:
-        raise lab.LabError('Pinned Flow shader corpus is incomplete')
-    rows = manifest.get('shaders')
-    if not isinstance(rows, list) or len(rows) != 97:
-        raise lab.LabError('Pinned Flow shader corpus must contain exactly 97 rows')
-    wgsl_names = [row.get('wgsl') for row in rows]
-    reflection_names = [row.get('reflection') for row in rows]
-    if (any(not isinstance(name, str) for name in wgsl_names + reflection_names) or
-            len(set(wgsl_names)) != 97 or len(set(reflection_names)) != 97 or
-            set(wgsl_names) & set(reflection_names) or
-            'manifest.json' in set(wgsl_names + reflection_names)):
-        raise lab.LabError('Flow WGSL/reflection paths must each be 97 unique files')
-    expected = {'manifest.json'}
-    for row in rows:
-        if row.get('status') != 'PASS':
-            raise lab.LabError('A generated Flow shader failed compilation')
-        for name, digest in ((row['wgsl'], row['wgslSha256']),
-                             (row['reflection'], row['reflectionSha256'])):
-            path = root / name
-            if not path.resolve().is_relative_to(root.resolve()) or lab.sha256(path) != digest:
-                raise lab.LabError('Generated Flow shader/sidecar changed: ' + name)
-            expected.add(name)
-    actual = {path.relative_to(root).as_posix() for path in root.rglob('*') if path.is_file()}
-    if len(expected) != 195 or actual != expected:
-        raise lab.LabError('Generated Flow shader directory differs from its exact inventory')
-    return {name: {'bytes': (root / name).stat().st_size, 'sha256': lab.sha256(root / name)}
-            for name in sorted(actual)}
+    from flow_source_evidence import shader_inventory as admitted_flow_inventory
+    return admitted_flow_inventory(ROOT)
 
 
 def command(argv: list[str], timeout: int = 7200) -> None:
     lab.run([sys.executable, *argv], timeout=timeout)
 
 
-def build() -> None:
+def build(slangc: Path | None = None) -> None:
+    from flow_source_evidence import require_final_selection
+    require_final_selection(ROOT)
     selection()
     before = inventory()
     revision = source_revision(before)
     prepared = prepare()
-    command(['addons/flow/compile_wgsl.py'])
-    shader = json.loads((ROOT / 'dist/flow-wgsl/manifest.json').read_text())
-    if shader.get('status') != 'FLOW_WGSL_CORPUS_COMPILED' or shader.get('shaderCount') != 97:
-        raise lab.LabError('The complete pinned Flow shader corpus did not compile')
+    compiler_args = ['--slangc', str(slangc)] if slangc else []
+    for recipe in ('compile_wgsl.py', 'compile_solid_wgsl.py', 'compile_scalar_wgsl.py', 'compile_momentum_wgsl.py'):
+        command(['addons/flow/' + recipe, *compiler_args])
+    shader_inventory()
     command(['build.py', 'wasm', '--profile', 'candidate'])
     idl = ROOT / 'work/candidate/PhysX/physx/source/webidlbindings/src/wasm/PhysXWasm.idl'
-    declarations = generate_types(idl.read_text(encoding='utf-8'))
+    declarations = generate_types(idl.read_text(encoding='utf-8'), ROOT)
     if declarations != (ROOT / 'types/physx-pe.d.ts').read_bytes():
         raise lab.LabError('Generated declarations differ from the reviewed IDL reference')
     (ROOT / 'dist/candidate/physx-pe.d.ts').write_bytes(declarations)
+    (ROOT / 'dist/candidate/physx-pe.d.mts').write_bytes(declarations)
+    command(['tools/generate_addon_types.py', '--check'])
     after = inventory()
     if before != after:
         raise lab.LabError('Release source files changed during compilation')
@@ -150,8 +132,41 @@ def build() -> None:
         'preparedSourceReceiptSha256': lab.sha256(ROOT / 'work/source-preparation.json')})
 
 
+def build_flow_component(slangc: Path | None, lock_workspace: Path | None, ci_isolated: bool) -> None:
+    """Run the complete source build in the existing declared execution window."""
+    from prepare_sources import prepare_flow_sources
+    from browser_compat_endurance import execution_window
+    if lock_workspace is not None and os.name != 'nt' and 'microsoft' in platform.release().lower():
+        raise lab.LabError('Direct WSL locking is not the Windows shared host lock; use a Windows parent execution window')
+    selection()
+    before = inventory()
+    window, isolation = execution_window(lock_workspace, ci_isolated)
+    with window:
+        if inventory() != before:
+            raise lab.LabError('Source kit changed while queued for its compile window')
+        prepare_flow_sources()
+        compiler_args = ['--slangc', str(slangc)] if slangc else []
+        for recipe in ('compile_wgsl.py', 'compile_solid_wgsl.py', 'compile_scalar_wgsl.py', 'compile_momentum_wgsl.py'):
+            command(['addons/flow/' + recipe, *compiler_args], timeout=7200)
+        shader_inventory()
+        name = 'flow-source-build-' + uuid.uuid4().hex + '.json'
+        command(['addons/flow/build_component.py', '--report', 'reports/' + name], timeout=7200)
+        result = json.loads((ROOT / 'reports' / name).read_text(encoding='utf-8'))
+        if inventory() != before:
+            raise lab.LabError('Source kit changed during the complete Flow build')
+        result['executionIsolation'] = isolation
+        lab.write_json(ROOT / 'reports' / name, result)
+
+
 def verify(browser: str | None, hardware: bool, software_vulkan: bool = False,
-           flow_browser_engine: str = 'chromium') -> None:
+           flow_browser_engine: str = 'chromium', lock_workspace: Path | None = None,
+           ci_isolated: bool = False) -> None:
+    from browser_compat_endurance import execution_window, validate_endurance, ENDURANCE_SOURCES
+    from flow_source_evidence import require_final_selection
+    require_final_selection(ROOT)
+    # This new CPU phase needs explicit isolation. The Alpha host lock is only
+    # imported when supplied; GitHub uses verified isolated runner metadata.
+    _, isolation_metadata = execution_window(lock_workspace, ci_isolated)
     selection()
     built = json.loads((ROOT / 'reports/release-build.json').read_text())
     before = inventory()
@@ -173,14 +188,20 @@ def verify(browser: str | None, hardware: bool, software_vulkan: bool = False,
         gpu += ['--hardware']
     host_backend = ['--software-vulkan'] if software_vulkan else []
     host_backend += ['--browser-engine', flow_browser_engine]
+    endurance_output = 'endurance-browser-' + uuid.uuid4().hex + '.json'
+    endurance_isolation = ['--lock-workspace', str(lock_workspace)] if lock_workspace is not None else ['--ci-isolated']
+    endurance_browser = ['--browser', browser] if browser else []
     jobs = [
         ('Rust units, Python FFI and C ABI layout', ['build.py', 'test'], 'rust-python-tests.json'),
         ('Native C++/Rust ABI', ['build.py', 'abi', '--target', 'native'], 'abi-build.json'),
         ('Browser C++/Rust ABI compile', ['build.py', 'abi', '--target', 'wasm'], 'abi-build.json'),
         ('Browser C++/Rust ABI', ['tools/abi_browser_test.py', *extra], 'abi-browser.json'),
-        ('PhysX rigid-body browser regressions', ['tools/browser_test.py', '--profile', 'candidate', *extra], 'candidate-browser.json'),
+        ('TypeScript addon and SDK consumer semantics', ['tools/typecheck_browser.py', *extra], 'addon-types-browser.json'),
+        ('PhysX behavioral browser regressions', ['tools/browser_test.py', '--profile', 'candidate', *extra], 'candidate-browser.json'),
+        ('Bounded native CPU endurance and identical-input replay', ['tools/browser_compat_endurance.py',
+            '--release-phase', *endurance_browser, *endurance_isolation, '--report', 'reports/' + endurance_output], endurance_output),
         ('Blast split and unified WASM/WebGPU transfer', ['addons/flow/browser_test.py', *gpu], 'unified-browser.json'),
-        ('Flow WGSL modules and executed advection/mesh scan', ['addons/flow/wgsl_browser_test.py', *gpu, '--modules-only', '--advection', '--mesh-scan', '--report', 'reports/flow-wgsl-modules.json'], 'flow-wgsl-modules.json'),
+        ('Complete 124 Flow WGSL modules and executed advection/mesh scan', ['addons/flow/wgsl_browser_test.py', *gpu, '--modules-only', '--include-addons', '--advection', '--mesh-scan', '--report', 'reports/flow-wgsl-modules.json'], 'flow-wgsl-modules.json'),
         ('Native Flow graph and WebGPU ownership', ['addons/flow/host_browser_test.py', '--unified', *gpu, *host_backend], 'flow-host-browser.json'),
     ]
     report = {'schema': 'physx-pe.release-verification/v1', 'version': VERSION,
@@ -191,6 +212,7 @@ def verify(browser: str | None, hardware: bool, software_vulkan: bool = False,
               'gpuMode': 'hardware' if hardware else 'WebGPU-backend-unreported' if flow_browser_engine == 'firefox' else 'software-WebGPU',
               'requestedGpuMode': 'hardware' if hardware else 'software-WebGPU',
               'flowBrowserEngine': flow_browser_engine,
+              'executionIsolation': isolation_metadata,
               'scope': 'Build and functional browser smoke only. No full feature parity, engine promotion, device matrix or realtime claim.'}
     destination = ROOT / 'reports/release-verification.json'
     try:
@@ -198,18 +220,28 @@ def verify(browser: str | None, hardware: bool, software_vulkan: bool = False,
             row = {'name': name, 'command': argv, 'status': 'RUNNING'}
             report['steps'].append(row)
             lab.write_json(destination, report)
-            command(argv, timeout=10800)
+            if output == endurance_output:
+                # The new child acquires its own window and records it. Holding
+                # the same file lock in the parent would deadlock this process.
+                command(argv, timeout=10800)
+            else:
+                window, _ = execution_window(lock_workspace, ci_isolated)
+                with window:
+                    command(argv, timeout=10800)
             produced = ROOT / 'reports' / output
             phase = ROOT / 'reports/phases' / f'{index:02d}-{output}'
             phase.parent.mkdir(parents=True, exist_ok=True)
             produced_bytes = produced.read_bytes()
+            raw = json.loads(produced_bytes)
+            if output == endurance_output:
+                validate_endurance(raw, manifest, evidence.source_hashes(ROOT, ENDURANCE_SOURCES),
+                    not_before=evidence.instant(report['startedUtc'], 'release started'))
             phase.write_bytes(produced_bytes)
             if phase.read_bytes() != produced_bytes:
                 raise lab.LabError('Phase receipt changed while preserving it')
-            raw = json.loads(produced_bytes)
             row.update(status='PASS', reportFile=phase.relative_to(ROOT).as_posix(), reportSha256=lab.sha256(phase),
-                       resultStatus=raw.get('status'), checks=raw.get('checks'),
-                       testCount=len(raw.get('tests', [])) if isinstance(raw.get('tests'), list) else None)
+                       resultStatus=raw.get('status'), checks=raw.get('enduranceAdmission', raw.get('checks')),
+                       testCount=3 if output == endurance_output else len(raw.get('tests', [])) if isinstance(raw.get('tests'), list) else None)
             lab.write_json(destination, report)
         evidence.check_profile('candidate', not_before=evidence.instant(report['startedUtc'], 'release started'))
         unified = json.loads((ROOT / 'reports/unified-browser.json').read_text())
@@ -235,8 +267,12 @@ def verify(browser: str | None, hardware: bool, software_vulkan: bool = False,
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['build', 'verify', 'package', 'all'])
+    parser.add_argument('command', choices=['build', 'verify', 'package', 'all', 'build-flow-component'])
+    parser.add_argument('--slangc', type=Path, help='Explicit existing pinned Slang 2025.6.1 executable for the isolated Flow source build')
     parser.add_argument('--browser', help='Optional Chrome/Chromium executable')
+    isolation = parser.add_mutually_exclusive_group()
+    isolation.add_argument('--lock-workspace', type=Path, help='Existing shared host lock for the bounded CPU endurance phase')
+    isolation.add_argument('--ci-isolated', action='store_true', help='Explicit isolated GitHub-hosted Actions job; actual environment is checked')
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument('--hardware', action='store_true', help='Use the actual browser hardware WebGPU adapter')
     mode.add_argument('--software-vulkan', action='store_true', help='Use Mesa lavapipe for the Flow host 1024-lane software test')
@@ -248,11 +284,16 @@ def main() -> int:
     if args.flow_browser_engine != 'chromium' and args.browser:
         parser.error('--browser selects Chromium for the other phases; use default pinned Firefox for the Flow phase')
     try:
+        if args.command == 'build-flow-component':
+            build_flow_component(args.slangc, args.lock_workspace, args.ci_isolated)
         if args.command in ('build', 'all'):
-            build()
+            build(args.slangc)
         if args.command in ('verify', 'all'):
-            verify(args.browser, args.hardware, args.software_vulkan, args.flow_browser_engine)
+            verify(args.browser, args.hardware, args.software_vulkan, args.flow_browser_engine,
+                   args.lock_workspace, args.ci_isolated)
         if args.command in ('package', 'all'):
+            from flow_source_evidence import require_final_selection
+            require_final_selection(ROOT)
             from package_release import package
             package()
     except (OSError, ValueError, lab.LabError) as exc:

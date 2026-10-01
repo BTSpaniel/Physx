@@ -1,0 +1,1200 @@
+{
+  "schema": "physx-pe.prospective-flow-sdk-component/v1",
+  "status": "PROSPECTIVE_FLOW_DECLARATIONS_AND_SEMANTICS_PASSED",
+  "recordedUtc": "2026-10-01T04:01:21.995263+00:00",
+  "scope": "Immutable isolated declaration slice for an unlinked Flow component. Actual TypeScript semantic execution and12 source-based guards only. Not a runtime build, alpha.2 API claim, install or publication.",
+  "physicsExecuted": false,
+  "gpuExecuted": false,
+  "releaseApproved": false,
+  "engineIntegrationVerified": false,
+  "apiContract": {
+    "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\contracts\\api-contract-01.json",
+    "bytes": 10705,
+    "sha256": "a649f4f03c074df9fbdc1d6cee2d0310b35482f66432cc517b33098d705cb1e4"
+  },
+  "componentManifest": {
+    "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\dist\\flow-component\\manifest.json",
+    "bytes": 134554,
+    "sha256": "ef69b8bb900e140a4a3fc490802fb5b07c96b86e10828cf542d182eefad7b0cb"
+  },
+  "componentOverlays": {
+    "addons/flow/pr_flow_host.cpp": {
+      "source": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\addons\\flow\\pr_flow_host.cpp",
+      "bytes": 45060,
+      "sha256": "d181a669721575ad5c411baf249fd65e19bafc8e8f04bdb41454f1de5d1e8ba7"
+    },
+    "addons/flow/rebase_host.h": {
+      "source": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\addons\\flow\\rebase_host.h",
+      "bytes": 3215,
+      "sha256": "88f291eeb4805a5e1efc5e5241f8bafd71965d9a451c560538b7c134deb967c0"
+    },
+    "addons/flow/momentum_exchange_host.h": {
+      "source": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\addons\\flow\\momentum_exchange_host.h",
+      "bytes": 5794,
+      "sha256": "74282ec648b9059f4e876d489144cbe8187dbb558427cd1134ee542a42f3106f"
+    },
+    "addons/flow/flow_host_webgpu.mjs": {
+      "source": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\addons\\flow\\flow_host_webgpu.mjs",
+      "bytes": 74730,
+      "sha256": "46ae8d8d161b7e6596cd44f13c0f6a71760537cefcebaefe7f9fdb3bd7ce8c1a"
+    },
+    "addons/flow/flow_solid_boundary.mjs": {
+      "source": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\addons\\flow\\flow_solid_boundary.mjs",
+      "bytes": 11108,
+      "sha256": "e76313b510d25f83fedaae0339b5569bee17c72ccf712a19894faf2a89fa8d67"
+    },
+    "addons/flow/flow_scalar_sources.mjs": {
+      "source": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\addons\\flow\\flow_scalar_sources.mjs",
+      "bytes": 2704,
+      "sha256": "498bda12e7edf97676a111b2c164d3194895a066e0e975111b66a33ed15e5367"
+    }
+  },
+  "rawSignatureSources": {
+    "bridge/pr_bulk_rust.cpp": "334a3552f7054a6b43c1c9c74e475696270466ab10f77017ed7f44ed887064c0",
+    "addons/blast/pr_blast_wasm.cpp": "680611d8e7a13bec82f16c3b9e4f99cf98c72a23a305a94cc38cd26ead0ac003",
+    "addons/blast/pr_blast_authoring.cpp": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8",
+    "addons/flow/pr_flow_host.cpp": "d181a669721575ad5c411baf249fd65e19bafc8e8f04bdb41454f1de5d1e8ba7",
+    "addons/flow/rebase_host.h": "88f291eeb4805a5e1efc5e5241f8bafd71965d9a451c560538b7c134deb967c0",
+    "addons/flow/momentum_exchange_host.h": "74282ec648b9059f4e876d489144cbe8187dbb558427cd1134ee542a42f3106f"
+  },
+  "rawDeclarations": {
+    "original56Unchanged": true,
+    "total": 71,
+    "newHeaderExports": 7,
+    "newCppExports": 8,
+    "pointerModel": "wasm32",
+    "rawRuntimeBehaviorProven": false
+  },
+  "generatedOutputs": {
+    "types/physx-pe.d.ts": {
+      "bytes": 225976,
+      "sha256": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705"
+    },
+    "types/physx-pe.d.mts": {
+      "bytes": 225976,
+      "sha256": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705"
+    },
+    "types/addon-abi.json": {
+      "bytes": 11608,
+      "sha256": "004b31c6436419a0bb87ff4b220178b79dc3ee206cc53f2f07cbcdbf1d38d7f1"
+    },
+    "addons/flow/flow_host_webgpu.d.mts": {
+      "bytes": 10057,
+      "sha256": "1d22e5feec495039d45188ee479657351fa7dc9184bc82dcf885695b60ef3d88"
+    },
+    "addons/flow/flow_scalar_sources.d.mts": {
+      "bytes": 512,
+      "sha256": "3d7956057d7c3698a6c06ef1807118e596058eaa3e4a80a5dd7e0f8b245c4113"
+    },
+    "addons/flow/flow_solid_boundary.d.mts": {
+      "bytes": 705,
+      "sha256": "03d05e800a9e8532860d1d9cf7ce6c3c15bb2cfd821611b0e0006cedd2404157"
+    },
+    "bridge/physx-bulk-rust.d.mts": {
+      "bytes": 390,
+      "sha256": "e8851d9f42aac72aeb5b622d052afbd9b59112a039ca9064ba56f6f04ad895ff"
+    },
+    "bridge/physx-bulk.d.mts": {
+      "bytes": 913,
+      "sha256": "412b1bdf174e4da0b0cf6a2b5ff08c5b804a1e1d2f0eed8f15db54e77bdf9068"
+    },
+    "addons/flow/webgpu_bridge.d.mts": {
+      "bytes": 2010,
+      "sha256": "ccdcc6654c4e1e137ae30df3e880551b318f592d6b471b342d9d4e0b302df6b4"
+    }
+  },
+  "sourceClosure": {
+    "LICENSE": {
+      "bytes": 1140,
+      "sha256": "95764764b93f42639a7d411c6f2c2eedb974091c01760f80cb50bc7fe8dd5963"
+    },
+    "LICENSES/Boost-BSL-1.0.txt": {
+      "bytes": 1338,
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+    },
+    "LICENSES/Bullet-Zlib-NOTICES.txt": {
+      "bytes": 3726,
+      "sha256": "6c6938770b25f7cb8e266dbeea11f766a53100df8c1ec5810d5a2f5c87283d67"
+    },
+    "LICENSES/Emscripten-LICENSE.txt": {
+      "bytes": 5093,
+      "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86"
+    },
+    "LICENSES/Fabmax-Bindings-MIT.txt": {
+      "bytes": 1067,
+      "sha256": "0879a16adc700c9956ca0b60fbcac1fcb52310219feee827c03d7a0ab9886fbd"
+    },
+    "LICENSES/Fabmax-Bindings-NOTICE.md": {
+      "bytes": 1999,
+      "sha256": "2a7d60ff994150a8fc287fcc574322dff19f0a506493f9a36d6d179053f7ce7e"
+    },
+    "LICENSES/NVIDIA-Blast-BSD-3-Clause.txt": {
+      "bytes": 1562,
+      "sha256": "3f9ab13f4b26908285c8b86ae264d98916afaeeaf5bb0108190305cad7679273"
+    },
+    "LICENSES/NVIDIA-Flow-BSD-3-Clause.txt": {
+      "bytes": 1641,
+      "sha256": "c13307cf76d2cd86dd58fd129a794bb62e94929e6de76fd6828b6aff4ad75bc4"
+    },
+    "LICENSES/NVIDIA-Legacy-Vehicle-NOTICE.txt": {
+      "bytes": 1698,
+      "sha256": "6484e40a0ddbfb356b163b2e139f4f088300c4881578a1e3fab85d95c2359268"
+    },
+    "LICENSES/NVIDIA-Repository-BSD-3-Clause.txt": {
+      "bytes": 1517,
+      "sha256": "eb3e67b17b48c56ef26d8bf6634c0837503fefc28a916f98d4f02272eda50011"
+    },
+    "LICENSES/OpenVDB-Apache-2.0.txt": {
+      "bytes": 10173,
+      "sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9"
+    },
+    "LICENSES/OpenVDB-RE-LICENSE_NOTE.txt": {
+      "bytes": 824,
+      "sha256": "ac78fb9ed20b3276fb7892e81adcc9a1d483feb46a554a4529a40c92779f0744"
+    },
+    "LICENSES/PNanoVDB-OpenVDB-NOTICE.txt": {
+      "bytes": 305,
+      "sha256": "1b289c2f5804651e630f83e3fac41b7d671ac0fee9bb3726c141f9702a7ec52f"
+    },
+    "LICENSES/PNanoVDB-source.h": {
+      "bytes": 165354,
+      "sha256": "1c4f61ab3f08cbd73acbb6915bcc348d9903ab65706fa0f5cb1dfafe83fe29d0"
+    },
+    "LICENSES/Particle-Realms-Build-Lab-MIT.txt": {
+      "bytes": 1096,
+      "sha256": "ef7d2f3b50cb20f61c027102ba94fe517846fafdcff05a6293eb133c35b00e64"
+    },
+    "LICENSES/PhysX-SDK-Apache-2.0.txt": {
+      "bytes": 11359,
+      "sha256": "c1b9df1275e769f3dbab000d1e457a2d4b0f28eb5da6c77e48dc37eeba202ed7"
+    },
+    "LICENSES/Rust-LICENSE-APACHE.txt": {
+      "bytes": 9723,
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+    },
+    "LICENSES/Rust-LICENSE-MIT.txt": {
+      "bytes": 1068,
+      "sha256": "b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1"
+    },
+    "LICENSES/VHACD-BSD-3-Clause.txt": {
+      "bytes": 1468,
+      "sha256": "88ba67796d63e1e7f8fc54293d7bf8277e390e219cfd203d1718676a57285bd9"
+    },
+    "LICENSES/WebGPU-Types-BSD-3-Clause.txt": {
+      "bytes": 1500,
+      "sha256": "ad88400fc55c2871ba2ed33930dc13001ef01907c2ddcbfa3caa8656e9142f05"
+    },
+    "LICENSES/WebIDL-Util-Apache-2.0.txt": {
+      "bytes": 11340,
+      "sha256": "797ac06bea9b04956cce44c3d6b2003eb7f9a2c7bca7baf9a5533fa1206339dc"
+    },
+    "LICENSES/compiler-rt-LICENSE.TXT": {
+      "bytes": 16708,
+      "sha256": "1a8f1058753f1ba890de984e48f0242a3a5c29a6a8f2ed9fd813f36985387e8d"
+    },
+    "LICENSES/libcxx-LICENSE.TXT": {
+      "bytes": 16703,
+      "sha256": "539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b"
+    },
+    "LICENSES/libcxxabi-LICENSE.TXT": {
+      "bytes": 16706,
+      "sha256": "e2b35be49f7284a45b7baca8fc7b3ab7440e7902392b2528a457816b5bb2a15c"
+    },
+    "LICENSES/musl-COPYRIGHT.txt": {
+      "bytes": 6204,
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    "THIRD_PARTY_NOTICES.md": {
+      "bytes": 8432,
+      "sha256": "43aa872df0306bdadb4190d97637f80e0396934f93665a37c4cf6ff2cc99eb3b"
+    },
+    "addons/blast/emscripten_nv_compat.h": {
+      "bytes": 552,
+      "sha256": "53dbbab9a1ff899e41958ff81b8d838dd7d6800c9bb926400162c86b1523a787"
+    },
+    "addons/blast/emscripten_stress_device.h": {
+      "bytes": 509,
+      "sha256": "0b24bcf9980f1a3830eb828f52689b52868c74c7e7f3b1295902f74ba4ad7628"
+    },
+    "addons/blast/emscripten_stress_intrinsics.h": {
+      "bytes": 1249,
+      "sha256": "24261a2f945f46e3adb5ce7104b89a1bdd6ddf6b7a72059b8198bfa89ed12291"
+    },
+    "addons/blast/pr_blast_authoring.cpp": {
+      "bytes": 18360,
+      "sha256": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8"
+    },
+    "addons/blast/pr_blast_memory.h": {
+      "bytes": 420,
+      "sha256": "9d72f0c9cb3961eac345b5e11720bbea083c62dcad1baee80aaffd66b15e956d"
+    },
+    "addons/blast/pr_blast_wasm.cpp": {
+      "bytes": 23253,
+      "sha256": "680611d8e7a13bec82f16c3b9e4f99cf98c72a23a305a94cc38cd26ead0ac003"
+    },
+    "addons/blast/prepare_authoring_sources.py": {
+      "bytes": 3176,
+      "sha256": "acbd52da8a798fd232422feb36ed85846954e43467f729434a895f8616fbea9d"
+    },
+    "addons/blast/prepare_stress_sources.py": {
+      "bytes": 2476,
+      "sha256": "344e0893b0ce31018e9a01bd16ead6838d66b8fe1b66699b8b9c5cd84f8c3d16"
+    },
+    "addons/blast/tr1/type_traits": {
+      "bytes": 282,
+      "sha256": "dd134f07a312cd38a5ee494b222baf83f5313aef7df9f7f6c2fa6a366c6fb6be"
+    },
+    "addons/flow/build_host.py": {
+      "bytes": 2234,
+      "sha256": "1818b108d4e16c5d3da1cd4036d034f464c25c1e49e7787c70d1369414b0586b"
+    },
+    "addons/flow/flow_host_webgpu.d.mts": {
+      "bytes": 10057,
+      "sha256": "1d22e5feec495039d45188ee479657351fa7dc9184bc82dcf885695b60ef3d88"
+    },
+    "addons/flow/flow_host_webgpu.mjs": {
+      "bytes": 74730,
+      "sha256": "46ae8d8d161b7e6596cd44f13c0f6a71760537cefcebaefe7f9fdb3bd7ce8c1a"
+    },
+    "addons/flow/flow_scalar_sources.d.mts": {
+      "bytes": 512,
+      "sha256": "3d7956057d7c3698a6c06ef1807118e596058eaa3e4a80a5dd7e0f8b245c4113"
+    },
+    "addons/flow/flow_scalar_sources.mjs": {
+      "bytes": 2704,
+      "sha256": "498bda12e7edf97676a111b2c164d3194895a066e0e975111b66a33ed15e5367"
+    },
+    "addons/flow/flow_solid_boundary.d.mts": {
+      "bytes": 705,
+      "sha256": "03d05e800a9e8532860d1d9cf7ce6c3c15bb2cfd821611b0e0006cedd2404157"
+    },
+    "addons/flow/flow_solid_boundary.mjs": {
+      "bytes": 11108,
+      "sha256": "e76313b510d25f83fedaae0339b5569bee17c72ccf712a19894faf2a89fa8d67"
+    },
+    "addons/flow/generate_host_headers.py": {
+      "bytes": 3552,
+      "sha256": "8325b67d3dbe5abd7b052965fb32d59003c140ff2061dbf3122f47835f3a3b10"
+    },
+    "addons/flow/momentum_exchange_host.h": {
+      "bytes": 5794,
+      "sha256": "74282ec648b9059f4e876d489144cbe8187dbb558427cd1134ee542a42f3106f"
+    },
+    "addons/flow/pr_flow_host.cpp": {
+      "bytes": 45060,
+      "sha256": "d181a669721575ad5c411baf249fd65e19bafc8e8f04bdb41454f1de5d1e8ba7"
+    },
+    "addons/flow/rebase_host.h": {
+      "bytes": 3215,
+      "sha256": "88f291eeb4805a5e1efc5e5241f8bafd71965d9a451c560538b7c134deb967c0"
+    },
+    "addons/flow/webgpu_bridge.d.mts": {
+      "bytes": 2010,
+      "sha256": "ccdcc6654c4e1e137ae30df3e880551b318f592d6b471b342d9d4e0b302df6b4"
+    },
+    "addons/flow/webgpu_bridge.mjs": {
+      "bytes": 8190,
+      "sha256": "7c7cc893363db9325f5f77084a1a35325711846c04b4364cab87cd90a74554a4"
+    },
+    "bridge/physx-bulk-rust.d.mts": {
+      "bytes": 390,
+      "sha256": "e8851d9f42aac72aeb5b622d052afbd9b59112a039ca9064ba56f6f04ad895ff"
+    },
+    "bridge/physx-bulk-rust.mjs": {
+      "bytes": 483,
+      "sha256": "e12e47d3860179d8accdbba75aa858730f0143ba758d7237513a22729499f40f"
+    },
+    "bridge/physx-bulk.d.mts": {
+      "bytes": 913,
+      "sha256": "412b1bdf174e4da0b0cf6a2b5ff08c5b804a1e1d2f0eed8f15db54e77bdf9068"
+    },
+    "bridge/physx-bulk.mjs": {
+      "bytes": 5829,
+      "sha256": "60ecafb98afe8e522079f59923a4cf89a1fad977f69d2b8ce7947bef96776afe"
+    },
+    "bridge/pr_bulk_rust.cpp": {
+      "bytes": 4273,
+      "sha256": "334a3552f7054a6b43c1c9c74e475696270466ab10f77017ed7f44ed887064c0"
+    },
+    "bridge/pr_rust_core.h": {
+      "bytes": 1463,
+      "sha256": "34c3b6f7701e8c46fddbed132d00aa92cb5e5fcb88aa68070135e702b240e15e"
+    },
+    "patches/browser-overlay.patch": {
+      "bytes": 2062867,
+      "sha256": "fc1675b9b0982997f2e4cb337bde36f093b84edd3995fc0bab3c61538ac4cee0"
+    },
+    "release.py": {
+      "bytes": 17336,
+      "sha256": "93ba6383e70b8816db20eb7d998e1bac36cb272e366c8731c38e4dc9acd7c4b4"
+    },
+    "rust/src/lib.rs": {
+      "bytes": 15853,
+      "sha256": "040c3621288001dbc55d923366402beb88b24e3805c4ae6e6b100ba51a19fb73"
+    },
+    "source-license-map.json": {
+      "bytes": 26375,
+      "sha256": "02b834d48f2120f827c7eca9f1b501a07550d15c1ab5c0aa1e507da6a514a13a"
+    },
+    "tests/fixtures/flow-sdk-component-01/alpha2-addon-abi.json": {
+      "bytes": 9198,
+      "sha256": "e252c8242fc5a32d8dfa710957231e7501cba60dae4b5b15b0ec1f1ca8cedbc5"
+    },
+    "tests/fixtures/flow-sdk-component-01/alpha2-physx-pe.d.ts": {
+      "bytes": 224812,
+      "sha256": "41fbef09609570a723ca28cf95bb13c7caf903a7f64e3ffeb99f549b77a6ebc9"
+    },
+    "tests/fixtures/flow-sdk-component-01/api-contract-01.json": {
+      "bytes": 10705,
+      "sha256": "a649f4f03c074df9fbdc1d6cee2d0310b35482f66432cc517b33098d705cb1e4"
+    },
+    "tests/fixtures/flow-sdk-component-01/source-pins.json": {
+      "bytes": 1156,
+      "sha256": "9113407d57fd09ddb6252761a0da39bd715faf0ace9afc0ba65daceb57754306"
+    },
+    "tests/test_addon_types.py": {
+      "bytes": 6181,
+      "sha256": "98f95f69441b17b16502428a19be736f214b79a5c5fd4cd369ccd4b7bc64c864"
+    },
+    "tests/test_endurance_admission.py": {
+      "bytes": 11526,
+      "sha256": "0cc4584f77ccf05831295dfea34d1223edd10b58f885e5dd312c83df4c59cb83"
+    },
+    "tests/test_flow_component_types.py": {
+      "bytes": 4407,
+      "sha256": "a2c5fceea1e197fdc47d3ee3c50102812eb3056cb1399fe1ca3c1a9c121f0ba9"
+    },
+    "tools/browser_compat_endurance.py": {
+      "bytes": 29756,
+      "sha256": "bdec3c3b06d7a62f32d3ed5835dc5407c8fad68f4289371638eaf957727a8659"
+    },
+    "tools/browser_test.py": {
+      "bytes": 3832,
+      "sha256": "fa5c99089c61d1b7d9546cb314b980de93005c0413824282a8805e514d9c1356"
+    },
+    "tools/evidence.py": {
+      "bytes": 11327,
+      "sha256": "f2def321a3b73f8d188f6f43dd3fbbfc0b77ffb3e312a3cb8ce8af2d66bb8df2"
+    },
+    "tools/generate_addon_types.py": {
+      "bytes": 6731,
+      "sha256": "e500535e28d030a45771bf8954ff089d38d5eb04aac13bf3cf0dab6641a6275f"
+    },
+    "tools/generate_physx_types.py": {
+      "bytes": 8575,
+      "sha256": "926125a7d7e376db6b125f03ea1e295429cb559d1f06b94a679537ec08302bbc"
+    },
+    "tools/physx_lab.py": {
+      "bytes": 20809,
+      "sha256": "0a0853f1d864e192e345a4cc7af4c9aef19d17c4b8e446559f6cc9a1a3b3392d"
+    },
+    "tools/type_templates/flow_host_webgpu.d.mts": {
+      "bytes": 10057,
+      "sha256": "1d22e5feec495039d45188ee479657351fa7dc9184bc82dcf885695b60ef3d88"
+    },
+    "tools/type_templates/flow_scalar_sources.d.mts": {
+      "bytes": 512,
+      "sha256": "3d7956057d7c3698a6c06ef1807118e596058eaa3e4a80a5dd7e0f8b245c4113"
+    },
+    "tools/type_templates/flow_solid_boundary.d.mts": {
+      "bytes": 705,
+      "sha256": "03d05e800a9e8532860d1d9cf7ce6c3c15bb2cfd821611b0e0006cedd2404157"
+    },
+    "tools/type_templates/physx-bulk-rust.d.mts": {
+      "bytes": 390,
+      "sha256": "e8851d9f42aac72aeb5b622d052afbd9b59112a039ca9064ba56f6f04ad895ff"
+    },
+    "tools/type_templates/physx-bulk.d.mts": {
+      "bytes": 913,
+      "sha256": "412b1bdf174e4da0b0cf6a2b5ff08c5b804a1e1d2f0eed8f15db54e77bdf9068"
+    },
+    "tools/type_templates/webgpu_bridge.d.mts": {
+      "bytes": 2010,
+      "sha256": "ccdcc6654c4e1e137ae30df3e880551b318f592d6b471b342d9d4e0b302df6b4"
+    },
+    "tools/typecheck_browser.py": {
+      "bytes": 14823,
+      "sha256": "c9912dfbb2394ab515b9b345edf71a150009464ec1d583526cf2361091178c37"
+    },
+    "types/addon-abi.json": {
+      "bytes": 11608,
+      "sha256": "004b31c6436419a0bb87ff4b220178b79dc3ee206cc53f2f07cbcdbf1d38d7f1"
+    },
+    "types/physx-pe.d.mts": {
+      "bytes": 225976,
+      "sha256": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705"
+    },
+    "types/physx-pe.d.ts": {
+      "bytes": 225976,
+      "sha256": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705"
+    },
+    "types/webgpu.d.ts": {
+      "bytes": 117813,
+      "sha256": "bd08a7d5dc63f6b360c471a05f842a9db40acc0ed685171c272842e614de6e19"
+    },
+    "upstream.lock.json": {
+      "bytes": 2149,
+      "sha256": "3af92ee7b75a49837b0dba9f99ae4ab2e175e4b06a92e8bf658457b0915e6baf"
+    },
+    "web/advanced-regressions.mjs": {
+      "bytes": 12909,
+      "sha256": "30fbe1d4d44ca8ddd089b5037c2fac08c1262e60ff9561bfaa8f2ac9cfc0b130"
+    },
+    "web/app.mjs": {
+      "bytes": 2247,
+      "sha256": "8ea6be0c1b8afb15f36c8e1cf1a4ad7b73741378114782ffadacce31df11fd64"
+    },
+    "web/endurance-regressions.mjs": {
+      "bytes": 13970,
+      "sha256": "5d4b5199666705ea2c2900f17a6e3443c99ae4dce3bc98d5490b2b4d25ad5699"
+    },
+    "web/regressions.mjs": {
+      "bytes": 7679,
+      "sha256": "f23fd1e73ead03462f46a564ea1e8dfd00b75fe4d3abd5025b4a20d502b5d8db"
+    },
+    "web/suite.mjs": {
+      "bytes": 11135,
+      "sha256": "bc9f2cb83d25a6c654be6e6f622244af0a8eb37c634496b6d5e55362921edc44"
+    },
+    "web/vehicle-callback-regressions.mjs": {
+      "bytes": 18695,
+      "sha256": "e72a2072ecdd9cfb48024df53fb4a6b3d72e685ec861a70ef697dc5b2e6931ed"
+    },
+    "web/worker.mjs": {
+      "bytes": 383,
+      "sha256": "92cd98b14ec4a12ffed7fb21e4d3a63e2bf9aa81e07d10198c36f200250179af"
+    },
+    "work/typecheck-tools/typescript-5.9.3.nupkg": {
+      "bytes": 6443814,
+      "sha256": "a033598bc0fc085525d5033cd27d5ad062195bbfa8f4d490fea0f192196c1480"
+    }
+  },
+  "sourceLicenseMap": {
+    "path": "source-license-map.json",
+    "bytes": 26375,
+    "sha256": "02b834d48f2120f827c7eca9f1b501a07550d15c1ab5c0aa1e507da6a514a13a",
+    "rows": 43,
+    "cleanRoomClaim": false,
+    "mergeOnlyUponSelectedSourceAdmission": true,
+    "inheritedIdlDeclarationsAndNoticesUnchanged": true
+  },
+  "semantic": {
+    "report": "reports/07-typecheck-final.json",
+    "bytes": 50438,
+    "sha256": "9195e56a78ee34b33d74a0715dec12f10fe773348cacf5fcc3630602ab170b27",
+    "typescript": "5.9.3",
+    "compilerSha256": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675",
+    "browserVersion": "145.0.7632.6",
+    "diagnostics": [],
+    "compiledInputHashes": {
+      "/compiler/lib.d.ts": "a7297ff837fcdf174a9524925966429eb8e5feecc2cc55cc06574e6b092c1eaa",
+      "/compiler/lib.decorators.d.ts": "8e7f8264d0fb4c5339605a15daadb037bf238c10b654bb3eee14208f860a32ea",
+      "/compiler/lib.decorators.legacy.d.ts": "782dec38049b92d4e85c1585fbea5474a219c6984a35b004963b00beb1aab538",
+      "/compiler/lib.dom.asynciterable.d.ts": "d7a3c8b952931daebdfc7a2897c53c0a1c73624593fa070e46bd537e64dcd20a",
+      "/compiler/lib.dom.d.ts": "080941d9f9ff9307f7e27a83bcd888b7c8270716c39af943532438932ec1d0b9",
+      "/compiler/lib.dom.iterable.d.ts": "2e80ee7a49e8ac312cc11b77f1475804bee36b3b2bc896bead8b6e1266befb43",
+      "/compiler/lib.es2015.collection.d.ts": "dc2df20b1bcdc8c2d34af4926e2c3ab15ffe1160a63e58b7e09833f616efff44",
+      "/compiler/lib.es2015.core.d.ts": "c57796738e7f83dbc4b8e65132f11a377649c00dd3eee333f672b8f0a6bea671",
+      "/compiler/lib.es2015.d.ts": "45b7ab580deca34ae9729e97c13cfd999df04416a79116c3bfb483804f85ded4",
+      "/compiler/lib.es2015.generator.d.ts": "515d0b7b9bea2e31ea4ec968e9edd2c39d3eebf4a2d5cbd04e88639819ae3b71",
+      "/compiler/lib.es2015.iterable.d.ts": "0559b1f683ac7505ae451f9a96ce4c3c92bdc71411651ca6ddb0e88baaaad6a3",
+      "/compiler/lib.es2015.promise.d.ts": "0dc1e7ceda9b8b9b455c3a2d67b0412feab00bd2f66656cd8850e8831b08b537",
+      "/compiler/lib.es2015.proxy.d.ts": "ce691fb9e5c64efb9547083e4a34091bcbe5bdb41027e310ebba8f7d96a98671",
+      "/compiler/lib.es2015.reflect.d.ts": "8d697a2a929a5fcb38b7a65594020fcef05ec1630804a33748829c5ff53640d0",
+      "/compiler/lib.es2015.symbol.d.ts": "4ff2a353abf8a80ee399af572debb8faab2d33ad38c4b4474cff7f26e7653b8d",
+      "/compiler/lib.es2015.symbol.wellknown.d.ts": "fb0f136d372979348d59b3f5020b4cdb81b5504192b1cacff5d1fbba29378aa1",
+      "/compiler/lib.es2016.array.include.d.ts": "d15bea3d62cbbdb9797079416b8ac375ae99162a7fba5de2c6c505446486ac0a",
+      "/compiler/lib.es2016.d.ts": "3facaf05f0c5fc569c5649dd359892c98a85557e3e0c847964caeb67076f4d75",
+      "/compiler/lib.es2016.full.d.ts": "807e0e0bdc67605dd28efe18f20ab5fcd75d944ef95936120702335f9379094b",
+      "/compiler/lib.es2016.intl.d.ts": "68d18b664c9d32a7336a70235958b8997ebc1c3b8505f4f1ae2b7e7753b87618",
+      "/compiler/lib.es2017.arraybuffer.d.ts": "eb3d66c8327153d8fa7dd03f9c58d351107fe824c79e9b56b462935176cdf12a",
+      "/compiler/lib.es2017.d.ts": "e44bb8bbac7f10ecc786703fe0a6a4b952189f908707980ba8f3c8975a760962",
+      "/compiler/lib.es2017.date.d.ts": "38f0219c9e23c915ef9790ab1d680440d95419ad264816fa15009a8851e79119",
+      "/compiler/lib.es2017.full.d.ts": "1d242d5c24cf285c88bc4fb93c5ff903de8319064e282986edeb6247ba028d5e",
+      "/compiler/lib.es2017.intl.d.ts": "4de680d5bb41c17f7f68e0419412ca23c98d5749dcaaea1896172f06435891fc",
+      "/compiler/lib.es2017.object.d.ts": "69ab18c3b76cd9b1be3d188eaf8bba06112ebbe2f47f6c322b5105a6fbc45a2e",
+      "/compiler/lib.es2017.sharedmemory.d.ts": "a680117f487a4d2f30ea46f1b4b7f58bef1480456e18ba53ee85c2746eeca012",
+      "/compiler/lib.es2017.string.d.ts": "2f11ff796926e0832f9ae148008138ad583bd181899ab7dd768a2666700b1893",
+      "/compiler/lib.es2017.typedarrays.d.ts": "954296b30da6d508a104a3a0b5d96b76495c709785c1d11610908e63481ee667",
+      "/compiler/lib.es2018.asyncgenerator.d.ts": "ac9538681b19688c8eae65811b329d3744af679e0bdfa5d842d0e32524c73e1c",
+      "/compiler/lib.es2018.asynciterable.d.ts": "0a969edff4bd52585473d24995c5ef223f6652d6ef46193309b3921d65dd4376",
+      "/compiler/lib.es2018.d.ts": "5e1c4c362065a6b95ff952c0eab010f04dcd2c3494e813b493ecfd4fcb9fc0d8",
+      "/compiler/lib.es2018.full.d.ts": "95f1023b824c2c511c48f1201e2d1188bcb0ca1138a309a870b956d2e92e44ab",
+      "/compiler/lib.es2018.intl.d.ts": "9e9fbd7030c440b33d021da145d3232984c8bb7916f277e8ffd3dc2e3eae2bdb",
+      "/compiler/lib.es2018.promise.d.ts": "811ec78f7fefcabbda4bfa93b3eb67d9ae166ef95f9bff989d964061cbf81a0c",
+      "/compiler/lib.es2018.regexp.d.ts": "717937616a17072082152a2ef351cb51f98802fb4b2fdabd32399843875974ca",
+      "/compiler/lib.es2019.array.d.ts": "d7e7d9b7b50e5f22c915b525acc5a49a7a6584cf8f62d0569e557c5cfc4b2ac2",
+      "/compiler/lib.es2019.d.ts": "68d73b4a11549f9c0b7d352d10e91e5dca8faa3322bfb77b661839c42b1ddec7",
+      "/compiler/lib.es2019.full.d.ts": "08f6861df84fba9719c14d5adc3ba40be9f0c687639e6c4df3c05b9301b8ff94",
+      "/compiler/lib.es2019.intl.d.ts": "74f7fa2d027d5b33eb0471c8e82a6c87216223181ec31247c357a3e8e2fddc5b",
+      "/compiler/lib.es2019.object.d.ts": "71c37f4c9543f31dfced6c7840e068c5a5aacb7b89111a4364b1d5276b852557",
+      "/compiler/lib.es2019.string.d.ts": "576711e016cf4f1804676043e6a0a5414252560eb57de9faceee34d79798c850",
+      "/compiler/lib.es2019.symbol.d.ts": "89c1b1281ba7b8a96efc676b11b264de7a8374c5ea1e6617f11880a13fc56dc6",
+      "/compiler/lib.es2020.bigint.d.ts": "d6d7ae4d1f1f3772e2a3cde568ed08991a8ae34a080ff1151af28b7f798e22ca",
+      "/compiler/lib.es2020.d.ts": "5efce4fc3c29ea84e8928f97adec086e3dc876365e0982cc8479a07954a3efd4",
+      "/compiler/lib.es2020.date.d.ts": "063600664504610fe3e99b717a1223f8b1900087fab0b4cad1496a114744f8df",
+      "/compiler/lib.es2020.full.d.ts": "1305d1e76ca44e30fb8b2b8075fa522b83f60c0bcf5d4326a9d2cf79b53724f8",
+      "/compiler/lib.es2020.intl.d.ts": "639e512c0dfc3fad96a84caad71b8834d66329a1f28dc95e3946c9b58176c73a",
+      "/compiler/lib.es2020.number.d.ts": "368af93f74c9c932edd84c58883e736c9e3d53cec1fe24c0b0ff451f529ceab1",
+      "/compiler/lib.es2020.promise.d.ts": "934019d7e3c81950f9a8426d093458b65d5aff2c7c1511233c0fd5b941e608ab",
+      "/compiler/lib.es2020.sharedmemory.d.ts": "52ada8e0b6e0482b728070b7639ee42e83a9b1c22d205992756fe020fd9f4a47",
+      "/compiler/lib.es2020.string.d.ts": "3bdefe1bfd4d6dee0e26f928f93ccc128f1b64d5d501ff4a8cf3c6371200e5e6",
+      "/compiler/lib.es2020.symbol.wellknown.d.ts": "59fb2c069260b4ba00b5643b907ef5d5341b167e7d1dbf58dfd895658bda2867",
+      "/compiler/lib.es2021.d.ts": "feecb1be483ed332fad555aff858affd90a48ab19ba7272ee084704eb7167569",
+      "/compiler/lib.es2021.full.d.ts": "4a66df3ab5de5cfcda11538cffddd67ff6a174e003788e270914c1e0248483cf",
+      "/compiler/lib.es2021.intl.d.ts": "965f36eae237dd74e6cca203a43e9ca801ce38824ead814728a2807b1910117d",
+      "/compiler/lib.es2021.promise.d.ts": "af3dd424cf267428f30ccfc376f47a2c0114546b55c44d8c0f1d57d841e28d74",
+      "/compiler/lib.es2021.string.d.ts": "995c005ab91a498455ea8dfb63aa9f83fa2ea793c3d8aa344be4a1678d06d399",
+      "/compiler/lib.es2021.weakref.d.ts": "959d36cddf5e7d572a65045b876f2956c973a586da58e5d26cde519184fd9b8a",
+      "/compiler/lib.es2022.array.d.ts": "3925a6c820dcb1a06506c90b1577db1fdbf7705d65b62b99dce4be75c637e26b",
+      "/compiler/lib.es2022.d.ts": "ee7bad0c15b58988daa84371e0b89d313b762ab83cb5b31b8a2d1162e8eb41c2",
+      "/compiler/lib.es2022.error.d.ts": "0a3d63ef2b853447ec4f749d3f368ce642264246e02911fcb1590d8c161b8005",
+      "/compiler/lib.es2022.full.d.ts": "3cbad9a1ba4453443026ed38e4b8be018abb26565fa7c944376463ad9df07c41",
+      "/compiler/lib.es2022.intl.d.ts": "8cdf8847677ac7d20486e54dd3fcf09eda95812ac8ace44b4418da1bbbab6eb8",
+      "/compiler/lib.es2022.object.d.ts": "8444af78980e3b20b49324f4a16ba35024fef3ee069a0eb67616ea6ca821c47a",
+      "/compiler/lib.es2022.regexp.d.ts": "b4b67b1a91182421f5df999988c690f14d813b9850b40acd06ed44691f6727ad",
+      "/compiler/lib.es2022.sharedmemory.d.ts": "caccc56c72713969e1cfe5c3d44e5bab151544d9d2b373d7dbe5a1e4166652be",
+      "/compiler/lib.es2022.string.d.ts": "3287d9d085fbd618c3971944b65b4be57859f5415f495b33a6adc994edd2f004",
+      "/compiler/lib.es2023.array.d.ts": "df83c2a6c73228b625b0beb6669c7ee2a09c914637e2d35170723ad49c0f5cd4",
+      "/compiler/lib.es2023.collection.d.ts": "436aaf437562f276ec2ddbee2f2cdedac7664c1e4c1d2c36839ddd582eeb3d0a",
+      "/compiler/lib.es2023.d.ts": "27bdc30a0e32783366a5abeda841bc22757c1797de8681bbe81fbc735eeb1c10",
+      "/compiler/lib.es2023.full.d.ts": "785921608325fa246b450f05b238f4b3ed659f1099af278ce9ebbc9416a13f1d",
+      "/compiler/lib.es2023.intl.d.ts": "8e3c06ea092138bf9fa5e874a1fdbc9d54805d074bee1de31b99a11e2fec239d",
+      "/compiler/lib.es2024.arraybuffer.d.ts": "87dc0f382502f5bbce5129bdc0aea21e19a3abbc19259e0b43ae038a9fc4e326",
+      "/compiler/lib.es2024.collection.d.ts": "b1cb28af0c891c8c96b2d6b7be76bd394fddcfdb4709a20ba05a7c1605eea0f9",
+      "/compiler/lib.es2024.d.ts": "8fd575e12870e9944c7e1d62e1f5a73fcf23dd8d3a321f2a2c74c20d022283fe",
+      "/compiler/lib.es2024.full.d.ts": "b3e9cef4eed59f8a2249ed834ba4aabe9d0d4e9037d4679487fa17dad99004a3",
+      "/compiler/lib.es2024.object.d.ts": "2fef54945a13095fdb9b84f705f2b5994597640c46afeb2ce78352fab4cb3279",
+      "/compiler/lib.es2024.promise.d.ts": "ac77cb3e8c6d3565793eb90a8373ee8033146315a3dbead3bde8db5eaf5e5ec6",
+      "/compiler/lib.es2024.regexp.d.ts": "56e4ed5aab5f5920980066a9409bfaf53e6d21d3f8d020c17e4de584d29600ad",
+      "/compiler/lib.es2024.sharedmemory.d.ts": "4ece9f17b3866cc077099c73f4983bddbcb1dc7ddb943227f1ec070f529dedd1",
+      "/compiler/lib.es2024.string.d.ts": "0a6282c8827e4b9a95f4bf4f5c205673ada31b982f50572d27103df8ceb8013c",
+      "/compiler/lib.es5.d.ts": "c430d44666289dae81f30fa7b2edebf186ecc91a2d4c71266ea6ae76388792e1",
+      "/compiler/lib.es6.d.ts": "df039a67536fe2acc3affdcbfb645892f842db36fe599e8e652e2f0c640a90d1",
+      "/compiler/lib.esnext.array.d.ts": "1c9319a09485199c1f7b0498f2988d6d2249793ef67edda49d1e584746be9032",
+      "/compiler/lib.esnext.asynciterable.d.ts": "0665464cd0ee2059e4d709b72d0a9dd2bfe95f73eececd96486a81e549c63673",
+      "/compiler/lib.esnext.bigint.d.ts": "4a243813ba11cc69df6fb2da907512275a728efb5050efef758338c96abdf6e2",
+      "/compiler/lib.esnext.collection.d.ts": "e3a2a0cee0f03ffdde24d89660eba2685bfbdeae955a6c67e8c4c9fd28928eeb",
+      "/compiler/lib.esnext.d.ts": "2ab096661c711e4a81cc464fa1e6feb929a54f5340b46b0a07ac6bbf857471f0",
+      "/compiler/lib.esnext.decorators.d.ts": "d4b1d2c51d058fc21ec2629fff7a76249dec2e36e12960ea056e3ef89174080f",
+      "/compiler/lib.esnext.disposable.d.ts": "51ad4c928303041605b4d7ae32e0c1ee387d43a24cd6f1ebf4a2699e1076d4fa",
+      "/compiler/lib.esnext.error.d.ts": "73f78680d4c08509933daf80947902f6ff41b6230f94dd002ae372620adb0f60",
+      "/compiler/lib.esnext.float16.d.ts": "196cb558a13d4533a5163286f30b0509ce0210e4b316c56c38d4c0fd2fb38405",
+      "/compiler/lib.esnext.full.d.ts": "bde31fd423cd93b0eff97197a3f66df7c93e8c0c335cbeb113b7ff1ac35c23f4",
+      "/compiler/lib.esnext.intl.d.ts": "811c71eee4aa0ac5f7adf713323a5c41b0cf6c4e17367a34fbce379e12bbf0a4",
+      "/compiler/lib.esnext.iterator.d.ts": "22adec94ef7047a6c9d1af3cb96be87a335908bf9ef386ae9fd50eeb37f44c47",
+      "/compiler/lib.esnext.object.d.ts": "2fef54945a13095fdb9b84f705f2b5994597640c46afeb2ce78352fab4cb3279",
+      "/compiler/lib.esnext.promise.d.ts": "60037901da1a425516449b9a20073aa03386cce92f7a1fd902d7602be3a7c2e9",
+      "/compiler/lib.esnext.regexp.d.ts": "56e4ed5aab5f5920980066a9409bfaf53e6d21d3f8d020c17e4de584d29600ad",
+      "/compiler/lib.esnext.sharedmemory.d.ts": "c5239f5c01bcfa9cd32f37c496cf19c61d69d37e48be9de612b541aac915805b",
+      "/compiler/lib.esnext.string.d.ts": "0a6282c8827e4b9a95f4bf4f5c205673ada31b982f50572d27103df8ceb8013c",
+      "/compiler/lib.esnext.symbol.d.ts": "e7fb2beae5dd023aa9d1f18fb8fc4a225f87b49dbedb41b70ef6776ebb227c31",
+      "/compiler/lib.esnext.weakref.d.ts": "3c32d0499b3d1bff5bb3e18105ce69437f49c2ad5ed746d1eaeac3ba804cdb20",
+      "/compiler/lib.scripthost.d.ts": "cd034f499c6cdca722b60c04b5b1b78e058487a7085a8e0d6fb50809947ee573",
+      "/compiler/lib.webworker.asynciterable.d.ts": "ca417afee74054e99d5a8252b35bef26ca6e2942d67d343fce6b42fc9f432993",
+      "/compiler/lib.webworker.d.ts": "6d08cde2bfb6ff909efbf7cb7d6d55be412cf4b9f48fd0430185986973fa91f5",
+      "/compiler/lib.webworker.importscripts.d.ts": "80e18897e5884b6723488d4f5652167e7bb5024f946743134ecc4aa4ee731f89",
+      "/compiler/lib.webworker.iterable.d.ts": "d6c6331ce67c41b2ad5bfb0c8c022403980b479a377a44da8f16b61120418f66",
+      "/types/physx-pe.d.ts": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705",
+      "/types/physx-pe.d.mts": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705",
+      "/addons/flow/flow_host_webgpu.d.mts": "1d22e5feec495039d45188ee479657351fa7dc9184bc82dcf885695b60ef3d88",
+      "/addons/flow/flow_scalar_sources.d.mts": "3d7956057d7c3698a6c06ef1807118e596058eaa3e4a80a5dd7e0f8b245c4113",
+      "/addons/flow/flow_solid_boundary.d.mts": "03d05e800a9e8532860d1d9cf7ce6c3c15bb2cfd821611b0e0006cedd2404157",
+      "/bridge/physx-bulk-rust.d.mts": "e8851d9f42aac72aeb5b622d052afbd9b59112a039ca9064ba56f6f04ad895ff",
+      "/bridge/physx-bulk.d.mts": "412b1bdf174e4da0b0cf6a2b5ff08c5b804a1e1d2f0eed8f15db54e77bdf9068",
+      "/addons/flow/webgpu_bridge.d.mts": "ccdcc6654c4e1e137ae30df3e880551b318f592d6b471b342d9d4e0b302df6b4",
+      "/types/webgpu.d.ts": "bd08a7d5dc63f6b360c471a05f842a9db40acc0ed685171c272842e614de6e19",
+      "/consumer.mts": "f93b62a2ddee722685949b2392e2c2032f3713b43ddb287b8553c0e4738e3ac3"
+    },
+    "compiledInputHashesAfter": {
+      "/compiler/lib.d.ts": "a7297ff837fcdf174a9524925966429eb8e5feecc2cc55cc06574e6b092c1eaa",
+      "/compiler/lib.decorators.d.ts": "8e7f8264d0fb4c5339605a15daadb037bf238c10b654bb3eee14208f860a32ea",
+      "/compiler/lib.decorators.legacy.d.ts": "782dec38049b92d4e85c1585fbea5474a219c6984a35b004963b00beb1aab538",
+      "/compiler/lib.dom.asynciterable.d.ts": "d7a3c8b952931daebdfc7a2897c53c0a1c73624593fa070e46bd537e64dcd20a",
+      "/compiler/lib.dom.d.ts": "080941d9f9ff9307f7e27a83bcd888b7c8270716c39af943532438932ec1d0b9",
+      "/compiler/lib.dom.iterable.d.ts": "2e80ee7a49e8ac312cc11b77f1475804bee36b3b2bc896bead8b6e1266befb43",
+      "/compiler/lib.es2015.collection.d.ts": "dc2df20b1bcdc8c2d34af4926e2c3ab15ffe1160a63e58b7e09833f616efff44",
+      "/compiler/lib.es2015.core.d.ts": "c57796738e7f83dbc4b8e65132f11a377649c00dd3eee333f672b8f0a6bea671",
+      "/compiler/lib.es2015.d.ts": "45b7ab580deca34ae9729e97c13cfd999df04416a79116c3bfb483804f85ded4",
+      "/compiler/lib.es2015.generator.d.ts": "515d0b7b9bea2e31ea4ec968e9edd2c39d3eebf4a2d5cbd04e88639819ae3b71",
+      "/compiler/lib.es2015.iterable.d.ts": "0559b1f683ac7505ae451f9a96ce4c3c92bdc71411651ca6ddb0e88baaaad6a3",
+      "/compiler/lib.es2015.promise.d.ts": "0dc1e7ceda9b8b9b455c3a2d67b0412feab00bd2f66656cd8850e8831b08b537",
+      "/compiler/lib.es2015.proxy.d.ts": "ce691fb9e5c64efb9547083e4a34091bcbe5bdb41027e310ebba8f7d96a98671",
+      "/compiler/lib.es2015.reflect.d.ts": "8d697a2a929a5fcb38b7a65594020fcef05ec1630804a33748829c5ff53640d0",
+      "/compiler/lib.es2015.symbol.d.ts": "4ff2a353abf8a80ee399af572debb8faab2d33ad38c4b4474cff7f26e7653b8d",
+      "/compiler/lib.es2015.symbol.wellknown.d.ts": "fb0f136d372979348d59b3f5020b4cdb81b5504192b1cacff5d1fbba29378aa1",
+      "/compiler/lib.es2016.array.include.d.ts": "d15bea3d62cbbdb9797079416b8ac375ae99162a7fba5de2c6c505446486ac0a",
+      "/compiler/lib.es2016.d.ts": "3facaf05f0c5fc569c5649dd359892c98a85557e3e0c847964caeb67076f4d75",
+      "/compiler/lib.es2016.full.d.ts": "807e0e0bdc67605dd28efe18f20ab5fcd75d944ef95936120702335f9379094b",
+      "/compiler/lib.es2016.intl.d.ts": "68d18b664c9d32a7336a70235958b8997ebc1c3b8505f4f1ae2b7e7753b87618",
+      "/compiler/lib.es2017.arraybuffer.d.ts": "eb3d66c8327153d8fa7dd03f9c58d351107fe824c79e9b56b462935176cdf12a",
+      "/compiler/lib.es2017.d.ts": "e44bb8bbac7f10ecc786703fe0a6a4b952189f908707980ba8f3c8975a760962",
+      "/compiler/lib.es2017.date.d.ts": "38f0219c9e23c915ef9790ab1d680440d95419ad264816fa15009a8851e79119",
+      "/compiler/lib.es2017.full.d.ts": "1d242d5c24cf285c88bc4fb93c5ff903de8319064e282986edeb6247ba028d5e",
+      "/compiler/lib.es2017.intl.d.ts": "4de680d5bb41c17f7f68e0419412ca23c98d5749dcaaea1896172f06435891fc",
+      "/compiler/lib.es2017.object.d.ts": "69ab18c3b76cd9b1be3d188eaf8bba06112ebbe2f47f6c322b5105a6fbc45a2e",
+      "/compiler/lib.es2017.sharedmemory.d.ts": "a680117f487a4d2f30ea46f1b4b7f58bef1480456e18ba53ee85c2746eeca012",
+      "/compiler/lib.es2017.string.d.ts": "2f11ff796926e0832f9ae148008138ad583bd181899ab7dd768a2666700b1893",
+      "/compiler/lib.es2017.typedarrays.d.ts": "954296b30da6d508a104a3a0b5d96b76495c709785c1d11610908e63481ee667",
+      "/compiler/lib.es2018.asyncgenerator.d.ts": "ac9538681b19688c8eae65811b329d3744af679e0bdfa5d842d0e32524c73e1c",
+      "/compiler/lib.es2018.asynciterable.d.ts": "0a969edff4bd52585473d24995c5ef223f6652d6ef46193309b3921d65dd4376",
+      "/compiler/lib.es2018.d.ts": "5e1c4c362065a6b95ff952c0eab010f04dcd2c3494e813b493ecfd4fcb9fc0d8",
+      "/compiler/lib.es2018.full.d.ts": "95f1023b824c2c511c48f1201e2d1188bcb0ca1138a309a870b956d2e92e44ab",
+      "/compiler/lib.es2018.intl.d.ts": "9e9fbd7030c440b33d021da145d3232984c8bb7916f277e8ffd3dc2e3eae2bdb",
+      "/compiler/lib.es2018.promise.d.ts": "811ec78f7fefcabbda4bfa93b3eb67d9ae166ef95f9bff989d964061cbf81a0c",
+      "/compiler/lib.es2018.regexp.d.ts": "717937616a17072082152a2ef351cb51f98802fb4b2fdabd32399843875974ca",
+      "/compiler/lib.es2019.array.d.ts": "d7e7d9b7b50e5f22c915b525acc5a49a7a6584cf8f62d0569e557c5cfc4b2ac2",
+      "/compiler/lib.es2019.d.ts": "68d73b4a11549f9c0b7d352d10e91e5dca8faa3322bfb77b661839c42b1ddec7",
+      "/compiler/lib.es2019.full.d.ts": "08f6861df84fba9719c14d5adc3ba40be9f0c687639e6c4df3c05b9301b8ff94",
+      "/compiler/lib.es2019.intl.d.ts": "74f7fa2d027d5b33eb0471c8e82a6c87216223181ec31247c357a3e8e2fddc5b",
+      "/compiler/lib.es2019.object.d.ts": "71c37f4c9543f31dfced6c7840e068c5a5aacb7b89111a4364b1d5276b852557",
+      "/compiler/lib.es2019.string.d.ts": "576711e016cf4f1804676043e6a0a5414252560eb57de9faceee34d79798c850",
+      "/compiler/lib.es2019.symbol.d.ts": "89c1b1281ba7b8a96efc676b11b264de7a8374c5ea1e6617f11880a13fc56dc6",
+      "/compiler/lib.es2020.bigint.d.ts": "d6d7ae4d1f1f3772e2a3cde568ed08991a8ae34a080ff1151af28b7f798e22ca",
+      "/compiler/lib.es2020.d.ts": "5efce4fc3c29ea84e8928f97adec086e3dc876365e0982cc8479a07954a3efd4",
+      "/compiler/lib.es2020.date.d.ts": "063600664504610fe3e99b717a1223f8b1900087fab0b4cad1496a114744f8df",
+      "/compiler/lib.es2020.full.d.ts": "1305d1e76ca44e30fb8b2b8075fa522b83f60c0bcf5d4326a9d2cf79b53724f8",
+      "/compiler/lib.es2020.intl.d.ts": "639e512c0dfc3fad96a84caad71b8834d66329a1f28dc95e3946c9b58176c73a",
+      "/compiler/lib.es2020.number.d.ts": "368af93f74c9c932edd84c58883e736c9e3d53cec1fe24c0b0ff451f529ceab1",
+      "/compiler/lib.es2020.promise.d.ts": "934019d7e3c81950f9a8426d093458b65d5aff2c7c1511233c0fd5b941e608ab",
+      "/compiler/lib.es2020.sharedmemory.d.ts": "52ada8e0b6e0482b728070b7639ee42e83a9b1c22d205992756fe020fd9f4a47",
+      "/compiler/lib.es2020.string.d.ts": "3bdefe1bfd4d6dee0e26f928f93ccc128f1b64d5d501ff4a8cf3c6371200e5e6",
+      "/compiler/lib.es2020.symbol.wellknown.d.ts": "59fb2c069260b4ba00b5643b907ef5d5341b167e7d1dbf58dfd895658bda2867",
+      "/compiler/lib.es2021.d.ts": "feecb1be483ed332fad555aff858affd90a48ab19ba7272ee084704eb7167569",
+      "/compiler/lib.es2021.full.d.ts": "4a66df3ab5de5cfcda11538cffddd67ff6a174e003788e270914c1e0248483cf",
+      "/compiler/lib.es2021.intl.d.ts": "965f36eae237dd74e6cca203a43e9ca801ce38824ead814728a2807b1910117d",
+      "/compiler/lib.es2021.promise.d.ts": "af3dd424cf267428f30ccfc376f47a2c0114546b55c44d8c0f1d57d841e28d74",
+      "/compiler/lib.es2021.string.d.ts": "995c005ab91a498455ea8dfb63aa9f83fa2ea793c3d8aa344be4a1678d06d399",
+      "/compiler/lib.es2021.weakref.d.ts": "959d36cddf5e7d572a65045b876f2956c973a586da58e5d26cde519184fd9b8a",
+      "/compiler/lib.es2022.array.d.ts": "3925a6c820dcb1a06506c90b1577db1fdbf7705d65b62b99dce4be75c637e26b",
+      "/compiler/lib.es2022.d.ts": "ee7bad0c15b58988daa84371e0b89d313b762ab83cb5b31b8a2d1162e8eb41c2",
+      "/compiler/lib.es2022.error.d.ts": "0a3d63ef2b853447ec4f749d3f368ce642264246e02911fcb1590d8c161b8005",
+      "/compiler/lib.es2022.full.d.ts": "3cbad9a1ba4453443026ed38e4b8be018abb26565fa7c944376463ad9df07c41",
+      "/compiler/lib.es2022.intl.d.ts": "8cdf8847677ac7d20486e54dd3fcf09eda95812ac8ace44b4418da1bbbab6eb8",
+      "/compiler/lib.es2022.object.d.ts": "8444af78980e3b20b49324f4a16ba35024fef3ee069a0eb67616ea6ca821c47a",
+      "/compiler/lib.es2022.regexp.d.ts": "b4b67b1a91182421f5df999988c690f14d813b9850b40acd06ed44691f6727ad",
+      "/compiler/lib.es2022.sharedmemory.d.ts": "caccc56c72713969e1cfe5c3d44e5bab151544d9d2b373d7dbe5a1e4166652be",
+      "/compiler/lib.es2022.string.d.ts": "3287d9d085fbd618c3971944b65b4be57859f5415f495b33a6adc994edd2f004",
+      "/compiler/lib.es2023.array.d.ts": "df83c2a6c73228b625b0beb6669c7ee2a09c914637e2d35170723ad49c0f5cd4",
+      "/compiler/lib.es2023.collection.d.ts": "436aaf437562f276ec2ddbee2f2cdedac7664c1e4c1d2c36839ddd582eeb3d0a",
+      "/compiler/lib.es2023.d.ts": "27bdc30a0e32783366a5abeda841bc22757c1797de8681bbe81fbc735eeb1c10",
+      "/compiler/lib.es2023.full.d.ts": "785921608325fa246b450f05b238f4b3ed659f1099af278ce9ebbc9416a13f1d",
+      "/compiler/lib.es2023.intl.d.ts": "8e3c06ea092138bf9fa5e874a1fdbc9d54805d074bee1de31b99a11e2fec239d",
+      "/compiler/lib.es2024.arraybuffer.d.ts": "87dc0f382502f5bbce5129bdc0aea21e19a3abbc19259e0b43ae038a9fc4e326",
+      "/compiler/lib.es2024.collection.d.ts": "b1cb28af0c891c8c96b2d6b7be76bd394fddcfdb4709a20ba05a7c1605eea0f9",
+      "/compiler/lib.es2024.d.ts": "8fd575e12870e9944c7e1d62e1f5a73fcf23dd8d3a321f2a2c74c20d022283fe",
+      "/compiler/lib.es2024.full.d.ts": "b3e9cef4eed59f8a2249ed834ba4aabe9d0d4e9037d4679487fa17dad99004a3",
+      "/compiler/lib.es2024.object.d.ts": "2fef54945a13095fdb9b84f705f2b5994597640c46afeb2ce78352fab4cb3279",
+      "/compiler/lib.es2024.promise.d.ts": "ac77cb3e8c6d3565793eb90a8373ee8033146315a3dbead3bde8db5eaf5e5ec6",
+      "/compiler/lib.es2024.regexp.d.ts": "56e4ed5aab5f5920980066a9409bfaf53e6d21d3f8d020c17e4de584d29600ad",
+      "/compiler/lib.es2024.sharedmemory.d.ts": "4ece9f17b3866cc077099c73f4983bddbcb1dc7ddb943227f1ec070f529dedd1",
+      "/compiler/lib.es2024.string.d.ts": "0a6282c8827e4b9a95f4bf4f5c205673ada31b982f50572d27103df8ceb8013c",
+      "/compiler/lib.es5.d.ts": "c430d44666289dae81f30fa7b2edebf186ecc91a2d4c71266ea6ae76388792e1",
+      "/compiler/lib.es6.d.ts": "df039a67536fe2acc3affdcbfb645892f842db36fe599e8e652e2f0c640a90d1",
+      "/compiler/lib.esnext.array.d.ts": "1c9319a09485199c1f7b0498f2988d6d2249793ef67edda49d1e584746be9032",
+      "/compiler/lib.esnext.asynciterable.d.ts": "0665464cd0ee2059e4d709b72d0a9dd2bfe95f73eececd96486a81e549c63673",
+      "/compiler/lib.esnext.bigint.d.ts": "4a243813ba11cc69df6fb2da907512275a728efb5050efef758338c96abdf6e2",
+      "/compiler/lib.esnext.collection.d.ts": "e3a2a0cee0f03ffdde24d89660eba2685bfbdeae955a6c67e8c4c9fd28928eeb",
+      "/compiler/lib.esnext.d.ts": "2ab096661c711e4a81cc464fa1e6feb929a54f5340b46b0a07ac6bbf857471f0",
+      "/compiler/lib.esnext.decorators.d.ts": "d4b1d2c51d058fc21ec2629fff7a76249dec2e36e12960ea056e3ef89174080f",
+      "/compiler/lib.esnext.disposable.d.ts": "51ad4c928303041605b4d7ae32e0c1ee387d43a24cd6f1ebf4a2699e1076d4fa",
+      "/compiler/lib.esnext.error.d.ts": "73f78680d4c08509933daf80947902f6ff41b6230f94dd002ae372620adb0f60",
+      "/compiler/lib.esnext.float16.d.ts": "196cb558a13d4533a5163286f30b0509ce0210e4b316c56c38d4c0fd2fb38405",
+      "/compiler/lib.esnext.full.d.ts": "bde31fd423cd93b0eff97197a3f66df7c93e8c0c335cbeb113b7ff1ac35c23f4",
+      "/compiler/lib.esnext.intl.d.ts": "811c71eee4aa0ac5f7adf713323a5c41b0cf6c4e17367a34fbce379e12bbf0a4",
+      "/compiler/lib.esnext.iterator.d.ts": "22adec94ef7047a6c9d1af3cb96be87a335908bf9ef386ae9fd50eeb37f44c47",
+      "/compiler/lib.esnext.object.d.ts": "2fef54945a13095fdb9b84f705f2b5994597640c46afeb2ce78352fab4cb3279",
+      "/compiler/lib.esnext.promise.d.ts": "60037901da1a425516449b9a20073aa03386cce92f7a1fd902d7602be3a7c2e9",
+      "/compiler/lib.esnext.regexp.d.ts": "56e4ed5aab5f5920980066a9409bfaf53e6d21d3f8d020c17e4de584d29600ad",
+      "/compiler/lib.esnext.sharedmemory.d.ts": "c5239f5c01bcfa9cd32f37c496cf19c61d69d37e48be9de612b541aac915805b",
+      "/compiler/lib.esnext.string.d.ts": "0a6282c8827e4b9a95f4bf4f5c205673ada31b982f50572d27103df8ceb8013c",
+      "/compiler/lib.esnext.symbol.d.ts": "e7fb2beae5dd023aa9d1f18fb8fc4a225f87b49dbedb41b70ef6776ebb227c31",
+      "/compiler/lib.esnext.weakref.d.ts": "3c32d0499b3d1bff5bb3e18105ce69437f49c2ad5ed746d1eaeac3ba804cdb20",
+      "/compiler/lib.scripthost.d.ts": "cd034f499c6cdca722b60c04b5b1b78e058487a7085a8e0d6fb50809947ee573",
+      "/compiler/lib.webworker.asynciterable.d.ts": "ca417afee74054e99d5a8252b35bef26ca6e2942d67d343fce6b42fc9f432993",
+      "/compiler/lib.webworker.d.ts": "6d08cde2bfb6ff909efbf7cb7d6d55be412cf4b9f48fd0430185986973fa91f5",
+      "/compiler/lib.webworker.importscripts.d.ts": "80e18897e5884b6723488d4f5652167e7bb5024f946743134ecc4aa4ee731f89",
+      "/compiler/lib.webworker.iterable.d.ts": "d6c6331ce67c41b2ad5bfb0c8c022403980b479a377a44da8f16b61120418f66",
+      "/types/physx-pe.d.ts": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705",
+      "/types/physx-pe.d.mts": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705",
+      "/addons/flow/flow_host_webgpu.d.mts": "1d22e5feec495039d45188ee479657351fa7dc9184bc82dcf885695b60ef3d88",
+      "/addons/flow/flow_scalar_sources.d.mts": "3d7956057d7c3698a6c06ef1807118e596058eaa3e4a80a5dd7e0f8b245c4113",
+      "/addons/flow/flow_solid_boundary.d.mts": "03d05e800a9e8532860d1d9cf7ce6c3c15bb2cfd821611b0e0006cedd2404157",
+      "/bridge/physx-bulk-rust.d.mts": "e8851d9f42aac72aeb5b622d052afbd9b59112a039ca9064ba56f6f04ad895ff",
+      "/bridge/physx-bulk.d.mts": "412b1bdf174e4da0b0cf6a2b5ff08c5b804a1e1d2f0eed8f15db54e77bdf9068",
+      "/addons/flow/webgpu_bridge.d.mts": "ccdcc6654c4e1e137ae30df3e880551b318f592d6b471b342d9d4e0b302df6b4",
+      "/types/webgpu.d.ts": "bd08a7d5dc63f6b360c471a05f842a9db40acc0ed685171c272842e614de6e19",
+      "/consumer.mts": "f93b62a2ddee722685949b2392e2c2032f3713b43ddb287b8553c0e4738e3ac3"
+    },
+    "strict": true,
+    "skipLibCheck": false,
+    "noEmit": true,
+    "negativeAssertions": "Actual @ts-expect-error checks for opaque/deeply-readonly tokens, async coordinators, missing geometry/rates, Map calibration, invalid null options and absent host heat deposition fields",
+    "sourceHashesStable": true
+  },
+  "declarationGuards": {
+    "passed": 12,
+    "original7Retained": true,
+    "newSourceGroups": 5,
+    "initialGenericMethodRegexFailurePreserved": true,
+    "guardFix": "Recognize generic declaration methods and public helper functions. No type or source API failure was hidden."
+  },
+  "tokenScope": {
+    "opaqueBrands": "Unexported unique symbols, compile-time only",
+    "runtimeOwnerAndLifetime": "Actual frozen public views with WeakMap identity; declarations cannot statically prove which instance owns a token, stale/reused state, finite/positive values, f32 representability or queue state",
+    "coordinator": "Visible PromiseLike return types reject. Returns hidden by void/unknown annotations remain runtime checks; exceptions/post-commit device faults are terminal.",
+    "hostReceipt": "EXCHANGED acknowledgement only; Engine thermal heat obligation remains unapplied and absent from this host receipt."
+  },
+  "evidence": {
+    "reports/00-inputs.json": {
+      "bytes": 21846,
+      "sha256": "a0f1b9b50671524d0cbb0c7c4883ba96b0c1e87c565bbd5f5be4082d73494f9c"
+    },
+    "reports/01-generation.log": {
+      "bytes": 357,
+      "sha256": "bf21d4baf9d5fcf9b2c87d97ae1897ade6944709cd1572a23d6235992f949946"
+    },
+    "reports/02-declaration-tests.log": {
+      "bytes": 35499,
+      "sha256": "5a35c7c85b9e1ff6b1767d3caf10c03e9dfec85e34de7e5d37762a929672a3ba"
+    },
+    "reports/03-declaration-tests-v2.log": {
+      "bytes": 2097,
+      "sha256": "bc65b3bbeda49bdedceed34236d7298d6d99c87414f873c0b9a8d36a09b56d33"
+    },
+    "reports/04-typecheck-attempt-01.json": {
+      "bytes": 49372,
+      "sha256": "5a71d3588dc9f2083bad2c6d98bf075c871143481b2db73a215da72f5c6b770b"
+    },
+    "reports/04-typecheck-attempt-01.log": {
+      "bytes": 28904,
+      "sha256": "b2ced318e400fc3178ed336373afa2b49ce38bb4b9a5a500145658a72f947b34"
+    },
+    "reports/05-declaration-tests-final.log": {
+      "bytes": 2097,
+      "sha256": "762de5dd99176cb99d0cb5fe49b97393f3a2b143bf14024a6997f9a320e5c173"
+    },
+    "reports/06-migration-plan.json": {
+      "bytes": 10251,
+      "sha256": "0e0ac2acbac1cf82a58a26271098c590187786280e8f461ec419ca080e00377c"
+    },
+    "reports/07-typecheck-final.json": {
+      "bytes": 50438,
+      "sha256": "9195e56a78ee34b33d74a0715dec12f10fe773348cacf5fcc3630602ab170b27"
+    },
+    "reports/07-typecheck-final.log": {
+      "bytes": 28904,
+      "sha256": "b2ced318e400fc3178ed336373afa2b49ce38bb4b9a5a500145658a72f947b34"
+    },
+    "reports/addon-types-browser.json": {
+      "bytes": 28904,
+      "sha256": "b2ced318e400fc3178ed336373afa2b49ce38bb4b9a5a500145658a72f947b34"
+    }
+  },
+  "migrationPlan": {
+    "path": "reports/06-migration-plan.json",
+    "bytes": 10251,
+    "sha256": "0e0ac2acbac1cf82a58a26271098c590187786280e8f461ec419ca080e00377c",
+    "sdkFiles": 17,
+    "componentSources": 6,
+    "rootMustRegenerateAgainstFinalCoupledSources": true
+  },
+  "productionProtectedBefore": {
+    "addons/blast/emscripten_nv_compat.h": {
+      "bytes": 552,
+      "sha256": "53dbbab9a1ff899e41958ff81b8d838dd7d6800c9bb926400162c86b1523a787"
+    },
+    "addons/blast/emscripten_stress_device.h": {
+      "bytes": 509,
+      "sha256": "0b24bcf9980f1a3830eb828f52689b52868c74c7e7f3b1295902f74ba4ad7628"
+    },
+    "addons/blast/emscripten_stress_intrinsics.h": {
+      "bytes": 1249,
+      "sha256": "24261a2f945f46e3adb5ce7104b89a1bdd6ddf6b7a72059b8198bfa89ed12291"
+    },
+    "addons/blast/pr_blast_authoring.cpp": {
+      "bytes": 18360,
+      "sha256": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8"
+    },
+    "addons/blast/pr_blast_memory.h": {
+      "bytes": 420,
+      "sha256": "9d72f0c9cb3961eac345b5e11720bbea083c62dcad1baee80aaffd66b15e956d"
+    },
+    "addons/blast/pr_blast_wasm.cpp": {
+      "bytes": 23253,
+      "sha256": "680611d8e7a13bec82f16c3b9e4f99cf98c72a23a305a94cc38cd26ead0ac003"
+    },
+    "addons/blast/prepare_authoring_sources.py": {
+      "bytes": 3176,
+      "sha256": "acbd52da8a798fd232422feb36ed85846954e43467f729434a895f8616fbea9d"
+    },
+    "addons/blast/prepare_stress_sources.py": {
+      "bytes": 2476,
+      "sha256": "344e0893b0ce31018e9a01bd16ead6838d66b8fe1b66699b8b9c5cd84f8c3d16"
+    },
+    "addons/blast/tr1/type_traits": {
+      "bytes": 282,
+      "sha256": "dd134f07a312cd38a5ee494b222baf83f5313aef7df9f7f6c2fa6a366c6fb6be"
+    },
+    "addons/flow/build_host.py": {
+      "bytes": 2234,
+      "sha256": "1818b108d4e16c5d3da1cd4036d034f464c25c1e49e7787c70d1369414b0586b"
+    },
+    "addons/flow/flow_host_webgpu.d.mts": {
+      "bytes": 4597,
+      "sha256": "837ece7cbb935f12afac8806946d6174b73d501f98dd8391be38951e4c122206"
+    },
+    "addons/flow/flow_host_webgpu.mjs": {
+      "bytes": 43967,
+      "sha256": "a0e046e29db754886bbe7616994a3205906882d148c008b937e5fdb7c450fa16"
+    },
+    "addons/flow/generate_host_headers.py": {
+      "bytes": 3552,
+      "sha256": "8325b67d3dbe5abd7b052965fb32d59003c140ff2061dbf3122f47835f3a3b10"
+    },
+    "addons/flow/pr_flow_host.cpp": {
+      "bytes": 37992,
+      "sha256": "e4f34673e63b5a3d0a1a96f10318e4c6f80755633abe478b2586efc4f23b7595"
+    },
+    "addons/flow/webgpu_bridge.d.mts": {
+      "bytes": 2010,
+      "sha256": "ccdcc6654c4e1e137ae30df3e880551b318f592d6b471b342d9d4e0b302df6b4"
+    },
+    "bridge/physx-bulk-rust.d.mts": {
+      "bytes": 390,
+      "sha256": "e8851d9f42aac72aeb5b622d052afbd9b59112a039ca9064ba56f6f04ad895ff"
+    },
+    "bridge/physx-bulk-rust.mjs": {
+      "bytes": 483,
+      "sha256": "e12e47d3860179d8accdbba75aa858730f0143ba758d7237513a22729499f40f"
+    },
+    "bridge/physx-bulk.d.mts": {
+      "bytes": 913,
+      "sha256": "412b1bdf174e4da0b0cf6a2b5ff08c5b804a1e1d2f0eed8f15db54e77bdf9068"
+    },
+    "bridge/physx-bulk.mjs": {
+      "bytes": 5829,
+      "sha256": "60ecafb98afe8e522079f59923a4cf89a1fad977f69d2b8ce7947bef96776afe"
+    },
+    "bridge/pr_bulk_rust.cpp": {
+      "bytes": 4273,
+      "sha256": "334a3552f7054a6b43c1c9c74e475696270466ab10f77017ed7f44ed887064c0"
+    },
+    "bridge/pr_rust_core.h": {
+      "bytes": 1463,
+      "sha256": "34c3b6f7701e8c46fddbed132d00aa92cb5e5fcb88aa68070135e702b240e15e"
+    },
+    "release.py": {
+      "bytes": 17336,
+      "sha256": "93ba6383e70b8816db20eb7d998e1bac36cb272e366c8731c38e4dc9acd7c4b4"
+    },
+    "rust/src/lib.rs": {
+      "bytes": 15853,
+      "sha256": "040c3621288001dbc55d923366402beb88b24e3805c4ae6e6b100ba51a19fb73"
+    },
+    "tests/test_addon_types.py": {
+      "bytes": 6038,
+      "sha256": "8fa7287b29ceb9113c1fcc170f9142b9bfe93862aedfa8495a612251cfb64485"
+    },
+    "tests/test_endurance_admission.py": {
+      "bytes": 11526,
+      "sha256": "0cc4584f77ccf05831295dfea34d1223edd10b58f885e5dd312c83df4c59cb83"
+    },
+    "tools/browser_compat_endurance.py": {
+      "bytes": 29756,
+      "sha256": "bdec3c3b06d7a62f32d3ed5835dc5407c8fad68f4289371638eaf957727a8659"
+    },
+    "tools/browser_test.py": {
+      "bytes": 3832,
+      "sha256": "fa5c99089c61d1b7d9546cb314b980de93005c0413824282a8805e514d9c1356"
+    },
+    "tools/evidence.py": {
+      "bytes": 11327,
+      "sha256": "f2def321a3b73f8d188f6f43dd3fbbfc0b77ffb3e312a3cb8ce8af2d66bb8df2"
+    },
+    "tools/generate_addon_types.py": {
+      "bytes": 6644,
+      "sha256": "907661fe318f38c66443ec022e711d942be2d3dcd599fcb9b5c2e56711621f22"
+    },
+    "tools/generate_physx_types.py": {
+      "bytes": 8575,
+      "sha256": "926125a7d7e376db6b125f03ea1e295429cb559d1f06b94a679537ec08302bbc"
+    },
+    "tools/typecheck_browser.py": {
+      "bytes": 9668,
+      "sha256": "0918ff3b7ef3ee3b691290727c3ea6c0f464d55e32614f0fb86a1a0b91eb47d4"
+    },
+    "types/addon-abi.json": {
+      "bytes": 9198,
+      "sha256": "e252c8242fc5a32d8dfa710957231e7501cba60dae4b5b15b0ec1f1ca8cedbc5"
+    },
+    "types/physx-pe.d.mts": {
+      "bytes": 224812,
+      "sha256": "41fbef09609570a723ca28cf95bb13c7caf903a7f64e3ffeb99f549b77a6ebc9"
+    },
+    "types/physx-pe.d.ts": {
+      "bytes": 224812,
+      "sha256": "41fbef09609570a723ca28cf95bb13c7caf903a7f64e3ffeb99f549b77a6ebc9"
+    },
+    "types/webgpu.d.ts": {
+      "bytes": 117813,
+      "sha256": "bd08a7d5dc63f6b360c471a05f842a9db40acc0ed685171c272842e614de6e19"
+    },
+    "web/advanced-regressions.mjs": {
+      "bytes": 12909,
+      "sha256": "30fbe1d4d44ca8ddd089b5037c2fac08c1262e60ff9561bfaa8f2ac9cfc0b130"
+    },
+    "web/app.mjs": {
+      "bytes": 2247,
+      "sha256": "8ea6be0c1b8afb15f36c8e1cf1a4ad7b73741378114782ffadacce31df11fd64"
+    },
+    "web/endurance-regressions.mjs": {
+      "bytes": 13970,
+      "sha256": "5d4b5199666705ea2c2900f17a6e3443c99ae4dce3bc98d5490b2b4d25ad5699"
+    },
+    "web/regressions.mjs": {
+      "bytes": 7679,
+      "sha256": "f23fd1e73ead03462f46a564ea1e8dfd00b75fe4d3abd5025b4a20d502b5d8db"
+    },
+    "web/suite.mjs": {
+      "bytes": 11135,
+      "sha256": "bc9f2cb83d25a6c654be6e6f622244af0a8eb37c634496b6d5e55362921edc44"
+    },
+    "web/vehicle-callback-regressions.mjs": {
+      "bytes": 18695,
+      "sha256": "e72a2072ecdd9cfb48024df53fb4a6b3d72e685ec861a70ef697dc5b2e6931ed"
+    },
+    "web/worker.mjs": {
+      "bytes": 383,
+      "sha256": "92cd98b14ec4a12ffed7fb21e4d3a63e2bf9aa81e07d10198c36f200250179af"
+    }
+  },
+  "productionProtectedAfter": {
+    "addons/blast/emscripten_nv_compat.h": {
+      "bytes": 552,
+      "sha256": "53dbbab9a1ff899e41958ff81b8d838dd7d6800c9bb926400162c86b1523a787"
+    },
+    "addons/blast/emscripten_stress_device.h": {
+      "bytes": 509,
+      "sha256": "0b24bcf9980f1a3830eb828f52689b52868c74c7e7f3b1295902f74ba4ad7628"
+    },
+    "addons/blast/emscripten_stress_intrinsics.h": {
+      "bytes": 1249,
+      "sha256": "24261a2f945f46e3adb5ce7104b89a1bdd6ddf6b7a72059b8198bfa89ed12291"
+    },
+    "addons/blast/pr_blast_authoring.cpp": {
+      "bytes": 18360,
+      "sha256": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8"
+    },
+    "addons/blast/pr_blast_memory.h": {
+      "bytes": 420,
+      "sha256": "9d72f0c9cb3961eac345b5e11720bbea083c62dcad1baee80aaffd66b15e956d"
+    },
+    "addons/blast/pr_blast_wasm.cpp": {
+      "bytes": 23253,
+      "sha256": "680611d8e7a13bec82f16c3b9e4f99cf98c72a23a305a94cc38cd26ead0ac003"
+    },
+    "addons/blast/prepare_authoring_sources.py": {
+      "bytes": 3176,
+      "sha256": "acbd52da8a798fd232422feb36ed85846954e43467f729434a895f8616fbea9d"
+    },
+    "addons/blast/prepare_stress_sources.py": {
+      "bytes": 2476,
+      "sha256": "344e0893b0ce31018e9a01bd16ead6838d66b8fe1b66699b8b9c5cd84f8c3d16"
+    },
+    "addons/blast/tr1/type_traits": {
+      "bytes": 282,
+      "sha256": "dd134f07a312cd38a5ee494b222baf83f5313aef7df9f7f6c2fa6a366c6fb6be"
+    },
+    "addons/flow/build_host.py": {
+      "bytes": 2234,
+      "sha256": "1818b108d4e16c5d3da1cd4036d034f464c25c1e49e7787c70d1369414b0586b"
+    },
+    "addons/flow/flow_host_webgpu.d.mts": {
+      "bytes": 4597,
+      "sha256": "837ece7cbb935f12afac8806946d6174b73d501f98dd8391be38951e4c122206"
+    },
+    "addons/flow/flow_host_webgpu.mjs": {
+      "bytes": 43967,
+      "sha256": "a0e046e29db754886bbe7616994a3205906882d148c008b937e5fdb7c450fa16"
+    },
+    "addons/flow/generate_host_headers.py": {
+      "bytes": 3552,
+      "sha256": "8325b67d3dbe5abd7b052965fb32d59003c140ff2061dbf3122f47835f3a3b10"
+    },
+    "addons/flow/pr_flow_host.cpp": {
+      "bytes": 37992,
+      "sha256": "e4f34673e63b5a3d0a1a96f10318e4c6f80755633abe478b2586efc4f23b7595"
+    },
+    "addons/flow/webgpu_bridge.d.mts": {
+      "bytes": 2010,
+      "sha256": "ccdcc6654c4e1e137ae30df3e880551b318f592d6b471b342d9d4e0b302df6b4"
+    },
+    "bridge/physx-bulk-rust.d.mts": {
+      "bytes": 390,
+      "sha256": "e8851d9f42aac72aeb5b622d052afbd9b59112a039ca9064ba56f6f04ad895ff"
+    },
+    "bridge/physx-bulk-rust.mjs": {
+      "bytes": 483,
+      "sha256": "e12e47d3860179d8accdbba75aa858730f0143ba758d7237513a22729499f40f"
+    },
+    "bridge/physx-bulk.d.mts": {
+      "bytes": 913,
+      "sha256": "412b1bdf174e4da0b0cf6a2b5ff08c5b804a1e1d2f0eed8f15db54e77bdf9068"
+    },
+    "bridge/physx-bulk.mjs": {
+      "bytes": 5829,
+      "sha256": "60ecafb98afe8e522079f59923a4cf89a1fad977f69d2b8ce7947bef96776afe"
+    },
+    "bridge/pr_bulk_rust.cpp": {
+      "bytes": 4273,
+      "sha256": "334a3552f7054a6b43c1c9c74e475696270466ab10f77017ed7f44ed887064c0"
+    },
+    "bridge/pr_rust_core.h": {
+      "bytes": 1463,
+      "sha256": "34c3b6f7701e8c46fddbed132d00aa92cb5e5fcb88aa68070135e702b240e15e"
+    },
+    "release.py": {
+      "bytes": 17336,
+      "sha256": "93ba6383e70b8816db20eb7d998e1bac36cb272e366c8731c38e4dc9acd7c4b4"
+    },
+    "rust/src/lib.rs": {
+      "bytes": 15853,
+      "sha256": "040c3621288001dbc55d923366402beb88b24e3805c4ae6e6b100ba51a19fb73"
+    },
+    "tests/test_addon_types.py": {
+      "bytes": 6038,
+      "sha256": "8fa7287b29ceb9113c1fcc170f9142b9bfe93862aedfa8495a612251cfb64485"
+    },
+    "tests/test_endurance_admission.py": {
+      "bytes": 11526,
+      "sha256": "0cc4584f77ccf05831295dfea34d1223edd10b58f885e5dd312c83df4c59cb83"
+    },
+    "tools/browser_compat_endurance.py": {
+      "bytes": 29756,
+      "sha256": "bdec3c3b06d7a62f32d3ed5835dc5407c8fad68f4289371638eaf957727a8659"
+    },
+    "tools/browser_test.py": {
+      "bytes": 3832,
+      "sha256": "fa5c99089c61d1b7d9546cb314b980de93005c0413824282a8805e514d9c1356"
+    },
+    "tools/evidence.py": {
+      "bytes": 11327,
+      "sha256": "f2def321a3b73f8d188f6f43dd3fbbfc0b77ffb3e312a3cb8ce8af2d66bb8df2"
+    },
+    "tools/generate_addon_types.py": {
+      "bytes": 6644,
+      "sha256": "907661fe318f38c66443ec022e711d942be2d3dcd599fcb9b5c2e56711621f22"
+    },
+    "tools/generate_physx_types.py": {
+      "bytes": 8575,
+      "sha256": "926125a7d7e376db6b125f03ea1e295429cb559d1f06b94a679537ec08302bbc"
+    },
+    "tools/typecheck_browser.py": {
+      "bytes": 9668,
+      "sha256": "0918ff3b7ef3ee3b691290727c3ea6c0f464d55e32614f0fb86a1a0b91eb47d4"
+    },
+    "types/addon-abi.json": {
+      "bytes": 9198,
+      "sha256": "e252c8242fc5a32d8dfa710957231e7501cba60dae4b5b15b0ec1f1ca8cedbc5"
+    },
+    "types/physx-pe.d.mts": {
+      "bytes": 224812,
+      "sha256": "41fbef09609570a723ca28cf95bb13c7caf903a7f64e3ffeb99f549b77a6ebc9"
+    },
+    "types/physx-pe.d.ts": {
+      "bytes": 224812,
+      "sha256": "41fbef09609570a723ca28cf95bb13c7caf903a7f64e3ffeb99f549b77a6ebc9"
+    },
+    "types/webgpu.d.ts": {
+      "bytes": 117813,
+      "sha256": "bd08a7d5dc63f6b360c471a05f842a9db40acc0ed685171c272842e614de6e19"
+    },
+    "web/advanced-regressions.mjs": {
+      "bytes": 12909,
+      "sha256": "30fbe1d4d44ca8ddd089b5037c2fac08c1262e60ff9561bfaa8f2ac9cfc0b130"
+    },
+    "web/app.mjs": {
+      "bytes": 2247,
+      "sha256": "8ea6be0c1b8afb15f36c8e1cf1a4ad7b73741378114782ffadacce31df11fd64"
+    },
+    "web/endurance-regressions.mjs": {
+      "bytes": 13970,
+      "sha256": "5d4b5199666705ea2c2900f17a6e3443c99ae4dce3bc98d5490b2b4d25ad5699"
+    },
+    "web/regressions.mjs": {
+      "bytes": 7679,
+      "sha256": "f23fd1e73ead03462f46a564ea1e8dfd00b75fe4d3abd5025b4a20d502b5d8db"
+    },
+    "web/suite.mjs": {
+      "bytes": 11135,
+      "sha256": "bc9f2cb83d25a6c654be6e6f622244af0a8eb37c634496b6d5e55362921edc44"
+    },
+    "web/vehicle-callback-regressions.mjs": {
+      "bytes": 18695,
+      "sha256": "e72a2072ecdd9cfb48024df53fb4a6b3d72e685ec861a70ef697dc5b2e6931ed"
+    },
+    "web/worker.mjs": {
+      "bytes": 383,
+      "sha256": "92cd98b14ec4a12ffed7fb21e4d3a63e2bf9aa81e07d10198c36f200250179af"
+    }
+  },
+  "productionChangesApplied": false,
+  "unchangedAlpha2NativePair": {
+    "physx-pe.wasm": {
+      "bytes": 6931124,
+      "sha256": "c055d52c5173c4c72429be8bdd1f54e1f6f1df6abb860a3ccf073c7c36f56c89"
+    },
+    "physx-pe.mjs": {
+      "bytes": 4837788,
+      "sha256": "06086a141a4a609caaec25b2b2ac5b043b9022067c7bb898e1ac060bc6b34218"
+    }
+  },
+  "historicalReceipts": {
+    "reports/vehicle-callback-development/integration-lane.json": {
+      "bytes": 26389,
+      "sha256": "b4e3c73643dc54559e72f57053d77ebd49caaea6775cc61cb35cab0c4d931e36"
+    },
+    "reports/browser-compat-endurance/compatibility-lane.json": {
+      "bytes": 31368,
+      "sha256": "6a5c10ed3f6bf87b39a96737a79111d3e4fc41b571687faac1abc57cedc5b15d"
+    },
+    "reports/endurance-phase-development/phase-lane.json": {
+      "bytes": 20297,
+      "sha256": "d6d742a6a6226dab3068e74d70e8d68350da360a7b69efc492885e32734053e6"
+    }
+  },
+  "sharedPerformanceLock": {
+    "helper": "C:\\Coding\\game\\tests\\storage\\performance_run_lock.py",
+    "sha256": "68518bb32b68e724030b66440ea4d9b2b23f56cf10a01606cdbf0a7f620788c7",
+    "helperLicense": "LicenseRef-ParticleRealms-Alpha; host-only validation dependency, not redistributed",
+    "effectiveWorkspace": "C:\\Coding\\game",
+    "environmentOverridden": false
+  },
+  "powerScope": {
+    "start": {
+      "available": true,
+      "acLineStatus": 0,
+      "batteryPercent": 100,
+      "environmentOverridden": false
+    },
+    "end": {
+      "available": true,
+      "acLineStatus": 0,
+      "batteryPercent": 100,
+      "environmentOverridden": false
+    },
+    "environmentOverridden": false,
+    "performanceAcceptance": false
+  },
+  "notRun": [
+    "new unified native pair linking or runtime behavior",
+    "new GPU Flow execution",
+    "alpha.2 execution of added APIs",
+    "production source selection or installation",
+    "final coupled-source TypeScript/runtime admission",
+    "new package or publication",
+    "full GPU PhysX or complete native feature parity",
+    "realtime or cross-device acceptance"
+  ]
+}

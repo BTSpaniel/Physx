@@ -1,0 +1,20 @@
+{
+  "schema": "physx-pe.existing-convex-bridge-selection/v1",
+  "abi": 1,
+  "originalSha256": "334a3552f7054a6b43c1c9c74e475696270466ab10f77017ed7f44ed887064c0",
+  "selectedSha256": "deb780aff61a57e396bc9843907c6d7c83af23ad1fa06346cd3a70c98b2af6bb",
+  "originalPath": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\combined-runtime-20261001-05-f64mass-mit\\bridge\\pr_bulk_rust.cpp",
+  "selectedOriginalPath": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\bridge\\pr_bulk_rust.cpp",
+  "addedExports": [
+    "_pr_flow_boundary_convex",
+    "_pr_flow_boundary_convex_abi"
+  ],
+  "addedIncludes": [
+    "cmath",
+    "emscripten/heap.h"
+  ],
+  "deltaSha256": "d09ac31c18ac4b5ca0af05fe0441361ff2bc4e0c28c4ad8afc62c82fb20b1892",
+  "scope": "Exact existing live-shape scaled convex planes/bounds extractor, no geometry or skin changes",
+  "compiled": false,
+  "runtimeAdmission": false
+}

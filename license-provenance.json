@@ -139,6 +139,12 @@
       "sha256": "1c4f61ab3f08cbd73acbb6915bcc348d9903ab65706fa0f5cb1dfafe83fe29d0",
       "sourceUrl": "https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/da950a3537927784951853c66618036f332ca0ce/flow/include/nvflow/nanovdb/PNanoVDB.h",
       "copyMethod": "verbatim pinned NVIDIA-supplied source dependency; no added MIT header"
+    },
+    "LICENSES/WebGPU-Types-BSD-3-Clause.txt": {
+      "bytes": 1500,
+      "sha256": "ad88400fc55c2871ba2ed33930dc13001ef01907c2ddcbfa3caa8656e9142f05",
+      "sourceUrl": "https://raw.githubusercontent.com/gpuweb/types/2b7c1c80f92323b12355033b2f1b65fe406a08da/LICENSE",
+      "copyMethod": "verbatim"
     }
   }
 }

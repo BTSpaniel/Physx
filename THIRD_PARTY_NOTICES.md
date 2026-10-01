@@ -106,6 +106,21 @@ The license copy is pinned to that license file's upstream commit
 JNI output was generated with that exact revision. `webidl-util` itself is not
 required or distributed by this browser build.
 
+## WebGPU TypeScript declarations
+
+`types/webgpu.d.ts` is a verbatim copy of `gpuweb/types`'s `dist/index.d.ts`
+at commit `2b7c1c80f92323b12355033b2f1b65fe406a08da`. It retains the
+WebGPU Developers' BSD-3-Clause license, copied in full to
+[WebGPU-Types-BSD-3-Clause.txt](LICENSES/WebGPU-Types-BSD-3-Clause.txt).
+Its source and license hashes are recorded in `source-license-map.json`,
+`license-provenance.json` and `upstream.lock.json`.
+
+The TypeScript compiler used for declaration validation is Microsoft's pinned
+`Microsoft.TypeScript.MSBuild` 5.9.3 development archive. The validation tool
+downloads it into the ignored build workspace and executes its unmodified
+compiler in a browser. The compiler and its standard library files are not
+included in the runtime ZIP.
+
 ## Compiler runtime notices
 
 The build uses Emscripten `4.0.19` and Rust `1.90.0`. Their runtime and library

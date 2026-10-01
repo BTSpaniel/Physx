@@ -70,3 +70,13 @@ Only this bounded standalone package is licensed here. Particle Realms Engine,
 Editor, WebGPU OS, and other project code outside this package keep their
 existing licenses. Authorship credits identify original and custom contributions
 without changing upstream copyrights or claiming upstream endorsement.
+
+The current declaration generator also inventories actual first-party native
+Rust, Blast and Flow exports. It preserves inherited WebIDL interface names
+while expressing the observed prototype methods and 64-bit `bigint` calls.
+Generated `.d.ts` and `.d.mts` entries share the same content; JavaScript addon
+adapters have adjacent generated module declarations. These source changes do
+not change the selected sixteen native inputs or published alpha.2 binaries.
+The accompanying WebGPU ambient declarations are copied verbatim from the
+commit pinned in `upstream.lock.json`, retain their own BSD-3-Clause notice,
+and are identified separately in the source and license maps.

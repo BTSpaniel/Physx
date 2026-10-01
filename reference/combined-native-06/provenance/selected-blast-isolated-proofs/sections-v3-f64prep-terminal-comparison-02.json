@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "startedUtc": "2026-10-01T05:09:47.727293+00:00",
+  "sourceHashes": {
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\compare_sections_fracture.py": "ad1ae4d52f9c7d6aded1eaf88f3d37ae8bc5bd2d3936840f788599c0fa696c5b",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\probe_sections_free_components.py": "bd5c9f0fa0b60509c4e3565c2f1f8dd81e271486d4d16c6258f84da4bfe2d000",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\probe_sections_exact_factor.py": "525f8b65d79e82ac209d966e3d640ba33f7cb0f61e1d7e69ff4198cb456982a9",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\sections-v3-terminal-capture-01.json": "5750ccfad7619b2d7c82c126f667fb975c26675fa7c2347bde74ee2b5812ce9d",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\sections-v3-terminal-original-action-reference-01.json": "ba7b5afe8e4d8a25bb3f21e2f146880824bc84cb6eddc9c243ac0775e0d84a7e",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-26\\materials\\masonry_section_comparison_policy.json": "688db37a30dceed44f7770f827dfd30ad76d9f8ba45951ce07c50c93555be437",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\sections-v3-f64prep-terminal-02.json": "52c2ddc7beff8c0626a34060b88520111b625e7ebcf9da32869cd9d8a927767e",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-26\\materials\\compare_masonry_section_native.py": "b4533c321929b1f1c3e819a4ec8b2ccb1e1c8e3751bbc87425aac1c1b640107c",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-26\\materials\\masonry_interface_oracle.py": "52374b3ce910a505705b59835bc00e6216a87ca5ad53b8241fa869cb8bf9084c",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-26\\materials\\compare_masonry_section_native_total.py": "b12e9d3d1ece4a89a03b28319e9f6933589ea5f5b4a47c5f965b30e55c186aef",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\reference_sections_original_action.py": "4bc5d9e0f958fde318244e017d0bd203f7f40e8ca8e55e4006eecfb155b1408f",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\probe_sections_terminal_qr.py": "2b4d509934667cdb603655d26d53c834461a8728273df6f42c9adc0d2bf994de"
+  },
+  "comparison": {
+    "totalReferenceError": {
+      "energyNormError": 5.820976363028818e-05,
+      "referenceEnergyNorm": 48.63713583215222,
+      "relativeEnergyError": 1.1968172597821406e-06,
+      "relativeEnergyErrorBudget": 2.325878904230194e-05,
+      "totalReferenceErrorPass": true
+    },
+    "originalGradientNorm": 4.901535536241408,
+    "originalGradientLimit": 0.5767827337727438,
+    "originalGradientPass": false,
+    "maximumTractionErrorsPa": [
+      9200.109466552734,
+      5.168430841443771,
+      17.471704694326036
+    ],
+    "maximumTractionBudgetRatio": 0.029035942696487925,
+    "tractionReferencePass": true,
+    "publicF32GradientEnvelope": 1540.7193151991005,
+    "publicF32GradientEnvelopePass": true,
+    "reportedGradientNorm": 0.07570265633174911,
+    "reportedGradientLimit": 0.577809669870855,
+    "reportedGradientPass": true
+  },
+  "progress": [
+    13,
+    0,
+    1,
+    1,
+    13,
+    0,
+    1,
+    3
+  ],
+  "work": [
+    562,
+    1,
+    4433,
+    4433,
+    13,
+    8558,
+    2707128,
+    3744288,
+    32254,
+    32254,
+    3744288,
+    3
+  ],
+  "nativeElapsedMsDiagnosticOnly": 99.88500000536442,
+  "scope": "Raw native f32 live-bond wrenches versus preexisting independent primal/inertia-relief reference. Original policy energy/traction and forward-rounding gates; original private-gradient admission reported separately. No live-scene or realtime claim.",
+  "sourceHashesAfter": {
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\compare_sections_fracture.py": "ad1ae4d52f9c7d6aded1eaf88f3d37ae8bc5bd2d3936840f788599c0fa696c5b",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\probe_sections_free_components.py": "bd5c9f0fa0b60509c4e3565c2f1f8dd81e271486d4d16c6258f84da4bfe2d000",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\probe_sections_exact_factor.py": "525f8b65d79e82ac209d966e3d640ba33f7cb0f61e1d7e69ff4198cb456982a9",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\sections-v3-terminal-capture-01.json": "5750ccfad7619b2d7c82c126f667fb975c26675fa7c2347bde74ee2b5812ce9d",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\sections-v3-terminal-original-action-reference-01.json": "ba7b5afe8e4d8a25bb3f21e2f146880824bc84cb6eddc9c243ac0775e0d84a7e",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-26\\materials\\masonry_section_comparison_policy.json": "688db37a30dceed44f7770f827dfd30ad76d9f8ba45951ce07c50c93555be437",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\sections-v3-f64prep-terminal-02.json": "52c2ddc7beff8c0626a34060b88520111b625e7ebcf9da32869cd9d8a927767e",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-26\\materials\\compare_masonry_section_native.py": "b4533c321929b1f1c3e819a4ec8b2ccb1e1c8e3751bbc87425aac1c1b640107c",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-26\\materials\\masonry_interface_oracle.py": "52374b3ce910a505705b59835bc00e6216a87ca5ad53b8241fa869cb8bf9084c",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-26\\materials\\compare_masonry_section_native_total.py": "b12e9d3d1ece4a89a03b28319e9f6933589ea5f5b4a47c5f965b30e55c186aef",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\reference_sections_original_action.py": "4bc5d9e0f958fde318244e017d0bd203f7f40e8ca8e55e4006eecfb155b1408f",
+    "C:\\Coding\\game\\artifacts\\physics-sandbox-2026-09-30\\blast\\probe_sections_terminal_qr.py": "2b4d509934667cdb603655d26d53c834461a8728273df6f42c9adc0d2bf994de"
+  },
+  "sourceUnchanged": true,
+  "finishedUtc": "2026-10-01T05:09:51.350402+00:00"
+}

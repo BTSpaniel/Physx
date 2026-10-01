@@ -1,0 +1,397 @@
+{
+  "schema": "physx-pe.addon-declarations/v1",
+  "pointerModel": "wasm32",
+  "sources": {
+    "bridge/pr_bulk_rust.cpp": "334a3552f7054a6b43c1c9c74e475696270466ab10f77017ed7f44ed887064c0",
+    "addons/blast/pr_blast_wasm.cpp": "680611d8e7a13bec82f16c3b9e4f99cf98c72a23a305a94cc38cd26ead0ac003",
+    "addons/blast/pr_blast_authoring.cpp": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8",
+    "addons/flow/pr_flow_host.cpp": "e4f34673e63b5a3d0a1a96f10318e4c6f80755633abe478b2586efc4f23b7595"
+  },
+  "exports": {
+    "_pr_blast_authoring_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_authoring_bonds": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "pairs: number",
+        "data: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_authoring_chunk": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "index: number",
+        "out: number",
+        "counts: number"
+      ]
+    },
+    "_pr_blast_authoring_counts": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "out: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_authoring_create": {
+      "returnType": "number",
+      "parameters": [
+        "vertexCount: number",
+        "positions: number",
+        "normals: number",
+        "uvs: number",
+        "indexCount: number",
+        "indices: number",
+        "siteCount: number",
+        "sites: number",
+        "interiorMaterialId: number"
+      ]
+    },
+    "_pr_blast_authoring_destroy": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_blast_authoring_last_error": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_authoring_live_results": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_authoring_mesh": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "index: number",
+        "vertices: number",
+        "indices: number",
+        "materials: number",
+        "vertexCapacity: number",
+        "triangleCapacity: number"
+      ]
+    },
+    "_pr_blast_family_bond_geometry": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_family_bond_healths": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_family_create": {
+      "returnType": "number",
+      "parameters": [
+        "count: number",
+        "chunks: number",
+        "bondCount: number",
+        "bonds: number",
+        "health: number"
+      ]
+    },
+    "_pr_blast_family_create_authored": {
+      "returnType": "number",
+      "parameters": [
+        "count: number",
+        "chunks: number",
+        "bondCount: number",
+        "bonds: number",
+        "healthFraction: number",
+        "areas: number",
+        "centroids: number",
+        "normals: number"
+      ]
+    },
+    "_pr_blast_family_create_physical": {
+      "returnType": "number",
+      "parameters": [
+        "count: number",
+        "chunks: number",
+        "bondCount: number",
+        "bonds: number",
+        "healthFraction: number",
+        "bondAreasM2: number"
+      ]
+    },
+    "_pr_blast_family_damage": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "bondIndex: number",
+        "damage: number"
+      ]
+    },
+    "_pr_blast_family_destroy": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_blast_family_groups": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "groups: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_live_families": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_scene_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_smoke": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_backend": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_configure": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "massesKg: number",
+        "limitsPa: number",
+        "iterations: number"
+      ]
+    },
+    "_pr_blast_stress_state": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_stress_update": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "forcesN: number",
+        "chunkCount: number"
+      ]
+    },
+    "_pr_blast_version": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_bulk_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_bulk_add": {
+      "returnType": "number",
+      "parameters": [
+        "h: number",
+        "id: number",
+        "actor: number"
+      ]
+    },
+    "_pr_bulk_backend": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_bulk_count": {
+      "returnType": "number",
+      "parameters": [
+        "h: number"
+      ]
+    },
+    "_pr_bulk_create": {
+      "returnType": "number",
+      "parameters": [
+        "capacity: number"
+      ]
+    },
+    "_pr_bulk_destroy": {
+      "returnType": "number",
+      "parameters": [
+        "h: number"
+      ]
+    },
+    "_pr_bulk_ids_ptr": {
+      "returnType": "number",
+      "parameters": [
+        "h: number"
+      ]
+    },
+    "_pr_bulk_pose_ptr": {
+      "returnType": "number",
+      "parameters": [
+        "h: number"
+      ]
+    },
+    "_pr_bulk_remove": {
+      "returnType": "number",
+      "parameters": [
+        "h: number",
+        "id: number"
+      ]
+    },
+    "_pr_bulk_sdk_version": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_bulk_snapshot": {
+      "returnType": "number",
+      "parameters": [
+        "h: number"
+      ]
+    },
+    "_pr_flow_host_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_airflow": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "x: number",
+        "y: number",
+        "z: number"
+      ]
+    },
+    "_pr_flow_host_colliders": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "pointer: number",
+        "count: number"
+      ]
+    },
+    "_pr_flow_host_collision_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_complete": {
+      "returnType": "void",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_flow_host_controls": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "pressure: number",
+        "combustion: number",
+        "vorticity: number"
+      ]
+    },
+    "_pr_flow_host_create": {
+      "returnType": "number",
+      "parameters": [
+        "gpuId: number",
+        "maxBlocks: number",
+        "cellSize: number"
+      ]
+    },
+    "_pr_flow_host_destroy": {
+      "returnType": "void",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_flow_host_emitter": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "x: number",
+        "y: number",
+        "z: number",
+        "radius: number",
+        "temperature: number",
+        "fuel: number",
+        "smoke: number",
+        "enabled: number"
+      ]
+    },
+    "_pr_flow_host_geometry_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_live": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_scene": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "layerPointer: number",
+        "layerCount: number",
+        "emitterPointer: number",
+        "emitterCount: number"
+      ]
+    },
+    "_pr_flow_host_scene_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_scene_geometry": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "layerPointer: number",
+        "layerCount: number",
+        "emitterPointer: number",
+        "emitterCount: number",
+        "geometryPointer: number",
+        "geometryCount: number"
+      ]
+    },
+    "_pr_flow_host_step": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "dt: number"
+      ]
+    },
+    "_pr_flow_seed": {
+      "returnType": "number",
+      "parameters": [
+        "values: number",
+        "count: number"
+      ]
+    },
+    "_pr_flow_simd_enabled": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_stage_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_verify": {
+      "returnType": "number",
+      "parameters": [
+        "values: number",
+        "count: number"
+      ]
+    }
+  }
+}

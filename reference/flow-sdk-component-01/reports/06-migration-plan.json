@@ -1,0 +1,201 @@
+{
+  "schema": "physx-pe.prospective-flow-declaration-migration/v1",
+  "scope": "Root-reviewed future integration only. No files applied to production. Regenerate declarations after final coupled native source selection; do not install this declaration-only slice as a runtime build.",
+  "componentSources": {
+    "addons/flow/flow_host_webgpu.mjs": {
+      "operation": "ADMIT_FROM_EXACT_COMPONENT_HANDOFF",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\addons\\flow\\flow_host_webgpu.mjs",
+      "bytes": 74730,
+      "sha256": "46ae8d8d161b7e6596cd44f13c0f6a71760537cefcebaefe7f9fdb3bd7ce8c1a"
+    },
+    "addons/flow/flow_scalar_sources.mjs": {
+      "operation": "ADMIT_FROM_EXACT_COMPONENT_HANDOFF",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\addons\\flow\\flow_scalar_sources.mjs",
+      "bytes": 2704,
+      "sha256": "498bda12e7edf97676a111b2c164d3194895a066e0e975111b66a33ed15e5367"
+    },
+    "addons/flow/flow_solid_boundary.mjs": {
+      "operation": "ADMIT_FROM_EXACT_COMPONENT_HANDOFF",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\addons\\flow\\flow_solid_boundary.mjs",
+      "bytes": 11108,
+      "sha256": "e76313b510d25f83fedaae0339b5569bee17c72ccf712a19894faf2a89fa8d67"
+    },
+    "addons/flow/momentum_exchange_host.h": {
+      "operation": "ADMIT_FROM_EXACT_COMPONENT_HANDOFF",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\addons\\flow\\momentum_exchange_host.h",
+      "bytes": 5794,
+      "sha256": "74282ec648b9059f4e876d489144cbe8187dbb558427cd1134ee542a42f3106f"
+    },
+    "addons/flow/pr_flow_host.cpp": {
+      "operation": "ADMIT_FROM_EXACT_COMPONENT_HANDOFF",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\addons\\flow\\pr_flow_host.cpp",
+      "bytes": 45060,
+      "sha256": "d181a669721575ad5c411baf249fd65e19bafc8e8f04bdb41454f1de5d1e8ba7"
+    },
+    "addons/flow/rebase_host.h": {
+      "operation": "ADMIT_FROM_EXACT_COMPONENT_HANDOFF",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\addons\\flow\\rebase_host.h",
+      "bytes": 3215,
+      "sha256": "88f291eeb4805a5e1efc5e5241f8bafd71965d9a451c560538b7c134deb967c0"
+    }
+  },
+  "sdkFiles": {
+    "addons/flow/flow_host_webgpu.d.mts": {
+      "operation": "REVIEW_REPLACE",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\addons\\flow\\flow_host_webgpu.d.mts",
+      "bytes": 10057,
+      "sha256": "1d22e5feec495039d45188ee479657351fa7dc9184bc82dcf885695b60ef3d88"
+    },
+    "addons/flow/flow_scalar_sources.d.mts": {
+      "operation": "ADD",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\addons\\flow\\flow_scalar_sources.d.mts",
+      "bytes": 512,
+      "sha256": "3d7956057d7c3698a6c06ef1807118e596058eaa3e4a80a5dd7e0f8b245c4113"
+    },
+    "addons/flow/flow_solid_boundary.d.mts": {
+      "operation": "ADD",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\addons\\flow\\flow_solid_boundary.d.mts",
+      "bytes": 705,
+      "sha256": "03d05e800a9e8532860d1d9cf7ce6c3c15bb2cfd821611b0e0006cedd2404157"
+    },
+    "tests/fixtures/flow-sdk-component-01/alpha2-addon-abi.json": {
+      "operation": "ADD",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tests\\fixtures\\flow-sdk-component-01\\alpha2-addon-abi.json",
+      "bytes": 9198,
+      "sha256": "e252c8242fc5a32d8dfa710957231e7501cba60dae4b5b15b0ec1f1ca8cedbc5"
+    },
+    "tests/fixtures/flow-sdk-component-01/alpha2-physx-pe.d.ts": {
+      "operation": "ADD",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tests\\fixtures\\flow-sdk-component-01\\alpha2-physx-pe.d.ts",
+      "bytes": 224812,
+      "sha256": "41fbef09609570a723ca28cf95bb13c7caf903a7f64e3ffeb99f549b77a6ebc9"
+    },
+    "tests/fixtures/flow-sdk-component-01/api-contract-01.json": {
+      "operation": "ADD",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tests\\fixtures\\flow-sdk-component-01\\api-contract-01.json",
+      "bytes": 10705,
+      "sha256": "a649f4f03c074df9fbdc1d6cee2d0310b35482f66432cc517b33098d705cb1e4"
+    },
+    "tests/fixtures/flow-sdk-component-01/source-pins.json": {
+      "operation": "ADD",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tests\\fixtures\\flow-sdk-component-01\\source-pins.json",
+      "bytes": 1156,
+      "sha256": "9113407d57fd09ddb6252761a0da39bd715faf0ace9afc0ba65daceb57754306"
+    },
+    "tests/test_addon_types.py": {
+      "operation": "REVIEW_REPLACE",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tests\\test_addon_types.py",
+      "bytes": 6181,
+      "sha256": "98f95f69441b17b16502428a19be736f214b79a5c5fd4cd369ccd4b7bc64c864"
+    },
+    "tests/test_flow_component_types.py": {
+      "operation": "ADD",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tests\\test_flow_component_types.py",
+      "bytes": 4407,
+      "sha256": "a2c5fceea1e197fdc47d3ee3c50102812eb3056cb1399fe1ca3c1a9c121f0ba9"
+    },
+    "tools/generate_addon_types.py": {
+      "operation": "REVIEW_REPLACE",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tools\\generate_addon_types.py",
+      "bytes": 6731,
+      "sha256": "e500535e28d030a45771bf8954ff089d38d5eb04aac13bf3cf0dab6641a6275f"
+    },
+    "tools/type_templates/flow_host_webgpu.d.mts": {
+      "operation": "REVIEW_REPLACE",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tools\\type_templates\\flow_host_webgpu.d.mts",
+      "bytes": 10057,
+      "sha256": "1d22e5feec495039d45188ee479657351fa7dc9184bc82dcf885695b60ef3d88"
+    },
+    "tools/type_templates/flow_scalar_sources.d.mts": {
+      "operation": "ADD",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tools\\type_templates\\flow_scalar_sources.d.mts",
+      "bytes": 512,
+      "sha256": "3d7956057d7c3698a6c06ef1807118e596058eaa3e4a80a5dd7e0f8b245c4113"
+    },
+    "tools/type_templates/flow_solid_boundary.d.mts": {
+      "operation": "ADD",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tools\\type_templates\\flow_solid_boundary.d.mts",
+      "bytes": 705,
+      "sha256": "03d05e800a9e8532860d1d9cf7ce6c3c15bb2cfd821611b0e0006cedd2404157"
+    },
+    "tools/typecheck_browser.py": {
+      "operation": "REVIEW_REPLACE",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\tools\\typecheck_browser.py",
+      "bytes": 14823,
+      "sha256": "c9912dfbb2394ab515b9b345edf71a150009464ec1d583526cf2361091178c37"
+    },
+    "types/addon-abi.json": {
+      "operation": "REVIEW_REPLACE",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\types\\addon-abi.json",
+      "bytes": 11608,
+      "sha256": "004b31c6436419a0bb87ff4b220178b79dc3ee206cc53f2f07cbcdbf1d38d7f1"
+    },
+    "types/physx-pe.d.mts": {
+      "operation": "REVIEW_REPLACE",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\types\\physx-pe.d.mts",
+      "bytes": 225976,
+      "sha256": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705"
+    },
+    "types/physx-pe.d.ts": {
+      "operation": "REVIEW_REPLACE",
+      "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\types\\physx-pe.d.ts",
+      "bytes": 225976,
+      "sha256": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705"
+    }
+  },
+  "sourceLicenseMap": {
+    "operation": "MERGE_ADMITTED_ROWS_ONLY",
+    "source": "C:\\Coding\\Physx-PE-release\\work\\flow-sdk-component-01\\source-license-map.json",
+    "bytes": 26375,
+    "sha256": "02b834d48f2120f827c7eca9f1b501a07550d15c1ab5c0aa1e507da6a514a13a"
+  },
+  "generatedOutputs": {
+    "types/physx-pe.d.ts": {
+      "bytes": 225976,
+      "sha256": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705"
+    },
+    "types/physx-pe.d.mts": {
+      "bytes": 225976,
+      "sha256": "dc2a8beb0a6513aaf0897adb91477abad845bc8f1406581c766eff61c52e9705"
+    },
+    "types/addon-abi.json": {
+      "bytes": 11608,
+      "sha256": "004b31c6436419a0bb87ff4b220178b79dc3ee206cc53f2f07cbcdbf1d38d7f1"
+    },
+    "addons/flow/flow_host_webgpu.d.mts": {
+      "bytes": 10057,
+      "sha256": "1d22e5feec495039d45188ee479657351fa7dc9184bc82dcf885695b60ef3d88"
+    },
+    "addons/flow/flow_scalar_sources.d.mts": {
+      "bytes": 512,
+      "sha256": "3d7956057d7c3698a6c06ef1807118e596058eaa3e4a80a5dd7e0f8b245c4113"
+    },
+    "addons/flow/flow_solid_boundary.d.mts": {
+      "bytes": 705,
+      "sha256": "03d05e800a9e8532860d1d9cf7ce6c3c15bb2cfd821611b0e0006cedd2404157"
+    },
+    "bridge/physx-bulk-rust.d.mts": {
+      "bytes": 390,
+      "sha256": "e8851d9f42aac72aeb5b622d052afbd9b59112a039ca9064ba56f6f04ad895ff"
+    },
+    "bridge/physx-bulk.d.mts": {
+      "bytes": 913,
+      "sha256": "412b1bdf174e4da0b0cf6a2b5ff08c5b804a1e1d2f0eed8f15db54e77bdf9068"
+    },
+    "addons/flow/webgpu_bridge.d.mts": {
+      "bytes": 2010,
+      "sha256": "ccdcc6654c4e1e137ae30df3e880551b318f592d6b471b342d9d4e0b302df6b4"
+    }
+  },
+  "rootIntegrationRequirements": [
+    "Confirm final coupled selected-source identities including both raw export headers before applying generators/templates.",
+    "Select the complete component native/header/shader closure separately; six declaration overlay files are not a native build kit.",
+    "Regenerate both physx-pe.d.ts and .d.mts and addon-abi.json from the final chosen native sources, including any separately admitted Blast additions.",
+    "Retain MIT custom-contribution scope and inherited NVIDIA/fabmax/WebGPU notices; merge rows instead of replacing broader root licensing inventory.",
+    "Create fresh final same-pair semantic/behavior evidence; leave historical37, endurance, compatibility and alpha.2 release receipts unchanged."
+  ],
+  "productionChangesApplied": false,
+  "nativeBinaryCopied": false,
+  "nativeBuildRun": false,
+  "publicationRun": false
+}

@@ -28,6 +28,7 @@ RUST = ROOT / 'rust/src/lib.rs'
 TARGET = 'wasm32-unknown-emscripten'
 MARKER = '# PR_RUST_BULK_ADDON_V2'
 BLAST_MARKER = '# PR_BLAST_CORE_ADDON_V1'
+NATIVE_MARKER = '# PR_SELECTED_NATIVE_COMPONENTS_V1'
 REPORTS = ROOT / 'reports'
 
 
@@ -261,16 +262,34 @@ def unified_linkage(cmake_source: str, repo: Path, profile: str = 'candidate') -
     destination = repo / 'physx/source/webidlbindings/pr_rust_bulk'
     archive = ROOT / 'work' / f'rust-{profile}' / 'libpr_pose_core.a'
     flow_object = ROOT / 'work/pr_flow_host.o'
+    if profile == 'candidate' and NATIVE_MARKER in cmake_source:
+        from prepare_sources import added_linkage
+        relative = 'physx/source/compiler/cmake/emscripten/PhysXWasmBindings.cmake'
+        expected = unified_linkage(added_linkage(ROOT / 'patches/browser-overlay.patch', relative), repo, profile)
+        if cmake_source != expected:
+            raise lab.LabError('Selected component CMake linkage differs from its exact recipe')
+        return expected
     if profile == 'candidate':
         cmake_source = cmake_source.replace(' ' + cmake_literal(flow_object), '')
         cmake_source = cmake_source.replace('physx-pe.mjs', 'physx-js-webidl.mjs').replace('physx-pe.wasm', 'physx-js-webidl.wasm')
     patched = patch_rust(cmake_source, destination / 'pr_bulk_rust.cpp', destination / 'pr_rust_core.h', archive)
     if profile == 'candidate':
-        patched = patch_blast(patched, repo / 'blast', ROOT / 'addons/blast/pr_blast_wasm.cpp',
-                              ROOT / 'addons/blast/emscripten_nv_compat.h')
-        patched = patched.replace('pr_blast.o -lc', 'pr_blast.o ' + cmake_literal(flow_object) + ' -lc')
-        patched = patched.replace('DEPENDS physx-js-bindings ${PHYSX_TARGETS} pr_bulk_rust.o pr_blast.o ',
-                                  'DEPENDS physx-js-bindings ${PHYSX_TARGETS} pr_bulk_rust.o pr_blast.o ' + cmake_literal(flow_object) + ' ')
+        from native_components import STRICT_FLAGS
+        # Each of these work-owned inputs is freshly source-compiled before
+        # CMake runs. No historical component archive supplies a link input.
+        objects = [ROOT / 'work/pr_blast.o', flow_object, ROOT / 'work/pr_wood_thermal_multirate.o']
+        object_args = ' '.join(cmake_literal(path) for path in objects)
+        link = 'COMMAND em++ glue.o pr_bulk_rust.o -lc -lcompiler_rt '
+        dependency = 'DEPENDS physx-js-bindings ${PHYSX_TARGETS} pr_bulk_rust.o '
+        if patched.count(link) != 1 or patched.count(dependency) != 1:
+            raise lab.LabError('Inspected selected-component link layout changed')
+        patched = patched.replace(link, 'COMMAND em++ glue.o pr_bulk_rust.o ' + object_args + ' -lc -lcompiler_rt ', 1)
+        patched = patched.replace(dependency, dependency + object_args + ' ', 1)
+        final = '${EMCC_WASM_ARGS} -o physx-js-webidl.mjs'
+        if patched.count(final) != 1:
+            raise lab.LabError('Expected exactly one controlled final WASM link')
+        patched = patched.replace(final, '${EMCC_WASM_ARGS} ' + ' '.join(STRICT_FLAGS) + ' -o physx-js-webidl.mjs', 1)
+        patched += '\n' + NATIVE_MARKER + '\n'
         patched = patched.replace('physx-js-webidl.mjs', 'physx-pe.mjs').replace('physx-js-webidl.wasm', 'physx-pe.wasm')
     return patched
 
@@ -297,6 +316,9 @@ def project_generation_env() -> dict[str, str]:
 
 
 def build_wasm(profile: str) -> None:
+    if profile == 'candidate':
+        from flow_source_evidence import require_final_selection
+        require_final_selection(ROOT)
     # Refuse all writes/patches until essential tools and target are available.
     info = doctor()
     if info['wasm_missing']:
@@ -328,8 +350,8 @@ def build_wasm(profile: str) -> None:
     blast_sources: list[Path] = []
     if profile == 'candidate':
         blast_root = repo / 'blast'
-        prepare_stress_sources(blast_root, ROOT / 'work/blast-stress-generated')
-        prepare_authoring_sources(blast_root, ROOT / 'work/blast-authoring-generated')
+        from native_components import compile_native_components, STRICT_FLAGS
+        selected_native = compile_native_components(blast_root, ROOT)
         blast_sources, _ = blast_layout(blast_root, authoring=True)
     archive.parent.mkdir(parents=True, exist_ok=True)
     command(rust_args('wasm', archive))
@@ -341,7 +363,7 @@ def build_wasm(profile: str) -> None:
     cmake.write_text(patched, encoding='utf-8', newline='\n')
     bridge_source_names = list(evidence_tools.BRIDGE)
     if profile == 'candidate':
-        bridge_source_names += evidence_tools.BLAST_BRIDGE + evidence_tools.FLOW_BRIDGE
+        bridge_source_names += evidence_tools.BLAST_BRIDGE + evidence_tools.FLOW_BRIDGE + evidence_tools.THERMAL_BRIDGE
     inputs = {'sdk': actual, 'profile': profile, 'rustc': info.get('rustc'),
         'emscripten': info.get('emcc'), 'rust_archive_sha256': lab.sha256(archive),
         'sources': {n: lab.sha256(ROOT / n) for n in bridge_source_names},
@@ -351,6 +373,7 @@ def build_wasm(profile: str) -> None:
         'source_status': lab.git(repo, 'status', '--porcelain'),
         'compiled': False, 'physics_tested': False}
     if profile == 'candidate':
+        inputs['selected_native_build'] = selected_native
         inputs['blast_headers'] = {str(path.relative_to(blast_root)): lab.sha256(path)
                                   for path in blast_header_inputs(blast_root, authoring=True)}
         inputs['blast_stress_adaptation'] = json.loads((ROOT / 'work/blast-stress-generated/adaptation.json').read_text())
@@ -386,6 +409,22 @@ def build_wasm(profile: str) -> None:
                  'engine_integration_verified': False, 'bridge_sources': inputs['sources']})
     if profile == 'candidate':
         data.update({key: inputs[key] for key in ('blast_sources', 'blast_headers', 'blast_stress_adaptation', 'blast_authoring_adaptation')})
+        from flow_source_evidence import native_capabilities, shader_inventory
+        flow_host = json.loads((ROOT / 'dist/flow-host/build-manifest.json').read_text())
+        data['flow_source_capabilities'] = native_capabilities(flow_host)
+        data['flow_source_build_manifest_sha256'] = lab.sha256(ROOT / 'dist/flow-host/build-manifest.json')
+        data['flow_shader_inventory'] = shader_inventory(ROOT)
+        data['flow_all_translation_units_recompiled'] = flow_host['allTranslationUnitsRecompiled']
+        data['selected_native_source_build'] = selected_native
+        data['selected_native_source_build_manifest_sha256'] = lab.sha256(ROOT / selected_native['reportPath'])
+        data['blast_physical_stress_abi'] = 1
+        data['blast_sections_v3_abi'] = 1
+        data['blast_sections_v3_preparation_abi'] = 1
+        data['blast_stress_mass_abi'] = 1
+        data['wood_thermal_mr_abi'] = 2
+        data['wood_thermal_numerics'] = 9
+        data['flow_convex_query_abi'] = 1
+        data['final_link_strict_flags'] = list(STRICT_FLAGS)
     lab.write_json(manifest, data)
     record(f'{profile}-rust-build.json', data)
     patch = lab.run(['git', '-C', repo, 'diff', '--binary', 'HEAD']).stdout

@@ -1,0 +1,673 @@
+{
+  "schema": "physx-pe.addon-declarations/v1",
+  "pointerModel": "wasm32",
+  "sources": {
+    "bridge/pr_bulk_rust.cpp": "deb780aff61a57e396bc9843907c6d7c83af23ad1fa06346cd3a70c98b2af6bb",
+    "addons/blast/pr_blast_wasm.cpp": "70f140b1c72c442e0b6b3a88db41543756b60be5dcb3d87a80318fce7150941e",
+    "addons/blast/pr_blast_authoring.cpp": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8",
+    "addons/flow/pr_flow_host.cpp": "d181a669721575ad5c411baf249fd65e19bafc8e8f04bdb41454f1de5d1e8ba7",
+    "addons/flow/rebase_host.h": "88f291eeb4805a5e1efc5e5241f8bafd71965d9a451c560538b7c134deb967c0",
+    "addons/flow/momentum_exchange_host.h": "74282ec648b9059f4e876d489144cbe8187dbb558427cd1134ee542a42f3106f",
+    "addons/thermal/pr_wood_thermal.cpp": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856",
+    "addons/thermal/pr_wood_thermal_multirate.cpp": "dcebd0a74cb04a53c16c1544b94d9e875eca32a182f180fb8d72fccf6aa2f857"
+  },
+  "exports": {
+    "_pr_blast_authoring_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_authoring_bonds": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "pairs: number",
+        "data: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_authoring_chunk": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "index: number",
+        "out: number",
+        "counts: number"
+      ]
+    },
+    "_pr_blast_authoring_counts": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "out: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_authoring_create": {
+      "returnType": "number",
+      "parameters": [
+        "vertexCount: number",
+        "positions: number",
+        "normals: number",
+        "uvs: number",
+        "indexCount: number",
+        "indices: number",
+        "siteCount: number",
+        "sites: number",
+        "interiorMaterialId: number"
+      ]
+    },
+    "_pr_blast_authoring_destroy": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_blast_authoring_last_error": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_authoring_live_results": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_authoring_mesh": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "index: number",
+        "vertices: number",
+        "indices: number",
+        "materials: number",
+        "vertexCapacity: number",
+        "triangleCapacity: number"
+      ]
+    },
+    "_pr_blast_family_bond_geometry": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_family_bond_healths": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_family_create": {
+      "returnType": "number",
+      "parameters": [
+        "count: number",
+        "chunks: number",
+        "bondCount: number",
+        "bonds: number",
+        "health: number"
+      ]
+    },
+    "_pr_blast_family_create_authored": {
+      "returnType": "number",
+      "parameters": [
+        "count: number",
+        "chunks: number",
+        "bondCount: number",
+        "bonds: number",
+        "healthFraction: number",
+        "areas: number",
+        "centroids: number",
+        "normals: number"
+      ]
+    },
+    "_pr_blast_family_create_physical": {
+      "returnType": "number",
+      "parameters": [
+        "count: number",
+        "chunks: number",
+        "bondCount: number",
+        "bonds: number",
+        "healthFraction: number",
+        "bondAreasM2: number"
+      ]
+    },
+    "_pr_blast_family_damage": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "bondIndex: number",
+        "damage: number"
+      ]
+    },
+    "_pr_blast_family_destroy": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_blast_family_groups": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "groups: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_live_families": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_scene_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_smoke": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_backend": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_bond_wrench": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "bondIndex: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_stress_configure": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "massesKg: number",
+        "limitsPa: number",
+        "iterations: number"
+      ]
+    },
+    "_pr_blast_stress_configure_physical": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "massesKg: number",
+        "limitsPa: number",
+        "iterations: number"
+      ]
+    },
+    "_pr_blast_stress_configure_sections": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "massesKg: number",
+        "iterations: number",
+        "bondCount: number",
+        "stiffness: number",
+        "offsets: number",
+        "samples: number",
+        "sampleCount: number"
+      ]
+    },
+    "_pr_blast_stress_configure_sections_v3": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "massesKg: number",
+        "iterations: number",
+        "bondCount: number",
+        "stiffness: number",
+        "offsets: number",
+        "samples: number",
+        "sampleCount: number"
+      ]
+    },
+    "_pr_blast_stress_mass_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_physical_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_physical_progress": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_stress_physical_revision": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_blast_stress_physical_tolerance": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_blast_stress_section_results": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_stress_sections_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_sections_v3_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_sections_v3_preparation_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_blast_stress_sections_v3_work": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_stress_set_masses": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "massesKg: number",
+        "chunkCount: number"
+      ]
+    },
+    "_pr_blast_stress_state": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_blast_stress_update": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "forcesN: number",
+        "chunkCount: number"
+      ]
+    },
+    "_pr_blast_stress_update_physical": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "forcesN: number",
+        "chunkCount: number"
+      ]
+    },
+    "_pr_blast_version": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_bulk_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_bulk_add": {
+      "returnType": "number",
+      "parameters": [
+        "h: number",
+        "id: number",
+        "actor: number"
+      ]
+    },
+    "_pr_bulk_backend": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_bulk_count": {
+      "returnType": "number",
+      "parameters": [
+        "h: number"
+      ]
+    },
+    "_pr_bulk_create": {
+      "returnType": "number",
+      "parameters": [
+        "capacity: number"
+      ]
+    },
+    "_pr_bulk_destroy": {
+      "returnType": "number",
+      "parameters": [
+        "h: number"
+      ]
+    },
+    "_pr_bulk_ids_ptr": {
+      "returnType": "number",
+      "parameters": [
+        "h: number"
+      ]
+    },
+    "_pr_bulk_pose_ptr": {
+      "returnType": "number",
+      "parameters": [
+        "h: number"
+      ]
+    },
+    "_pr_bulk_remove": {
+      "returnType": "number",
+      "parameters": [
+        "h: number",
+        "id: number"
+      ]
+    },
+    "_pr_bulk_sdk_version": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_bulk_snapshot": {
+      "returnType": "number",
+      "parameters": [
+        "h: number"
+      ]
+    },
+    "_pr_flow_boundary_convex": {
+      "returnType": "number",
+      "parameters": [
+        "shapePointer: number",
+        "output: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_flow_boundary_convex_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_airflow": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "x: number",
+        "y: number",
+        "z: number"
+      ]
+    },
+    "_pr_flow_host_colliders": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "pointer: number",
+        "count: number"
+      ]
+    },
+    "_pr_flow_host_collision_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_complete": {
+      "returnType": "void",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_flow_host_controls": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "pressure: number",
+        "combustion: number",
+        "vorticity: number"
+      ]
+    },
+    "_pr_flow_host_create": {
+      "returnType": "number",
+      "parameters": [
+        "gpuId: number",
+        "maxBlocks: number",
+        "cellSize: number"
+      ]
+    },
+    "_pr_flow_host_destroy": {
+      "returnType": "void",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_flow_host_emitter": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "x: number",
+        "y: number",
+        "z: number",
+        "radius: number",
+        "temperature: number",
+        "fuel: number",
+        "smoke: number",
+        "enabled: number"
+      ]
+    },
+    "_pr_flow_host_geometry_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_live": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_momentum_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_momentum_commit": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "sequence: number",
+        "pointer: number",
+        "count: number"
+      ]
+    },
+    "_pr_flow_host_momentum_data": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "sequence: number"
+      ]
+    },
+    "_pr_flow_host_momentum_prepare": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "capacity: number"
+      ]
+    },
+    "_pr_flow_host_rebase": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "x: number",
+        "y: number",
+        "z: number",
+        "commit: number"
+      ]
+    },
+    "_pr_flow_host_rebase_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_rebase_period": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "output: number"
+      ]
+    },
+    "_pr_flow_host_scalar_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_scalar_count": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_flow_host_scalar_dt": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_flow_host_scalar_frame": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_flow_host_scalar_receipt": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number"
+      ]
+    },
+    "_pr_flow_host_scalar_sources": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "records: number",
+        "count: number"
+      ]
+    },
+    "_pr_flow_host_scene": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "layerPointer: number",
+        "layerCount: number",
+        "emitterPointer: number",
+        "emitterCount: number"
+      ]
+    },
+    "_pr_flow_host_scene_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_scene_geometry": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "layerPointer: number",
+        "layerCount: number",
+        "emitterPointer: number",
+        "emitterCount: number",
+        "geometryPointer: number",
+        "geometryCount: number"
+      ]
+    },
+    "_pr_flow_host_solid_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_host_solids": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "records: number",
+        "count: number",
+        "planeData: number",
+        "planeCount: number"
+      ]
+    },
+    "_pr_flow_host_step": {
+      "returnType": "number",
+      "parameters": [
+        "handle: number",
+        "dt: number"
+      ]
+    },
+    "_pr_flow_seed": {
+      "returnType": "number",
+      "parameters": [
+        "values: number",
+        "count: number"
+      ]
+    },
+    "_pr_flow_simd_enabled": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_stage_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_flow_verify": {
+      "returnType": "number",
+      "parameters": [
+        "values: number",
+        "count: number"
+      ]
+    },
+    "_pr_wood_thermal_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_wood_thermal_mr_abi": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_wood_thermal_mr_numerics": {
+      "returnType": "number",
+      "parameters": []
+    },
+    "_pr_wood_thermal_mr_step": {
+      "returnType": "number",
+      "parameters": [
+        "arena: number",
+        "bytes: number",
+        "workspace: number",
+        "workspaceSize: number",
+        "dt: number"
+      ]
+    },
+    "_pr_wood_thermal_mr_workspace_bytes": {
+      "returnType": "number",
+      "parameters": [
+        "layers: number",
+        "edges: number",
+        "boundaries: number",
+        "cells: number"
+      ]
+    },
+    "_pr_wood_thermal_scratch_bytes": {
+      "returnType": "number",
+      "parameters": [
+        "layerCount: number",
+        "boundaryCount: number"
+      ]
+    },
+    "_pr_wood_thermal_step": {
+      "returnType": "number",
+      "parameters": [
+        "arena: number",
+        "byteLength: number",
+        "dt: number"
+      ]
+    }
+  }
+}

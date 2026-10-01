@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import sys
 import threading
 from datetime import datetime, timezone
@@ -23,6 +24,7 @@ def main() -> int:
     parser.add_argument("--hardware", action="store_true")
     parser.add_argument("--report", type=Path, default=ROOT / "reports/flow-wgsl-browser.json")
     parser.add_argument("--modules-only", action="store_true")
+    parser.add_argument("--include-addons", action="store_true", help="Check the complete selected 124-module source corpus")
     parser.add_argument("--mesh-scan", action="store_true")
     parser.add_argument("--exclude-shader", action="append", default=[],
                         help="Exact manifest path to omit; omissions prevent full-corpus acceptance")
@@ -34,6 +36,7 @@ def main() -> int:
     payload = [{"name": p.relative_to(directory).as_posix(),
                 "code": p.read_text(encoding="utf-8"),
                 "sha256": hashlib.sha256(p.read_bytes()).hexdigest()} for p in files]
+    os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(ROOT / "work/local-pc/browsers"))
     server = create_server()
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
@@ -67,9 +70,11 @@ def main() -> int:
             raise RuntimeError("WGSL files differ from their build manifest")
         # Preserve the original 97-module/96-selected-pipeline acceptance.
         # Derived operators have their own native numerical acceptance suites.
-        payload = [row for row in payload if row['name'] in expected]
+        if not args.include_addons:
+            payload = [row for row in payload if row['name'] in expected]
+        report['selectedCompleteCorpus'] = args.include_addons
         report["corpusStatus"] = manifest["status"]
-        report["configuredShaderCount"] = manifest["shaderCount"]
+        report["configuredShaderCount"] = len(payload)
     unknown = set(args.exclude_shader) - {row["name"] for row in payload}
     if unknown:
         server.shutdown()

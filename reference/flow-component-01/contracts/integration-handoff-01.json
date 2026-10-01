@@ -1,0 +1,107 @@
+{
+  "schema": "flow-integration-handoff-v1",
+  "status": "COMPONENT_COMPILED_AND_OFFLINE_ADMISSION_TESTED",
+  "files": {
+    "dist/flow-component/manifest.json": {
+      "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\dist\\flow-component\\manifest.json",
+      "sha256": "ef69b8bb900e140a4a3fc490802fb5b07c96b86e10828cf542d182eefad7b0cb",
+      "bytes": 134554
+    },
+    "dist/flow-host/build-manifest.json": {
+      "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\dist\\flow-host\\build-manifest.json",
+      "sha256": "4a1b2f4d7239ad07dead332ee9430fc183aa53c17fa1817728272722cfd0a92b",
+      "bytes": 36705
+    },
+    "work/pr_flow_host.o": {
+      "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\work\\pr_flow_host.o",
+      "sha256": "53a70fb81fab0039d8bd380460b2d96c8e600ea5a214671fc487cbc956f402e9",
+      "bytes": 1805035
+    },
+    "reports/component-build.json": {
+      "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\reports\\component-build.json",
+      "sha256": "925a29c2d471ba23d5329aedbad4295c50d673df78aa86a54b1a3b171c95bedb",
+      "bytes": 162042
+    },
+    "reports/component-build.log": {
+      "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\reports\\component-build.log",
+      "sha256": "3984e6c1828d0a379183bc3da9817fe3d5cc3ac3d8db449a9d99772f7b20f428",
+      "bytes": 37143
+    },
+    "reports/contract-tests.log": {
+      "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\reports\\contract-tests.log",
+      "sha256": "186ee5d6f25cfe2d50bb8d26f5be421546cd0690c6003be31a1e63260c80b982",
+      "bytes": 850
+    },
+    "source-freeze.json": {
+      "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\source-freeze.json",
+      "sha256": "092b246599b58e09969b38e469a4504eb7ba6d194c19ea1f291eaf79fac13da5",
+      "bytes": 79727
+    },
+    "contracts/api-contract-01.json": {
+      "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\contracts\\api-contract-01.json",
+      "sha256": "a649f4f03c074df9fbdc1d6cee2d0310b35482f66432cc517b33098d705cb1e4",
+      "bytes": 10705
+    },
+    "contracts/proof-contract-01.json": {
+      "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\contracts\\proof-contract-01.json",
+      "sha256": "fc9a40f778cd10fac37eb64d0c51d11f5e38693c4b2ea974a0a5dea39692d610",
+      "bytes": 352343
+    }
+  },
+  "baselineInventory": {
+    "path": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\integration-inventory-02.json",
+    "sha256": "d5708b65fe25361346d0de65b424fadd6256c98604465b0210eb4e841dd8654e"
+  },
+  "compiler": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 4.0.19 (08e2de1031913e4ba7963b1c56f35f036a7d4d56)\nCopyright (C) 2025 the Emscripten authors (see AUTHORS.txt)\nThis is free and open source software under the MIT license.\nThere is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "capabilities": {
+    "flowHostAbi": 1,
+    "flowSolidBoundaryAbi": 1,
+    "flowScalarSourceAbi": 1,
+    "flowRebaseAbi": 1,
+    "flowMomentumExchangeAbi": 1
+  },
+  "counts": {
+    "componentInputs": 710,
+    "shaderInventoryFiles": 252,
+    "originalShaders": 97,
+    "solidShaders": 21,
+    "scalarShaders": 4,
+    "momentumShaders": 2,
+    "hostHeaders": 124,
+    "generatedIncludeWrappers": 6,
+    "offlineAdmissionGroups": 5
+  },
+  "finalLinkRequirements": {
+    "status": "NOT_LINKED",
+    "linkExactlyOnce": "C:\\Users\\btspa\\Downloads\\particle-realms-physx-local-pc\\PhysX-Local-PC\\particle-realms-physx-rust-python-511\\work\\flow-correctness\\unified-component-01\\work\\pr_flow_host.o",
+    "replacePriorFlowObject": true,
+    "mustNotLinkTwoFlowHosts": true,
+    "compilerMustEqual": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 4.0.19 (08e2de1031913e4ba7963b1c56f35f036a7d4d56)\nCopyright (C) 2025 the Emscripten authors (see AUTHORS.txt)\nThis is free and open source software under the MIT license.\nThere is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "flowComponent": {
+      "schema": "flow-component-link-v1",
+      "manifestSha256": "ef69b8bb900e140a4a3fc490802fb5b07c96b86e10828cf542d182eefad7b0cb",
+      "objectSha256": "53a70fb81fab0039d8bd380460b2d96c8e600ea5a214671fc487cbc956f402e9",
+      "objectBytes": 1805035,
+      "linkInput": "Use the exact object path appearing in the actual em++ command (WSL paths accepted by verifier).",
+      "linkCommandIndex": "Integer index of actual final link command in commands[].",
+      "capabilities": {
+        "flowHostAbi": 1,
+        "flowSolidBoundaryAbi": 1,
+        "flowScalarSourceAbi": 1,
+        "flowRebaseAbi": 1,
+        "flowMomentumExchangeAbi": 1
+      }
+    },
+    "bridgeSources": "All addons/flow/ .py/.mjs/.h/.hlsli/.hlsl entries from component inputs, exact relative names and hashes.",
+    "artifacts": "Actual final physx-pe.mjs and physx-pe.wasm {sha256,bytes}; never copy historical pair hashes.",
+    "commands": "Actual argv arrays, including em++ input object exactly once and -o path for served final loader.",
+    "proofs": "Run the two source-bound routes from contracts/proof-contract-01.json on that final same-pair module. Also retain solid/scalar/legacy gates required by root.",
+    "installation": "Only root-owned installer admission after all combined gates. No installation or SDK publication performed."
+  },
+  "standalonePairByteIdentity": {
+    "loader": "2785a01037482dad24a552b18cf494e98051bb680bd8f23f30d3c4801359b375",
+    "wasm": "b9784aa203f5e6cb1253df846d96e169240423745bab0d766505433fa24ad13f",
+    "meaning": "Regenerated outputs exactly match proven native06. Existing standalone numerical proofs remain historical; they cannot qualify final unified installation."
+  },
+  "upstream": "Pinned Flow bytes untouched; original build substitutes only six generated include wrappers with first-party appendices. Full upstream/header/shader input hashes are in component manifest."
+}

@@ -1,0 +1,267 @@
+{
+  "abi": 1,
+  "component": "Flow analytic solid boundary operators",
+  "shaders": [
+    {
+      "source": "source/nvflow/shaders/AdvectionDensity1CS.hlsl",
+      "sourceSha256": "16b54db9f5cacd14bc513978ccb13fdafca36931f3b3c3911e67ad9a1bfbb99d",
+      "derivedSourceSha256": "1044dbbcbf5e0db1214171276e33e75b7dc6e7e9a79d9d9aa30273d861bedace",
+      "wgsl": "addons/solid/SolidAdvectionDensity1CS.wgsl",
+      "wgslSha256": "b3965831b62dbfca366326935d5fddcbcdc357af57c4b234a361f7a98bc96101",
+      "reflection": "addons/solid/SolidAdvectionDensity1CS.reflection.json",
+      "reflectionSha256": "c6729f8a5603f4e3d333404c4c26354566d9d76a0eaa949d9cdc4ececdaec81d",
+      "storageAccessNarrowed": [
+        "densityOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/AdvectionDensity2CS.hlsl",
+      "sourceSha256": "4c6334e44d2d68059f0121f22c3563d26be556f87cda68fe74261b9d499d0041",
+      "derivedSourceSha256": "ac8b98ef628997c6c1a85cebcf9ca33a60d8b39f5286af80210ed51eefa3a6ba",
+      "wgsl": "addons/solid/SolidAdvectionDensity2CS.wgsl",
+      "wgslSha256": "6aaf5db1f81de289688166577578e0d5f621f6dcb2971700117f2cad4ef83e49",
+      "reflection": "addons/solid/SolidAdvectionDensity2CS.reflection.json",
+      "reflectionSha256": "e911397addc30f4d2f2a36a3c18b4032623b5c072bc6e82c212e9b8133e01c53",
+      "storageAccessNarrowed": [
+        "densityOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/AdvectionVelocity1CS.hlsl",
+      "sourceSha256": "b428bbdcd10e5433965e415f4304d1ea2add5ac31fccb449a3e7e804c0ecc008",
+      "derivedSourceSha256": "a73e934b502b946344f3d99c000b10d9e8887ac188842bbff78b4d56de1eafbc",
+      "wgsl": "addons/solid/SolidAdvectionVelocity1CS.wgsl",
+      "wgslSha256": "c60b0523b7ab4b17d1449d2f9d84e3807d11a81b433832950372b9b1f10bf155",
+      "reflection": "addons/solid/SolidAdvectionVelocity1CS.reflection.json",
+      "reflectionSha256": "63aefaf37667269930f95f201ca4d34b407185dcf6b0f12dd6d50c54daf226f4",
+      "storageAccessNarrowed": [
+        "velocityOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/AdvectionVelocity2CS.hlsl",
+      "sourceSha256": "fe0e1030e8005c263682343b8658e313035e02d19116cec9419f0696d5bf49b2",
+      "derivedSourceSha256": "b80b7e15bc7855c6036502468f459503dfe88ddb0580af31ff95e327ba12e5a0",
+      "wgsl": "addons/solid/SolidAdvectionVelocity2CS.wgsl",
+      "wgslSha256": "e2d86b86c40d14c90368e17f64f5519cb26a3b06f8998bd6d3fbf3b97d38fb4f",
+      "reflection": "addons/solid/SolidAdvectionVelocity2CS.reflection.json",
+      "reflectionSha256": "c566d07444067340e87cc5a2fd9c7f924faa7ecd3274752dcc8b34b2e9b6fa68",
+      "storageAccessNarrowed": [
+        "densityCoarseOut_0",
+        "velocityOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/AdvectionDownsampleCS.hlsl",
+      "sourceSha256": "56d0adf824c5088bc6ae69e0f94220ecbe32d59c025c309d02901488e04a3b46",
+      "derivedSourceSha256": "7236f1b19e5044d0e4d49b35b8d53e921b06389bbf4a568868c5b99200786add",
+      "wgsl": "addons/solid/SolidAdvectionDownsampleCS.wgsl",
+      "wgslSha256": "e28ea7d96ef4cfe02d8be1e0017404beb2bb3a63333c51c7a4d7254eb4817691",
+      "reflection": "addons/solid/SolidAdvectionDownsampleCS.reflection.json",
+      "reflectionSha256": "e5d3921304a272f63cbe975af2e8c8f7d247e691552a7ba55ea0a97326236fbd",
+      "storageAccessNarrowed": [
+        "densityCoarseOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/AdvectionFadeDensityCS.hlsl",
+      "sourceSha256": "fa8c25d55bdcfd430b37697761a01c3976e6761889ac0eced2d5193c8e9f645f",
+      "derivedSourceSha256": "3e10122a2829b482e84fd6704907592d5b757a6ff98d97af33f8b21874ab0926",
+      "wgsl": "addons/solid/SolidAdvectionFadeDensityCS.wgsl",
+      "wgslSha256": "0f9e05e129bade0042aa454a829511f0ef8723bbade4c178ad40c8db98cf8087",
+      "reflection": "addons/solid/SolidAdvectionFadeDensityCS.reflection.json",
+      "reflectionSha256": "8b5a9bfc1e51c193a1601aa92c455a62b98acfba84771f70ec0028511f5160dc",
+      "storageAccessNarrowed": [
+        "densityOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/AdvectionFadeVelocityCS.hlsl",
+      "sourceSha256": "d53e7795aa1a6e7e31cd869d836f8bbcc4ccf53dc9a1334ba11b819948764f7b",
+      "derivedSourceSha256": "1c2eda2872b876002c59c27169131b272005513a9d7cc378c5dbb1ef824ba7dd",
+      "wgsl": "addons/solid/SolidAdvectionFadeVelocityCS.wgsl",
+      "wgslSha256": "b3f2ebbb2403c471893b766660eccff69cd73d2c2dccae20e9be451edd52b9c7",
+      "reflection": "addons/solid/SolidAdvectionFadeVelocityCS.reflection.json",
+      "reflectionSha256": "d29d5ade321c5ca15010960a0941189a1c513b81b7bfcc819e34a3292217c7b7",
+      "storageAccessNarrowed": [
+        "velocityOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/AdvectionSimpleCS.hlsl",
+      "sourceSha256": "1ec7dd82df902bc66bf52e3f066d1f9c062a270d8681ecc33585114a47ed0e80",
+      "derivedSourceSha256": "31bee200d4b41d947391c0e80da79cf9b38995b2c86baeabf9c61b0911d7b6bd",
+      "wgsl": "addons/solid/SolidAdvectionSimpleCS.wgsl",
+      "wgslSha256": "de6b379efc89058bafd3d69cec73389848a385a72bb8451887beffb0a2abdaf2",
+      "reflection": "addons/solid/SolidAdvectionSimpleCS.reflection.json",
+      "reflectionSha256": "60f6313b980d7c95b659079fe0c799b4407830f3b4c9de43456a444cfa758c8d",
+      "storageAccessNarrowed": [
+        "valueOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/PressureDivergenceCS.hlsl",
+      "sourceSha256": "10c8c2912a779c595978dd0e014a971b71a0dd417c4ee7639a729530c423bdc8",
+      "derivedSourceSha256": "0624efe555d0a4a98470249af81b901fdd4a49b4d628d6b6d790888976c1d78b",
+      "wgsl": "addons/solid/SolidPressureDivergenceCS.wgsl",
+      "wgslSha256": "d7a867faf6b28f3a89cbe036bf39c7f9d9dc83a4492d8c86ed7b96e8911b568f",
+      "reflection": "addons/solid/SolidPressureDivergenceCS.reflection.json",
+      "reflectionSha256": "332552b4283e2cf21a18e2b13501d0f54af347e151cdaaa3f4de691d5b82ec16",
+      "storageAccessNarrowed": [
+        "pressureOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/PressureJacobiCS.hlsl",
+      "sourceSha256": "27ab0d8ede04f1d33db99941d37d0a5913868883f9107c77b4affadb8330c2a6",
+      "derivedSourceSha256": "d0242a5b51a6d037f0ae0ce2c83cb6473d5d39039989bd06dc2c07de9c9d95d9",
+      "wgsl": "addons/solid/SolidPressureJacobiCS.wgsl",
+      "wgslSha256": "f61b80e6965b8b9c04a136441c3ba08d8ce009c7bd9da5d02b72c3551ddc4e74",
+      "reflection": "addons/solid/SolidPressureJacobiCS.reflection.json",
+      "reflectionSha256": "d17718da33fa74935b7ecccb01de357bf40245120988ea2343a4d26a303ccfa5",
+      "storageAccessNarrowed": [
+        "pressureOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/PressureSubtractCS.hlsl",
+      "sourceSha256": "7aed20785fd90aaf7f18e643a0695bec47e5d3c0965cf45b9f72a0b5c4b97cb1",
+      "derivedSourceSha256": "63c380138327bed10c8f2d8f48b78466085d0250381dff83f10c9305ed091d0b",
+      "wgsl": "addons/solid/SolidPressureSubtractCS.wgsl",
+      "wgslSha256": "2802da8b44cb94256ba5f0255eaa6de262766a661fb6e7f85d94d05def1b0b80",
+      "reflection": "addons/solid/SolidPressureSubtractCS.reflection.json",
+      "reflectionSha256": "d01e21f8ced5064936b43508a263277b65a1855604208eec9c7d6d95c01dd5e1",
+      "storageAccessNarrowed": [
+        "velocityOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflowext/shaders/EmitterSimpleCS.hlsl",
+      "sourceSha256": "e8ea9b5b915900c492aa3c3cd82c388eed4e89abeab805beec166c99d37345b7",
+      "derivedSourceSha256": "7ec69ccc2b4e510efd0dd8636da6b81bed00696caf0ed067facf042881436dd9",
+      "wgsl": "addons/solid/SolidEmitterSimpleCS.wgsl",
+      "wgslSha256": "71e487b51156d0aa33fd84c8d458bf257d758c0e4139688de3ecc93f8ca92285",
+      "reflection": "addons/solid/SolidEmitterSimpleCS.reflection.json",
+      "reflectionSha256": "8e0b200a376a236fce6626dc7a41f9cb03e4e46afe8066ff51fc6697e20ce76a",
+      "storageAccessNarrowed": [
+        "valueOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflowext/shaders/EmitterBoxCS.hlsl",
+      "sourceSha256": "8baff9f7622e1a872aea4a6acf0777d114d1f03a8540c50acda7be33d12a12c4",
+      "derivedSourceSha256": "8cd5fcc58114dde29a7a10c624003812e8d244dc8c9dc8ce193f8429f1221de3",
+      "wgsl": "addons/solid/SolidEmitterBoxCS.wgsl",
+      "wgslSha256": "eec002c52146867d5f486b92b76635a0ad7fa5af7d4f251ceb714f5c6c1d8a66",
+      "reflection": "addons/solid/SolidEmitterBoxCS.reflection.json",
+      "reflectionSha256": "12a79bee098a242553d459e6ac03ba05486ce072d9d421aa13a640d18a09807a",
+      "storageAccessNarrowed": [
+        "valueOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflowext/shaders/EmitterMeshApplyCS.hlsl",
+      "sourceSha256": "f1982fb9fca8178acc4803760b51a987ce6f381d2926ca8695d54faa18d99ea5",
+      "derivedSourceSha256": "dcb2e69f85f7705050cf719cc57bb88a8aafc119efa154eb9b7f19b47877d1d9",
+      "wgsl": "addons/solid/SolidEmitterMeshApplyCS.wgsl",
+      "wgslSha256": "014980a7a066a4e8d499cb54cf7498b95d9c4e18f25bda16b6c5ea28c6522b99",
+      "reflection": "addons/solid/SolidEmitterMeshApplyCS.reflection.json",
+      "reflectionSha256": "fe1d4265a26daa7163cde4c4259f7bca8ec7e133b43732d8aeeaae29609978e4",
+      "storageAccessNarrowed": [
+        "valueOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflowext/shaders/EmitterNanoVdb2CS.hlsl",
+      "sourceSha256": "7b79587ec412106b6267e6aba05d452d27b47c7ef9b53644ad8bc6c92dc4f6f1",
+      "derivedSourceSha256": "6f82a996aed551f2805f5a0e54d2a8ce8fd367b9fcc613b225e7a6d94d8e4a78",
+      "wgsl": "addons/solid/SolidEmitterNanoVdb2CS.wgsl",
+      "wgslSha256": "cddb6bc746f2e3b54089065848b32f6e6c72c378517139ba023e24b7d44909bf",
+      "reflection": "addons/solid/SolidEmitterNanoVdb2CS.reflection.json",
+      "reflectionSha256": "7ea6a63c9b9770135ed0effd4e03e0643819c524da8185819786c16742686433",
+      "storageAccessNarrowed": [
+        "valueOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflowext/shaders/EmitterPoint3CS.hlsl",
+      "sourceSha256": "ccfc36cae52ad8b6c5f5fc4c1652ec3a3f86765c24f05bf0ae5cf5b8330fe6ee",
+      "derivedSourceSha256": "693a48dd0f2026909499d0b5e8038dd3f2e6df49034060a3d4a5fa7fdb68f016",
+      "wgsl": "addons/solid/SolidEmitterPoint3CS.wgsl",
+      "wgslSha256": "e7e2054a95c0ef5ce9db405ba2b3c703e273379faa9fa6405e9178c13d49119b",
+      "reflection": "addons/solid/SolidEmitterPoint3CS.reflection.json",
+      "reflectionSha256": "9fbcad65bd630f5ae6d80e4865146e06f6a7ce2d8535a43121bba8081e1aa782",
+      "storageAccessNarrowed": [
+        "valueOut_0",
+        "voxelWeightOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflowext/shaders/EmitterPoint4CS.hlsl",
+      "sourceSha256": "6b1186425f870c155d7224adb57c3c3e2163c697a3299ca86dfb9c301327538e",
+      "derivedSourceSha256": "c6e2fe920995202a3b64d098953ca13daf5f0389f0b898b6b9e89c4e894cf585",
+      "wgsl": "addons/solid/SolidEmitterPoint4CS.wgsl",
+      "wgslSha256": "58be6ba81bf54ecdc0f7519ee06aa96c5b1f5ea8dd76854bb5480eebe3555351",
+      "reflection": "addons/solid/SolidEmitterPoint4CS.reflection.json",
+      "reflectionSha256": "56815f4ec17c0f5f47552e5f3c3619db1ecd0629228f209a897852e7edc701b7",
+      "storageAccessNarrowed": [
+        "coarseValueOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflowext/shaders/EmitterPointClearDownsampleCS.hlsl",
+      "sourceSha256": "a359eb6c7371cecb9f0d69833ca0a4895f1c99c9f79d77de15d741abb339c9ef",
+      "derivedSourceSha256": "9035b15674ab6ef49281e1c37f71ca6b7365feb980bba398309085737955e2cf",
+      "wgsl": "addons/solid/SolidEmitterPointClearDownsampleCS.wgsl",
+      "wgslSha256": "90fa8d3dd8a6fd79a328696c8801a025b908a66c83f33be26739d27758823769",
+      "reflection": "addons/solid/SolidEmitterPointClearDownsampleCS.reflection.json",
+      "reflectionSha256": "7c90c2f260418be6ddf822bd4e3c31f338fb66ed13941e30c469ff8218a7337e",
+      "storageAccessNarrowed": [
+        "valueOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflowext/shaders/EmitterPointClearMarkedCS.hlsl",
+      "sourceSha256": "7d5935671d1ad49321750093a707f105fd24540752351055a5e0543c10d3ff9c",
+      "derivedSourceSha256": "af49fdc5389e7db502c55f2f8301d60d3d5dc816f461ea1e00092d2874779deb",
+      "wgsl": "addons/solid/SolidEmitterPointClearMarkedCS.wgsl",
+      "wgslSha256": "c6d3853f3426f81eef35a9105d5dc586496cbd6b39fa38485a65f604d1729721",
+      "reflection": "addons/solid/SolidEmitterPointClearMarkedCS.reflection.json",
+      "reflectionSha256": "469717fc92d81c0c4500f54e91b5fbc595d128804a5448381840ad85fa84fe87",
+      "storageAccessNarrowed": [
+        "valueOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflowext/shaders/EmitterTextureCS.hlsl",
+      "sourceSha256": "c385545c7161a99e1ea1d6b470e6436caa9c66aadcd9e740c5fc464db9149470",
+      "derivedSourceSha256": "6097b87605cb3ad92a5b9f71cf8bec9550cfe401dc118d11efe388001ef56a18",
+      "wgsl": "addons/solid/SolidEmitterTextureCS.wgsl",
+      "wgslSha256": "5a0aa876f5c96aa3ee3587b17b3fdfe49959e7a74bf46a61b816639f9b25e7cb",
+      "reflection": "addons/solid/SolidEmitterTextureCS.reflection.json",
+      "reflectionSha256": "e9d9af55a9dc13bac3a9a93ce881da3f92d63d097d9bfa0be3f9e71e5f51e3e9",
+      "storageAccessNarrowed": [
+        "valueOut_0"
+      ]
+    },
+    {
+      "source": "source/nvflow/shaders/Vorticity2CS.hlsl",
+      "sourceSha256": "2512e4e0684a059e1b3784eba69620da3350433b5957cd181d8ab4e5e7e292bc",
+      "derivedSourceSha256": "36627a2b18c204d06cfa2b429a49dcb4d4c1abd3e5779de7d164fa54c1a974b1",
+      "wgsl": "addons/solid/SolidVorticity2CS.wgsl",
+      "wgslSha256": "07f241b1e86446918469e83a0bd955d85c05a06d3686c13e16ff155642aa217f",
+      "reflection": "addons/solid/SolidVorticity2CS.reflection.json",
+      "reflectionSha256": "dfa25d50ebcd69674f57f4154d03de0b0966234926f939f917b5ab069d956399",
+      "storageAccessNarrowed": [
+        "velocityOut_0"
+      ]
+    }
+  ],
+  "sourceHashes": {
+    "PrSolidBoundary.hlsli": "847d10772735bbb0e371f0909095fff036533389470a59d68019cfe42cd749fa",
+    "PressureDivergenceCS.body.hlsli": "826b7f60546cef269c32246ab3d0fe794d6f104ae4152124504e53c26c468d7e",
+    "PressureJacobiCS.body.hlsli": "21943c9d0f7de6cda55b69f75677d9b1caec234e59faa856d8d51d3cb3a0a731",
+    "PressureSubtractCS.body.hlsli": "5bbe67a00855a8247f6f5d122a39c51e300442494ba50e0f0cd9cfc7bc1f22d9",
+    "compile_solid_wgsl.py": "720fbf3c481e76edf9a359c171309ae564fa620cb790ea482cdfa29c97baff3c"
+  }
+}

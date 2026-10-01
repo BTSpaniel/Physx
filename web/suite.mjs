@@ -2,6 +2,8 @@
 // Real PhysX smoke tests. There is deliberately NO substitute/fake physics backend.
 import {PhysXBulk} from '../bridge/physx-bulk.mjs';
 import {runRigidRegressions} from './regressions.mjs';
+import {runAdvancedRegressions} from './advanced-regressions.mjs';
+import {runVehicleCallbackRegressions} from './vehicle-callback-regressions.mjs';
 const versions={baseline:'5.6.1',candidate:'5.11.0'};
 export const decodeVersion=n=>`${(n>>>24)&255}.${(n>>>16)&255}.${(n>>>8)&255}`;
 const assert=(ok,message)=>{if(!ok)throw new Error(message);};
@@ -46,9 +48,9 @@ export async function instantiateVerified(artifacts, options={}) {
 export async function runSuite(profile,onTest=()=>{}) {
   const report={profile,started:new Date().toISOString(),status:'RUNNING',tests:[],stderr:[],
     physicsExecuted:false,engineIntegrationVerified:false,releaseApproved:false,
-    notRun:['D6/ragdoll behavior','articulation behavior','vehicle behavior','controller behavior',
-      'mesh cooking / serialization roundtrip','callbacks / contact events','long-run leak checks',
-      'cross-browser/device coverage','pthread build','deterministic replay / multiplayer','full Particle Realms integration']};
+    notRun:['full ragdoll behavior','Vehicle2 engine/tank drivetrains and complete road handling',
+      'constraint-break / wake / sleep callbacks','long-run leak checks',
+      'cross-browser/device coverage','pthread build','cross-build/platform replay / multiplayer','full Particle Realms integration']};
   const test=async(name,fn)=>{const t=performance.now();try{const detail=await fn();const r={name,status:'PASS',ms:performance.now()-t,detail:detail??null};report.tests.push(r);onTest(r);return detail;}
     catch(e){const r={name,status:'FAIL',ms:performance.now()-t,error:String(e.message??e)};report.tests.push(r);onTest(r);throw e;}};
   let P,foundation,physics,scene,material,ground,body,bulk;
@@ -138,6 +140,8 @@ export async function runSuite(profile,onTest=()=>{}) {
       });
     }else report.notRun.push('Optional bulk addon (not in this build)');
     await runRigidRegressions({P,scene,body,ground,make,step,test,withBulk:artifacts.manifest.bulk_addon_requested===true});
+    await runAdvancedRegressions({P,physics,scene,material,make,step,test});
+    await runVehicleCallbackRegressions({P,foundation,physics,material,make,test});
     await test('Actor, scene and SDK teardown',()=>{
       body.release();body=null;ground.release();ground=null;scene.release();scene=null;
       material.release();material=null;physics.release();physics=null;
