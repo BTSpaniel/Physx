@@ -33,7 +33,7 @@ class ReleaseFixture(unittest.TestCase):
         self.bytes = {'dist/candidate/physx-pe.wasm': b'Uncompiled WASM fixture, never executed.',
                       'dist/candidate/physx-pe.mjs': b'Loader contract fixture, never executed.',
                       'dist/candidate/physx-pe.d.ts': b'Declaration contract fixture.'}
-        self.verification = {'sourceRevision': self.revision, 'sourceInventorySha256': self.revision['inventorySha256'],
+        self.verification = {'version': self.version, 'sourceRevision': self.revision, 'sourceInventorySha256': self.revision['inventorySha256'],
                              'status': 'BUILD_AND_BROWSER_SMOKE_PASSED_ALPHA',
                              'scope': 'Explicit test fixture; no build/browser/GPU execution.'}
         self.bytes['reports/verification.json'] = json.dumps(self.verification).encode()
@@ -45,6 +45,10 @@ class ReleaseFixture(unittest.TestCase):
             self.revision, self.verification['scope'], 'd' * 64)
 
     def write_archive(self):
+        verification = json.dumps(self.verification).encode()
+        self.bytes['reports/verification.json'] = verification
+        self.manifest['files']['reports/verification.json'] = {
+            'bytes': len(verification), 'sha256': hashlib.sha256(verification).hexdigest()}
         with zipfile.ZipFile(self.archive, 'w') as bundle:
             for name, data in self.bytes.items():
                 bundle.writestr(name, data)
@@ -149,6 +153,7 @@ class ReleaseAssets(ReleaseFixture):
         self.tag = 'v' + self.version
         self.archive = self.directory / f'physx-pe-{self.version}.zip'
         self.manifest['version'] = self.version
+        self.verification['version'] = self.version
         self.write_archive()
         digest = hashlib.sha256(self.archive.read_bytes()).hexdigest()
         (self.directory / (self.archive.name + '.sha256')).write_text(digest + '  ' + self.archive.name + '\n')
@@ -158,6 +163,39 @@ class ReleaseAssets(ReleaseFixture):
         self.write_metadata()
         _, files = self.admitted()
         self.assertEqual([path.name for path in files], [self.archive.name, self.archive.name + '.sha256', 'release-artifacts.json'])
+
+    def test_alpha3_keeps_the_matched_seven_asset_contract(self):
+        self.version = '5.11.0-alpha.3'
+        self.tag = 'v' + self.version
+        self.archive = self.directory / f'physx-pe-{self.version}-runtime.zip'
+        self.manifest['version'] = self.version
+        self.verification['version'] = self.version
+        self.write_archive()
+        package_release.write_release_assets(self.directory, self.archive, self.version,
+            self.revision, self.verification['scope'], 'd' * 64)
+        metadata, files = self.admitted()
+        self.assertEqual(metadata['version'], self.version)
+        self.assertEqual(len(files), 7)
+        self.assertEqual(metadata['archive']['name'], self.archive.name)
+
+    def test_rehashed_archive_cannot_mix_verification_release_versions(self):
+        self.verification['version'] = '5.11.0-alpha.3'
+        self.write_archive()
+        package_release.write_release_assets(self.directory, self.archive, self.version,
+            self.revision, self.verification['scope'], 'd' * 64)
+        with patch.object(publish_release, 'request') as request, self.assertRaisesRegex(ValueError, 'version disagrees'):
+            self.admitted()
+        request.assert_not_called()
+
+    def test_build_and_verification_versions_must_both_match_the_selected_release(self):
+        for version in ('5.11.0-alpha.1', '5.11.0-alpha.2', '5.11.0-alpha.3'):
+            with self.subTest(version=version):
+                package_release.require_report_versions(version, {'version': version}, {'version': version})
+                for compiled, verified in (({}, {'version': version}), ({'version': version}, {}),
+                        ({'version': '5.11.0-alpha.99'}, {'version': version}),
+                        ({'version': version}, {'version': '5.11.0-alpha.99'})):
+                    with self.assertRaisesRegex(package_release.lab.LabError, 'release version differs'):
+                        package_release.require_report_versions(version, compiled, verified)
 
     def test_asset_names_and_nonfiles_cannot_escape_the_payload(self):
         for name in ('../physx-pe.wasm', '/physx-pe.wasm', 'folder\\file.wasm', '.', 'missing.wasm'):

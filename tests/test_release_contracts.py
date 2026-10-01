@@ -27,6 +27,7 @@ import prepare_sources
 import build
 import physx_lab as lab
 import flow_gpu_probe
+import test_flow_source_build as flow_source_build_tests
 
 
 class FlowSoftwareBackendAdmission(unittest.TestCase):
@@ -436,40 +437,42 @@ class ShaderInventoryAdmission(unittest.TestCase):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
+        flow_source_build_tests.copy_frozen_flow_fixture(self.root)
         self.output = self.root / 'dist/flow-wgsl'
-        self.output.mkdir(parents=True)
-        self.rows = []
-        for index in range(97):
-            row = {'status': 'PASS'}
-            for key, suffix in (('wgsl', '.wgsl'), ('reflection', '.json')):
-                path = self.output / f'{index:03d}{suffix}'
-                path.write_bytes(b'Inventory fixture; no shader execution claim.\n')
-                row[key] = path.name
-                row[key + 'Sha256'] = lab.sha256(path)
-            self.rows.append(row)
-        self.write()
+        self.manifest_path = self.output / 'manifest.json'
+        original = self.manifest_path.read_bytes()
+        self.addCleanup(self.manifest_path.write_bytes, original)
+        self.manifest = json.loads(original)
+        self.rows = self.manifest['shaders']
 
     def write(self):
-        (self.output / 'manifest.json').write_text(json.dumps({
-            'status': 'FLOW_WGSL_CORPUS_COMPILED', 'shaderCount': 97, 'shaders': self.rows}))
+        self.manifest_path.write_text(json.dumps(self.manifest), encoding='utf-8')
 
     def check(self):
         with patch.object(release, 'ROOT', self.root):
             return release.shader_inventory()
 
-    def test_exact_97_unique_pairs_are_admitted(self):
-        self.assertEqual(len(self.check()), 195)
+    def test_exact_97_unique_pairs_are_admitted_with_all_124_kernels(self):
+        actual = self.check()
+        self.assertEqual(len(self.rows), 97)
+        pairs = [{row[field] for row in self.rows} for field in ('wgsl', 'reflection')]
+        self.assertEqual([len(names) for names in pairs], [97, 97])
+        base = {'manifest.json'} | pairs[0] | pairs[1]
+        self.assertEqual(len(base), 195)
+        self.assertTrue(base <= actual.keys())
+        self.assertEqual(len(actual), 252)
+        self.assertEqual(len(actual.keys() - base), 57)
 
     def test_declared_count_cannot_hide_duplicate_rows(self):
         self.rows[-1] = dict(self.rows[0])
         self.write()
-        with self.assertRaisesRegex(lab.LabError, 'unique'):
+        with self.assertRaisesRegex(lab.LabError, 'Repeated Flow output member:'):
             self.check()
 
     def test_declared_count_cannot_hide_missing_rows(self):
         self.rows.pop()
         self.write()
-        with self.assertRaisesRegex(lab.LabError, 'exactly 97'):
+        with self.assertRaisesRegex(lab.LabError, 'Incomplete Flow corpus: manifest.json'):
             self.check()
 
 

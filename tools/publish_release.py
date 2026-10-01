@@ -86,6 +86,7 @@ def checked_payload(directory: Path, tag: str, expected_commit: str | None = Non
         verification = json.loads(bundle.read("reports/verification.json"))
         if (manifest.get("version") != version or manifest.get("sdkVersion") != "5.11.0" or
                 manifest.get("sourceRevision") != revision or
+                verification.get("version") != version or
                 verification.get("sourceRevision") != revision or
                 verification.get("sourceInventorySha256") != revision["inventorySha256"] or
                 verification.get("status") != "BUILD_AND_BROWSER_SMOKE_PASSED_ALPHA"):

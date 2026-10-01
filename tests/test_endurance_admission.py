@@ -10,11 +10,14 @@ import sys
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 import browser_compat_endurance as runner
 import evidence
+import test_release_assets as release_asset_tests
 
 
 def receipt_fixture():
@@ -175,6 +178,154 @@ class BoundedEnduranceAdmission(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'real simulation'): self.admit()
         self.setUp(); self.report['executionIsolation'] = {}
         with self.assertRaisesRegex(ValueError, 'isolation'): self.admit()
+
+
+class DeliveredArchiveAdmission(release_asset_tests.ReleaseFixture):
+    """Exercise actual snapshot admission with non-runtime archive/proof fixtures."""
+    def setUp(self):
+        super().setUp()
+        self.root = self.directory / 'owned-source'
+        self.root.mkdir()
+        native = 'addons/flow/pr_flow_host.cpp'
+        for name in runner.DELIVERED_TEST_HELPERS:
+            path = self.root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b'// Metadata fixture; never compiled or executed.\n')
+        build = {'bridge_sources': {native: runner.sha(self.root / native)}}
+        self.bytes['dist/candidate/build-manifest.json'] = json.dumps(build).encode()
+        self.verification['sourceInventorySha256'] = self.revision['inventorySha256']
+        self.manifest['schema'] = 'physx-pe.package-manifest/v1'
+        self.args = SimpleNamespace(runtime_zip=self.archive, release_proof=self.directory / 'anonymous.json')
+        self.proof = {'schema': 'physx-pe.anonymous-download-check/v1', 'status': 'PASS',
+            'repository': 'https://github.com/BTSpaniel/Physx', 'private': False,
+            'sourceRevision': self.revision, 'assets': []}
+        for name in ('physx-pe.wasm', 'physx-pe.mjs'):
+            path = self.root / 'dist/candidate' / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(self.bytes['dist/candidate/' + name])
+        self.refresh()
+
+    def refresh(self):
+        self.verification['sourceRevision'] = self.revision
+        verification = json.dumps(self.verification).encode()
+        self.bytes['reports/verification.json'] = verification
+        self.manifest['files'] = {name: {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+                                 for name, data in self.bytes.items()}
+        self.write_archive()
+        self.args.runtime_zip = self.archive
+        self.proof['assets'] = [{'name': self.archive.name, 'bytes': self.archive.stat().st_size,
+            'digest': 'sha256:' + runner.sha(self.archive), 'status': 'PASS', 'authentication': 'none',
+            'url': 'https://github.com/BTSpaniel/Physx/releases/download/v' + self.version + '/' + self.archive.name}]
+        self.write_proof()
+
+    def write_proof(self):
+        self.args.release_proof.write_text(json.dumps(self.proof), encoding='utf-8')
+
+    def snapshot(self):
+        report = {}
+        with patch.object(runner, 'ROOT', self.root):
+            directory = runner.delivered_snapshot(self.args, report)
+        return directory, report
+
+    def test_historical_default_remains_alpha2_and_does_not_claim_publication(self):
+        directory, report = self.snapshot()
+        self.assertEqual(report['expectedDeliveredVersion'], '5.11.0-alpha.2')
+        self.assertEqual(report['deliveredSourceRevision'], self.revision)
+        self.assertEqual((directory / 'dist/candidate/physx-pe.wasm').read_bytes(),
+                         self.bytes['dist/candidate/physx-pe.wasm'])
+        self.assertNotIn('releaseApproved', report)
+
+    def test_new_delivered_archive_needs_an_explicit_alpha3_version(self):
+        self.version = '5.11.0-alpha.3'
+        self.archive = self.directory / f'physx-pe-{self.version}-runtime.zip'
+        self.manifest['version'] = self.version
+        self.verification['version'] = self.version
+        self.refresh()
+        with self.assertRaisesRegex(ValueError, 'archive name differs'):
+            self.snapshot()
+        self.args.expected_version = self.version
+        _, report = self.snapshot()
+        self.assertEqual(report['expectedDeliveredVersion'], self.version)
+
+    def test_wrong_or_duplicate_anonymous_asset_is_rejected(self):
+        original = copy.deepcopy(self.proof)
+        for assets in ([], original['assets'] * 2, [{**original['assets'][0], 'name': 'wrong.zip'}]):
+            with self.subTest(assets=assets):
+                self.proof = copy.deepcopy(original)
+                self.proof['assets'] = assets
+                self.write_proof()
+                with self.assertRaisesRegex(ValueError, 'exactly one anonymous'):
+                    self.snapshot()
+        self.proof = original
+        self.write_proof()
+
+    def test_local_zip_cannot_replace_anonymous_public_versioned_evidence(self):
+        original = copy.deepcopy(self.proof)
+        for key, value in (('schema', 'local.zip-check/v1'), ('status', 'FAILED'),
+                           ('private', True), ('repository', 'https://github.com/another/Physx')):
+            with self.subTest(key=key):
+                self.proof = copy.deepcopy(original)
+                self.proof[key] = value
+                self.write_proof()
+                with self.assertRaisesRegex(ValueError, 'Anonymous public download'):
+                    self.snapshot()
+        for key, value in (('authentication', 'token'), ('status', 'FAILED'),
+                ('url', original['assets'][0]['url'].replace('alpha.2/', 'alpha.3/'))):
+            with self.subTest(assetField=key):
+                self.proof = copy.deepcopy(original)
+                self.proof['assets'][0][key] = value
+                self.write_proof()
+                with self.assertRaisesRegex(ValueError, 'release tag or authentication'):
+                    self.snapshot()
+        self.proof = original
+        self.write_proof()
+
+    def test_hash_size_and_current_pair_mismatches_are_rejected(self):
+        original = copy.deepcopy(self.proof)
+        for key, value in (('bytes', self.archive.stat().st_size + 1), ('bytes', True),
+                           ('digest', 'sha256:' + 'f' * 64)):
+            with self.subTest(key=key, value=value):
+                self.proof = copy.deepcopy(original)
+                self.proof['assets'][0][key] = value
+                self.write_proof()
+                with self.assertRaisesRegex(ValueError, 'ZIP differs from anonymous'):
+                    self.snapshot()
+        self.proof = original
+        self.write_proof()
+        (self.root / 'dist/candidate/physx-pe.wasm').write_bytes(b'Changed uncompiled fixture')
+        with self.assertRaisesRegex(ValueError, 'pair differs'):
+            self.snapshot()
+
+    def test_rehashed_manifest_or_verification_cannot_change_the_proved_revision_or_version(self):
+        original_manifest = copy.deepcopy(self.manifest)
+        original_verification = copy.deepcopy(self.verification)
+        variants = (('manifest', 'version', '5.11.0-alpha.3'),
+                    ('manifest', 'sourceRevision', {**self.revision, 'commit': 'f' * 40}),
+                    ('verification', 'version', '5.11.0-alpha.3'),
+                    ('verification', 'sourceInventorySha256', 'f' * 64))
+        for target, key, value in variants:
+            with self.subTest(target=target, key=key):
+                self.manifest = copy.deepcopy(original_manifest)
+                self.verification = copy.deepcopy(original_verification)
+                (self.manifest if target == 'manifest' else self.verification)[key] = value
+                self.refresh()
+                with self.assertRaisesRegex(ValueError, 'runtime version, source revision|verification version or source revision'):
+                    self.snapshot()
+        self.manifest = original_manifest
+        self.verification = original_verification
+        self.refresh()
+
+    def test_invalid_expected_version_and_missing_source_identity_reject(self):
+        for version in ('5.11.0-alpha.0', '../alpha.3', '5.11.0', True):
+            with self.subTest(version=version):
+                self.args.expected_version = version
+                with self.assertRaisesRegex(ValueError, 'Invalid expected'):
+                    self.snapshot()
+        del self.args.expected_version
+        self.proof['sourceRevision'] = {**self.revision, 'tree': 'not-a-commit'}
+        self.write_proof()
+        with self.assertRaisesRegex(ValueError, 'source revision is invalid'):
+            self.snapshot()
 
 
 class IsolationAdmission(unittest.TestCase):

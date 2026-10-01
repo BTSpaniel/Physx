@@ -24,16 +24,20 @@ from flow_source_evidence import (CAPABILITIES, member, native_capabilities,
                                   require_final_selection, shader_inventory, upstream_inputs)
 
 
+def copy_frozen_flow_fixture(root: Path) -> None:
+    """Copy the exact sources and corpus that produced the frozen reference."""
+    shutil.copytree(ROOT / 'source-inputs/flow', root / 'source-inputs/flow')
+    # Fresh source-kit outputs are admitted separately after compilation.
+    shutil.copytree(ROOT / 'reference/flow-component-01/addons/flow', root / 'addons/flow', ignore=shutil.ignore_patterns('__pycache__'))
+    shutil.copytree(ROOT / 'reference/flow-component-01/dist/flow-wgsl', root / 'dist/flow-wgsl')
+
+
 class FlowSourceBuildTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.temporary = tempfile.TemporaryDirectory(prefix='physx-pe-flow-admission-')
         cls.root = Path(cls.temporary.name)
-        shutil.copytree(ROOT / 'source-inputs/flow', cls.root / 'source-inputs/flow')
-        # The reference corpus is tested against the exact sources that built
-        # it. Fresh source-kit outputs are admitted separately after compilation.
-        shutil.copytree(ROOT / 'reference/flow-component-01/addons/flow', cls.root / 'addons/flow', ignore=shutil.ignore_patterns('__pycache__'))
-        shutil.copytree(ROOT / 'reference/flow-component-01/dist/flow-wgsl', cls.root / 'dist/flow-wgsl')
+        copy_frozen_flow_fixture(cls.root)
 
     @classmethod
     def tearDownClass(cls):

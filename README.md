@@ -3,12 +3,17 @@
 
 # PhysX PE
 
-This directory is a prospective source-build kit. See [SOURCE_BUILD_KIT.md](SOURCE_BUILD_KIT.md)
-for its selected APIs, source recipes and pending build review. The alpha.2 links
-below describe the historical published release; they do not contain the new
-thermal, physical-section or transactional Flow APIs. The experimental thermal
-solver can exceed real-time budgets. Momentum exchange covers terminal normal
-exchange and leaves heat as an explicit unapplied obligation.
+This source snapshot prepares **5.11.0-alpha.3**, dated **2026-10-01**.
+Its preparation status is **UNPUBLISHED / PENDING fresh build, verification,
+package and Engine admission**. Source selection is reviewed and marked
+`FINAL_SOURCES_SELECTED_FOR_BUILD`; that status is not an execution result.
+See [SOURCE_BUILD_KIT.md](SOURCE_BUILD_KIT.md) for the selected APIs and recipes.
+
+The alpha.2 links below remain the historical published release. They do not
+contain the new thermal, physical-section or transactional Flow APIs. No alpha.3
+download is announced here before publication. The experimental thermal solver
+can exceed real-time budgets. Momentum exchange covers terminal normal exchange
+and leaves heat as an explicit unapplied obligation.
 
 **PhysX, Blast and Flow for the browser, with Rust batching and WebGPU integration.**
 
@@ -213,7 +218,7 @@ unknown observed identity separate from the requested driver. This is functional
 and numerical evidence, not a hardware frame-rate benchmark, full SDK
 certification or a browser/device compatibility matrix.
 
-The current source checkout has 37 functional CPU-WASM checks, including
+The current source checkout defines 37 functional CPU-WASM checks, including
 behavioral tests for D6 drives, articulation drives,
 controller floor/wall collision, convex and triangle mesh cooking, binary
 serialization with 64-bit object IDs, and deterministic replay on the same
@@ -223,24 +228,30 @@ checks TypeScript consumers of the actual Rust, Blast and Flow
 addon APIs, including invalid argument rejection. Adjacent `.d.mts` files
 resolve browser ES module imports; `types/webgpu.d.ts` supplies the pinned GPU
 interfaces. Type validation runs the official TypeScript compiler inside a
-browser, without adding Node or npm to the application build. These new source
+browser, without adding Node or npm to the application build. These source
 checks do not alter the published alpha.2 files or their historical receipts.
+The alpha.3 candidate requires fresh execution on its own matched runtime and
+committed source revision; prior execution cannot satisfy those gates.
 
-Separate bounded tests exercise 288 scene lifecycles, 4,608 dynamic actors,
+Historical bounded tests exercise 288 scene lifecycles, 4,608 dynamic actors,
 576 bulk contexts and 288 native Blast checks. Two ten-minute physical-time
-replays must agree byte for byte. These CPU tests pass in the installed Chrome
-and Edge browsers on one Windows device. Scene and addon counts return to zero,
+replays must agree byte for byte. Those separately recorded CPU tests passed in the installed Chrome
+and Edge browsers on one Windows device; they do not admit the alpha.3 candidate. Scene and addon counts return to zero,
 allocation probes reuse their storage, and WASM memory reaches a stable
 64 MiB high-water mark. This verifies that bounded fixture; it does not prove
 an unlimited-duration allocator leak absence or cross-device replay.
 
-This alpha exposes the implemented integration, not every upstream feature.
-The NanoVDB emitter pipeline, experimental physical-section solvers, solid
-pressure-boundary extensions and wood thermal coupling are excluded. Flow
-obstacle coupling is one-way velocity coupling. Full vehicle, character
-controller, articulation and serialization coverage, long-duration leak checks,
-cross-build replay and complete Particle Realms integration are outside this
-release's verification claim. See [source selection](source-selection.json)
+The historical alpha.2 verification excludes the NanoVDB emitter pipeline,
+experimental physical-section solvers, solid pressure-boundary extensions and
+wood thermal coupling. Its Flow obstacle coupling is one-way velocity coupling.
+
+The alpha.3 source candidate includes the reviewed physical-section, thermal and
+Flow extension sources with 96 source-derived addon declarations and 124 shader
+kernels. Included source is not a completed behavioral proof. Its fresh native,
+browser, GPU, extracted-package and Engine gates remain separately required.
+Full upstream SDK coverage, unlimited-duration leak absence, cross-build replay,
+a browser/device matrix and real-time thermal behavior are outside the claim.
+See [source selection](source-selection.json), [source build guide](SOURCE_BUILD_KIT.md)
 and [provenance](PROVENANCE.md) for the precise boundary.
 
 ## Credits and license

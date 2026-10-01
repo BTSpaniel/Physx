@@ -38,6 +38,12 @@ def admit_endurance_phase(verified: dict, build: dict) -> None:
         raise lab.LabError('Bounded CPU endurance summary differs from its executed receipt')
 
 
+def require_report_versions(version: str, compiled: dict, verified: dict) -> None:
+    """Keep compilation and execution receipts on the selected release version."""
+    if compiled.get('version') != version or verified.get('version') != version:
+        raise lab.LabError('Current release version differs from its build or verification receipt')
+
+
 def package() -> Path:
     from release import VERSION, inventory, selection, shader_inventory, source_revision
     from flow_source_evidence import require_final_selection
@@ -61,6 +67,7 @@ def package() -> Path:
     if verified.get('shaderHashesBefore') != shaders or verified.get('shaderHashesAfter') != shaders:
         raise lab.LabError('Current shaders/sidecars differ from their verified inventory')
     compiled = json.loads((ROOT / 'reports/release-build.json').read_text())
+    require_report_versions(VERSION, compiled, verified)
     prepared = ROOT / 'work/source-preparation.json'
     if (compiled.get('sourceHashes') != source_hashes or compiled.get('artifacts') != build['artifacts']
             or compiled.get('sourceRevision') != revision
@@ -97,7 +104,7 @@ def package() -> Path:
     for relative in ('addons/flow/flow_host_webgpu.mjs', 'addons/flow/webgpu_bridge.mjs',
                      'addons/flow/flow_solid_boundary.mjs', 'addons/flow/flow_scalar_sources.mjs',
                      'bridge/physx-bulk.mjs', 'bridge/physx-bulk-rust.mjs',
-                     'tools/serve.py', 'LICENSE', 'README.md', 'AUTHORS.md',
+                     'tools/serve.py', 'LICENSE', 'README.md', 'SOURCE_BUILD_KIT.md', 'AUTHORS.md',
                      'PROVENANCE.md', 'THIRD_PARTY_NOTICES.md', 'source-selection.json', 'upstream.lock.json',
                      'license-provenance.json', 'source-license-map.json', 'upstream-modifications.json',
                      'nanovdb-provenance.json'):

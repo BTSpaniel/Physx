@@ -204,7 +204,7 @@ def blast_addon(root: Path, wrapper: Path, compat: Path, *, stress: bool, author
         compile_sources = [adapted.get(path, path) for path in compile_sources]
         bridge_inputs = evidence_tools.BLAST_BRIDGE if authoring else evidence_tools.BLAST_STRESS_LEGACY_BRIDGE
         dependencies += [*adapted.values(), *blast_header_inputs(root, authoring=authoring),
-                         *(ROOT / name for name in bridge_inputs[2:])]
+                         *(ROOT / name for name in bridge_inputs)]
     if authoring:
         wrappers.append(ROOT / 'addons/blast/pr_blast_authoring.cpp')
         adapted = ROOT / 'work/blast-authoring-generated/NvBlastExtApexSharedParts.cpp'

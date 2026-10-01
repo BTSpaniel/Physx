@@ -38,6 +38,11 @@ ENDURANCE_CASES = ('Repeated native scenes, actors, bulk contexts and Blast owne
 ENDURANCE_SOURCES = tuple(evidence.HARNESS) + ('web/endurance-regressions.mjs',
     'tools/browser_compat_endurance.py', 'release.py', 'tests/test_endurance_admission.py')
 ZERO_ADDONS = {'blastFamilies': 0, 'blastAuthoringResults': 0, 'flowHosts': 0}
+HISTORICAL_DELIVERED_VERSION = '5.11.0-alpha.2'
+DELIVERED_TEST_HELPERS = ('tools/flow_gpu_probe.py', 'tools/serve.py', 'addons/flow/host_browser_test.py',
+    'addons/flow/wgsl_browser_test.py', 'addons/flow/velocity_gather_oracle.mjs',
+    'addons/flow/advection_smoke.mjs', 'addons/flow/mesh_scan_smoke.mjs',
+    'addons/flow/pr_flow_host.cpp')
 
 
 def validate_configuration(cycles: int, physical_seconds: int, release_phase: bool) -> None:
@@ -261,10 +266,36 @@ def cpu_run(args, report):
 
 
 def delivered_snapshot(args, report):
+    expected_version = getattr(args, 'expected_version', HISTORICAL_DELIVERED_VERSION)
+    evidence.require(isinstance(expected_version, str)
+        and re.fullmatch(r'5\.11\.0-alpha\.[1-9][0-9]*', expected_version) is not None,
+        'Invalid expected delivered release version')
+    expected_name = 'physx-pe-' + expected_version + '-runtime.zip'
+    evidence.require(args.runtime_zip.name == expected_name, 'Delivered archive name differs from expected release version')
     proof = evidence.object_json(args.release_proof)
-    evidence.require(proof['status'] == 'PASS', 'Anonymous-download receipt did not pass')
-    asset = next(item for item in proof['assets'] if item['name'] == args.runtime_zip.name)
-    evidence.require(args.runtime_zip.stat().st_size == asset['bytes'] and 'sha256:' + sha(args.runtime_zip) == asset['digest'], 'Delivered ZIP differs from anonymous-download receipt')
+    evidence.require(proof.get('schema') == 'physx-pe.anonymous-download-check/v1'
+        and proof.get('status') == 'PASS' and proof.get('private') is False
+        and proof.get('repository') == 'https://github.com/BTSpaniel/Physx',
+        'Anonymous public download receipt did not pass')
+    assets = proof.get('assets')
+    evidence.require(isinstance(assets, list) and all(isinstance(item, dict) for item in assets),
+        'Anonymous download asset inventory is invalid')
+    matches = [item for item in assets if item.get('name') == expected_name]
+    evidence.require(len(matches) == 1, 'Delivered ZIP needs exactly one anonymous receipt asset')
+    asset = matches[0]
+    expected_url = 'https://github.com/BTSpaniel/Physx/releases/download/v' + expected_version + '/' + expected_name
+    evidence.require(asset.get('status') == 'PASS' and asset.get('authentication') == 'none'
+        and asset.get('url') == expected_url, 'Anonymous asset release tag or authentication differs')
+    revision = proof.get('sourceRevision')
+    evidence.require(isinstance(revision, dict) and set(revision) == {'commit', 'tree', 'inventorySha256'}
+        and all(isinstance(revision[key], str) and re.fullmatch(pattern, revision[key]) is not None
+                for key, pattern in (('commit', r'[0-9a-f]{40}'), ('tree', r'[0-9a-f]{40}'),
+                                     ('inventorySha256', r'[0-9a-f]{64}'))),
+        'Anonymous download source revision is invalid')
+    evidence.require(type(asset.get('bytes')) is int and asset['bytes'] > 0
+        and args.runtime_zip.stat().st_size == asset['bytes']
+        and asset.get('digest') == 'sha256:' + sha(args.runtime_zip),
+        'Delivered ZIP differs from anonymous-download receipt')
     directory = ROOT / 'work' / ('browser-compat-' + uuid.uuid4().hex)
     directory.mkdir(parents=True, exist_ok=False)
     archive_inputs = {}
@@ -272,7 +303,17 @@ def delivered_snapshot(args, report):
         names = archive.namelist()
         evidence.require(len(names) == len(set(names)), 'Duplicate archive paths')
         manifest = json.loads(archive.read('runtime-manifest.json'))
-        evidence.require(manifest['version'] == '5.11.0-alpha.2' and set(names) == set(manifest['files']) | {'runtime-manifest.json'}, 'Unexpected delivered runtime inventory')
+        evidence.require(manifest.get('schema') == 'physx-pe.package-manifest/v1'
+            and manifest.get('sdkVersion') == '5.11.0' and manifest.get('version') == expected_version
+            and manifest.get('sourceRevision') == revision
+            and set(names) == set(manifest['files']) | {'runtime-manifest.json'},
+            'Unexpected delivered runtime version, source revision or inventory')
+        verification = json.loads(archive.read('reports/verification.json'))
+        evidence.require(verification.get('version') == expected_version
+            and verification.get('sourceRevision') == revision
+            and verification.get('sourceInventorySha256') == revision['inventorySha256']
+            and verification.get('status') == 'BUILD_AND_BROWSER_SMOKE_PASSED_ALPHA',
+            'Delivered verification version or source revision differs')
         for name in names:
             path = PurePosixPath(name)
             evidence.require(not path.is_absolute() and '\\' not in name and all(part not in ('', '.', '..') and ':' not in part for part in path.parts), 'Unsafe ZIP path: ' + name)
@@ -286,15 +327,11 @@ def delivered_snapshot(args, report):
                 evidence.require(meta == manifest['files'][name], 'Runtime manifest mismatch: ' + name)
             target.parent.mkdir(parents=True, exist_ok=True); target.write_bytes(content)
             archive_inputs[name] = meta
-    auxiliaries = ('tools/flow_gpu_probe.py', 'tools/serve.py', 'addons/flow/host_browser_test.py',
-                   'addons/flow/wgsl_browser_test.py', 'addons/flow/velocity_gather_oracle.mjs',
-                   'addons/flow/advection_smoke.mjs', 'addons/flow/mesh_scan_smoke.mjs',
-                   'addons/flow/pr_flow_host.cpp')
     native_source = 'addons/flow/pr_flow_host.cpp'
     native_expected = evidence.object_json(directory / 'dist/candidate/build-manifest.json')['bridge_sources'][native_source]
     evidence.require(sha(ROOT / native_source) == native_expected, 'Native provenance source differs from delivered build manifest')
     test_inputs = {}
-    for name in auxiliaries:
+    for name in DELIVERED_TEST_HELPERS:
         target = directory / name
         if target.exists():
             evidence.require(sha(target) == sha(ROOT / name), 'Current helper differs from delivered bytes: ' + name)
@@ -313,12 +350,12 @@ def delivered_snapshot(args, report):
     test_only = {'favicon.ico': {'bytes': favicon.stat().st_size, 'sha256': sha(favicon),
                                 'purpose': 'Generated transparent test-only ICO; not part of delivered runtime'}}
     (directory / 'reports').mkdir(exist_ok=True)
-    report.update(snapshotRoot=str(directory), deliveredZip={'path': str(args.runtime_zip), 'bytes': asset['bytes'], 'sha256': asset['digest'].removeprefix('sha256:')},
+    report.update(expectedDeliveredVersion=expected_version, deliveredSourceRevision=revision, snapshotRoot=str(directory), deliveredZip={'path': str(args.runtime_zip), 'bytes': asset['bytes'], 'sha256': asset['digest'].removeprefix('sha256:')},
                   anonymousDownloadProof={'path': str(args.release_proof), 'sha256': sha(args.release_proof)}, archiveFiles=archive_inputs, testHelpers=test_inputs, testOnlyAssets=test_only)
     report['nativeProvenanceInput'] = {'path': native_source, 'sha256': native_expected,
                                       'purpose': 'Read-only helper hash input, matched to delivered build; not rebuilt or executed as source'}
     for name in ('physx-pe.mjs', 'physx-pe.wasm'):
-        evidence.require(sha(directory / 'dist/candidate' / name) == sha(ROOT / 'dist/candidate' / name), 'GPU delivery pair differs from staged public alpha.2 bytes')
+        evidence.require(sha(directory / 'dist/candidate' / name) == sha(ROOT / 'dist/candidate' / name), 'GPU delivery pair differs from the staged expected release bytes')
     return directory
 
 
@@ -363,6 +400,8 @@ def main():
     parser.add_argument('--physical-seconds', type=int, default=600)
     parser.add_argument('--runtime-zip', type=Path)
     parser.add_argument('--release-proof', type=Path)
+    parser.add_argument('--expected-version', default=HISTORICAL_DELIVERED_VERSION,
+                        help='Expected delivered alpha version; defaults to historical alpha.2, pass the current release version explicitly for a new ZIP')
     parser.add_argument('--report', type=Path, required=True)
     args = parser.parse_args()
     if args.report.exists():
