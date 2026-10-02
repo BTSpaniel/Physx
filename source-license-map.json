@@ -188,8 +188,8 @@
       ]
     },
     "patches/browser-overlay.patch": {
-      "sha256": "fc1675b9b0982997f2e4cb337bde36f093b84edd3995fc0bab3c61538ac4cee0",
-      "bytes": 2062867,
+      "sha256": "fa58a70347d34fffca75936581b396805fa8573842a7d9ed5cb244f8854d6a93",
+      "bytes": 2062902,
       "origin": "Retained SDK/browser port adaptations, including copied fabmax-derived bindings",
       "licenseScope": "Mixed upstream contributions and MIT original custom modifications; see entry-level inventory",
       "notices": [
@@ -17633,7 +17633,7 @@
       ]
     },
     "source-selection.json": {
-      "sha256": "844c9920e22856319548075ad054fbc4c8d2ffe2384665606ba032d5d2dfc82b",
+      "sha256": "3ac63a65d5354bb070adbc2efe2432541d474901ef9cff4214b41f5b75eada6c",
       "bytes": 59766,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
@@ -17673,8 +17673,8 @@
       ]
     },
     "tests/test_full_source_kit.py": {
-      "sha256": "6dc5a8a54cfe561576f465542b1ff9cdaffb1853e3e24a3d8dc6280b11fc00b5",
-      "bytes": 12379,
+      "sha256": "56b801e2253440d68a80151369b1d7620f5a77e76433498f2acf82848231a725",
+      "bytes": 14752,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
@@ -17823,8 +17823,8 @@
       ]
     },
     "tools/native_components.py": {
-      "sha256": "ec98c077fe456f5e85522654601226733150b1af8cc839246820d62465aa870b",
-      "bytes": 12246,
+      "sha256": "315f6a91d122a64e7dd58de77b5c1b49b8656914e03a2760f92e77bd9ade4dcf",
+      "bytes": 12242,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
@@ -17933,7 +17933,7 @@
       ]
     },
     "upstream-modifications.json": {
-      "sha256": "afa3a0d6e28090a5c012aebd42be2a581b3a70dde2c641ccb06f35ea61af0a36",
+      "sha256": "13643e8f94234a794d47d5d7e12312f132327317fbab664f2ebfef2099ab861d",
       "bytes": 130311,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
@@ -17943,7 +17943,7 @@
       ]
     },
     "upstream.lock.json": {
-      "sha256": "3af92ee7b75a49837b0dba9f99ae4ab2e175e4b06a92e8bf658457b0915e6baf",
+      "sha256": "8a0373cd9b9c7eb6e64de98f68a8c0d7d37d597f936f24e7631805a188fc604e",
       "bytes": 2149,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",

@@ -113,7 +113,7 @@ def prepare_blast_sources(sdk: Path, root: Path = ROOT) -> dict:
 
 
 def blast_recipe(sdk: Path, root: Path = ROOT) -> tuple[list[Path], list[str]]:
-    """Preserve the selected 27-TU order, include order and compile flags."""
+    """Preserve selected 27-TU/include order with explicit strict FP flags."""
     stress_dir = root / 'work/blast-stress-generated'
     sources = sorted((sdk / 'source/sdk/common').glob('*.cpp'))
     sources += sorted((sdk / 'source/sdk/lowlevel').glob('*.cpp'))
@@ -132,7 +132,7 @@ def blast_recipe(sdk: Path, root: Path = ROOT) -> tuple[list[Path], list[str]]:
         'include/shared/NvFoundation', 'source/sdk/common', 'source/sdk/lowlevel',
         'source/shared/NsFoundation/include', 'source/shared/stress_solver')] + extra_includes
     flags = ['-include', str(root / 'addons/blast/emscripten_nv_compat.h'),
-             '-std=c++17', '-O3', '-msimd128', '-mavx', '-DNDEBUG', '-fno-rtti', '-fno-exceptions']
+             '-std=c++17', *STRICT_FLAGS, '-mavx', '-DNDEBUG', '-fno-rtti', '-fno-exceptions']
     for include in includes:
         flags += ['-I', str(include)]
     return sources, flags

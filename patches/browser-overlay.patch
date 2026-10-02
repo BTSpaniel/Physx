@@ -572,7 +572,7 @@ index b996c60b..045108c2 100644
  ENDIF()
 diff --git a/physx/source/compiler/cmake/emscripten/CMakeLists.txt b/physx/source/compiler/cmake/emscripten/CMakeLists.txt
 new file mode 100644
-index 00000000..63fef329
+index 00000000..0cac65cc
 --- /dev/null
 +++ b/physx/source/compiler/cmake/emscripten/CMakeLists.txt
 @@ -0,0 +1,203 @@
@@ -695,10 +695,10 @@ index 00000000..63fef329
 +ENDIF()
 +
 +# Build debug info for all configurations
-+SET(PHYSX_CXX_FLAGS_DEBUG   "-O0 -msimd128 -g3 -gdwarf-2" CACHE INTERNAL "PhysX Debug CXX Flags")
-+SET(PHYSX_CXX_FLAGS_CHECKED "-O3 -msimd128 -g3 -gdwarf-2" CACHE INTERNAL "PhysX Checked CXX Flags")
-+SET(PHYSX_CXX_FLAGS_PROFILE "-O3 -msimd128" CACHE INTERNAL "PhysX Profile CXX Flags")
-+SET(PHYSX_CXX_FLAGS_RELEASE "-O3 -msimd128 ${PHYSX_WASM_PTHREAD_PX_FLAGS}" CACHE INTERNAL "PhysX Release CXX Flags")
++SET(PHYSX_CXX_FLAGS_DEBUG   "-O0 -msimd128 -msse2 -g3 -gdwarf-2" CACHE INTERNAL "PhysX Debug CXX Flags")
++SET(PHYSX_CXX_FLAGS_CHECKED "-O3 -msimd128 -msse2 -g3 -gdwarf-2" CACHE INTERNAL "PhysX Checked CXX Flags")
++SET(PHYSX_CXX_FLAGS_PROFILE "-O3 -msimd128 -msse2" CACHE INTERNAL "PhysX Profile CXX Flags")
++SET(PHYSX_CXX_FLAGS_RELEASE "-O3 -msimd128 -msse2 ${PHYSX_WASM_PTHREAD_PX_FLAGS}" CACHE INTERNAL "PhysX Release CXX Flags")
 +
 +# These flags are local to the directory the CMakeLists.txt is in, so don't get carried over to OTHER CMakeLists.txt (thus the CACHE variables above)
 +SET(CMAKE_CXX_FLAGS ${PHYSX_CXX_FLAGS})
@@ -1651,7 +1651,7 @@ new file mode 100644
 +SET(EMCC_GLUE_ARGS
 +		-c
 +		-std=c++17
-+		-msimd128
++		-msimd128 -msse2
 +		-fno-rtti
 +		-fno-exceptions
 +		-DNDEBUG

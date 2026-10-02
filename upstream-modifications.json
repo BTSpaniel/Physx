@@ -2,7 +2,7 @@
   "schema": "physx-pe.upstream-modifications/v1",
   "scope": "File-level retained browser patch inventory, not generated output hashes or a claim of independent upstream authorship",
   "patch": "patches/browser-overlay.patch",
-  "patchSha256": "fc1675b9b0982997f2e4cb337bde36f093b84edd3995fc0bab3c61538ac4cee0",
+  "patchSha256": "fa58a70347d34fffca75936581b396805fa8573842a7d9ed5cb244f8854d6a93",
   "entries": [
     {
       "path": "physx/.gitignore",
@@ -356,8 +356,8 @@
     },
     {
       "path": "physx/source/compiler/cmake/emscripten/CMakeLists.txt",
-      "patchEntrySha256": "0df0a638900708186c474d3110b14d7fcb551b5f49e8d7bd3f33ee1aba3cc260",
-      "patchEntryBytes": 9447,
+      "patchEntrySha256": "0678b62ebfae75c580c23483c7fc82705dc2f396f65c8a0d2687c724d0f10bd8",
+      "patchEntryBytes": 9475,
       "kind": "added",
       "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
       "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",
@@ -577,8 +577,8 @@
     },
     {
       "path": "physx/source/compiler/cmake/emscripten/PhysXWasmBindings.cmake",
-      "patchEntrySha256": "e41b5c2e46051bfd409d6828aa7320e482bff7c3dd911a787bc1509af232c11c",
-      "patchEntryBytes": 3062,
+      "patchEntrySha256": "606fd1489d55f33db2643ca3a4907a22229bcb228f7befbb761dd03a6d9acdda",
+      "patchEntryBytes": 3069,
       "kind": "added",
       "contributionScope": "Retained attributed browser port/integration overlay. Only original custom modifications are offered under root MIT; upstream implementation and embedded notices remain applicable.",
       "origin": "Browser/JNI platform build port retained in the overlay, with embedded NVIDIA notices and fabmax binding references",

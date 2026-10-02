@@ -128,8 +128,14 @@ class FullSourceKit(unittest.TestCase):
                          .replace(source_root + '/upstream/blast', str(self.root / 'source-inputs/blast'))
                          .replace(source_root + '/addons/blast', str(self.root / 'addons/blast'))
                    for value in origin['compileFlags']]
-        self.assertEqual([value.replace('\\', '/') for value in flags],
+        added = ['-fno-fast-math', '-fno-associative-math', '-ffp-contract=off']
+        self.assertEqual([value.replace('\\', '/') for value in flags if value not in added],
                          [value.replace('\\', '/') for value in adapted])
+        self.assertEqual(flags[3:3 + len(native.STRICT_FLAGS)], list(native.STRICT_FLAGS))
+        for flag in native.STRICT_FLAGS:
+            self.assertEqual(flags.count(flag), 1)
+        for flag in added:
+            self.assertNotIn(flag, adapted)
         self.assertNotIn('-ffast-math', flags)
         self.assertNotIn('-mfma', flags)
 
@@ -160,6 +166,35 @@ class FullSourceKit(unittest.TestCase):
                       rendered.replace('pr_wood_thermal_multirate.o', 'unselected.o')):
             with self.assertRaises(lab.LabError):
                 build.unified_linkage(wrong, repo)
+
+    def test_physx_presets_and_header_glue_select_the_same_sse2_path(self):
+        import prepare_sources
+        overlay = (ROOT / 'patches/browser-overlay.patch').read_text(encoding='utf-8')
+        path = 'physx/source/compiler/cmake/emscripten/CMakeLists.txt'
+        blocks = re.split(r'(?=^diff --git )', overlay, flags=re.M)
+        matches = [block for block in blocks if block.startswith(f'diff --git a/{path} b/{path}\n')]
+        self.assertEqual(len(matches), 1)
+        preset = '\n'.join(line[1:] for line in matches[0].splitlines() if line.startswith('+') and not line.startswith('+++'))
+        rows = re.findall(r'^SET\(PHYSX_CXX_FLAGS_(DEBUG|CHECKED|PROFILE|RELEASE)\s+"([^"]+)"', preset, re.M)
+        self.assertEqual([name for name, _ in rows], ['DEBUG', 'CHECKED', 'PROFILE', 'RELEASE'])
+        for name, flags in rows:
+            with self.subTest(configuration=name):
+                self.assertEqual(flags.split().count('-msimd128'), 1)
+                self.assertEqual(flags.split().count('-msse2'), 1)
+                self.assertNotIn('-pthread', flags.split())
+        build.require_single_thread_preset(preset)
+        linkage = prepare_sources.added_linkage(ROOT / 'patches/browser-overlay.patch',
+            'physx/source/compiler/cmake/emscripten/PhysXWasmBindings.cmake')
+        glue = re.search(r'SET\(EMCC_GLUE_ARGS\s+(.*?)\n\)', linkage, re.S)
+        self.assertIsNotNone(glue)
+        self.assertEqual(glue.group(1).split().count('-msimd128'), 1)
+        self.assertEqual(glue.group(1).split().count('-msse2'), 1)
+        rendered = build.unified_linkage(linkage, ROOT / 'work/candidate/PhysX')
+        self.assertEqual(rendered, build.unified_linkage(rendered, ROOT / 'work/candidate/PhysX'))
+        for output in ('glue.o', 'pr_bulk_rust.o'):
+            commands = [line for line in rendered.splitlines() if 'COMMAND em++ ' in line and ' -o ' + output in line]
+            self.assertEqual(len(commands), 1)
+            self.assertIn('${EMCC_GLUE_ARGS}', commands[0])
 
     def test_prospective_consumer_covers_all_25_new_non_flow_api_signatures(self):
         current = json.loads(addon.generate(ROOT)['types/addon-abi.json'])['exports']

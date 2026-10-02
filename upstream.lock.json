@@ -20,7 +20,7 @@
   "upstream_commit": "da950a3537927784951853c66618036f332ca0ce",
   "emsdk_commit": "7b4e60e4bfcba326025e373024369eaa9904af55",
   "rust": "1.90.0",
-  "browser_overlay_sha256": "fc1675b9b0982997f2e4cb337bde36f093b84edd3995fc0bab3c61538ac4cee0",
+  "browser_overlay_sha256": "fa58a70347d34fffca75936581b396805fa8573842a7d9ed5cb244f8854d6a93",
   "stream_adapter_sha256": "000503ecc235987e7b03d6169b56994ab9aa49c07d54bf11ee4bb36afa2949d5",
   "declaration_idl_sha256": "adb07496333d52a0366b8e585fddecd8179093854399a8f45374d6eabeaa03f0",
   "webgpu_types_commit": "2b7c1c80f92323b12355033b2f1b65fe406a08da",

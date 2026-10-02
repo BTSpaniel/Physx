@@ -93,12 +93,12 @@
     "addons/thermal/build_thermal_multirate.py": "90f475f8582d312c96ad9ffe3cbf1b5528f8b1b9bf49dd59f70870c10a20df97",
     "addons/thermal/pr_wood_thermal.cpp": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856",
     "addons/thermal/pr_wood_thermal_multirate.cpp": "dcebd0a74cb04a53c16c1544b94d9e875eca32a182f180fb8d72fccf6aa2f857",
-    "tools/native_components.py": "ec98c077fe456f5e85522654601226733150b1af8cc839246820d62465aa870b",
+    "tools/native_components.py": "315f6a91d122a64e7dd58de77b5c1b49b8656914e03a2760f92e77bd9ade4dcf",
     "tools/generate_addon_types.py": "897866d47fa4d059b5dabfc642ba296ffdf3dee0d8aec593077cfc9e1e8a59ff",
     "tools/typecheck_browser.py": "eb7768b6386bf80f90d98017b059b8e8627bf755c562fa608af5e782ab9d69c9"
   },
   "originalBrowserOverlaySha256": "a1d433af5cf689d194de4c2f31235f29312b847c9e8072212d5c613ea2430e54",
-  "portableBrowserOverlaySha256": "fc1675b9b0982997f2e4cb337bde36f093b84edd3995fc0bab3c61538ac4cee0",
+  "portableBrowserOverlaySha256": "fa58a70347d34fffca75936581b396805fa8573842a7d9ed5cb244f8854d6a93",
   "installedReferenceArtifacts": {
     "physx-pe.wasm": {
       "bytes": 6948292,
