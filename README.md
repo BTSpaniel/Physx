@@ -13,16 +13,16 @@ Applications consume browser ES modules directly; no npm or application build
 step is required.
 
 The latest published runtime prerelease is
-[5.11.0-alpha.3](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.3),
-published **2026-10-01**, from source commit
-[`53c0cd99d0695a23b89047bde0f000fdecaaa363`](https://github.com/BTSpaniel/Physx/commit/53c0cd99d0695a23b89047bde0f000fdecaaa363).
-The downloads below belong to that release.
+[5.11.0-alpha.4](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.4),
+published **2026-10-03**, from source commit
+[`5dea7b3726ef5cd58115d4832085c96bb03eea26`](https://github.com/BTSpaniel/Physx/commit/5dea7b3726ef5cd58115d4832085c96bb03eea26)
+(1,618 committed files). The downloads below belong to the original tagged
+[CI build](https://github.com/BTSpaniel/Physx/actions/runs/37101094361).
 
-This source checkout prepares **5.11.0-alpha.4**. It is **unpublished and pending
-a complete fresh build, verification, packaging and Engine admission**. Selected
-source, successful individual compilation steps and historical tests do not
-establish those results. No alpha.4 download or performance admission is
-announced here. See [SOURCE_BUILD_KIT.md](SOURCE_BUILD_KIT.md) for the selected
+The release passed its original standalone SDK, browser and package checks.
+Those results apply to the published files, not every Engine integration or a
+performance guarantee. A later documentation merge does not change the tagged
+build identity. See [SOURCE_BUILD_KIT.md](SOURCE_BUILD_KIT.md) for the selected
 changes, exact recipes and verification boundary.
 
 **[Downloads](#downloads) · [Quick start](#quick-start) · [Flow setup](#flow-on-webgpu) · [Build from source](#build-from-source)**
@@ -32,23 +32,30 @@ PhysX PE can also be used independently of the engine.
 
 ## Downloads
 
-Start with the complete **published alpha.3** runtime ZIP for the examples,
+Start with the complete **published alpha.4** runtime ZIP for the examples,
 Flow adapters and shaders, license notices and verification reports.
 
 | Download | Contents |
 | --- | --- |
-| [Complete runtime ZIP](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/physx-pe-5.11.0-alpha.3-runtime.zip) | Matched runtime, Flow adapters and shaders, browser examples, local server, licenses and reports. |
-| [physx-pe.mjs](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/physx-pe.mjs) | JavaScript module loader; requires the matching WASM. |
-| [physx-pe.wasm](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/physx-pe.wasm) | Published compiled runtime. |
-| [physx-pe.d.ts](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/physx-pe.d.ts) | Declarations for the published runtime. |
-| [SHA256SUMS](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/SHA256SUMS) · [ZIP checksum](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/physx-pe-5.11.0-alpha.3-runtime.zip.sha256) · [Release manifest](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/release-artifacts.json) | Asset integrity and the published source revision. |
+| [Complete runtime ZIP](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.4/physx-pe-5.11.0-alpha.4-runtime.zip) | Matched runtime, Flow adapters and shaders, browser examples, local server, licenses and reports. |
+| [physx-pe.mjs](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.4/physx-pe.mjs) | JavaScript module loader; requires the matching WASM. |
+| [physx-pe.wasm](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.4/physx-pe.wasm) | Published compiled runtime. |
+| [physx-pe.d.ts](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.4/physx-pe.d.ts) | Declarations for the published runtime. |
+| [SHA256SUMS](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.4/SHA256SUMS) · [ZIP checksum](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.4/physx-pe-5.11.0-alpha.4-runtime.zip.sha256) · [Release manifest](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.4/release-artifacts.json) | Asset integrity and the published source revision. |
 
 Always download the loader and WASM from the same release and host them together.
 The individual files are convenient for embedding; the ZIP contains the full
 distribution, including notices required for redistribution. GitHub's automatic
 **Source code** archives contain build inputs, not prebuilt runtime binaries.
-Private development builds and the pending alpha.4 source selection are separate
-from these published alpha.3 assets.
+A separately compiled development pair can differ from the public CI pair,
+even at the same source revision. Use the published checksums for these assets.
+
+**Historical alpha.3 build sources:** [Portable source-build kit](https://github.com/BTSpaniel/Physx/releases/download/source-kit-v5.11.0-alpha.3/physx-pe-5.11.0-alpha.3-source-build-kit.zip)
+and [SHA256 checksum](https://github.com/BTSpaniel/Physx/releases/download/source-kit-v5.11.0-alpha.3/physx-pe-5.11.0-alpha.3-source-build-kit.zip.sha256). This separate source release contains
+a genuine Git bundle, clone instructions and full licenses; it contains no
+compiled runtime. No alpha.4 portable source bundle is announced here.
+The [historical alpha.2 release](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.2)
+remains available with its original assets and verification scope.
 
 ## Quick start
 
@@ -80,7 +87,7 @@ Your application creates the scene and owns its simulation loop and native
 resources. The ZIP keeps the matched files in `dist/candidate/`; use that path
 when importing directly from the extracted package. See the
 [quick-start source](web/quickstart.html), [simulation suite](web/suite.mjs)
-and [published declarations](https://github.com/BTSpaniel/Physx/blob/v5.11.0-alpha.3/types/physx-pe.d.ts).
+and [published declarations](https://github.com/BTSpaniel/Physx/blob/v5.11.0-alpha.4/types/physx-pe.d.ts).
 
 Serve ES modules over HTTP on localhost or HTTPS in deployment, never `file://`.
 Serve `.mjs` as JavaScript and `.wasm` as `application/wasm`; the included server
@@ -151,8 +158,8 @@ so an application can share a device already owned by its renderer.
 
 ## Selected alpha.4 changes
 
-These changes describe the pending source selection, not the published alpha.3
-download or a completed alpha.4 qualification:
+These source changes are included in the published alpha.4 build. The SDK
+checks below retain their stated scope; source changes alone are not a speed claim:
 
 - The explicit wood-thermal ABI1 kernel rejects a nonfinite intermediate char
   reaction rate with its existing status `6`, before the positive-rate timestep
@@ -197,9 +204,13 @@ Rustup. Bootstrap installs the pinned toolchain locally without changing your
 global Rust default. Software Flow verification also needs Mesa lavapipe
 (`mesa-vulkan-drivers` on Ubuntu).
 
+The following checkout selects the published alpha.4 build source. Its expected
+commit is `5dea7b3726ef5cd58115d4832085c96bb03eea26`.
+
 ```bash
-git clone https://github.com/BTSpaniel/Physx.git
+git clone --branch v5.11.0-alpha.4 https://github.com/BTSpaniel/Physx.git
 cd Physx
+git rev-parse HEAD
 python tools/bootstrap.py --install
 source work/env.sh
 python -m pip install playwright==1.57.0
@@ -208,10 +219,26 @@ python tools/flow_gpu_probe.py --software-vulkan --browser-engine firefox
 python release.py build
 ```
 
-Select the intended committed source revision before building. Cloning the
-public repository does not imply that a pending private successor is published.
+Select the intended committed source revision before building. The tagged
+source above is the released build input; a moving branch can contain later docs
+or code and does not identify the original compiled release.
 Use [SOURCE_BUILD_KIT.md](SOURCE_BUILD_KIT.md) for the existing-toolchain Windows
 route and selected native source checks.
+
+For an offline alpha.3 source checkout, extract its portable source kit and run:
+
+```bash
+git clone --branch v5.11.0-alpha.3 physx-pe-source.bundle Physx-PE
+cd Physx-PE
+git rev-parse HEAD
+```
+
+The published bundle reconstruction reproduced the exact 1,608 committed files
+and original source/selection guards at `53c0cd99d0695a23b89047bde0f000fdecaaa363`.
+Keep the outer kit documentation and checksum outside the clone. Automatic
+GitHub source ZIPs omit the history required by the committed-source guard.
+The bundle supplies sources; building still needs pinned toolchain/upstream
+downloads and the original local or genuine hosted execution window.
 
 Run `build`, `verify` and `package` separately. Release commands require a clean,
 committed source tree. Packaging rejects missing, failed or stale verification,
@@ -232,12 +259,44 @@ only after the build and verification gates pass. Consumers need no npm setup.
 
 ## Verification and limits
 
+The [original alpha.4 CI run](https://github.com/BTSpaniel/Physx/actions/runs/37101094361)
+completed its build and publication at tagged source
+`5dea7b3726ef5cd58115d4832085c96bb03eea26`. The published archive retains ten
+passing SDK phases: native and browser ABI, TypeScript consumer semantics, 37
+PhysX browser cases, bounded CPU endurance/replay, unified PhysX/Blast/Flow
+checks, all 124 WGSL modules with representative compute, and Flow graph ownership.
+The ABI probe uses its own test module; the runtime phases bind the public PhysX pair.
+Successful original CI packaging records an extracted-archive smoke receipt in
+the release manifest. All seven assets were anonymously downloaded; their byte
+counts, checksums, archive file inventory and inner hashes match the release.
+
+Public runtime SHA-256 identities are:
+
+| File | SHA-256 |
+| --- | --- |
+| `physx-pe.mjs` | `cb87ea9ee3e0dc5d67b4c5044d4360dfe58aa8344355c9b13e68107cbd8f5c69` |
+| `physx-pe.wasm` | `bd31182fff4ba1343d605723c0f0859809525ecdf3aa06aa99da4c31f650d54d` |
+
+The workflow requested software Vulkan through Firefox on Ubuntu and SwiftShader
+for Chromium. These bounded functional checks are not a hardware frame-rate
+benchmark, full upstream SDK certification, Engine thermal qualification or
+browser/device matrix. A same-source local build with different hashes has its
+own evidence. The published runtime's smoke report retains
+`engineIntegrationVerified: false` and `releaseApproved: false` within its
+regression-certification scope; successful prerelease publication does not turn
+those fields into full certification.
+
 The [published alpha.3 release](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.3)
-reports functional browser/ABI checks, actual Flow compute and an extracted
-archive test in CI. Its archive receipts apply to its exact published bytes and
-source commit. Chromium requests SwiftShader; Firefox Flow requests software
-Vulkan and records redacted adapter identity as unknown. This is not a hardware
-frame-rate benchmark, full upstream SDK certification or compatibility matrix.
+was built at source `53c0cd99d0695a23b89047bde0f000fdecaaa363` in
+[CI run 36867355569](https://github.com/BTSpaniel/Physx/actions/runs/36867355569).
+Its published receipts report all ten standalone SDK phases, including native
+PhysX/Blast, shared-heap checks, all 124 WGSL modules, representative numerical
+compute and the real Flow host graph with resource cleanup. The extracted ZIP
+passed 37 browser cases and its falling-body example; all seven published assets
+were anonymously downloaded and matched the tagged build byte for byte.
+The run requested Mesa lavapipe through Firefox on Ubuntu; the browser did not
+report its backend identity. These historical checks do not admit alpha.4,
+hardware real-time performance, full upstream parity or a device matrix.
 
 The current selected source defines 37 functional CPU-WASM checks and 96
 source-derived addon declarations. Its browser suite includes D6 and articulation
@@ -265,9 +324,9 @@ replays on one Windows device. Those historical receipts establish their own
 fixtures only. They do not certify a future source revision, unlimited-duration
 leak absence, cross-build replay or a device matrix.
 
-The pending source includes physical-section, thermal and transactional Flow
-extensions and 124 shader kernels. Fresh native, browser, GPU, extracted-package
-and Engine integration gates remain independent requirements. Momentum exchange
+The released source includes physical-section, thermal and transactional Flow
+extensions and 124 shader kernels. Its original SDK and package receipts are
+recorded above; Engine integration gates remain separate for each installed pair. Momentum exchange
 currently covers terminal normal exchange; heat remains an explicit unapplied
 obligation. Rendered frame rate alone does not measure completed physical time.
 See [source selection](source-selection.json), [source build guide](SOURCE_BUILD_KIT.md)
@@ -289,6 +348,6 @@ V-HACD, OpenVDB, Emscripten and Rust contributors. Preserve the distribution's
 
 API references: [NVIDIA PhysX documentation](https://nvidia-omniverse.github.io/PhysX/),
 [Emscripten module options](https://emscripten.org/docs/api_reference/module.html)
-and the [published declarations](https://github.com/BTSpaniel/Physx/blob/v5.11.0-alpha.3/types/physx-pe.d.ts).
+and the [published declarations](https://github.com/BTSpaniel/Physx/blob/v5.11.0-alpha.4/types/physx-pe.d.ts).
 Upstream documentation may describe interfaces or backends outside this
 release's exposed and verified subset.

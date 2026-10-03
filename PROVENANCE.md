@@ -11,7 +11,7 @@ clean-room reimplementation of the upstream SDKs or binding code.
 
 `upstream.lock.json` pins the upstream repositories, commits, SDK versions,
 Emscripten, Rust, and Slang. `source-selection.json` identifies the current
-pending alpha.4 full source selection, its displaced legacy inputs, and the frozen
+released alpha.4 full source selection, its displaced legacy inputs, and the frozen
 component references described in `SOURCE_BUILD_KIT.md`. The historical sixteen
 inputs remain in `reference/alpha2-production/source-selection.json`. The
 installed-reference loader/WASM hashes identify that older observed build;
@@ -21,10 +21,16 @@ The historical public runtime
 [5.11.0-alpha.3](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.3)
 was published on 2026-10-01 from source commit
 [`53c0cd99d0695a23b89047bde0f000fdecaaa363`](https://github.com/BTSpaniel/Physx/commit/53c0cd99d0695a23b89047bde0f000fdecaaa363).
-Those published assets and their receipts remain attached to that source and
-binary pair. The current alpha.4 selection is unpublished and pending a complete
-fresh build, verification, packaging and Engine admission; it does not replace
-the public alpha.3 release or an installed private development pair.
+Those historical assets and their receipts remain attached to that source and
+binary pair. The [alpha.4 prerelease](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.4)
+was published on 2026-10-03 from
+[`5dea7b3726ef5cd58115d4832085c96bb03eea26`](https://github.com/BTSpaniel/Physx/commit/5dea7b3726ef5cd58115d4832085c96bb03eea26)
+by [original CI run 37101094361](https://github.com/BTSpaniel/Physx/actions/runs/37101094361).
+Its own ten SDK phases, 37-case browser evidence, package receipt and anonymous
+seven-asset checks bind the public CI pair. A later documentation merge is not
+the compiled tag identity, and SDK publication does not admit every Engine path.
+The separately published alpha.3 portable source bundle retains its original
+53c0cd9 source identity and licensing; it is not an alpha.4 source kit.
 
 The selected thermal MIT distribution retains its historical Alpha source and
 license provenance under `reference/`. The current base thermal implementation
@@ -87,14 +93,15 @@ IDs and relative package paths; private build-machine paths are excluded.
 
 The physical section solvers, solid Flow pressure-boundary extensions, scalar
 source admissions, wood thermal coupling, and convex boundary query are included
-in the current pending alpha.4 source selection. Source selection does not establish
+in the released alpha.4 source selection. Source selection does not establish
 functional, Engine integration, real-time, or release admission. Historical
 test results do not certify a new artifact, and rendered frame rate does not
 establish real-time physics. Fresh build and verification receipts must bind
 the current committed source revision and exact loader/WASM/shader pair before
-it is offered as a verified runtime. The pending alpha.4 source selection has
-no release admission; its own fresh receipts must establish it. Historical
-alpha.2 and the published alpha.3 artifacts remain unchanged.
+it is offered as a verified runtime. Alpha.4's original bounded SDK and package
+results are documented above and in the release; they do not establish general
+Engine, hardware real-time, physical-realism or device-matrix admission.
+Historical alpha.2 and alpha.3 artifacts remain unchanged.
 
 Only this bounded standalone package is licensed here. Particle Realms Engine,
 Editor, WebGPU OS, and other project code outside this package keep their

@@ -3,21 +3,48 @@
 
 # PhysX PE alpha.4 source build kit
 
-This source checkout prepares **5.11.0-alpha.4**. It is **unpublished and pending
-a complete fresh build, verification, packaging and Engine admission**. The
-reviewed selection contains PhysX 5.11.0, Blast 5.0.6, Flow and experimental
-CPU-WASM wood-thermal sources with 96 source-derived addon declarations.
-`FINAL_SOURCES_SELECTED_FOR_BUILD` permits building the selected sources; it is
-not a compilation or execution result.
+The [published 5.11.0-alpha.4 runtime](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.4)
+was built in [original CI run 37101094361](https://github.com/BTSpaniel/Physx/actions/runs/37101094361)
+from commit `5dea7b3726ef5cd58115d4832085c96bb03eea26` (1,618 committed files)
+and published on 2026-10-03. A documentation merge does not change that compiled
+source identity. The selection contains PhysX 5.11.0, Blast 5.0.6, Flow and
+experimental CPU-WASM wood-thermal sources with 96 source-derived declarations.
+`FINAL_SOURCES_SELECTED_FOR_BUILD` records source selection; the separate actual
+CI and archive receipts establish the bounded runtime checks described below.
 
-The historical public runtime is
-[5.11.0-alpha.3](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.3),
-published 2026-10-01 from source
-[`53c0cd99d0695a23b89047bde0f000fdecaaa363`](https://github.com/BTSpaniel/Physx/commit/53c0cd99d0695a23b89047bde0f000fdecaaa363).
-Its downloads and receipts remain attached to that source and binary pair.
-This kit does not replace those assets, an installed private development pair
-or an Engine runtime. Public download verification and local source verification
-are different evidence.
+Rebuild alpha.4 from a genuine clone of tag `v5.11.0-alpha.4` at the commit above.
+The seven [runtime assets](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.4)
+include compiled binaries; the historical alpha.3 portable kit below supplies
+different source bytes and no runtime. Neither a source archive nor an unrelated
+local build replaces the release's actual public download evidence.
+
+## Historical alpha.3 portable source delivery
+
+Use a genuine clone of `v5.11.0-alpha.3` for rebuilding. GitHub's automatic source archives omit Git history; unzipping one alone cannot satisfy the existing clean committed-source guard. Keep any outer portable-kit documentation or checksum outside the cloned repository so its source inventory remains the exact 1,608 committed files.
+
+The [historical alpha.3 portable source-build kit](https://github.com/BTSpaniel/Physx/releases/download/source-kit-v5.11.0-alpha.3/physx-pe-5.11.0-alpha.3-source-build-kit.zip) uses a genuine Git bundle,
+not synthetic repository metadata. Its actual bundle clone reproduced the exact
+1,608-file inventory and passed the unchanged committed-source, final-selection
+and stable-selection guards. Extract the outer kit, then run:
+
+```text
+git clone --branch v5.11.0-alpha.3 physx-pe-source.bundle Physx-PE
+cd Physx-PE
+git rev-parse HEAD
+```
+
+The result must be `53c0cd99d0695a23b89047bde0f000fdecaaa363`.
+The bundle is a source-delivery option; it contains no compiled runtime and
+was published separately from the seven runtime assets. Both source-kit assets
+passed anonymous byte-for-byte download checks, followed by another real bundle
+clone and the unchanged committed-source and selection guards. Bootstrapping
+still requires the pinned upstream/toolchain downloads and the original local
+or genuine hosted execution window. No compiler or browser was run merely to
+verify that source-kit reconstruction.
+
+The [published source-kit checksum](https://github.com/BTSpaniel/Physx/releases/download/source-kit-v5.11.0-alpha.3/physx-pe-5.11.0-alpha.3-source-build-kit.zip.sha256)
+belongs to that separate alpha.3 delivery. No alpha.4 bundle or current-source
+reconstruction is claimed from this historical kit.
 
 ## Selected changes and numerical scope
 
@@ -131,6 +158,40 @@ neither GPU behavior nor a final unified runtime.
 
 ## Verification and remaining limits
 
+The [original alpha.4 CI run](https://github.com/BTSpaniel/Physx/actions/runs/37101094361)
+completed its build and publication at tagged source
+`5dea7b3726ef5cd58115d4832085c96bb03eea26`. The published archive retains ten
+passing SDK phases: native and browser ABI, TypeScript consumer semantics, 37
+PhysX browser cases, bounded CPU endurance/replay, unified PhysX/Blast/Flow
+checks, all 124 WGSL modules with representative compute, and Flow graph ownership.
+The ABI probe uses its own test module; the runtime phases bind the public PhysX pair.
+Successful original CI packaging records an extracted-archive smoke receipt in
+the release manifest. All seven assets were anonymously downloaded; their byte
+counts, checksums, archive file inventory and inner hashes match the release.
+
+Public runtime SHA-256 identities are:
+
+| File | SHA-256 |
+| --- | --- |
+| `physx-pe.mjs` | `cb87ea9ee3e0dc5d67b4c5044d4360dfe58aa8344355c9b13e68107cbd8f5c69` |
+| `physx-pe.wasm` | `bd31182fff4ba1343d605723c0f0859809525ecdf3aa06aa99da4c31f650d54d` |
+
+The workflow requested software Vulkan through Firefox on Ubuntu and SwiftShader
+for Chromium. These bounded functional checks are not a hardware frame-rate
+benchmark, full upstream SDK certification, Engine thermal qualification or
+browser/device matrix. A same-source local build with different hashes has its
+own evidence. The published runtime's smoke report retains
+`engineIntegrationVerified: false` and `releaseApproved: false` within its
+regression-certification scope; successful prerelease publication does not turn
+those fields into full certification.
+
+The [historical alpha.3 tagged CI run](https://github.com/BTSpaniel/Physx/actions/runs/36867355569)
+reported all ten SDK phases and separate extracted 37-case/falling-body checks
+for source `53c0cd99d0695a23b89047bde0f000fdecaaa363`. Its anonymous
+seven-asset delivery and two-asset portable source delivery belong to alpha.3.
+That run requested Mesa lavapipe through Firefox on Ubuntu; the browser did not
+report its backend identity. Its receipts cannot admit this alpha.4 pair.
+
 Fresh compiled bytes need their own native, browser, GPU, extracted-package and
 Engine integration results. A successful final link alone does not make the
 full producer pass: generated declaration/source-identity checks and after-guards
@@ -162,8 +223,8 @@ new bytes. All 124 WGSL modules require their retained checks, without implying
 that every pipeline or device is supported. No realtime thermal, unlimited leak
 absence, cross-build replay, complete upstream SDK or device-matrix claim follows.
 
-Delivered-archive checks must receive the actual intended release version and
-that version's anonymous public-download proof. For a future published alpha.4
-ZIP this means `--expected-version 5.11.0-alpha.4`; it is not a command to assert
-that such a download already exists. A local ZIP cannot supply publication
-evidence. The historical published alpha.3 assets and their receipts stay intact.
+Delivered-archive checks must receive the actual release version and that
+version's anonymous public-download proof. For the published alpha.4 ZIP this
+means `--expected-version 5.11.0-alpha.4` and the real alpha.4 download evidence.
+A separately generated local ZIP cannot supply publication evidence. Historical
+alpha.3 assets and their receipts remain attached to their original source.
