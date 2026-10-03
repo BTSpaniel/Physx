@@ -11,11 +11,36 @@ clean-room reimplementation of the upstream SDKs or binding code.
 
 `upstream.lock.json` pins the upstream repositories, commits, SDK versions,
 Emscripten, Rust, and Slang. `source-selection.json` identifies the current
-alpha.3 full source selection, its displaced legacy inputs, and the frozen
+pending alpha.4 full source selection, its displaced legacy inputs, and the frozen
 component references described in `SOURCE_BUILD_KIT.md`. The historical sixteen
 inputs remain in `reference/alpha2-production/source-selection.json`. The
 installed-reference loader/WASM hashes identify that older observed build;
 no binary identity or current-test pass is claimed for a fresh source rebuild.
+
+The historical public runtime
+[5.11.0-alpha.3](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.3)
+was published on 2026-10-01 from source commit
+[`53c0cd99d0695a23b89047bde0f000fdecaaa363`](https://github.com/BTSpaniel/Physx/commit/53c0cd99d0695a23b89047bde0f000fdecaaa363).
+Those published assets and their receipts remain attached to that source and
+binary pair. The current alpha.4 selection is unpublished and pending a complete
+fresh build, verification, packaging and Engine admission; it does not replace
+the public alpha.3 release or an installed private development pair.
+
+The selected thermal MIT distribution retains its historical Alpha source and
+license provenance under `reference/`. The current base thermal implementation
+is checked against that licensed origin plus the recorded finite char-rate
+derivation: `if (!isFinite(charRate)) return NONFINITE;` before the positive-rate
+timestep test. This restores the existing nonfinite status `6` without changing
+finite equations or their evaluation order. The source gate reconstructs the
+approved derivation; it does not authorize arbitrary changes to the origin.
+ABI1 retains the explicit method, while ABI2/numerical version 9 remains a
+separate implicit transport interface.
+
+The accurate physical-section processor avoids unused inherited base-processor
+preparation while retaining revision 3's own geometry, physical scaling,
+factor construction and solve path. Legacy processors remain separate, and
+material laws, physical tolerance and iteration budgets are unchanged. This
+source optimization carries no performance admission for a fresh runtime pair.
 
 `rust/src/regression_tests.rs` is an original build-lab MIT test module restored
 verbatim because `rust/src/lib.rs` already includes it under `#[cfg(test)]`.
@@ -62,14 +87,14 @@ IDs and relative package paths; private build-machine paths are excluded.
 
 The physical section solvers, solid Flow pressure-boundary extensions, scalar
 source admissions, wood thermal coupling, and convex boundary query are included
-in the current alpha.3 source selection. Source selection does not establish
+in the current pending alpha.4 source selection. Source selection does not establish
 functional, Engine integration, real-time, or release admission. Historical
 test results do not certify a new artifact, and rendered frame rate does not
 establish real-time physics. Fresh build and verification receipts must bind
 the current committed source revision and exact loader/WASM/shader pair before
-it is offered as a verified runtime. At source preparation, alpha.3 had no
-release admission; later receipts must establish it. Historical alpha.2
-artifacts remain unchanged.
+it is offered as a verified runtime. The pending alpha.4 source selection has
+no release admission; its own fresh receipts must establish it. Historical
+alpha.2 and the published alpha.3 artifacts remain unchanged.
 
 Only this bounded standalone package is licensed here. Particle Realms Engine,
 Editor, WebGPU OS, and other project code outside this package keep their
@@ -82,7 +107,8 @@ while expressing the observed prototype methods and 64-bit `bigint` calls.
 Generated `.d.ts` and `.d.mts` entries share the same content; JavaScript addon
 adapters have adjacent generated module declarations. Declaration generation
 does not itself alter native algorithms. The current source kit selects the
-additional runtime sources explicitly; published alpha.2 binaries are unchanged.
+additional runtime sources explicitly; historical alpha.2 and published alpha.3
+binaries are unchanged.
 The accompanying WebGPU ambient declarations are copied verbatim from the
 commit pinned in `upstream.lock.json`, retain their own BSD-3-Clause notice,
 and are identified separately in the source and license maps.

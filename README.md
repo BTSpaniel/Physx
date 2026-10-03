@@ -3,52 +3,52 @@
 
 # PhysX PE
 
-This source snapshot prepares **5.11.0-alpha.3**, dated **2026-10-01**.
-Its preparation status is **UNPUBLISHED / PENDING fresh build, verification,
-package and Engine admission**. Source selection is reviewed and marked
-`FINAL_SOURCES_SELECTED_FOR_BUILD`; that status is not an execution result.
-See [SOURCE_BUILD_KIT.md](SOURCE_BUILD_KIT.md) for the selected APIs and recipes.
-
-The alpha.2 links below remain the historical published release. They do not
-contain the new thermal, physical-section or transactional Flow APIs. No alpha.3
-download is announced here before publication. The experimental thermal solver
-can exceed real-time budgets. Momentum exchange covers terminal normal exchange
-and leaves heat as an explicit unapplied obligation.
-
-**PhysX, Blast and Flow for the browser, with Rust batching and WebGPU integration.**
+**NVIDIA PhysX, Blast and Flow in the browser, with Rust batching and WebGPU integration.**
 
 PhysX PE combines NVIDIA PhysX 5.11.0, NVIDIA Blast 5.0.6 and NVIDIA Flow in a
 browser runtime maintained by [Jake Wehmeier (BTSpaniel)](https://github.com/BTSpaniel).
 It provides a JavaScript module, a matching WebAssembly binary, TypeScript
-declarations and the adapters and shaders needed to run Flow on WebGPU.
-Use the prebuilt files directly with browser ES modules. No npm or application
-build step is required.
+declarations, and the adapters and shaders needed to run Flow on WebGPU.
+Applications consume browser ES modules directly; no npm or application build
+step is required.
+
+The latest published runtime prerelease is
+[5.11.0-alpha.3](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.3),
+published **2026-10-01**, from source commit
+[`53c0cd99d0695a23b89047bde0f000fdecaaa363`](https://github.com/BTSpaniel/Physx/commit/53c0cd99d0695a23b89047bde0f000fdecaaa363).
+The downloads below belong to that release.
+
+This source checkout prepares **5.11.0-alpha.4**. It is **unpublished and pending
+a complete fresh build, verification, packaging and Engine admission**. Selected
+source, successful individual compilation steps and historical tests do not
+establish those results. No alpha.4 download or performance admission is
+announced here. See [SOURCE_BUILD_KIT.md](SOURCE_BUILD_KIT.md) for the selected
+changes, exact recipes and verification boundary.
 
 **[Downloads](#downloads) · [Quick start](#quick-start) · [Flow setup](#flow-on-webgpu) · [Build from source](#build-from-source)**
 
 Built for [Particle Realms Engine](https://github.com/BTSpaniel/particlerealms.engine).
-Use PhysX PE on its own or explore the engine's public distribution for the
-broader WebGPU platform.
+PhysX PE can also be used independently of the engine.
 
 ## Downloads
 
-**[PhysX PE 5.11.0-alpha.2](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.2)**
-is an alpha prerelease. Start with the complete runtime ZIP for the examples,
-Flow shaders, license notices and verification reports.
+Start with the complete **published alpha.3** runtime ZIP for the examples,
+Flow adapters and shaders, license notices and verification reports.
 
 | Download | Contents |
 | --- | --- |
-| [Complete runtime ZIP](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.2/physx-pe-5.11.0-alpha.2-runtime.zip) | Matched runtime, Flow adapters and shaders, browser examples, local server, licenses and reports. |
-| [physx-pe.mjs](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.2/physx-pe.mjs) | JavaScript module loader. Requires the matching WASM below. |
-| [physx-pe.wasm](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.2/physx-pe.wasm) | Compiled PhysX, Blast, Rust and Flow host runtime. |
-| [physx-pe.d.ts](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.2/physx-pe.d.ts) | TypeScript declarations for the forwarded PhysX WebIDL interface. |
-| [SHA256SUMS](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.2/SHA256SUMS) · [Release manifest](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.2/release-artifacts.json) | File integrity and the source revision used for the release. |
+| [Complete runtime ZIP](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/physx-pe-5.11.0-alpha.3-runtime.zip) | Matched runtime, Flow adapters and shaders, browser examples, local server, licenses and reports. |
+| [physx-pe.mjs](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/physx-pe.mjs) | JavaScript module loader; requires the matching WASM. |
+| [physx-pe.wasm](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/physx-pe.wasm) | Published compiled runtime. |
+| [physx-pe.d.ts](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/physx-pe.d.ts) | Declarations for the published runtime. |
+| [SHA256SUMS](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/SHA256SUMS) · [ZIP checksum](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/physx-pe-5.11.0-alpha.3-runtime.zip.sha256) · [Release manifest](https://github.com/BTSpaniel/Physx/releases/download/v5.11.0-alpha.3/release-artifacts.json) | Asset integrity and the published source revision. |
 
-Download the loader and WASM from the same release and host them together with
-your application. The individual files are convenient for embedding; the ZIP
-contains the complete distribution, including notices required for redistribution.
-GitHub's automatically generated **Source code** archives contain build inputs,
-not prebuilt runtime binaries.
+Always download the loader and WASM from the same release and host them together.
+The individual files are convenient for embedding; the ZIP contains the full
+distribution, including notices required for redistribution. GitHub's automatic
+**Source code** archives contain build inputs, not prebuilt runtime binaries.
+Private development builds and the pending alpha.4 source selection are separate
+from these published alpha.3 assets.
 
 ## Quick start
 
@@ -60,14 +60,13 @@ not prebuilt runtime binaries.
    ```
 
 3. Open the [falling-body example](http://127.0.0.1:8765/web/quickstart.html).
-   For the full included smoke suite, open
+   For the included smoke suite, open
    [runtime validation](http://127.0.0.1:8765/web/index.html) and select
    **Run validation**. The suite runs real PhysX simulations in a Worker,
    checks the matched runtime files and lets you save its report.
 
-For your own application, put `physx-pe.mjs` and `physx-pe.wasm` beside each
-other. Import and await the module factory from a JavaScript module in that
-same directory:
+For your application, put `physx-pe.mjs` and `physx-pe.wasm` beside each other.
+Import and await the module factory from a JavaScript module in that directory:
 
 ```javascript
 import createPhysX from './physx-pe.mjs';
@@ -78,16 +77,15 @@ const PhysX = await createPhysX({
 ```
 
 Your application creates the scene and owns its simulation loop and native
-resources. The complete ZIP keeps the matched files in `dist/candidate/`;
-use that path when importing directly from the extracted package. See the
+resources. The ZIP keeps the matched files in `dist/candidate/`; use that path
+when importing directly from the extracted package. See the
 [quick-start source](web/quickstart.html), [simulation suite](web/suite.mjs)
-and [TypeScript declarations](https://github.com/BTSpaniel/Physx/blob/v5.11.0-alpha.2/types/physx-pe.d.ts)
-for the exposed calls.
+and [published declarations](https://github.com/BTSpaniel/Physx/blob/v5.11.0-alpha.3/types/physx-pe.d.ts).
 
-Serve ES modules over HTTP on localhost or HTTPS in deployment, never
-`file://`. Serve `.mjs` as JavaScript and `.wasm` as `application/wasm`; the
-included server supplies these types. JavaScript garbage collection does not
-release PhysX objects. The release uses single-threaded WebAssembly with SIMD.
+Serve ES modules over HTTP on localhost or HTTPS in deployment, never `file://`.
+Serve `.mjs` as JavaScript and `.wasm` as `application/wasm`; the included server
+supplies these types. JavaScript garbage collection does not release PhysX
+objects. The runtime uses single-threaded WebAssembly with SIMD.
 
 ## What runs where
 
@@ -96,17 +94,19 @@ release PhysX objects. The release uses single-threaded WebAssembly with SIMD.
 | PhysX rigid bodies, joints, articulations, cooking and queries | CPU, WebAssembly |
 | Blast core, stress and fracture authoring bridge | CPU, WebAssembly |
 | Rust pose batching and heap staging | CPU, WebAssembly SIMD |
+| Selected experimental wood-thermal kernels | CPU, WebAssembly; API choice determines the numerical method |
 | Flow sparse simulation | Host graph in WebAssembly; WGSL compute on WebGPU |
 | Native memory to GPU transfers | Explicit uploads and readbacks through the shared WASM heap |
 
-WebGPU accelerates Flow's compute work. The PhysX rigid-body solver remains on
-the CPU. CUDA and PhysX's native CUDA GPU backend are unavailable in this build.
+WebGPU accelerates Flow's compute work. The PhysX rigid-body and Blast solvers
+remain on the CPU. CUDA and PhysX's native CUDA GPU backend are unavailable in
+this build. The selected thermal kernels are not GPU thermal solvers.
 
 ## Flow on WebGPU
 
 Use the complete runtime ZIP. Flow needs `addons/flow/flow_host_webgpu.mjs`
-and the entire `dist/flow-wgsl/` directory, including its manifest and
-reflection files. The WASM alone is not enough.
+and the entire `dist/flow-wgsl/` directory, including its manifests and reflection
+files. The WASM alone is not enough.
 
 The device must support `float32-filterable`, at least **1,024 compute
 invocations per workgroup**, and a **1,024-lane X workgroup**. Request these
@@ -147,25 +147,48 @@ try {
 
 A renderer can consume `flow.output` while the host is alive. Await each step
 and dispose the host before destroying the device. The host borrows its device,
-so your application can share a device already owned by its renderer.
+so an application can share a device already owned by its renderer.
+
+## Selected alpha.4 changes
+
+These changes describe the pending source selection, not the published alpha.3
+download or a completed alpha.4 qualification:
+
+- The explicit wood-thermal ABI1 kernel rejects a nonfinite intermediate char
+  reaction rate with its existing status `6`, before the positive-rate timestep
+  test. Finite equations and their evaluation order remain unchanged. Callers
+  must still stage state and commit only after successful validation.
+- Blast's accurate physical-section processor avoids preparing unused inherited
+  base-processor data. Revision 3 retains its own geometry, physical scaling,
+  factor construction and solve path; legacy processors remain separate. This
+  removes redundant preparation without changing material laws, solver tolerance
+  or iteration budgets. A performance claim requires a matched runtime test.
+- Thermal ABI1 and ABI2/numerical version 9 remain separate interfaces. ABI1 uses
+  the existing explicit adaptive method. The selected stable-depletion compile
+  option evaluates the frozen-temperature loss with `log1p`/`expm1`, so numerical
+  compatibility uses declared tolerances rather than a bit-exact JavaScript
+  claim. ABI2/numerical version 9 uses adaptive implicit SDIRK transport and
+  separate controls, workspace and diagnostics; it is not a drop-in ABI1
+  acceleration or an automatic Engine integrator switch.
 
 ## Package and source map
 
 | Path | Purpose |
 | --- | --- |
 | `dist/candidate/` | Matched loader, WASM, declarations and build manifest inside the runtime ZIP. |
-| `dist/flow-wgsl/` | Generated Flow shaders, reflection files and manifest inside the runtime ZIP. |
+| `dist/flow-wgsl/` | Generated Flow shaders, reflection files and manifests. |
 | `addons/flow/` | Flow host adapter, shared-heap WebGPU bridge and source build tools. |
 | `addons/blast/` | Blast bridge and source build tools. |
+| `addons/thermal/` | Selected experimental CPU-WASM thermal sources in the source checkout. |
 | `bridge/` · `rust/` | Native transfer interfaces, JavaScript batching adapters and Rust implementation. |
-| `web/` | Browser example, validation page and simulation suite. |
-| `types/` | Generated PhysX/addon declarations and pinned WebGPU types in the source repository. |
-| `reports/` | Verification receipts in the runtime ZIP; generated test output in a source checkout. |
+| `web/` | Browser examples, validation page and simulation suite. |
+| `types/` | Generated PhysX/addon declarations and pinned WebGPU types. |
+| `reports/` | Verification receipts in the ZIP; generated test output in a source checkout. |
 | `LICENSES/` | Complete upstream license texts and notices. |
 
-The runtime ZIP includes the browser adapters, not every source build tool.
-Clone this repository to change or rebuild the native integration. Temporary
-build checkouts stay in `work/`; publishable files are collected in `dist/release/`.
+The ZIP includes browser adapters, not every source build tool. Clone this
+repository to rebuild the native integration. Temporary build checkouts stay in
+`work/`; publishable files are collected in `dist/release/`.
 
 ## Build from source
 
@@ -185,74 +208,70 @@ python tools/flow_gpu_probe.py --software-vulkan --browser-engine firefox
 python release.py build
 ```
 
-You can run `build`, `verify` or `package` separately. Release commands require a
-clean, committed source tree. Packaging rejects missing, failed or stale
-verification, checks file hashes, and runs the extracted archive before
-accepting it. Emscripten 4.0.19, Rust 1.90.0, Slang 2025.6.1 and the source
-revisions are pinned in [upstream.lock.json](upstream.lock.json).
+Select the intended committed source revision before building. Cloning the
+public repository does not imply that a pending private successor is published.
+Use [SOURCE_BUILD_KIT.md](SOURCE_BUILD_KIT.md) for the existing-toolchain Windows
+route and selected native source checks.
 
-For local verification alongside an Engine checkout, provide its shared test
-lock with `python release.py verify --software-vulkan --flow-browser-engine
-firefox --lock-workspace /path/to/particlerealms.engine`. The bounded CPU
-endurance phase uses this lock to serialize heavy tests. The GitHub workflow
-runs `release.py all` with `--ci-isolated`, which requires the actual hosted
-Actions environment; that flag cannot bypass local test isolation.
+Run `build`, `verify` and `package` separately. Release commands require a clean,
+committed source tree. Packaging rejects missing, failed or stale verification,
+checks hashes, and executes the extracted archive. Emscripten 4.0.19, Rust 1.90.0,
+Slang 2025.6.1 and upstream source revisions are pinned in
+[upstream.lock.json](upstream.lock.json).
 
-For a hosted build, use **Actions → Build PhysX PE → Run workflow**.
-Successful runs retain runtime files and reports. Version tags create an alpha
-prerelease only after the build and verification gates pass. Emscripten uses
-its bundled development tools during compilation; consumers need no npm setup.
+For local verification alongside an Engine checkout, provide its shared lock:
+`python release.py verify --software-vulkan --flow-browser-engine firefox
+--lock-workspace /path/to/particlerealms.engine`. The bounded CPU endurance phase
+uses this lock to serialize heavy tests. Hosted workflows use `--ci-isolated`,
+which requires the actual GitHub-hosted Actions environment and cannot bypass
+local isolation.
 
-## Verification and alpha scope
+Use **Actions → Build PhysX PE → Run workflow** for a hosted build. Successful
+runs retain runtime files and reports. Version tags create an alpha prerelease
+only after the build and verification gates pass. Consumers need no npm setup.
 
-The published alpha.2 archive carries `runtime-manifest.json`,
-`reports/verification.json` and individual phase receipts. These bind the tested
-files to their source revision and record what ran. Release gates cover Rust
-units and Python FFI, C++/Rust ABI checks, 23 PhysX browser scenarios, a real
-Blast fracture, shared-heap WebGPU transfers, Flow shader validation and
-executed kernels, the native Flow graph, and the extracted ZIP.
+## Verification and limits
 
-CI requests SwiftShader for Chromium checks and Mesa lavapipe through Firefox
-for the full Flow graph. Firefox can redact adapter identity; reports keep an
-unknown observed identity separate from the requested driver. This is functional
-and numerical evidence, not a hardware frame-rate benchmark, full SDK
-certification or a browser/device compatibility matrix.
+The [published alpha.3 release](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.3)
+reports functional browser/ABI checks, actual Flow compute and an extracted
+archive test in CI. Its archive receipts apply to its exact published bytes and
+source commit. Chromium requests SwiftShader; Firefox Flow requests software
+Vulkan and records redacted adapter identity as unknown. This is not a hardware
+frame-rate benchmark, full upstream SDK certification or compatibility matrix.
 
-The current source checkout defines 37 functional CPU-WASM checks, including
-behavioral tests for D6 drives, articulation drives,
-controller floor/wall collision, convex and triangle mesh cooking, binary
-serialization with 64-bit object IDs, and deterministic replay on the same
-build. Vehicle2 checks measure tire support, acceleration, braking and steering;
-callback checks measure native contact impulses and trigger entry/exit. It also
-checks TypeScript consumers of the actual Rust, Blast and Flow
-addon APIs, including invalid argument rejection. Adjacent `.d.mts` files
-resolve browser ES module imports; `types/webgpu.d.ts` supplies the pinned GPU
-interfaces. Type validation runs the official TypeScript compiler inside a
-browser, without adding Node or npm to the application build. These source
-checks do not alter the published alpha.2 files or their historical receipts.
-The alpha.3 candidate requires fresh execution on its own matched runtime and
-committed source revision; prior execution cannot satisfy those gates.
+The current selected source defines 37 functional CPU-WASM checks and 96
+source-derived addon declarations. Its browser suite includes D6 and articulation
+drives, controller floor/wall collision, convex and triangle mesh cooking,
+64-bit serialization IDs, Vehicle2 behavior, native contacts/triggers and
+same-build replay. TypeScript consumers check actual addon pointer, arity and
+return types in a browser. Source presence and generated declarations do not
+replace execution on a fresh matched pair.
 
-Historical bounded tests exercise 288 scene lifecycles, 4,608 dynamic actors,
-576 bulk contexts and 288 native Blast checks. Two ten-minute physical-time
-replays must agree byte for byte. Those separately recorded CPU tests passed in the installed Chrome
-and Edge browsers on one Windows device; they do not admit the alpha.3 candidate. Scene and addon counts return to zero,
-allocation probes reuse their storage, and WASM memory reaches a stable
-64 MiB high-water mark. This verifies that bounded fixture; it does not prove
-an unlimited-duration allocator leak absence or cross-device replay.
+Experimental thermal performance and physical fidelity remain limited. A
+separate standalone ABI1 compatibility probe passed eight bounded cases with
+mass/energy closure and allocation cleanup. One captured **0.1 s** thermal input
+required **1,095 adaptive substeps**; on that Chrome/Windows fixture the median
+native total cost was approximately **269 ms**, including preparation, transfer
+and commit, versus approximately **593 ms** for JavaScript. This is a standalone
+fixture result, not a unified alpha.4, complete-scene or realtime result. Caller
+refinement also observed internal temperatures around **9,260–10,060 K**.
+Matching the explicit JavaScript state and ledger does not validate those peaks
+or establish physical realism or transient peak convergence. ABI2 is a different
+numerical method and cannot silently replace ABI1 to improve a timing result.
 
-The historical alpha.2 verification excludes the NanoVDB emitter pipeline,
-experimental physical-section solvers, solid pressure-boundary extensions and
-wood thermal coupling. Its Flow obstacle coupling is one-way velocity coupling.
+Earlier bounded CPU tests exercised 288 scene lifecycles, 4,608 dynamic actors,
+576 bulk contexts and 288 Blast checks, with matching ten-minute physical-time
+replays on one Windows device. Those historical receipts establish their own
+fixtures only. They do not certify a future source revision, unlimited-duration
+leak absence, cross-build replay or a device matrix.
 
-The alpha.3 source candidate includes the reviewed physical-section, thermal and
-Flow extension sources with 96 source-derived addon declarations and 124 shader
-kernels. Included source is not a completed behavioral proof. Its fresh native,
-browser, GPU, extracted-package and Engine gates remain separately required.
-Full upstream SDK coverage, unlimited-duration leak absence, cross-build replay,
-a browser/device matrix and real-time thermal behavior are outside the claim.
+The pending source includes physical-section, thermal and transactional Flow
+extensions and 124 shader kernels. Fresh native, browser, GPU, extracted-package
+and Engine integration gates remain independent requirements. Momentum exchange
+currently covers terminal normal exchange; heat remains an explicit unapplied
+obligation. Rendered frame rate alone does not measure completed physical time.
 See [source selection](source-selection.json), [source build guide](SOURCE_BUILD_KIT.md)
-and [provenance](PROVENANCE.md) for the precise boundary.
+and [provenance](PROVENANCE.md) for source and admission boundaries.
 
 ## Credits and license
 
@@ -270,6 +289,6 @@ V-HACD, OpenVDB, Emscripten and Rust contributors. Preserve the distribution's
 
 API references: [NVIDIA PhysX documentation](https://nvidia-omniverse.github.io/PhysX/),
 [Emscripten module options](https://emscripten.org/docs/api_reference/module.html)
-and the [shipped TypeScript declarations](https://github.com/BTSpaniel/Physx/blob/v5.11.0-alpha.2/types/physx-pe.d.ts).
+and the [published declarations](https://github.com/BTSpaniel/Physx/blob/v5.11.0-alpha.3/types/physx-pe.d.ts).
 Upstream documentation may describe interfaces or backends outside this
 release's exposed and verified subset.

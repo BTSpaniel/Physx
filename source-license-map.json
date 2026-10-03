@@ -286,7 +286,7 @@
     },
     "types/addon-abi.json": {
       "bytes": 16039,
-      "sha256": "b7f3e2170630db9ca88c15536e13eb6ccbf05d778b80af3d8a6a8a38d99808aa",
+      "sha256": "1380c50d568facc5b020b464a7d18ace41fbad737d861f3bd0389c122b3e8110",
       "origin": "First-party declaration/ABI inventory generated from actual selected native exports and maintained JavaScript adapter contracts",
       "licenseScope": "MIT for original declarations; referenced upstream WebGPU types retain BSD-3-Clause and linked SDKs keep their existing notices",
       "notices": [
@@ -3955,8 +3955,8 @@
       ]
     },
     "SOURCE_BUILD_KIT.md": {
-      "sha256": "99728ed67e211894eb9829ce4667786598d976ffe1b06a6126cd3c389a11628e",
-      "bytes": 8552,
+      "sha256": "573664b9bc712711773a0ae95931fe6344498bd0b9e2d24ab4d9d5ebcc6faef2",
+      "bytes": 10453,
       "origin": "First-party isolated source-build admission/test adapter or documentation",
       "licenseScope": "MIT for this custom contribution; no clean-room or linked-SDK relicensing claim",
       "notices": [
@@ -4255,8 +4255,8 @@
       ]
     },
     "PROVENANCE.md": {
-      "sha256": "e195a191feac489bea498562badab1cfdc2f108abb422a2761e45cd0576e7404",
-      "bytes": 5486,
+      "sha256": "07c1a7fded3376aac83acaefdf06188a2ed38dd852d6fae25a7606814c43a8e7",
+      "bytes": 7206,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
@@ -4265,8 +4265,8 @@
       ]
     },
     "README.md": {
-      "sha256": "1e2965038f0c9175c7ed4092712bb06fbcdd4d8e0248eff86e96a45ed4dcb429",
-      "bytes": 14870,
+      "sha256": "14ba5e719a702a69b8b5dc7331b1e447b9ec0a4699b442fc21db0426204f56c9",
+      "bytes": 16094,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
@@ -15965,7 +15965,7 @@
       ]
     },
     "release.py": {
-      "sha256": "39734eb58998074c4b95b1f01911d7bfb482a43b109b4f36810e7fad17324ab2",
+      "sha256": "5691c3edbd5e30fea133736033d85a2cdbae23d389ecbe5e2a7bb645b614b8da",
       "bytes": 19118,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
@@ -17633,8 +17633,8 @@
       ]
     },
     "source-selection.json": {
-      "sha256": "3ac63a65d5354bb070adbc2efe2432541d474901ef9cff4214b41f5b75eada6c",
-      "bytes": 59766,
+      "sha256": "877ecfca8d610083db4f1c291f5dbc7de6247e1250092b0d0d16748b707ed0ee",
+      "bytes": 59255,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [

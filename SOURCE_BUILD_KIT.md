@@ -1,49 +1,169 @@
 <!-- SPDX-FileCopyrightText: 2026 Jake Wehmeier (BTSpaniel) -->
 <!-- SPDX-License-Identifier: MIT -->
 
-# PhysX PE alpha.3 source build kit
+# PhysX PE alpha.4 source build kit
 
-Prepared **2026-10-01** for **5.11.0-alpha.3**. The preparation status is **UNPUBLISHED / PENDING fresh build, verification, package and Engine admission**. This isolated kit contains the reviewed PhysX 5.11, Blast, Flow and experimental wood-thermal source selection with 96 source-derived addon declarations. `source-selection.json` is marked **FINAL_SOURCES_SELECTED_FOR_BUILD** with no pending native inputs. That status permits a source build; it does not certify execution. This kit does not replace the production source tree, the published alpha.2 runtime, or the Engine runtime.
+This source checkout prepares **5.11.0-alpha.4**. It is **unpublished and pending
+a complete fresh build, verification, packaging and Engine admission**. The
+reviewed selection contains PhysX 5.11.0, Blast 5.0.6, Flow and experimental
+CPU-WASM wood-thermal sources with 96 source-derived addon declarations.
+`FINAL_SOURCES_SELECTED_FOR_BUILD` permits building the selected sources; it is
+not a compilation or execution result.
 
-The kit contains the exact 265 upstream Flow source/header/shader/project inputs and the admitted first-party component helpers. NVIDIA's original per-file notices remain intact. The root MIT license covers the custom contributions within its stated scope; NVIDIA, OpenVDB, fabmax and other dependencies retain their own licenses and attribution. This is a source port with provenance, not a clean-room rewrite.
+The historical public runtime is
+[5.11.0-alpha.3](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.3),
+published 2026-10-01 from source
+[`53c0cd99d0695a23b89047bde0f000fdecaaa363`](https://github.com/BTSpaniel/Physx/commit/53c0cd99d0695a23b89047bde0f000fdecaaa363).
+Its downloads and receipts remain attached to that source and binary pair.
+This kit does not replace those assets, an installed private development pair
+or an Engine runtime. Public download verification and local source verification
+are different evidence.
 
-`source-selection.json` records the legacy sixteen-source selection and every displaced selected input. `reference/` preserves the original component, SDK and production selection records. No native object, loader or WASM pair was copied into this kit. Reference generated source/WGSL and native build manifests are identity data only. Frozen references belong to the committed source inventory; only this kit's top-level work, dist and reports are generated outputs.
+## Selected changes and numerical scope
 
-The Flow build compiles all four corpora: 97 original kernels, 21 solid-boundary kernels, four scalar-source kernels and two momentum kernels. It requires exactly 124 generated host headers, six rebase include wrappers and 252 shader/reflection/manifest files. The original 195-file corpus remains independently accounted for. Every native Flow translation unit is recompiled; a cached component object is not an admitted source build.
+The base explicit thermal implementation adds one finite-intermediate check:
+`if (!isFinite(charRate)) return NONFINITE;` before the positive char-rate
+timestep bound. The existing nonfinite status is `6`. This prevents an invalid
+char reaction rate from being ignored by a `> 0` test; every finite equation and
+its order remain unchanged. The source gate reconstructs the exact licensed
+origin plus this recorded derivation rather than accepting arbitrary edits.
+Caller-owned canonical state must be committed only after native success and
+full output, readonly-input and ledger validation.
 
-From an activated, pinned toolchain on a verified isolated GitHub-hosted Actions runner:
+The accurate physical-section processor retains revision 3's own binary64
+geometry, physical weights, section factors and solve path while avoiding
+unused inherited base-processor preparation. Legacy processors remain separate.
+The original physical tolerance is **1e-6**; the optimization does not change
+material laws, damage controls, timestep or iteration budgets. Fresh same-pair
+physical checks are still required; selected source is not a speed claim.
+
+The multirate translation unit includes the base implementation and exports
+both interfaces:
+
+| Interface | Numerical method and ownership |
+| --- | --- |
+| ABI1 (`pr_wood_thermal_step`) | Existing explicit adaptive method and caller-owned arena. The selected stable-depletion flag uses `log1p`/`expm1` for frozen-temperature loss; compatibility uses declared f64 tolerances, not assumed bit-exact JavaScript arithmetic. |
+| ABI2, numerical version 9 | Adaptive implicit SDIRK transport with separate controls, caller-owned workspace, error budgets and diagnostics. It does not call ABI1 or automatically select an Engine integrator. |
+
+Keeping the ABI1 exports does not establish ABI1 compatibility for a new pair.
+ABI2 is a different numerical method, not a transparent replacement for the
+explicit solver. Both run on the CPU in WebAssembly. PhysX and Blast likewise
+run on CPU-WASM; Flow's sparse compute uses WebGPU through its WASM host graph.
+
+## Source selection, licenses and generated outputs
+
+`source-selection.json` records the legacy sixteen-source selection, displaced
+inputs, current identities and recorded derivations. `reference/` preserves
+earlier component, SDK and production provenance. Frozen reference generated
+source, WGSL and build manifests are identity data; historical objects and
+runtime pairs are not substitutes for a fresh build. Only the kit's top-level
+`work/`, `dist/` and `reports/` are generated output directories.
+
+The kit retains 265 upstream Flow source/header/shader/project inputs and
+selected first-party helpers. NVIDIA's per-file notices remain intact. Original
+PhysX PE contributions use the root MIT license within its stated scope;
+NVIDIA, OpenVDB, fabmax and other dependencies retain their own licenses and
+attribution. The authorized thermal MIT distribution retains its original
+Alpha source and license provenance under `reference/`; selected changes are
+checked as explicit derivations. No Alpha orchestration helper executes here.
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), [AUTHORS.md](AUTHORS.md),
+[PROVENANCE.md](PROVENANCE.md) and `LICENSES/`.
+
+The Flow build compiles four corpora: **97 original**, **21 solid-boundary**,
+**four scalar-source** and **two momentum** kernels. It requires 124 generated
+host headers, six rebase include wrappers and 252 shader/reflection/manifest
+files. The original 195-file corpus remains separately accounted for. Every
+native Flow translation unit is recompiled; cached component objects are not
+admitted as a source build.
+
+Blast's retained 203-input component manifest contains 178 pinned raw NVIDIA
+files. Regeneration additionally binds three required raw transform inputs and
+the real version file to pinned upstream Git blobs, giving a 182-file raw source
+inventory. The historical manifest remains intact. The native recipe verifies
+the selected derived sources, compiles all **27 Blast translation units**, and
+performs a fresh relocatable link without a historical object cache.
+
+The CMake recipe links fresh PhysX/WebIDL, Rust, convex bulk, Blast, Flow and
+thermal code into one shared WASM heap with explicit final flags:
+`-O3 -fno-fast-math -fno-associative-math -ffp-contract=off -msimd128`.
+The inherited IDL declarations and upstream notices remain intact. Source
+signature and generated declaration checks must bind the selected source hashes
+even when a source-only correction leaves function signatures unchanged.
+
+## Build with an existing pinned toolchain
+
+Use Python 3.12 and the versions pinned by [upstream.lock.json](upstream.lock.json):
+Emscripten 4.0.19, Rust 1.90.0 and Slang 2025.6.1. The ordinary build requires a
+clean committed source tree, final source selection, contained inputs and exact
+upstream/overlay identities. Clearing a pending list cannot bypass those checks.
+
+For Windows/WSL, the Windows parent holds the host's shared execution lock
+throughout each WSL command. A WSL `fcntl` lock does not establish ownership of
+the Windows `msvcrt` lock. `tools/source_kit_windows.py` reuses the existing host
+helper and records source, generated-type, compiler and reference identities
+before and after execution. Native command arguments, compiler versions and
+output are retained; WSL processes perform their additional source checks.
+
+Run from the selected checkout with real existing toolchain paths and a fresh,
+contained report name for every invocation:
+
+```text
+python tools/source_kit_windows.py typecheck --lock-workspace C:/Coding/game --report reports/semantic-types-01.json
+python tools/source_kit_windows.py flow-build --lock-workspace C:/Coding/game --emsdk C:/path/to/existing/emsdk --slangc C:/path/to/existing/slangc --report reports/fresh-flow-build-01.json
+python tools/source_kit_windows.py full-build --lock-workspace C:/Coding/game --emsdk C:/path/to/existing/emsdk --slangc C:/path/to/existing/slangc --rust-toolchain C:/path/to/existing/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu --report reports/full-source-build-01.json
+```
+
+These commands do not install toolchains or change power settings. New outputs
+may differ from historical components; preserve their receipts and compare their
+identities rather than replacing an admitted runtime automatically.
+
+On an actual isolated GitHub-hosted Actions runner, the existing Flow component
+route is:
 
 ```text
 python release.py build-flow-component --ci-isolated --slangc /path/to/existing/slangc
 ```
 
-The command uses the existing execution-window validation. It requires the real Actions/CI/hosted-runner environment. It compiles from the local pinned sources, creates a fresh `reports/flow-source-build-*.json`, and preserves that phase's host pair and partial object under a unique `dist/flow-component-*` directory. Compilation alone does not establish GPU behavior or a final unified runtime.
+`--ci-isolated` validates the real hosted CI environment and cannot bypass a
+local execution window. This phase retains fresh host artifacts, objects and
+receipts under unique component output directories. Compilation alone establishes
+neither GPU behavior nor a final unified runtime.
 
-An ordinary local build must use the existing host's shared execution window. On Windows, the Windows parent must hold the native shared lock across any WSL command. A direct WSL `fcntl` lock is explicitly rejected as evidence of the Windows `msvcrt` lock. No toolchain installers or environment power overrides are included.
+## Verification and remaining limits
 
-The local `tools/source_kit_windows.py` route imports that existing host helper and keeps the lock while Windows records the source, type and compiler inputs before and after execution. Its `typecheck` phase runs the original browser TypeScript consumer. Its `flow-build` phase runs the four selected compiler recipes and native component build in WSL; those processes perform additional source checks in WSL. Compiler versions, bytes, actual argv and output are retained. This distinction is explicit in the receipt.
+Fresh compiled bytes need their own native, browser, GPU, extracted-package and
+Engine integration results. A successful final link alone does not make the
+full producer pass: generated declaration/source-identity checks and after-guards
+must also pass. Failed or partial receipts cannot become completed-build proof.
+Static ABI inspection, runtime smoke tests and Engine admission remain distinct.
 
-```text
-python tools/source_kit_windows.py typecheck --lock-workspace C:/Coding/game --report reports/semantic-types-01.json
-python tools/source_kit_windows.py flow-build --lock-workspace C:/Coding/game --emsdk C:/path/to/existing/emsdk --slangc C:/path/to/existing/slangc --report reports/fresh-flow-build-01.json
-```
+The current declaration inventory includes 96 source-derived native exports.
+The browser TypeScript consumer checks 25 additional non-Flow APIs alongside
+the existing 71; incorrect pointers, arity and return types must fail. Numeric
+wasm32 addresses do not encode alignment, allocation size, lifetime or ownership.
+Thermal arenas and workspaces are caller-owned, aligned and disjoint; convex
+queries borrow a live shape after completed scene simulation. These declarations
+do not certify a new runtime pair or imply that historical downloads implement
+every currently selected source API.
 
-Every invocation needs a fresh contained report name. Actual build outputs may differ from the older component; they are retained for comparison and cannot replace the separately admitted runtime automatically.
+A separate local standalone guarded ABI1 probe passed the original eight-case
+compatibility suite, including status `6`, canonical-state protection and native
+allocation cleanup. One captured 0.1-second input required 1,095 explicit adaptive
+substeps and approximately 269 ms median total native cost versus 593 ms for
+JavaScript on that Chrome/Windows fixture. Preparation, heap transfers and commit
+were included. This is not a unified alpha.4 or complete-scene result. Refined
+internal peaks near 9,260–10,060 K remain an explicit-integration concern;
+matching JavaScript state and conservation does not admit physical realism or
+transient peak convergence. ABI2 cannot silently replace ABI1 for performance.
 
-The final unified build, verify and package commands fail closed while native inputs are pending. Clearing or deleting the pending list cannot unlock them. They also require the explicit final-selection status, the pinned upstream identity, and exact contained Flow, Blast and wood-thermal manifest/source identities.
+Momentum exchange covers terminal normal exchange only; heat remains an explicit
+unapplied obligation. Historical thermal, section or Flow receipts do not admit
+new bytes. All 124 WGSL modules require their retained checks, without implying
+that every pipeline or device is supported. No realtime thermal, unlimited leak
+absence, cross-build replay, complete upstream SDK or device-matrix claim follows.
 
-The selected native sources come from immutable combined06. Its convex bridge restores the reviewed live-shape plane query. Blast's 203-input component contains 178 pinned raw NVIDIA files and the f64 physical preparation, section revision 3 and stress-mass adapters. Actual regeneration checks exposed three raw transform inputs absent from that compiled-input manifest. This kit adds those three originals and the real version file, checking all four bytes against the exact pinned upstream Git blobs; its raw source inventory is 182 files. The original 203-input manifest stays unchanged. `tools/native_components.py` regenerates the exact four derived sources/headers, checks their hashes against the original component, unconditionally compiles all 27 translation units and performs a fresh relocatable link. It never reads a historical object cache.
-
-The four selected wood-thermal files use the owner's authorized MIT distribution. Their Alpha originals and original license text remain under reference provenance. The source gate checks that replacing only each SPDX license identifier reconstructs every selected byte; algorithms, line endings and copyrights remain unchanged. No Alpha orchestration helper executes in this kit. The MRI9 translation unit includes the unchanged base implementation and freshly compiles all seven actual exports. Only ABI2/numerical9 is the proposed thermal capability; retained ABI1 exports do not certify a different thermal solver.
-
-The CMake recipe links fresh PhysX/WebIDL, Rust, the convex bulk adapter, Blast, Flow and MRI9 into one shared WASM heap with explicit `-O3 -fno-fast-math -fno-associative-math -ffp-contract=off -msimd128` final flags. The default physical tolerance stays 1e-6. Material laws, dt, damage controls and trial budgets remain unchanged. The existing `release.py build` still requires an exact clean committed source tree and all pinned upstream/overlay inputs. After review and source commitment, native Windows Python can drive it under the real host lock:
-
-```text
-python tools/source_kit_windows.py full-build --lock-workspace C:/Coding/game --emsdk C:/path/to/existing/emsdk --slangc C:/path/to/existing/slangc --rust-toolchain C:/path/to/existing/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu --report reports/full-source-build-01.json
-```
-
-The alpha.3 candidate requires a fresh invocation at its final committed source revision. An earlier isolated source revision compiled successfully; its receipts do not admit this candidate. Fresh compiled bytes need their own actual same-pair native, browser, GPU, extracted-package and Engine verification before any release or installation. Runtime package code includes both imported Flow boundary/scalar helpers and checks all 124 WGSL modules; this does not claim every pipeline or platform is supported.
-
-The thermal solver is experimental and can be expensive: the historical captured 0.1-second case required roughly 1.6 seconds of CPU-WASM kernel work. No real-time thermal claim follows. Momentum exchange currently covers terminal normal exchange only; heat remains an explicit unapplied obligation. The historical component receipts do not admit newly compiled bytes.
-
-The inherited IDL declarations and notices stay byte-identical. The complete raw declaration inventory matches `reference/combined-native-06/expected-addon-exports.json` exactly. Bounded recognition of the actual `PR_EXPORT` macro scans the two thermal definition files once. The TypeScript consumer checks all 25 additional non-Flow APIs alongside the existing 71; wrong pointer representations, arity and return types must fail. Numeric wasm32 addresses do not encode alignment, allocation, lifetime or ownership. Thermal arenas/workspaces are caller owned, aligned and disjoint; convex queries borrow a live shape after completed scene simulation. These declarations do not imply that published alpha.2 implements the selected alpha.3 APIs. Delivered-archive compatibility tests retain alpha.2 as their historical default; a new delivered ZIP must explicitly pass `--expected-version 5.11.0-alpha.3` with that release's actual anonymous-download proof. A local ZIP cannot supply anonymous-publication evidence.
+Delivered-archive checks must receive the actual intended release version and
+that version's anonymous public-download proof. For a future published alpha.4
+ZIP this means `--expected-version 5.11.0-alpha.4`; it is not a command to assert
+that such a download already exists. A local ZIP cannot supply publication
+evidence. The historical published alpha.3 assets and their receipts stay intact.
