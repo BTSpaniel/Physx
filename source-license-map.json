@@ -154,8 +154,8 @@
       ]
     },
     "addons/flow/flow_host_webgpu.mjs": {
-      "sha256": "46ae8d8d161b7e6596cd44f13c0f6a71760537cefcebaefe7f9fdb3bd7ce8c1a",
-      "bytes": 74730,
+      "sha256": "91f01d7c2634aca0f64597562d77a39361ff09d295f9cc6a59b7ce665b69c729",
+      "bytes": 75477,
       "origin": "Selected custom Particle Realms build-lab integration source with existing MIT declaration",
       "licenseScope": "MIT for custom source; linked SDK/runtime dependencies retain separate notices",
       "notices": [
@@ -3955,8 +3955,8 @@
       ]
     },
     "SOURCE_BUILD_KIT.md": {
-      "sha256": "f285291010ca6685c5ad4c0e01463b7bb48ea364df8a256ed3c1372847367024",
-      "bytes": 14445,
+      "sha256": "ed5c20bcb44ef06667c12ad703151d18263b5c250137dc47dcefa365c82b8bb2",
+      "bytes": 15099,
       "origin": "First-party isolated source-build admission/test adapter or documentation",
       "licenseScope": "MIT for this custom contribution; no clean-room or linked-SDK relicensing claim",
       "notices": [
@@ -4265,8 +4265,8 @@
       ]
     },
     "README.md": {
-      "sha256": "5a41e2224708aab54ddeaf3d91b08c78bb466032229f9833f67c57ecf17e2685",
-      "bytes": 19767,
+      "sha256": "a2a5a42ee69f1d4f105b4f2924195ca74f6d7aa671eac6a75b39c7314b547d32",
+      "bytes": 20392,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
@@ -15965,7 +15965,7 @@
       ]
     },
     "release.py": {
-      "sha256": "5691c3edbd5e30fea133736033d85a2cdbae23d389ecbe5e2a7bb645b614b8da",
+      "sha256": "9428db6565ccc510122a77e5e6a4d968361c3497e12750ef9ea41897bb5f012b",
       "bytes": 19118,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
@@ -17633,8 +17633,8 @@
       ]
     },
     "source-selection.json": {
-      "sha256": "877ecfca8d610083db4f1c291f5dbc7de6247e1250092b0d0d16748b707ed0ee",
-      "bytes": 59255,
+      "sha256": "0dbbba3338ed60e274848cf3f2555c44294256e8d0c142e0930156e5e7c9c9f8",
+      "bytes": 59250,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
@@ -18077,6 +18077,16 @@
       "bytes": 4383,
       "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
+      "notices": [
+        "LICENSE",
+        "THIRD_PARTY_NOTICES.md"
+      ]
+    },
+    "provenance/flow-op7-binding-reuse-source-selection-01.json": {
+      "sha256": "a54847e7570a8555d4d0b0aabf89229a390f4cc9a7f0df42cdc01cbe477ebac0",
+      "bytes": 9307,
+      "origin": "Original custom MIT Flow host source-derivation metadata; historical evidence does not admit a new SDK build.",
+      "licenseScope": "MIT only within root license scope; inherited notices unchanged",
       "notices": [
         "LICENSE",
         "THIRD_PARTY_NOTICES.md"

@@ -4,6 +4,26 @@ import { packScalarSources } from './flow_scalar_sources.mjs';
 export { solidBoundaryWGSL };
 const rebasePlans = new WeakMap();
 const momentumPlans = new WeakMap();
+const textureBindingViews = new WeakMap();
+const pipelineBindingLayouts = new WeakMap();
+function bindingTextureView(host, resource) {
+    // Materialization and any lease reset still precede the original binding.
+    const texture = host._materializeTexture(resource);
+    let cached = textureBindingViews.get(resource);
+    if (!cached || cached.texture !== texture) {
+        cached = { texture, view: texture.createView() };
+        textureBindingViews.set(resource, cached);
+    }
+    return cached.view;
+}
+function bindingPipelineLayout(pipeline) {
+    let layout = pipelineBindingLayouts.get(pipeline);
+    if (!layout) {
+        layout = pipeline.getBindGroupLayout(0);
+        pipelineBindingLayouts.set(pipeline, layout);
+    }
+    return layout;
+}
 /** NvFlowContext backend borrowing a Chrome WebGPU device. */
 export class FlowHostWebGpu {
     static async create(module, device, shaderRoot, { maxBlocks = 128, cellSize = .15 } = {}) {
@@ -243,9 +263,9 @@ export class FlowHostWebGpu {
                 for (let i = 0; i < writes.length; i += 3) {
                     const value = this._get(writes[i + 2]);
                     entries.push({ binding: writes[i], resource: value.kind === 'buffer' ? { buffer: value.buffer }
-                        : value.kind === 'texture' ? this._materializeTexture(value).createView() : value.sampler });
+                        : value.kind === 'texture' ? bindingTextureView(this, value) : value.sampler });
                 }
-                const group = device.createBindGroup({ layout: resource.pipeline.getBindGroupLayout(0), entries });
+                const group = device.createBindGroup({ layout: bindingPipelineLayout(resource.pipeline), entries });
                 const pass = this._encoder().beginComputePass({ label: resource.name });
                 pass.setPipeline(resource.pipeline); pass.setBindGroup(0, group); pass.dispatchWorkgroups(d, e, f); pass.end();
                 this.stats.dispatches++; this.stats.passes[resource.name] = (this.stats.passes[resource.name] ?? 0) + 1; return;

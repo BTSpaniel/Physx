@@ -1,7 +1,20 @@
 <!-- SPDX-FileCopyrightText: 2026 Jake Wehmeier (BTSpaniel) -->
 <!-- SPDX-License-Identifier: MIT -->
 
-# PhysX PE alpha.4 source build kit
+# PhysX PE source build kit
+
+## Unpublished alpha.5 source successor
+
+This source prepares **5.11.0-alpha.5** with reuse of Flow texture views and
+pipeline layouts. The published alpha.4 downloads remain unchanged. The
+candidate passed a separate native Flow parity check; its two matched timing
+pairs showed fewer view/layout creations and lower observed CPU encoding
+cost, without establishing a robust application speedup. A clean committed
+full build, original release checks, extracted-package verification and
+public delivery are still required for alpha.5. No runtime, Engine or
+realtime admission is inherited from those candidate observations.
+
+## Published alpha.4 build identity
 
 The [published 5.11.0-alpha.4 runtime](https://github.com/BTSpaniel/Physx/releases/tag/v5.11.0-alpha.4)
 was built in [original CI run 37101094361](https://github.com/BTSpaniel/Physx/actions/runs/37101094361)
