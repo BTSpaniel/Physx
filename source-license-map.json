@@ -4296,9 +4296,9 @@
       ]
     },
     "addons/blast/pr_blast_section_accurate.h": {
-      "sha256": "44224dafd55620ea83d9ad4ba12d8e523c19545c669fefc53f3c97f7797cb335",
-      "bytes": 34258,
-      "origin": "Selected custom owner MIT Blast adapter from exact component source closure",
+      "sha256": "665987604c8576acac6b58db4c5c8b170a98f801406166c6a0448d56991c2449",
+      "bytes": 34086,
+      "origin": "Owner MIT Blast adapter derived from exact component source closure by reviewed unused-base preparation removal; provenance/blast-accurate-owned-count-source-selection-01.json retains the original identity.",
       "licenseScope": "MIT for custom adapter; generated NVIDIA-derived outputs retain original upstream notices",
       "notices": [
         "LICENSE",

@@ -401,9 +401,6 @@ public:
     {
         m_ready=m_solution=m_pending=false;
         if(!m_valid || stiffness.size()!=bondCount) return m_valid=false;
-        StressProcessor::DataParams parameters;
-        parameters.centerBonds=parameters.equalizeMasses=false;
-        StressProcessor::prepare(nodes,nodeCount,bonds,bondCount,parameters);
         if(volumes.size()!=nodeCount) return m_valid=false;
         double logMass=0,lengthSum=0; uint64_t massCount=0,lengthCount=0;
         for(uint32_t n=0;n<nodeCount;++n) if(nodes[n].mass>0)
@@ -505,8 +502,8 @@ public:
         auto fail=[&]() { m_valid=false; m_pending=false;
             error.ang=error.lin=std::numeric_limits<float>::quiet_NaN(); return false; };
         if(!m_valid || !m_ready || !iterations) return fail();
-        if(forces.size()!=getNodeCount()) return fail();
-        for(uint32_t i=0;i<getNodeCount();++i)
+        if(forces.size()!=m_physicalWeights.size()) return fail();
+        for(uint32_t i=0;i<m_physicalWeights.size();++i)
         {
             m_rhs64[i]=Vec{};
             for(unsigned axis=0;axis<3;++axis)
@@ -646,7 +643,7 @@ public:
         }
         const double linearScale=m_preciseLength*m_preciseMass;
         const double angularScale=m_preciseLength*linearScale;
-        for(uint32_t b=0;b<getBondCount();++b)
+        for(uint32_t b=0;b<m_factor.size();++b)
         {
             const Vec value=multiply(m_factor[b],m_x[b]);
             for(unsigned i=0;i<6;++i)

@@ -1,0 +1,84 @@
+{
+  "schema": "physx-pe.native-source-selection-derivation/v1",
+  "status": "SOURCE_DERIVED_NOT_COMPILED_NOT_RUNTIME_VERIFIED",
+  "originalSourceRevision": {
+    "commit": "2ba441985868a47eadc0e82a0d263ca61d6b2f3c",
+    "tree": "6de0818ab7f5216fdd3bc03a30b3986ab0ef9ed7",
+    "inventorySha256": "2ccf9aea699dc7a11012031c0fece42f73867bb767809db736f2f807f7b45338"
+  },
+  "historicalOriginManifest": {
+    "file": "reference/combined-native-06/provenance/selected-blast-build.json",
+    "bytes": 54172,
+    "sha256": "cc31ee502ec973d9a6ebd8ff1b4c3963cfbfa62bd93d060cd43feab34b1f8069"
+  },
+  "header": {
+    "file": "addons/blast/pr_blast_section_accurate.h",
+    "before": {
+      "bytes": 34258,
+      "sha256": "44224dafd55620ea83d9ad4ba12d8e523c19545c669fefc53f3c97f7797cb335"
+    },
+    "after": {
+      "bytes": 34086,
+      "sha256": "665987604c8576acac6b58db4c5c8b170a98f801406166c6a0448d56991c2449"
+    }
+  },
+  "forwardPatch": {
+    "file": "provenance/accurate-owned-count-forward.diff",
+    "bytes": 1982,
+    "sha256": "93687bb71132afafa74738627e3654196297fbb82cfa9b64b6e5736364bdccdf"
+  },
+  "inversePatch": {
+    "file": "provenance/accurate-owned-count-inverse.diff",
+    "bytes": 1982,
+    "sha256": "052f8d1acbca6ecde6c9d250b546187ecad44c5ecf1ffc3f1b5889d55ca40955"
+  },
+  "originalNativeSourceHashes": {
+    "addons/blast/emscripten_nv_compat.h": "53dbbab9a1ff899e41958ff81b8d838dd7d6800c9bb926400162c86b1523a787",
+    "addons/blast/emscripten_stress_device.h": "0b24bcf9980f1a3830eb828f52689b52868c74c7e7f3b1295902f74ba4ad7628",
+    "addons/blast/emscripten_stress_intrinsics.h": "24261a2f945f46e3adb5ce7104b89a1bdd6ddf6b7a72059b8198bfa89ed12291",
+    "addons/blast/physical_stress_extension.py": "60d159c8d94efee965862804d6a1f72e67c623536c21ea625627ba06b39e0faf",
+    "addons/blast/pr_blast_authoring.cpp": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8",
+    "addons/blast/pr_blast_memory.h": "9d72f0c9cb3961eac345b5e11720bbea083c62dcad1baee80aaffd66b15e956d",
+    "addons/blast/pr_blast_section_accurate.h": "44224dafd55620ea83d9ad4ba12d8e523c19545c669fefc53f3c97f7797cb335",
+    "addons/blast/pr_blast_section_matrix.h": "fb85464341cc7e655327ffac98d0f388e12d71dd6e3de3775e520aade1864d78",
+    "addons/blast/pr_blast_section_qr.h": "3512c39a9cdc7c8674992ee8076e71412daa16084ad6d586418d577388c56582",
+    "addons/blast/pr_blast_section_solver.h": "4d7a5f7c60601fa2f65bc56b05291d80ebae11d90eccc0c586a55ec9b9c73814",
+    "addons/blast/pr_blast_wasm.cpp": "70f140b1c72c442e0b6b3a88db41543756b60be5dcb3d87a80318fce7150941e",
+    "addons/blast/prepare_authoring_sources.py": "acbd52da8a798fd232422feb36ed85846954e43467f729434a895f8616fbea9d",
+    "addons/blast/prepare_stress_sources.py": "e11233daf3973ad649b826e9247312f994983896a0a803540eea1f0bf865a3a4",
+    "addons/blast/section_stress_extension.py": "9c34f759c48535f004de14a8f69700712b038a67b5bca98eefd0c00881cc17e1",
+    "addons/blast/section_v3_extension.py": "a239b0f28b90b6a7914e554ad5d044f9667a3e7d7ef308de2985f630ec2b1b5a",
+    "addons/blast/tr1/type_traits": "dd134f07a312cd38a5ee494b222baf83f5313aef7df9f7f6c2fa6a366c6fb6be"
+  },
+  "nativeSourceHashes": {
+    "addons/blast/emscripten_nv_compat.h": "53dbbab9a1ff899e41958ff81b8d838dd7d6800c9bb926400162c86b1523a787",
+    "addons/blast/emscripten_stress_device.h": "0b24bcf9980f1a3830eb828f52689b52868c74c7e7f3b1295902f74ba4ad7628",
+    "addons/blast/emscripten_stress_intrinsics.h": "24261a2f945f46e3adb5ce7104b89a1bdd6ddf6b7a72059b8198bfa89ed12291",
+    "addons/blast/physical_stress_extension.py": "60d159c8d94efee965862804d6a1f72e67c623536c21ea625627ba06b39e0faf",
+    "addons/blast/pr_blast_authoring.cpp": "2a91c6dd5409eb2abd8358078bbcab5e341b6340a4bd364c6917eb0ebb932fe8",
+    "addons/blast/pr_blast_memory.h": "9d72f0c9cb3961eac345b5e11720bbea083c62dcad1baee80aaffd66b15e956d",
+    "addons/blast/pr_blast_section_accurate.h": "665987604c8576acac6b58db4c5c8b170a98f801406166c6a0448d56991c2449",
+    "addons/blast/pr_blast_section_matrix.h": "fb85464341cc7e655327ffac98d0f388e12d71dd6e3de3775e520aade1864d78",
+    "addons/blast/pr_blast_section_qr.h": "3512c39a9cdc7c8674992ee8076e71412daa16084ad6d586418d577388c56582",
+    "addons/blast/pr_blast_section_solver.h": "4d7a5f7c60601fa2f65bc56b05291d80ebae11d90eccc0c586a55ec9b9c73814",
+    "addons/blast/pr_blast_wasm.cpp": "70f140b1c72c442e0b6b3a88db41543756b60be5dcb3d87a80318fce7150941e",
+    "addons/blast/prepare_authoring_sources.py": "acbd52da8a798fd232422feb36ed85846954e43467f729434a895f8616fbea9d",
+    "addons/blast/prepare_stress_sources.py": "e11233daf3973ad649b826e9247312f994983896a0a803540eea1f0bf865a3a4",
+    "addons/blast/section_stress_extension.py": "9c34f759c48535f004de14a8f69700712b038a67b5bca98eefd0c00881cc17e1",
+    "addons/blast/section_v3_extension.py": "a239b0f28b90b6a7914e554ad5d044f9667a3e7d7ef308de2985f630ec2b1b5a",
+    "addons/blast/tr1/type_traits": "dd134f07a312cd38a5ee494b222baf83f5313aef7df9f7f6c2fa6a366c6fb6be"
+  },
+  "onlyNativeSourceChanged": "addons/blast/pr_blast_section_accurate.h",
+  "generatedSourcesChanged": false,
+  "cachedObjectsAdmitted": false,
+  "compiledArtifactsAdmitted": false,
+  "engineAdmission": false,
+  "realtimeAdmission": false,
+  "change": "Omit unused accurate-processor legacy-base preparation; use owned binary64 node/bond structure counts. Preserve every binary64 operation and separate legacy processor.",
+  "actualIsolatedNumericalEvidence": {
+    "path": "C:/Coding/game/artifacts/runtime-performance-2026-10-03/native-unused-base-preparation-01/actual-parity-summary-02.json",
+    "bytes": 12954,
+    "sha256": "d67b5621c65edab6775bcffd4e271b1df303aa6bc36728dad68478a8cc05dc45"
+  },
+  "scope": "Owner-source derivation only. Historical component build is retained as origin, not asserted as a build of this header. Fresh full source build and same-pair SDK verification are required."
+}
