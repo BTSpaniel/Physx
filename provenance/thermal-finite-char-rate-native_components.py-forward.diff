@@ -1,0 +1,63 @@
+--- a/tools/native_components.py
++++ b/tools/native_components.py
+@@ -8,6 +8,7 @@
+ from __future__ import annotations
+ 
+ from concurrent.futures import ThreadPoolExecutor
++import hashlib
+ import json
+ from pathlib import Path
+ import sys
+@@ -77,15 +78,48 @@
+             or transform.get('originalArtifactsSelected') is not False
+             or len(transform.get('files', {})) != 4):
+         raise lab.LabError('Invalid owner thermal license transform')
++    derivation_name = selected.get('ownerThermalSourceDerivation')
++    derivation = None
++    if derivation_name is not None:
++        if derivation_name != 'provenance/thermal-finite-char-rate-source-selection-01.json':
++            raise lab.LabError('Unknown owner thermal source derivation')
++        component = selection.get('selectedComponents', {}).get('woodThermal', {})
++        path = member(root, derivation_name)
++        derivation = json.loads(path.read_text(encoding='utf-8'))
++        if (component.get('manifestPath') != derivation_name
++                or component.get('manifestBytes') != path.stat().st_size
++                or component.get('manifestSha256') != lab.sha256(path)
++                or derivation.get('schema') != 'physx-pe.owner-thermal-source-derivation/v1'
++                or derivation.get('status') != 'SOURCE_DERIVED_NOT_COMPILED_NOT_RUNTIME_VERIFIED'
++                or derivation.get('onlyNativeSourceChanged') != 'addons/thermal/pr_wood_thermal.cpp'
++                or derivation.get('cachedObjectsAdmitted') is not False
++                or derivation.get('compiledArtifactsAdmitted') is not False
++                or derivation.get('engineAdmission') is not False
++                or derivation.get('realtimeAdmission') is not False
++                or derivation.get('source') != {'file': 'addons/thermal/pr_wood_thermal.cpp',
++                    'before': {'bytes': 20532, 'sha256': '2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856'},
++                    'after': {'bytes': 20592, 'sha256': '43032e2dbcdf46f46fedce2d3b29c0881981b387337d5bd0178e6faf4eeb0442'}}
++                or derivation.get('historicalLicenseTransform') != {
++                    'file': REFERENCE + '/provenance/thermal-license-transform.json',
++                    'bytes': 2386, 'sha256': '5221d38283d191d12ab83953af1fb3d05ef48c90ea5563aa1dd67bcbeabfe885'}):
++            raise lab.LabError('Invalid explicit owner thermal source derivation')
+     for name, row in transform['files'].items():
+         original = member(root, REFERENCE + '/' + row['originalPath']).read_bytes()
+         chosen = member(root, name).read_bytes()
++        licensed = original.replace(b'SPDX-License-Identifier: LicenseRef-ParticleRealms-Alpha',
++                                    b'SPDX-License-Identifier: MIT')
+         if (lab.sha256(member(root, REFERENCE + '/' + row['originalPath'])) != row['originalSha256']
+-                or lab.sha256(member(root, name)) != row['selectedSha256']
+-                or len(original) != row['originalBytes'] or len(chosen) != row['selectedBytes']
+-                or original.replace(b'SPDX-License-Identifier: LicenseRef-ParticleRealms-Alpha',
+-                                    b'SPDX-License-Identifier: MIT') != chosen):
++                or hashlib.sha256(licensed).hexdigest() != row['selectedSha256']
++                or len(original) != row['originalBytes'] or len(licensed) != row['selectedBytes']):
+             raise lab.LabError('Thermal transformation changes more than owner license identifier: ' + name)
++        expected_chosen = licensed
++        if derivation is not None and name == 'addons/thermal/pr_wood_thermal.cpp':
++            anchor = b'                const double charRate = reactionRate(l[CHAR], l[INITIAL] * material[10], material + 60, l[TEMPERATURE], w[CHAR_FACTOR]);\r\n'
++            if licensed.count(anchor) != 1:
++                raise lab.LabError('Owner thermal finite char-rate anchor changed')
++            expected_chosen = licensed.replace(anchor, anchor + b'                if (!isFinite(charRate)) return NONFINITE;\r\n', 1)
++        if chosen != expected_chosen:
++            raise lab.LabError('Thermal source differs from exact licensed origin or explicit finite char-rate derivation: ' + name)
+     return dict(expected)
+ 
+ 

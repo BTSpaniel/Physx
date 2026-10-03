@@ -91,9 +91,9 @@
     "addons/blast/section_v3_extension.py": "a239b0f28b90b6a7914e554ad5d044f9667a3e7d7ef308de2985f630ec2b1b5a",
     "addons/thermal/build_thermal.py": "1ceb2b9620d5a399b0754d7169b3e3656b4bda5a5aad1f8d6c072a3866d04ca3",
     "addons/thermal/build_thermal_multirate.py": "90f475f8582d312c96ad9ffe3cbf1b5528f8b1b9bf49dd59f70870c10a20df97",
-    "addons/thermal/pr_wood_thermal.cpp": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856",
+    "addons/thermal/pr_wood_thermal.cpp": "43032e2dbcdf46f46fedce2d3b29c0881981b387337d5bd0178e6faf4eeb0442",
     "addons/thermal/pr_wood_thermal_multirate.cpp": "dcebd0a74cb04a53c16c1544b94d9e875eca32a182f180fb8d72fccf6aa2f857",
-    "tools/native_components.py": "315f6a91d122a64e7dd58de77b5c1b49b8656914e03a2760f92e77bd9ade4dcf",
+    "tools/native_components.py": "9189ffa516f2f3e4c6f6b0cf015392aec888c8b84b98f3c6474c8be19eec10dc",
     "tools/generate_addon_types.py": "897866d47fa4d059b5dabfc642ba296ffdf3dee0d8aec593077cfc9e1e8a59ff",
     "tools/typecheck_browser.py": "eb7768b6386bf80f90d98017b059b8e8627bf755c562fa608af5e782ab9d69c9"
   },
@@ -275,7 +275,7 @@
       "addons/blast/tr1/type_traits": "dd134f07a312cd38a5ee494b222baf83f5313aef7df9f7f6c2fa6a366c6fb6be",
       "addons/thermal/build_thermal.py": "1ceb2b9620d5a399b0754d7169b3e3656b4bda5a5aad1f8d6c072a3866d04ca3",
       "addons/thermal/build_thermal_multirate.py": "90f475f8582d312c96ad9ffe3cbf1b5528f8b1b9bf49dd59f70870c10a20df97",
-      "addons/thermal/pr_wood_thermal.cpp": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856",
+      "addons/thermal/pr_wood_thermal.cpp": "43032e2dbcdf46f46fedce2d3b29c0881981b387337d5bd0178e6faf4eeb0442",
       "addons/thermal/pr_wood_thermal_multirate.cpp": "dcebd0a74cb04a53c16c1544b94d9e875eca32a182f180fb8d72fccf6aa2f857",
       "bridge/pr_bulk_rust.cpp": "deb780aff61a57e396bc9843907c6d7c83af23ad1fa06346cd3a70c98b2af6bb",
       "reference/combined-native-06/expected-addon-exports.json": "ac6d1c1dc94fd5018671f29f372daa50d7c90c431fac4586d0e82f134e46b773",
@@ -483,7 +483,8 @@
     "massAbi": 1,
     "preparationAbi": 1,
     "convexAbi": 1,
-    "additionalRawSourceCount": 4
+    "additionalRawSourceCount": 4,
+    "ownerThermalSourceDerivation": "provenance/thermal-finite-char-rate-source-selection-01.json"
   },
   "selectedComponents": {
     "flow": {
@@ -579,13 +580,13 @@
       }
     },
     "woodThermal": {
-      "manifestPath": "reference/combined-native-06/provenance/selected-thermal-source-build.json",
-      "manifestSha256": "b4332f0583b9a1743c43a243ba43ec604d6fc53047317f09ed3ecdf61a0acced",
-      "manifestBytes": 1874,
+      "manifestPath": "provenance/thermal-finite-char-rate-source-selection-01.json",
+      "manifestSha256": "80671dbbf68fe61bd7411ffef6408947e155a9bcc98edfe10a49e1ce3c488f64",
+      "manifestBytes": 5272,
       "nativeSourceHashes": {
         "addons/thermal/build_thermal.py": "1ceb2b9620d5a399b0754d7169b3e3656b4bda5a5aad1f8d6c072a3866d04ca3",
         "addons/thermal/build_thermal_multirate.py": "90f475f8582d312c96ad9ffe3cbf1b5528f8b1b9bf49dd59f70870c10a20df97",
-        "addons/thermal/pr_wood_thermal.cpp": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856",
+        "addons/thermal/pr_wood_thermal.cpp": "43032e2dbcdf46f46fedce2d3b29c0881981b387337d5bd0178e6faf4eeb0442",
         "addons/thermal/pr_wood_thermal_multirate.cpp": "dcebd0a74cb04a53c16c1544b94d9e875eca32a182f180fb8d72fccf6aa2f857"
       }
     }

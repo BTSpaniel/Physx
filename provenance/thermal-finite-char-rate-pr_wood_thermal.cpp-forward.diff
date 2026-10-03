@@ -1,0 +1,10 @@
+--- a/addons/thermal/pr_wood_thermal.cpp
++++ b/addons/thermal/pr_wood_thermal.cpp
+@@ -237,6 +237,7 @@
+                 if (w[CONDUCTANCE] > 0) subDt = low(subDt, .2 * cp / w[CONDUCTANCE]);
+                 if (w[POWER] != 0) subDt = low(subDt, 20 * cp / std::abs(w[POWER]));
+                 const double charRate = reactionRate(l[CHAR], l[INITIAL] * material[10], material + 60, l[TEMPERATURE], w[CHAR_FACTOR]);
++                if (!isFinite(charRate)) return NONFINITE;
+                 if (charRate > 0) subDt = low(subDt, 20 * cp / (charRate * material[13] * high(.001, material[4])));
+             }
+             if (!(subDt > 0) || !isFinite(subDt)) return NONFINITE;

@@ -1,0 +1,121 @@
+{
+  "schema": "physx-pe.owner-thermal-source-derivation/v1",
+  "status": "SOURCE_DERIVED_NOT_COMPILED_NOT_RUNTIME_VERIFIED",
+  "originalSourceRevision": {
+    "commit": "55622a4d125f20f2ed51b39a9f0a0e6df7263325",
+    "tree": "1aa5c44f4c9fb8ac230a7caad155750f5fb0bbe2",
+    "inventorySha256": "b4848573f22ba5d034632d6033e3f1d1c914f2cffae31647f97229d79085d4d1"
+  },
+  "source": {
+    "file": "addons/thermal/pr_wood_thermal.cpp",
+    "before": {
+      "bytes": 20532,
+      "sha256": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856"
+    },
+    "after": {
+      "bytes": 20592,
+      "sha256": "43032e2dbcdf46f46fedce2d3b29c0881981b387337d5bd0178e6faf4eeb0442"
+    }
+  },
+  "historicalLicenseTransform": {
+    "file": "reference/combined-native-06/provenance/thermal-license-transform.json",
+    "bytes": 2386,
+    "sha256": "5221d38283d191d12ab83953af1fb3d05ef48c90ea5563aa1dd67bcbeabfe885"
+  },
+  "historicalOriginManifest": {
+    "file": "reference/combined-native-06/provenance/selected-thermal-source-build.json",
+    "bytes": 1874,
+    "sha256": "b4332f0583b9a1743c43a243ba43ec604d6fc53047317f09ed3ecdf61a0acced"
+  },
+  "originalNativeSourceHashes": {
+    "addons/thermal/build_thermal.py": "1ceb2b9620d5a399b0754d7169b3e3656b4bda5a5aad1f8d6c072a3866d04ca3",
+    "addons/thermal/build_thermal_multirate.py": "90f475f8582d312c96ad9ffe3cbf1b5528f8b1b9bf49dd59f70870c10a20df97",
+    "addons/thermal/pr_wood_thermal.cpp": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856",
+    "addons/thermal/pr_wood_thermal_multirate.cpp": "dcebd0a74cb04a53c16c1544b94d9e875eca32a182f180fb8d72fccf6aa2f857"
+  },
+  "nativeSourceHashes": {
+    "addons/thermal/build_thermal.py": "1ceb2b9620d5a399b0754d7169b3e3656b4bda5a5aad1f8d6c072a3866d04ca3",
+    "addons/thermal/build_thermal_multirate.py": "90f475f8582d312c96ad9ffe3cbf1b5528f8b1b9bf49dd59f70870c10a20df97",
+    "addons/thermal/pr_wood_thermal.cpp": "43032e2dbcdf46f46fedce2d3b29c0881981b387337d5bd0178e6faf4eeb0442",
+    "addons/thermal/pr_wood_thermal_multirate.cpp": "dcebd0a74cb04a53c16c1544b94d9e875eca32a182f180fb8d72fccf6aa2f857"
+  },
+  "onlyNativeSourceChanged": "addons/thermal/pr_wood_thermal.cpp",
+  "patches": [
+    {
+      "file": "provenance/thermal-finite-char-rate-pr_wood_thermal.cpp-forward.diff",
+      "bytes": 675,
+      "sha256": "f75d638799b7fe6fab87f75137c3a28ff2cfeefe3ea89ac4e773c95b4223a9a6"
+    },
+    {
+      "file": "provenance/thermal-finite-char-rate-pr_wood_thermal.cpp-inverse.diff",
+      "bytes": 675,
+      "sha256": "52fce5f315feafdc4b1b28c06ce6de01eec1cd007e72fcc468761859e5ea8133"
+    },
+    {
+      "file": "provenance/thermal-finite-char-rate-native_components.py-forward.diff",
+      "bytes": 4302,
+      "sha256": "29eeb7048b3f30f741e54acb9aa5107ba7ffec7dffbb0f8eba7de0f02a82a772"
+    },
+    {
+      "file": "provenance/thermal-finite-char-rate-native_components.py-inverse.diff",
+      "bytes": 4302,
+      "sha256": "24a952bc2055450d89bb6d7c98682b5ce4443cc5de154e0b4520c2e99aed44ee"
+    },
+    {
+      "file": "provenance/thermal-finite-char-rate-test_full_source_kit.py-forward.diff",
+      "bytes": 5102,
+      "sha256": "876b3a6d415714e25d13a602dafe50b68f2427f26436757e8f09bdded6a1ca03"
+    },
+    {
+      "file": "provenance/thermal-finite-char-rate-test_full_source_kit.py-inverse.diff",
+      "bytes": 5102,
+      "sha256": "9c55f909d6f284be4e863399244159ed4fef54d89ce4d23d63bf484ad79de4a9"
+    }
+  ],
+  "ownerSourceChanges": [
+    {
+      "file": "addons/thermal/pr_wood_thermal.cpp",
+      "before": {
+        "bytes": 20532,
+        "sha256": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856"
+      },
+      "after": {
+        "bytes": 20592,
+        "sha256": "43032e2dbcdf46f46fedce2d3b29c0881981b387337d5bd0178e6faf4eeb0442"
+      }
+    },
+    {
+      "file": "tools/native_components.py",
+      "before": {
+        "bytes": 12242,
+        "sha256": "315f6a91d122a64e7dd58de77b5c1b49b8656914e03a2760f92e77bd9ade4dcf"
+      },
+      "after": {
+        "bytes": 14936,
+        "sha256": "9189ffa516f2f3e4c6f6b0cf015392aec888c8b84b98f3c6474c8be19eec10dc"
+      }
+    },
+    {
+      "file": "tests/test_full_source_kit.py",
+      "before": {
+        "bytes": 14752,
+        "sha256": "56b801e2253440d68a80151369b1d7620f5a77e76433498f2acf82848231a725"
+      },
+      "after": {
+        "bytes": 17960,
+        "sha256": "8f9e4bf55983efd45d274af8ca35901f63092666caeafeb6f58d130971406850"
+      }
+    }
+  ],
+  "actualIsolatedEvidence": {
+    "path": "C:/Coding/game/artifacts/runtime-performance-2026-10-03/wood-installed-abi1-probe-01/revision06/report.json",
+    "bytes": 228550,
+    "sha256": "c2f5716c9f2d64f533e7addd07c21c5b9178c4ae1678003691637059036fdffe"
+  },
+  "finiteEquationArithmeticChanged": false,
+  "cachedObjectsAdmitted": false,
+  "compiledArtifactsAdmitted": false,
+  "engineAdmission": false,
+  "realtimeAdmission": false,
+  "scope": "Exact finite char-rate rejection before native current-substep mutation. Original four-file SPDX transform remains historical and exact; explicit guarded source derives from its licensed 2dc origin. This source-only manifest does not qualify a compiled SDK/runtime. Fresh original full build, original ten verification jobs and extracted 37-case package smoke are required."
+}

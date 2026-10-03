@@ -33,6 +33,9 @@ class FullSourceKit(unittest.TestCase):
         selected = json.loads((ROOT / 'source-selection.json').read_text())
         paths = set(selected['prospectiveNativeSelection']['sourceHashes']) | set(addon.NATIVE_SOURCES)
         paths.add('source-selection.json')
+        derivation_name = selected['prospectiveNativeSelection'].get('ownerThermalSourceDerivation')
+        if derivation_name is not None:
+            paths.add(derivation_name)
         for name in paths:
             target = cls.root / name
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -98,15 +101,59 @@ class FullSourceKit(unittest.TestCase):
             lambda b: b.replace(b'#include "pr_wood_thermal.cpp"', b'#include "different.cpp"'),
             lambda: addon.native_signatures(self.root))
 
-    def test_thermal_originals_reconstruct_selected_bytes_using_only_spdx_change(self):
+    def test_thermal_originals_reconstruct_licensed_origin_and_explicit_source_derivation(self):
         receipt = json.loads((ROOT / 'reference/combined-native-06/provenance/thermal-license-transform.json').read_text())
         self.assertEqual(len(receipt['files']), 4)
         for name, item in receipt['files'].items():
             original = (ROOT / 'reference/combined-native-06' / item['originalPath']).read_bytes()
             selected = (ROOT / name).read_bytes()
             self.assertEqual(hashlib.sha256(original).hexdigest(), item['originalSha256'])
-            self.assertEqual(original.replace(b'SPDX-License-Identifier: LicenseRef-ParticleRealms-Alpha',
-                                             b'SPDX-License-Identifier: MIT'), selected)
+            licensed = original.replace(b'SPDX-License-Identifier: LicenseRef-ParticleRealms-Alpha',
+                                        b'SPDX-License-Identifier: MIT')
+            self.assertEqual(hashlib.sha256(licensed).hexdigest(), item['selectedSha256'])
+            self.assertEqual(len(licensed), item['selectedBytes'])
+            selection = json.loads((ROOT / 'source-selection.json').read_text())
+            if (name == 'addons/thermal/pr_wood_thermal.cpp'
+                    and selection['prospectiveNativeSelection'].get('ownerThermalSourceDerivation') is not None):
+                anchor = b'                const double charRate = reactionRate(l[CHAR], l[INITIAL] * material[10], material + 60, l[TEMPERATURE], w[CHAR_FACTOR]);\r\n'
+                self.assertEqual(licensed.count(anchor), 1)
+                licensed = licensed.replace(anchor, anchor + b'                if (!isFinite(charRate)) return NONFINITE;\r\n', 1)
+            self.assertEqual(licensed, selected)
+
+    def test_explicit_thermal_derivation_rejects_guard_or_provenance_changes(self):
+        selection_path = self.root / 'source-selection.json'
+        before_selection = selection_path.read_bytes()
+        selection = json.loads(before_selection)
+        name = selection['prospectiveNativeSelection'].get('ownerThermalSourceDerivation')
+        if name is None:
+            self.assertEqual(native.selected_source_inputs(self.root), native.selected_source_inputs(ROOT))
+            return
+        self.mutation('addons/thermal/pr_wood_thermal.cpp',
+            lambda value: value.replace(b'if (!isFinite(charRate)) return NONFINITE;', b'if (false) return NONFINITE;'),
+            lambda: native.selected_source_inputs(self.root))
+        path = self.root / name
+        before = path.read_bytes()
+        try:
+            for field, value in (('onlyNativeSourceChanged', 'addons/thermal/pr_wood_thermal_multirate.cpp'),
+                                 ('compiledArtifactsAdmitted', True), ('status', 'PASS')):
+                with self.subTest(field=field):
+                    changed = json.loads(before)
+                    changed[field] = value
+                    path.write_text(json.dumps(changed), encoding='utf-8')
+                    component = selection['selectedComponents']['woodThermal']
+                    component.update(manifestBytes=path.stat().st_size,
+                                     manifestSha256=hashlib.sha256(path.read_bytes()).hexdigest())
+                    selection_path.write_text(json.dumps(selection), encoding='utf-8')
+                    with self.assertRaisesRegex(lab.LabError, 'Invalid explicit owner thermal source derivation'):
+                        native.selected_source_inputs(self.root)
+            selection = json.loads(before_selection)
+            del selection['prospectiveNativeSelection']['ownerThermalSourceDerivation']
+            selection_path.write_text(json.dumps(selection), encoding='utf-8')
+            with self.assertRaisesRegex(lab.LabError, 'Thermal source differs'):
+                native.selected_source_inputs(self.root)
+        finally:
+            path.write_bytes(before)
+            selection_path.write_bytes(before_selection)
 
     def test_fresh_generated_blast_sources_equal_selected_f64_component(self):
         generated = native.prepare_blast_sources(self.root / 'source-inputs/blast', self.root)

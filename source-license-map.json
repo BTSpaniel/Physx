@@ -4384,10 +4384,10 @@
       ]
     },
     "addons/thermal/pr_wood_thermal.cpp": {
-      "sha256": "2dc948452bf58895e793c4a07375ff502164f09839b7057528c27c9e01a62856",
-      "bytes": 20532,
-      "origin": "Owner-authorized SPDX-only MIT copy; unchanged Alpha original and reversible transform retained in reference/combined-native-06/provenance",
-      "licenseScope": "MIT for this selected owner-authored thermal file; no semantic/copyright transformation",
+      "sha256": "43032e2dbcdf46f46fedce2d3b29c0881981b387337d5bd0178e6faf4eeb0442",
+      "bytes": 20592,
+      "origin": "Owner MIT source derived by reviewed finite char-rate guard and exact source-proof/test succession; provenance/thermal-finite-char-rate-source-selection-01.json preserves prior identity and historical license transform.",
+      "licenseScope": "MIT for this selected owner-authored thermal file; copyright and attribution preserved, explicit finite char-rate rejection derivation retained",
       "notices": [
         "LICENSE",
         "LICENSES/Particle-Realms-Build-Lab-MIT.txt",
@@ -17673,9 +17673,9 @@
       ]
     },
     "tests/test_full_source_kit.py": {
-      "sha256": "56b801e2253440d68a80151369b1d7620f5a77e76433498f2acf82848231a725",
-      "bytes": 14752,
-      "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
+      "sha256": "8f9e4bf55983efd45d274af8ca35901f63092666caeafeb6f58d130971406850",
+      "bytes": 17960,
+      "origin": "Owner MIT source derived by reviewed finite char-rate guard and exact source-proof/test succession; provenance/thermal-finite-char-rate-source-selection-01.json preserves prior identity and historical license transform.",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
         "LICENSE",
@@ -17823,9 +17823,9 @@
       ]
     },
     "tools/native_components.py": {
-      "sha256": "315f6a91d122a64e7dd58de77b5c1b49b8656914e03a2760f92e77bd9ade4dcf",
-      "bytes": 12242,
-      "origin": "Original MIT standalone tooling/declaration/source-kit contribution or preserved project metadata; existing notices retained",
+      "sha256": "9189ffa516f2f3e4c6f6b0cf015392aec888c8b84b98f3c6474c8be19eec10dc",
+      "bytes": 14936,
+      "origin": "Owner MIT source derived by reviewed finite char-rate guard and exact source-proof/test succession; provenance/thermal-finite-char-rate-source-selection-01.json preserves prior identity and historical license transform.",
       "licenseScope": "MIT only within root license scope; external dependencies and existing per-file licenses unchanged",
       "notices": [
         "LICENSE",
