@@ -21,10 +21,32 @@ import typecheck_browser as checker
 
 class FlowComponentDeclarations(unittest.TestCase):
     def test_hash_bound_sources_and_api_handoff_are_retained(self):
-        receipt = json.loads((FIXTURES / 'source-pins.json').read_text())
-        for name, descriptor in receipt['files'].items():
+        historical_pins = (FIXTURES / 'source-pins.json').read_bytes()
+        self.assertEqual(hashlib.sha256(historical_pins).hexdigest(),
+            '9113407d57fd09ddb6252761a0da39bd715faf0ace9afc0ba65daceb57754306')
+        receipt = json.loads(historical_pins)
+        derivation_bytes = (ROOT / 'provenance/flow-op7-binding-reuse-source-selection-01.json').read_bytes()
+        self.assertEqual(hashlib.sha256(derivation_bytes).hexdigest(),
+            'a54847e7570a8555d4d0b0aabf89229a390f4cc9a7f0df42cdc01cbe477ebac0')
+        derivation = json.loads(derivation_bytes)
+        self.assertEqual(derivation['schema'], 'physx-pe.flow-host-source-derivation/v1')
+        self.assertEqual(derivation['proposedVersion'], '5.11.0-alpha.5')
+        host = 'addons/flow/flow_host_webgpu.mjs'
+        self.assertEqual(derivation['onlyExecutableSourceChanged'], host)
+        change = derivation['source']
+        self.assertEqual(change['file'], host)
+        self.assertEqual(change['before'], receipt['files'][host])
+        self.assertEqual(change['after'], {'bytes': 75477,
+            'sha256': '91f01d7c2634aca0f64597562d77a39361ff09d295f9cc6a59b7ce665b69c729'})
+        historical_host = (ROOT / 'reference/flow-component-01' / host).read_bytes()
+        self.assertEqual(len(historical_host), change['before']['bytes'])
+        self.assertEqual(hashlib.sha256(historical_host).hexdigest(), change['before']['sha256'])
+        current_files = {**receipt['files'], host: change['after']}
+        for name, descriptor in current_files.items():
             with self.subTest(path=name):
-                self.assertEqual(hashlib.sha256((ROOT / name).read_bytes()).hexdigest(), descriptor['sha256'])
+                current = (ROOT / name).read_bytes()
+                self.assertEqual(len(current), descriptor['bytes'])
+                self.assertEqual(hashlib.sha256(current).hexdigest(), descriptor['sha256'])
         self.assertEqual(hashlib.sha256((FIXTURES / 'api-contract-01.json').read_bytes()).hexdigest(),
             'a649f4f03c074df9fbdc1d6cee2d0310b35482f66432cc517b33098d705cb1e4')
 
